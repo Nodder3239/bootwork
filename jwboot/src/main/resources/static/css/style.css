@@ -1,7 +1,58 @@
 @charset "UTF-8";
-.wrap{
-	width: 1000px;
-	margin: 30px auto;
-	text-align: center;
+
+*{margin: 0; padding: 0;}
+
+#content{width: 60%; margin: 50px auto;}
+h2{color: #000; text-align: center;}
+.main-pic{text-align: center;}
+.menu{text-align: center;}
+a{text-decoration: none; color:#000;}
+ul li{list-style: none;}
+
+/* 헤더 */
+header{height: 80px; background: #ccc;}
+header #logo{float: left;}
+#logo h1{line-height: 80px;}
+#logo h1 a{color: #111; padding-left: 24px; font-style: italic;}
+#logo h1 a:hover{color: #444;}
+header nav{width: 50%; float: right;}
+#topMenu{line-height: 80px; padding-left: 150px;}
+#topMenu li{float: left; margin: 0 20px;}
+#topMenu li a{color: #444; padding: 0 20px;}
+#topMenu li a:hover{color: #111;}
+
+@media screen and (max-width: 1440px) {
+	header nav{width: 70%;}
 }
-h1{color: blue;}
+@media screen and (max-width: 1180px) {
+	header nav{width: 80%;}
+}
+
+/* footer 스타일 */
+footer{height: 80px; border-top: 2px solid #222; clear: both;}
+#bottomMenu{margin: 10px 20px;}
+#bottomMenu li{float: left; margin: 10px 0; padding: 0 10px;
+	border-right: 1.5px solid #ccc;}
+#bottomMenu li a{color: #444;}
+#bottomMenu li:last-child{border: none;}
+
+/* 메인  */
+.main {text-align:center;}
+.main_pic {width: 50%; margin: 0 auto;}
+
+/* 로그인 */
+#content_login {width: 20%; margin: 200px auto;}
+
+/* 회원가입 */
+#content_join {width: 30%; margin: 10px auto;}
+
+/* 게시판 */
+#tbl_list {margin: 0 auto; width: 100%; text-align: center;}
+.td_title {width: 50%; text-overflow: ellipsis;}
+.btn_write {width: 100%; margin: 10px auto;}
+
+/* 게시판 상세보기 */
+.tbl_detail {width: 100%; margin: 50px auto; padding: 20px;}
+
+/* 글쓰기 */
+.tbl_write tr{margin: 10px 0px;}

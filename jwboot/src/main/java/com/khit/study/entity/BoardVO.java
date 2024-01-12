@@ -6,9 +6,10 @@ import lombok.Data;
 
 @Data
 public class BoardVO {
-	private int id;
+	private Long id;
 	private String title;
 	private String writer;
 	private String content;
 	private Date createdDate;
+	private Date updatedDate;
 }
