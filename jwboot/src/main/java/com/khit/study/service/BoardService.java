@@ -1,5 +1,6 @@
 package com.khit.study.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import org.springframework.data.domain.Sort;
@@ -32,6 +33,12 @@ public class BoardService {
 
 	public void delete(Long id) {
 		boardRepository.deleteById(id);
+		
+	}
+
+	public void update(Board board) {
+		board.setUpdatedDate(new Timestamp(System.currentTimeMillis()));
+		boardRepository.save(board);
 		
 	}
 }

@@ -68,7 +68,7 @@ public class BoardController {
 	
 	@PostMapping("/update")
 	public String update(@ModelAttribute Board board) {
-		boardService.save(board);
+		boardService.update(board);
 		return "redirect:/board?id=" + board.getId();
 	}
 	
