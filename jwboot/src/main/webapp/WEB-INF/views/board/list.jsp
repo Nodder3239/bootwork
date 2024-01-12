@@ -62,15 +62,11 @@
 					<option value="c" ${(field eq "c") ? "selected" : ""} >내용</option>
 					<option value="w" ${(field eq "w") ? "selected" : ""} >작성자</option>
 				</select>
-				<input type="text" class="form-control" name="kw" value="${kw }" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+				<input type="text" class="form-control" name="kw" value="${kw }" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" style="width:50%">
 				<button type="submit" class="btn btn-outline-secondary"><i class="fa-solid fa-magnifying-glass"></i></button>
+		  		<a href = "/board/write"><button class="btn btn-outline-secondary">글쓰기</button></a>
 		  	</div>
 		  </form>
-		</div>
-		<div class="btn_write">
-			<a href = "/board/write"><button class="btn btn-outline-secondary">글쓰기</button></a>
-		</div>
-		</div>
 	</div>
 	<%-- <jsp:include page="../layout/footer.jsp"/> --%>
 </body>
