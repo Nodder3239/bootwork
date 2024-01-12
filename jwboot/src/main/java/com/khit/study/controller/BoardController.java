@@ -39,9 +39,20 @@ public class BoardController {
 	
 	//글 목록 보기
 	@GetMapping("/")
-	public String getBoardList(Model model) {
-		List<Board> boardList = boardService.findAll();
-		model.addAttribute("boardList", boardList);
+	public String getBoardList(Model model, String field, String kw) {
+		if ("t".equals(field)) {
+	        List<Board> boardList = boardService.findByTitle(kw);
+	        model.addAttribute("boardList", boardList);
+	    } else if ("c".equals(field)) {
+	        List<Board> boardList = boardService.findByContent(kw);
+	        model.addAttribute("boardList", boardList);
+	    } else {
+	        List<Board> boardList = boardService.findByWriter(kw);
+	        model.addAttribute("boardList", boardList);
+	    }
+		//List<Board> boardList = boardService.findAll();
+		model.addAttribute("field", field);
+		model.addAttribute("kw", kw);
 		return "/board/list";
 	}
 	
@@ -71,5 +82,5 @@ public class BoardController {
 		boardService.update(board);
 		return "redirect:/board?id=" + board.getId();
 	}
-	
+		
 }

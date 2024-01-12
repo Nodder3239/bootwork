@@ -11,6 +11,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="https://kit.fontawesome.com/69798321c6.js" ></script>
 <link >
 </head>
 <body>
@@ -52,25 +53,20 @@
 				</c:forEach>
 			</tbody>
 		</table>
-		<!-- <nav>
-		  <ul class="pagination justify-content-center">
-		  	<li class="page-item">
-		      <a class="page-link" href="#">Start</a>
-		    </li>
-		    <li class="page-item disabled">
-		      <a class="page-link">Previous</a>
-		    </li>
-		    <li class="page-item"><a class="page-link" href="#">1</a></li>
-		    <li class="page-item"><a class="page-link" href="#">2</a></li>
-		    <li class="page-item"><a class="page-link" href="#">3</a></li>
-		    <li class="page-item">
-		      <a class="page-link" href="#">Next</a>
-		    </li>
-		    <li class="page-item">
-		      <a class="page-link" href="#">End</a>
-		    </li>
-		  </ul>
-		</nav> -->
+		<!-- 검색 영역 -->
+		<div style="width:50%; margin: 10px auto;">
+		  <form action="/board/" method="get">
+		  	<div style="display: flex;">
+				<select name="field" class="btn btn-outline-secondary dropdown-toggle">
+					<option value="t" ${(field eq "t") ? "selected" : ""} >제목</option>
+					<option value="c" ${(field eq "c") ? "selected" : ""} >내용</option>
+					<option value="w" ${(field eq "w") ? "selected" : ""} >작성자</option>
+				</select>
+				<input type="text" class="form-control" name="kw" value="${kw }" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+				<button type="submit" class="btn btn-outline-secondary"><i class="fa-solid fa-magnifying-glass"></i></button>
+		  	</div>
+		  </form>
+		</div>
 		<div class="btn_write">
 			<a href = "/board/write"><button class="btn btn-outline-secondary">글쓰기</button></a>
 		</div>
