@@ -46,6 +46,6 @@
 			<a href="/board/write">글쓰기</a>
 		</div>
 	</div>
-
+	
 </body>
 </html>

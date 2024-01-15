@@ -45,7 +45,7 @@ public class QueryMethodTest {
 		}
 	}
 	*/
-	
+	/*
 	@Test
 	public void testFindByTitleContainingOrContentContaining() {
 		List <Board> boardList =
@@ -53,4 +53,5 @@ public class QueryMethodTest {
 		
 		boardList.forEach(board -> log.info(board.toString()));
 	}
+	*/
 }

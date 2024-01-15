@@ -1,4 +1,4 @@
-package com.khit.study.service;
+package com.khit.board.service;
 
 import java.sql.Timestamp;
 import java.util.List;
@@ -9,18 +9,16 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 
-import com.khit.study.entity.Board;
-import com.khit.study.repository.BoardRepository;
+import com.khit.board.entity.Board;
+import com.khit.board.repository.BoardRepository;
 
-import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
+import lombok.RequiredArgsConstructor;
 
-@Slf4j
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Controller
 public class BoardService {
 	
-	private BoardRepository boardRepository;
+	private final BoardRepository boardRepository;
 	
 	public void save(Board board) {
 		boardRepository.save(board);
@@ -46,21 +44,7 @@ public class BoardService {
 		boardRepository.save(board);
 		
 	}
-	/*
-	public List<Board> findByTitle(String kw) {
-		List<Board> list = boardRepository.findByTitleContaining(kw);
-		log.info("" + list.toString());
-		return list;
-	}
-
-	public List<Board> findByContent(String kw) {
-		return boardRepository.findByContentContaining(kw);
-	}
-
-	public List<Board> findByWriter(String kw) {
-		return boardRepository.findByWriterContaining(kw);
-	}
-	*/
+	
 	public Page<Board> findByTitle(String kw, int page) {
 		Pageable pageable = PageRequest.of(page, 10, Sort.by("id").descending());
 		Page<Board> list = boardRepository.findByTitleContaining(kw, pageable);
