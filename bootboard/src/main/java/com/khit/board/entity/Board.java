@@ -55,9 +55,7 @@ public class Board extends BaseEntity{
 	private Date updatedDate;
 	*/
 	
-	private void setCreatedDate(LocalDateTime createdDate) {		
-	    this.createdDate = createdDate;		
-	}
+
 	private void setUpdatedDate(LocalDateTime updatedDate) {
 		this.updatedDate = updatedDate;
 	}	
@@ -68,9 +66,7 @@ public class Board extends BaseEntity{
 		board.setBoardTitle(boardDTO.getBoardTitle());
 		board.setBoardWriter(boardDTO.getBoardWriter());
 		board.setBoardContent(boardDTO.getBoardContent());
-		board.setBoardHits(boardDTO.getBoardHits());
-		board.setCreatedDate(boardDTO.getCreatedDate());
-		board.setUpdatedDate(boardDTO.getUpdatedDate());
+		board.setBoardHits(0);
 		return board;
 	}
 	
@@ -82,7 +78,6 @@ public class Board extends BaseEntity{
 		board.setBoardWriter(boardDTO.getBoardWriter());
 		board.setBoardContent(boardDTO.getBoardContent());
 		board.setBoardHits(boardDTO.getBoardHits());
-		board.setCreatedDate(boardDTO.getCreatedDate());
 		board.setUpdatedDate(boardDTO.getUpdatedDate());
 		return board;
 	}
