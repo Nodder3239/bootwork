@@ -1,7 +1,9 @@
 package com.khit.board.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
+import org.hibernate.annotations.ColumnDefault;
 import org.hibernate.annotations.CreationTimestamp;
 
 import com.khit.board.dto.BoardDTO;
@@ -12,46 +14,74 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Table(name = "tbl_board")
 @Entity
-@Data
-public class Board {
+@Getter
+@Setter
+@ToString
+public class Board extends BaseEntity{
 	@Id	//기본키(설정 안하면 오류)
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //자동 순번
 	private Long id;
 	
 	@Column(length=400, nullable=false)
-	private String title;
+	private String boardTitle;
 	
 	@Column(length=30, nullable=false)
-	private String writer;
+	private String boardWriter;
 	
 	@Column(length=4000, nullable=false)
-	private String content;
+	private String boardContent;
 	
+	@Column
+	private Integer boardHits;
+	
+	/*
 	@CreationTimestamp	//현재 날짜와 시간 자동 생성
 	private Date createdDate;
 	
+	@Column
 	private Date updatedDate;
+	*/
+	
+	private void setCreatedDate(LocalDateTime createdDate) {		
+	    this.createdDate = createdDate;		
+	}
+	private void setUpdatedDate(LocalDateTime updatedDate) {
+		this.updatedDate = updatedDate;
+	}	
+	
 	
 	public static Board toSaveBoardEntity(BoardDTO boardDTO) {
 		Board board = new Board();
-		board.setTitle(boardDTO.getTitle());
-		board.setWriter(boardDTO.getWriter());
-		board.setContent(boardDTO.getContent());
+		board.setBoardTitle(boardDTO.getBoardTitle());
+		board.setBoardWriter(boardDTO.getBoardWriter());
+		board.setBoardContent(boardDTO.getBoardContent());
+		board.setBoardHits(boardDTO.getBoardHits());
 		board.setCreatedDate(boardDTO.getCreatedDate());
 		board.setUpdatedDate(boardDTO.getUpdatedDate());
 		return board;
 	}
 	
+
 	public static Board toUpdateBoardEntity(BoardDTO boardDTO) {
 		Board board = new Board();
 		board.setId(boardDTO.getId());
-		board.setTitle(boardDTO.getTitle());
-		board.setWriter(boardDTO.getWriter());
-		board.setContent(boardDTO.getContent());
+		board.setBoardTitle(boardDTO.getBoardTitle());
+		board.setBoardWriter(boardDTO.getBoardWriter());
+		board.setBoardContent(boardDTO.getBoardContent());
+		board.setBoardHits(boardDTO.getBoardHits());
 		board.setCreatedDate(boardDTO.getCreatedDate());
 		board.setUpdatedDate(boardDTO.getUpdatedDate());
 		return board;

@@ -11,4 +11,9 @@ public class HomeController {
 		return "index";	//index.html
 	}
 	*/
+	
+	@GetMapping("/ex/game")
+	public String game() {
+		return "/ex/game";
+	}
 }

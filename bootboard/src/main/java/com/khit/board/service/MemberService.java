@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 
 import com.khit.board.dto.MemberDTO;
 import com.khit.board.entity.Member;
+import com.khit.board.exception.BootBoardException;
 import com.khit.board.repository.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -54,9 +55,15 @@ public class MemberService {
 	*/
 
 	public MemberDTO findById(Long id) {
-		Member member = memberRepository.findById(id).get();
-		MemberDTO memberDTO = MemberDTO.toSaveDTO(member);
-		return memberDTO;
+		//db에서 member 1건 꺼내옴 - findById(id).get();
+		//id가 없을때 오류 처리 - "url을 찾을 수 없습니다."
+		Optional<Member> member = memberRepository.findById(id);
+		if(member.isPresent()) {
+			MemberDTO memberDTO = MemberDTO.toSaveDTO(member.get());
+			return memberDTO;
+		}else
+			throw new BootBoardException("찾는 데이터가 없습니다.");
+		
 	}
 
 	public void delete(Long id) {
@@ -103,9 +110,9 @@ public class MemberService {
 	public String checkEmail(String memberEmail) {
 		Optional<Member> member = memberRepository.findByMemberEmail(memberEmail);
 		if(member.isEmpty()) {	//DB에 저장된 객체가 없으면
-			return "usable";	//사용가능
+			return "OK";	//사용가능
 		}
-		return "not_usable";	//사용불가
+		return "NO";	//사용불가
 	}
 
 	public MemberDTO findByMemberEmail(String email) {

@@ -13,6 +13,7 @@
 </style>
 </head>
 <body>
+	<div th:replace="/layout/header"></div>
 	<div class="content">
 		<div id="content_join">
 		<h2>회원 가입</h2>
@@ -65,5 +66,35 @@
 			</form>
 		</div>
 	</div>
+	<div th:replace="/layout/footer"></div>
+<script>
+	const checkEmail = function(){
+		let inputEmail = document.getElementById("memberEmail").value;
+		let checkResult = document.getElementById("check-result");
+		
+		if(inputEmail != null && inputEmail != ""){
+			$.ajax({
+				//요청방식, url, data, 함수 - (성공, 실패)
+				type: "POST",
+				url: "/member/checkemail",
+				data:{memberEmail: inputEmail},
+				success: function(res){
+					if(res == "OK"){
+						checkResult.innerHTML = "사용가능한 이메일입니다.";
+						checkResult.style.color = "blue";
+					}else{
+						checkResult.innerHTML = "이미 가입된 이메일입니다.";
+						checkResult.style.color = "red";
+					}
+				},
+				error: function(err){
+				}
+			})
+		}else{
+			checkResult.innerHTML = "아이디를 입력하세요.";
+			checkResult.style.color = "red";
+		}
+	}
+</script>
 </body>
 </html>

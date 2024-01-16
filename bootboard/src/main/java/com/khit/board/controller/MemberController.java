@@ -64,7 +64,8 @@ public class MemberController {
 		//로그인 성공, 실패
 		if(loginMember !=null) {
 			session.setAttribute("sessionEmail", loginMember.getMemberEmail());
-			return "/main";	//http://localhost:8080/
+			session.setAttribute("sessionName", loginMember.getMemberName());
+			return "/index";	//http://localhost:8080/
 		}else {
 			String error = "아이디나 비밀번호를 확인해 주세요";
 			model.addAttribute("error", error);
@@ -109,7 +110,7 @@ public class MemberController {
 	}
 	
 	//아이디 중복 검사
-	@PostMapping("/checkEmail")
+	@PostMapping("/checkemail")
 	public @ResponseBody String checkEmail(@RequestParam String memberEmail) {
 		log.info(memberEmail);
 		String checkResult = memberService.checkEmail(memberEmail);
