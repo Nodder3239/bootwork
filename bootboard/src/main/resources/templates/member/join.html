@@ -13,8 +13,8 @@
 </style>
 </head>
 <body>
-	<div th:replace="/layout/header"></div>
-	<div class="content">
+	<div th:replace="~{/layout/header}"></div>
+	<div id="content">
 		<div id="content_join">
 		<h2>회원 가입</h2>
 		<form th:action="@{/member/join}" method="post" name="userform">
@@ -66,7 +66,7 @@
 			</form>
 		</div>
 	</div>
-	<div th:replace="/layout/footer"></div>
+	<div th:replace="~{/layout/footer}"></div>
 <script>
 	const checkEmail = function(){
 		let inputEmail = document.getElementById("memberEmail").value;

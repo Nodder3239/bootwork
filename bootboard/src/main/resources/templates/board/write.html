@@ -15,17 +15,20 @@
 	        location.href = "/member/login";
 	    </script>
 	</th:block>
-	<div th:replace="/layout/header"></div>
-	<div id="content">
+	<div th:replace="~{/layout/header}"></div>
+		<div id="content">
 		<h2>글쓰기</h2>
-		<form th:action="@{/board/write}" method="post" enctype="multipart/form-data">
-			<input type="text" name="boardTitle" class="form-control mt-4 mb-2"
+		<form th:action="@{/board/write}" method="post" th:object="${boardDTO}" enctype="multipart/form-data">
+			<input type="text" th:field=*{boardTitle} class="form-control mt-4 mb-2"
 				placeholder="제목을 입력해주세요." required
 			>
+			<div th:if="${#fields.hasAnyErrors()}">
+				<div th:each="err: ${#fields.allErrors()}" th:text="${err}" class="alert-danger"></div>			
+			</div>
 			<input type="hidden" name="boardWriter" th:value="${session.sessionName}">
 			<div class="form-group">
-				<textarea class="form-control" rows="10" name="boardContent"
-					placeholder="내용을 입력해주세요" required style="resize: none;"
+				<textarea class="form-control" rows="10" th:field=*{boardContent}
+					placeholder="내용을 입력해주세요" style="resize: none;" required
 				></textarea>
 			</div>
 			<div class="form-group">
@@ -41,6 +44,6 @@
 			</div>
 		</form>
 	</div>
-	<div th:replace="/layout/footer"></div>
+	<div th:replace="~{/layout/footer}"></div>
 </body>
 </html>

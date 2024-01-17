@@ -7,6 +7,9 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 
 import com.khit.study.entity.Board;
 
@@ -84,6 +87,32 @@ public class BoardRepositoryTest {
 	public void deleteBoard() {
 		//3번 게시글 삭제
 		boardRepository.deleteById(3);
+	}
+	*/
+		
+	/*
+	@Test
+	public void testFindByTitleContainingOrderByIdDesc() {
+		List<Board> boardList = boardRepository.findByBoardContentContainingOrderByIdDesc("10");
+		
+		for(Board board : boardList) {
+			log.info(board.toString());
+		}
+	}
+	*/
+	
+	/*
+	@Test
+	public void testFindByTitleContaining() {
+		//0 -> 1페이지
+		Pageable paging = PageRequest.of(0, 10, Sort.by(Sort.Direction.DESC, "id"));
+		log.info("page: " + paging.getPageNumber());
+		log.info("size: " + paging.getPageSize());
+		
+		List<Board> boardList =
+				boardRepository.findByTitleContaining("제목", paging);
+		
+		boardList.forEach(board -> log.info(board.toString()));
 	}
 	*/
 }

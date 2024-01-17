@@ -10,8 +10,8 @@
 <script src="https://kit.fontawesome.com/69798321c6.js" ></script>
 </head>
 <body>
-	<div th:replace="/layout/header"></div>
-		<div id="content">
+	<div th:replace="~{/layout/header}"></div>
+   		<div id="content">
         <h2>글 수정하기</h2>
         <form th:action="@{/board/update}" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" th:value="${board.id}">
@@ -38,6 +38,6 @@
             </div>
         </form>
     </div>
-	<!-- <jsp:include page="../layout/footer.jsp"/> -->
+	<div th:replace="~{/layout/footer}"></div>
 </body>
 </html>

@@ -10,7 +10,7 @@
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-	<div th:replace="/layout/header"></div>
+	<div th:replace="~{/layout/header}"></div>
 		<div id="content">
 		<h2>글 상세보기</h2>
 		<table class="tbl_detail">
@@ -75,7 +75,7 @@
 			</tr>
 		</table>		
 	</div>
-	<div th:replace="/layout/footer"></div>
+	<div th:replace="~{/layout/footer}"></div>
 	<script>
 		
 	</script>

@@ -56,11 +56,6 @@ public class Board extends BaseEntity{
 	*/
 	
 
-	private void setUpdatedDate(LocalDateTime updatedDate) {
-		this.updatedDate = updatedDate;
-	}	
-	
-	
 	public static Board toSaveBoardEntity(BoardDTO boardDTO) {
 		Board board = new Board();
 		board.setBoardTitle(boardDTO.getBoardTitle());
@@ -78,7 +73,6 @@ public class Board extends BaseEntity{
 		board.setBoardWriter(boardDTO.getBoardWriter());
 		board.setBoardContent(boardDTO.getBoardContent());
 		board.setBoardHits(boardDTO.getBoardHits());
-		board.setUpdatedDate(boardDTO.getUpdatedDate());
 		return board;
 	}
 }

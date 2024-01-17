@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,6 +17,7 @@ import com.khit.board.dto.BoardDTO;
 import com.khit.board.entity.Board;
 import com.khit.board.service.BoardService;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,29 +31,32 @@ public class BoardController {
 	
 	//글쓰기 페이지
 	@GetMapping("/write")
-	public String writeForm() {
+	public String writeForm(BoardDTO boardDTO) {
 		return "/board/write";
 	}
 	
 	//글쓰기
 	@PostMapping("/write")
-	public String write(@ModelAttribute BoardDTO boardDTO) {
-		boardDTO.setBoardHits(0);
+	public String write(@Valid BoardDTO boardDTO, BindingResult bindingResult) {
+		if(bindingResult.hasErrors()) {		//에러가 있으면 글쓰기 폼으로 이동
+			return "/board/write";
+		}
+		//글쓰기 처리
 		boardService.save(boardDTO);
 		return "redirect:/board/";
 	}
 	
 	//글 목록 보기
 	@GetMapping("/")
-	public String getBoardList(/*@RequestParam(value="page", defaultValue="0") int page,*/ Model model, String field, String kw) {
+	public String getBoardList(@RequestParam(value="page", defaultValue="0") int page, Model model, String field, String kw) {
 	  
 		List<BoardDTO> boardList;
 			if ("t".equals(field)) {
-				boardList = boardService.findByTitle(kw);
+				boardList = boardService.findByTitle(kw, page);
 			} else if ("c".equals(field)) {
-				boardList = boardService.findByContent(kw);
+				boardList = boardService.findByContent(kw, page);
 			} else if ("w".equals(field)){
-				boardList = boardService.findByWriter(kw);
+				boardList = boardService.findByWriter(kw, page);
 			}else {
 				boardList = boardService.findAll();
 		       
@@ -60,7 +65,7 @@ public class BoardController {
 		//List<Board> boardList = boardService.findAll();
 		model.addAttribute("field", field);
 		model.addAttribute("kw", kw);
-		//model.addAttribute("page", page);
+		model.addAttribute("page", page);
 		return "/board/list";
 	}
 	

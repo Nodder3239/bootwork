@@ -16,7 +16,7 @@
 			location.href = "/member/login";
 		</script>
 	</c:if> -->
-	<div th:replace="/layout/header"></div>
+	<div th:replace="~{/layout/header}"></div>
 	<div id="content">
 		<h2>회원 목록</h2>
 		<table class="table" id="tbl_list" style="width:60%; margin:0 auto;">		
@@ -48,6 +48,6 @@
 			</tbody>
 		</table>
 	</div>
-	<div th:replace="/layout/footer"></div>
+	<div th:replace="~{/layout/footer}"></div>
 </body>
 </html>

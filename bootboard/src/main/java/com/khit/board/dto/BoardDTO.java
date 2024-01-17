@@ -1,11 +1,11 @@
 package com.khit.board.dto;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 import com.khit.board.entity.Board;
-import com.khit.board.entity.Member;
 
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,8 +17,17 @@ import lombok.NoArgsConstructor;
 @Data
 public class BoardDTO {
 	private Long id;
+	
+	@NotEmpty(message = "제목은 필수 항목입니다.")
+	@Size(max=255)
 	private String boardTitle;
+	
+	@NotEmpty(message = "작성자는 필수 항목입니다.")
+	@Size(max=30)
 	private String boardWriter;
+	
+	@NotEmpty(message = "내용은 필수 항목입니다.")
+	@Size(max=2000)
 	private String boardContent;
 	private Integer boardHits;
 	private LocalDateTime createdDate;

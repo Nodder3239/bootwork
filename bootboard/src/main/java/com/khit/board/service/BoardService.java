@@ -61,9 +61,9 @@ public class BoardService {
 		
 	}
 	
-	public List<BoardDTO> findByTitle(String kw) {
-		//Pageable pageable = PageRequest.of(page, 10, Sort.by("id").descending());
-		List<Board> boardList = boardRepository.findByBoardTitleContaining(kw, Sort.by(Sort.Direction.DESC, "id"));
+	public List<BoardDTO> findByTitle(String kw, int page) {
+		Pageable pageable = PageRequest.of(page, 10);
+		List<Board> boardList = boardRepository.findByBoardTitleContainingOrderByIdDesc(kw, pageable);
 		List<BoardDTO> boardDTOList = new ArrayList<>();
 		
 		for(Board board : boardList) {
@@ -73,9 +73,9 @@ public class BoardService {
 		return boardDTOList;
 	}
 
-	public List<BoardDTO> findByContent(String kw) {
-		//Pageable pageable = PageRequest.of(page, 10, Sort.by("id").descending());
-		List<Board> boardList = boardRepository.findByBoardContentContaining(kw, Sort.by(Sort.Direction.DESC, "id"));
+	public List<BoardDTO> findByContent(String kw, int page) {
+		Pageable pageable = PageRequest.of(page, 10);
+		List<Board> boardList = boardRepository.findByBoardContentContainingOrderByIdDesc(kw, pageable);
 		List<BoardDTO> boardDTOList = new ArrayList<>();
 		
 		for(Board board : boardList) {
@@ -85,17 +85,17 @@ public class BoardService {
 		return boardDTOList;
    	}
 
-   public List<BoardDTO> findByWriter(String kw) {
-	   //Pageable pageable = PageRequest.of(page, 10, Sort.by("id").descending());
-	   List<Board> boardList = boardRepository.findByBoardWriterContaining(kw, Sort.by(Sort.Direction.DESC, "id"));
-		List<BoardDTO> boardDTOList = new ArrayList<>();
+   public List<BoardDTO> findByWriter(String kw, int page) {
+	   Pageable pageable = PageRequest.of(page, 10);
+	   List<Board> boardList = boardRepository.findByBoardWriterContainingOrderByIdDesc(kw, pageable);
+	   List<BoardDTO> boardDTOList = new ArrayList<>();
 		
-		for(Board board : boardList) {
+	   for(Board board : boardList) {
 			BoardDTO boardDTO = BoardDTO.toSaveBoardDTO(board);
 			boardDTOList.add(boardDTO);
-		}		
-		return boardDTOList; 
-   	}
+	   }		
+	   return boardDTOList; 
+   }
 
    	public List<BoardDTO> findAll() {
    		//Pageable pageable = PageRequest.of(page, 10, Sort.by("id").descending());
@@ -119,5 +119,6 @@ public class BoardService {
 	public void updateHits2(Long id) {
 		boardRepository.updateHits2(id);	
 	}
+
 
 }

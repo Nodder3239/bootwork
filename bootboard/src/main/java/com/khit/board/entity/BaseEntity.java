@@ -18,9 +18,9 @@ public class BaseEntity {
 	
 	@CreationTimestamp
 	@Column(updatable = false)
-	protected LocalDateTime createdDate;
+	protected LocalDateTime createdDate;	//생성일
 	
 	@UpdateTimestamp
 	@Column(insertable = false)
-	protected LocalDateTime updatedDate;
+	protected LocalDateTime updatedDate;	//수정일
 }
