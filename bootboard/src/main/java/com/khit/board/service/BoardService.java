@@ -61,41 +61,52 @@ public class BoardService {
 		
 	}
 	
-	public List<BoardDTO> findByTitle(String kw, int page) {
-		Pageable pageable = PageRequest.of(page, 10);
-		List<Board> boardList = boardRepository.findByBoardTitleContainingOrderByIdDesc(kw, pageable);
-		List<BoardDTO> boardDTOList = new ArrayList<>();
+	public Page<BoardDTO> findByTitle(String kw, Pageable pageable) {
+		int page = pageable.getPageNumber() - 1;
+		int pageSize = 10;
+		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
 		
-		for(Board board : boardList) {
-			BoardDTO boardDTO = BoardDTO.toSaveBoardDTO(board);
-			boardDTOList.add(boardDTO);
-		}		
+		Page<Board> boardList = boardRepository.findByBoardTitleContaining(kw, pageable);
+				
+		//생성자 방식으로 boardDTOList를 가져오기
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+				new BoardDTO(board.getId(), board.getBoardTitle(), 
+						board.getBoardWriter(), board.getBoardContent(), 
+						board.getBoardCategory(), board.getBoardHits(), 
+						board.getCreatedDate(), board.getUpdatedDate()));
+		
 		return boardDTOList;
 	}
 
-	public List<BoardDTO> findByContent(String kw, int page) {
-		Pageable pageable = PageRequest.of(page, 10);
-		List<Board> boardList = boardRepository.findByBoardContentContainingOrderByIdDesc(kw, pageable);
-		List<BoardDTO> boardDTOList = new ArrayList<>();
+	public Page<BoardDTO> findByContent(String kw, Pageable pageable) {
+		int page = pageable.getPageNumber() - 1;
+		int pageSize = 10;
+		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
 		
-		for(Board board : boardList) {
-			BoardDTO boardDTO = BoardDTO.toSaveBoardDTO(board);
-			boardDTOList.add(boardDTO);
-		}		
+		Page<Board> boardList = boardRepository.findByBoardContentContaining(kw, pageable);
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+				new BoardDTO(board.getId(), board.getBoardTitle(), 
+						board.getBoardWriter(), board.getBoardContent(), 
+						board.getBoardCategory(), board.getBoardHits(), 
+						board.getCreatedDate(), board.getUpdatedDate()));
+
 		return boardDTOList;
    	}
 
-   public List<BoardDTO> findByWriter(String kw, int page) {
-	   Pageable pageable = PageRequest.of(page, 10);
-	   List<Board> boardList = boardRepository.findByBoardWriterContainingOrderByIdDesc(kw, pageable);
-	   List<BoardDTO> boardDTOList = new ArrayList<>();
+	public Page<BoardDTO> findByWriter(String kw, Pageable pageable) {
+		int page = pageable.getPageNumber() - 1;
+		int pageSize = 10;
+		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
 		
-	   for(Board board : boardList) {
-			BoardDTO boardDTO = BoardDTO.toSaveBoardDTO(board);
-			boardDTOList.add(boardDTO);
-	   }		
-	   return boardDTOList; 
-   }
+		Page<Board> boardList = boardRepository.findByBoardWriterContaining(kw, pageable);
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+				new BoardDTO(board.getId(), board.getBoardTitle(), 
+						board.getBoardWriter(), board.getBoardContent(), 
+						board.getBoardCategory(), board.getBoardHits(), 
+						board.getCreatedDate(), board.getUpdatedDate()));
+
+		return boardDTOList;
+   	}
 
    	public List<BoardDTO> findAll() {
    		//Pageable pageable = PageRequest.of(page, 10, Sort.by("id").descending());
@@ -119,6 +130,88 @@ public class BoardService {
 	public void updateHits2(Long id) {
 		boardRepository.updateHits2(id);	
 	}
+   	
+	public Page<BoardDTO> findListAll(Pageable pageable) {
+		int page = pageable.getPageNumber() - 1;	//db가 1 작음
+		int pageSize = 10;
+		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
+		
+		Page<Board> boardList = boardRepository.findAll(pageable);
+				
+		//생성자 방식으로 boardDTOList를 가져오기
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+				new BoardDTO(board.getId(), board.getBoardTitle(), 
+						board.getBoardWriter(), board.getBoardContent(), 
+						board.getBoardCategory(), board.getBoardHits(), 
+						board.getCreatedDate(), board.getUpdatedDate()));
+		
+		return boardDTOList;
+	}
+	
+	//임시
+	public Page<BoardDTO> findListAll(Pageable pageable, String c) {
+		int page = pageable.getPageNumber() - 1;	//db가 1 작음
+		int pageSize = 10;
+		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
+		
+		Page<Board> boardList = boardRepository.findByBoardCategoryContaining(c, pageable);
+				
+		//생성자 방식으로 boardDTOList를 가져오기
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+				new BoardDTO(board.getId(), board.getBoardTitle(), 
+						board.getBoardWriter(), board.getBoardContent(), 
+						board.getBoardCategory(), board.getBoardHits(), 
+						board.getCreatedDate(), board.getUpdatedDate()));
+		
+		return boardDTOList;
+	}
 
+	public Page<BoardDTO> findByTitle(String kw, Pageable pageable, String c) {
+		int page = pageable.getPageNumber() - 1;
+		int pageSize = 10;
+		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
+		
+		Page<Board> boardList = boardRepository.findByBoardCategoryAndBoardTitleContaining(c, kw, pageable);
+				
+		//생성자 방식으로 boardDTOList를 가져오기
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+				new BoardDTO(board.getId(), board.getBoardTitle(), 
+						board.getBoardWriter(), board.getBoardContent(), 
+						board.getBoardCategory(), board.getBoardHits(), 
+						board.getCreatedDate(), board.getUpdatedDate()));
+		
+		return boardDTOList;
+	}
+
+	public Page<BoardDTO> findByContent(String kw, Pageable pageable, String c) {
+		int page = pageable.getPageNumber() - 1;
+		int pageSize = 10;
+		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
+		
+		Page<Board> boardList = boardRepository.findByBoardCategoryAndBoardContentContaining(c, kw, pageable);
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+				new BoardDTO(board.getId(), board.getBoardTitle(), 
+						board.getBoardWriter(), board.getBoardContent(), 
+						board.getBoardCategory(), board.getBoardHits(), 
+						board.getCreatedDate(), board.getUpdatedDate()));
+
+		return boardDTOList;
+   	}
+
+	public Page<BoardDTO> findByWriter(String kw, Pageable pageable, String c) {
+		int page = pageable.getPageNumber() - 1;
+		int pageSize = 10;
+		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
+		
+		Page<Board> boardList = boardRepository.findByBoardCategoryAndBoardWriterContaining(c, kw, pageable);
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+				new BoardDTO(board.getId(), board.getBoardTitle(), 
+						board.getBoardWriter(), board.getBoardContent(), 
+						board.getBoardCategory(), board.getBoardHits(), 
+						board.getCreatedDate(), board.getUpdatedDate()));
+
+		return boardDTOList;
+   	}
+	
 
 }

@@ -7,6 +7,7 @@ import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -115,4 +116,25 @@ public class BoardRepositoryTest {
 		boardList.forEach(board -> log.info(board.toString()));
 	}
 	*/
+	@Test
+	public void testJpaPaging() {
+		Pageable paging = PageRequest.of(0, 10, Sort.Direction.DESC, "id");
+		
+		Page<Board> pageInfo = 
+				boardRepository.findByTitleContaining("제목", paging);
+		
+		//number(페이지 번호), totalPages, totalElements, content
+		log.info("페이지번호=" + pageInfo.getNumber());
+		log.info("게시글 수=" + pageInfo.getSize());
+		log.info("게시글 총 개수=" + pageInfo.getTotalElements());
+		log.info("게시글 총 페이지 수=" + pageInfo.getTotalPages());
+		
+		List<Board> boardList = pageInfo.getContent();
+		
+		for(Board board : boardList) {
+			log.info(board.toString());
+		}
+	}
+	
+	
 }

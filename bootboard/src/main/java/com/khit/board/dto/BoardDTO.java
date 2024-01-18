@@ -29,9 +29,11 @@ public class BoardDTO {
 	@NotEmpty(message = "내용은 필수 항목입니다.")
 	@Size(max=2000)
 	private String boardContent;
+	private String boardCategory;
 	private Integer boardHits;
 	private LocalDateTime createdDate;
 	private LocalDateTime updatedDate;
+	
 	
 	public static BoardDTO toSaveBoardDTO(Board board) {
 		/*
@@ -52,6 +54,7 @@ public class BoardDTO {
 				.boardTitle(board.getBoardTitle())
 				.boardWriter(board.getBoardWriter())
 				.boardContent(board.getBoardContent())
+				.boardCategory(board.getBoardCategory())
 				.boardHits(board.getBoardHits())
 				.createdDate(board.getCreatedDate())
 				.updatedDate(board.getUpdatedDate())
@@ -59,4 +62,10 @@ public class BoardDTO {
 		return boardDTO;
 				 
 	}
+
+
+
+
+
+
 }

@@ -37,41 +37,33 @@
 			</tbody>
 		</table>
 		<!-- 페이징처리 시작 -->
-		 <div class="my-2">
+		 <div style="width: 50%; margin: 10px auto;">
               <ul class="pagination justify-content-center">                 
-                   <li class="page-item">
-                       <a class="page-link" href="?page=0">&lt;&lt;</a>
+                   <li th:class="${nowPage eq 1} ? 'page-item disabled' : 'page-item'">
+                       <a class="page-link" th:href="${startPage eq 1}? '/board/?page=1' : @{/board/(page=${startPage-1})}">&lt;&lt;</a>
                    </li>
-                   <li class="page-item">
-                       <a class="page-link" href="">&lt;</a>
+                   <li th:class="${nowPage eq 1} ? 'page-item disabled' : 'page-item'">
+                       <a class="page-link" th:href="${boardList.first}? '/board/?page=1' : @{/board/(page=${boardList.number})}">&lt;</a>
                    </li>
-			
-                   <li class="page-item">
-                       <a class="page-link" href="/?page=1">1</a>
+                   <li th:class="${nowPage eq page} ? 'page-item active' : 'page-item'" th:each="page : ${#numbers.sequence(startPage, endPage)}">
+					    <a class="page-link" th:href="@{/board/(page=${page})}">
+					        <span th:text="${page}"></span>
+					    </a>
+					</li>
+                   <li th:class="${nowPage eq boardList.totalPages} ? 'page-item disabled' : 'page-item'">
+                       <a class="page-link" th:href="${boardList.last}? @{/board/(page=${endPage})} : @{/board/(page=${boardList.number+2})}">&gt;</a>
                    </li>
-
-                   <li class="page-item" >
-                       <a class="page-link" href="/?page=2">2</a>
-                   </li>
-
-                   <li class="page-item">
-                       <a class="page-link" href="/?page=3">3</a>
-                   </li>
-
-                   <li class="page-item">
-                       <a class="page-link" href="">&gt;</a>
-                   </li>
-                   <li class="page-item">
-                       <a class="page-link" href="">&gt;&gt;</a>
+                   <li th:class="${nowPage eq boardList.totalPages} ? 'page-item disabled' : 'page-item'">
+                       <a class="page-link" th:href="${boardList.totalPages eq endPage}? @{/board/(page=${endPage})} : @{/board/(page=${endPage+1})}">&gt;&gt;</a>
                    </li>
               </ul>
        </div>
 		
-       <!-- 페이징처리 끝 -->
+          <!-- 페이징처리 끝 -->
 		<!-- 검색 영역 -->
-		<div style="width:50%; margin: 10px auto;">
+		<div style="width:50%; margin: 0px auto;">
 		  <form th:action="@{/board/}" method="get">
-		  	<div style="display: flex;">
+		  	<div style="display: flex; justify-content: center;">
 				<select name="field" class="btn btn-outline-secondary dropdown-toggle">
 					<option value="t" th:selected="${field eq 't'}">제목</option>
                     <option value="c" th:selected="${field eq 'c'}">내용</option>
@@ -79,7 +71,7 @@
                 </select>
 				<input type="text" class="form-control" name="kw" th:value="${kw}" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload" style="width:50%">
 				<button type="submit" class="btn btn-outline-secondary"><i class="fa-solid fa-magnifying-glass"></i></button>
-		  		<a th:href = "@{/board/write}"><button type="button" class="btn btn-outline-secondary">글쓰기</button></a>
+		  		<a th:href = "@{/userboard/write}"><button type="button" class="btn btn-outline-secondary">글쓰기</button></a>
 		  	</div>
 		  </form>
 		 </div>

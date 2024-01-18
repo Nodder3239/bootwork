@@ -36,14 +36,5 @@ public class QueryMethodTest {
 	}
 	*/
 	
-	/*
-	@Test
-	public void testFindByTitleContainingOrderByIdDesc() {
-		List<Board> boardList = boardRepository.findByBoardContentContainingOrderByIdDesc("10");
-		
-		for(Board board : boardList) {
-			log.info(board.toString());
-		}
-	}
-	*/
+	
 }

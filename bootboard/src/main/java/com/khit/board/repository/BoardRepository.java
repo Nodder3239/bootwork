@@ -27,11 +27,11 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
     
 	//List<Board> findByBoardTitleContaining(String kw, Sort sort);
 
-    List<Board> findByBoardTitleContainingOrderByIdDesc(String kw, Pageable pageable);
+    Page<Board> findByBoardTitleContaining(String kw, Pageable pageable);
     
-    List<Board> findByBoardContentContainingOrderByIdDesc(String kw, Pageable pageable);
+    Page<Board> findByBoardContentContaining(String kw, Pageable pageable);
 
-    List<Board> findByBoardWriterContainingOrderByIdDesc(String kw, Pageable pageable);
+    Page<Board> findByBoardWriterContaining(String kw, Pageable pageable);
 
     @Modifying
     @Query(value="update Board b set b.boardHits=b.boardHits+1 where b.id=:id")
@@ -40,5 +40,14 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
     @Modifying
     @Query(value="update Board b set b.boardHits=b.boardHits-1 where b.id=:id")
 	public void updateHits2(Long id);
+
+	Page<Board> findByBoardCategoryAndBoardTitleContaining(String c, String kw, Pageable pageable);
+	
+	Page<Board> findByBoardCategoryAndBoardWriterContaining(String c, String kw, Pageable pageable);
+
+	Page<Board> findByBoardCategoryAndBoardContentContaining(String c, String kw, Pageable pageable);
+
+	Page<Board> findByBoardCategoryContaining(String c, Pageable pageable);
+
 
 }

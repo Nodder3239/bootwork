@@ -45,6 +45,9 @@ public class Board extends BaseEntity{
 	private String boardContent;
 	
 	@Column
+	private String boardCategory;
+	
+	@Column
 	private Integer boardHits;
 	
 	/*
@@ -61,6 +64,7 @@ public class Board extends BaseEntity{
 		board.setBoardTitle(boardDTO.getBoardTitle());
 		board.setBoardWriter(boardDTO.getBoardWriter());
 		board.setBoardContent(boardDTO.getBoardContent());
+		board.setBoardCategory(boardDTO.getBoardCategory());
 		board.setBoardHits(0);
 		return board;
 	}
@@ -72,6 +76,7 @@ public class Board extends BaseEntity{
 		board.setBoardTitle(boardDTO.getBoardTitle());
 		board.setBoardWriter(boardDTO.getBoardWriter());
 		board.setBoardContent(boardDTO.getBoardContent());
+		board.setBoardCategory(boardDTO.getBoardCategory());
 		board.setBoardHits(boardDTO.getBoardHits());
 		return board;
 	}

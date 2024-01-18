@@ -23,29 +23,29 @@ import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-@RequestMapping("/board")
+@RequestMapping("/userboard")
 @Slf4j
 @RequiredArgsConstructor
 @Controller
-public class BoardController {
+public class UserBoardController {
 
 	private final BoardService boardService;
 	
 	//글쓰기 페이지
 	@GetMapping("/write")
 	public String writeForm(BoardDTO boardDTO) {
-		return "/board/write";
+		return "/userboard/write";
 	}
 	
 	//글쓰기
 	@PostMapping("/write")
 	public String write(@Valid BoardDTO boardDTO, BindingResult bindingResult) {
 		if(bindingResult.hasErrors()) {		//에러가 있으면 글쓰기 폼으로 이동
-			return "/board/write";
+			return "/userboard/write";
 		}
 		//글쓰기 처리
 		boardService.save(boardDTO);
-		return "redirect:/board/";
+		return "redirect:/userboard/";
 	}
 	
 	//글 목록 보기
@@ -58,7 +58,7 @@ public class BoardController {
 		model.addAttribute("field", field);
 		model.addAttribute("kw", kw);
 		model.addAttribute("page", page);
-		return "/board/list";
+		return "/userboard/list";
 	}
 	
 	/*
@@ -81,15 +81,16 @@ public class BoardController {
 	*/
 	@GetMapping("/")
 	public String getPageList(@PageableDefault(page=1) Pageable pageable, Model model, String field, String kw) {
+		String c = "userboard";
 		Page<BoardDTO> boardList;
 		if ("t".equals(field)) {
-			boardList = boardService.findByTitle(kw, pageable);
+			boardList = boardService.findByTitle(kw, pageable, c);
 		} else if ("c".equals(field)) {
-			boardList = boardService.findByContent(kw, pageable);
+			boardList = boardService.findByContent(kw, pageable, c);
 		} else if ("w".equals(field)){
-			boardList = boardService.findByWriter(kw, pageable);
+			boardList = boardService.findByWriter(kw, pageable, c);
 		}else {
-			boardList = boardService.findListAll(pageable);
+			boardList = boardService.findListAll(pageable, c);
 		}   
 		//하단의 페이지 블럭 만들기
 		int blockLimit = 10;	//하단에 보여줄 페이지 개수
@@ -101,7 +102,7 @@ public class BoardController {
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("nowPage", nowPage);
-		return "/board/pagelist";
+		return "/userboard/pagelist";
 	}
 	
 	
@@ -114,13 +115,13 @@ public class BoardController {
 		//글 상세보기
 		BoardDTO boardDTO = boardService.findById(id);
 		model.addAttribute("board", boardDTO);
-		return "/board/detail";
+		return "/userboard/detail";
 	}
 	
 	@GetMapping("/delete/{id}")
 	public String deleteBoard(@PathVariable Long id) {
 		boardService.delete(id);
-		return "redirect:/board/";
+		return "redirect:/userboard/";
 	}
 	
 	@GetMapping("/update/{id}")
@@ -128,13 +129,13 @@ public class BoardController {
 		boardService.updateHits2(id);
 		BoardDTO boardDTO = boardService.findById(id);
 		model.addAttribute("board", boardDTO);
-		return "/board/boardupdate";
+		return "/userboard/boardupdate";
 	}
 	
 	@PostMapping("/update")
 	public String update(@ModelAttribute BoardDTO boardDTO) {
 		boardService.update(boardDTO);
-		return "redirect:/board/" + boardDTO.getId();
+		return "redirect:/userboard/" + boardDTO.getId();
 	}
 		
 }
