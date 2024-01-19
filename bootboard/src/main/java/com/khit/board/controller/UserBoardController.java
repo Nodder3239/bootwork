@@ -14,17 +14,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.khit.board.dto.BoardDTO;
-import com.khit.board.entity.Board;
 import com.khit.board.service.BoardService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
 @RequestMapping("/userboard")
-@Slf4j
 @RequiredArgsConstructor
 @Controller
 public class UserBoardController {
@@ -39,12 +37,13 @@ public class UserBoardController {
 	
 	//글쓰기
 	@PostMapping("/write")
-	public String write(@Valid BoardDTO boardDTO, BindingResult bindingResult) {
+	public String write(@Valid BoardDTO boardDTO, BindingResult bindingResult, MultipartFile boardFile) throws Exception {
 		if(bindingResult.hasErrors()) {		//에러가 있으면 글쓰기 폼으로 이동
 			return "/userboard/write";
 		}
 		//글쓰기 처리
-		boardService.save(boardDTO);
+		boardDTO.setBoardCategory("userboard");
+		boardService.save(boardDTO, boardFile);
 		return "redirect:/userboard/";
 	}
 	
@@ -61,24 +60,6 @@ public class UserBoardController {
 		return "/userboard/list";
 	}
 	
-	/*
-	@GetMapping("/")
-	public String getPageList(@PageableDefault(page=1) Pageable pageable, Model model) {
-		Page<BoardDTO> boardList = boardService.findListAll(pageable);
-		
-		//하단의 페이지 블럭 만들기
-		int blockLimit = 10;	//하단에 보여줄 페이지 개수
-		int startPage = ((int)(Math.ceil((double)pageable.getPageNumber() / blockLimit))-1) *blockLimit+1;
-		int endPage = Math.min((startPage+blockLimit-1), boardList.getTotalPages());
-		int nowPage = boardList.getNumber() + 1;
-		
-		model.addAttribute("boardList", boardList);
-		model.addAttribute("startPage", startPage);
-		model.addAttribute("endPage", endPage);
-		model.addAttribute("nowPage", nowPage);
-		return "/board/pagelist";
-	}
-	*/
 	@GetMapping("/")
 	public String getPageList(@PageableDefault(page=1) Pageable pageable, Model model, String field, String kw) {
 		String c = "userboard";
@@ -97,11 +78,15 @@ public class UserBoardController {
 		int startPage = ((int)(Math.ceil((double)pageable.getPageNumber() / blockLimit))-1) *blockLimit+1;
 		int endPage = Math.min((startPage+blockLimit-1), boardList.getTotalPages());
 		int nowPage = boardList.getNumber() + 1;
-		
+		if(endPage == 0) {
+	         endPage = 1;
+	      }
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("nowPage", nowPage);
+		model.addAttribute("field", field);
+		model.addAttribute("kw", kw);
 		return "/userboard/pagelist";
 	}
 	
@@ -133,8 +118,8 @@ public class UserBoardController {
 	}
 	
 	@PostMapping("/update")
-	public String update(@ModelAttribute BoardDTO boardDTO) {
-		boardService.update(boardDTO);
+	public String update(@ModelAttribute BoardDTO boardDTO, MultipartFile boardFile) throws Exception {
+		boardService.update(boardDTO, boardFile);
 		return "redirect:/userboard/" + boardDTO.getId();
 	}
 		

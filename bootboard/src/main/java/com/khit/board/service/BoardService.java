@@ -1,16 +1,18 @@
 package com.khit.board.service;
 
-import java.sql.Timestamp;
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.khit.board.dto.BoardDTO;
 import com.khit.board.entity.Board;
@@ -26,7 +28,27 @@ public class BoardService {
 	
 	private final BoardRepository boardRepository;
 	
-	public void save(BoardDTO boardDTO) {
+	public void save(BoardDTO boardDTO, MultipartFile boardFile) throws Exception{
+		
+		//1. 파일을 서버에 저장하고
+		if (!boardFile.isEmpty()) {
+			String filepath = "C:\\bootworks\\bootboard\\src\\main\\resources\\static\\upload\\";
+			
+			UUID uuid = UUID.randomUUID();	//무작위 아이디 생성(중복 파일 이름의 생성)
+			
+			String filename = uuid.toString() + "_" + boardFile.getOriginalFilename();	//원본 파일
+			
+			//File 클래스로 객체 생성
+			File savedFile = new File(filepath, filename);	//upload 폴더에 저장
+			boardFile.transferTo(savedFile);	//서버 폴더에 저장
+		
+		//2. 파일 이름은 db에 저장
+			boardDTO.setFilename(filename);
+			//boardDTO.setFilepath(filepath);
+			boardDTO.setFilepath("/upload/" + filename);
+		}
+		
+		//dto -> entity로 변환
 		Board board = Board.toSaveBoardEntity(boardDTO);
 		boardRepository.save(board);
 	}
@@ -54,8 +76,26 @@ public class BoardService {
 		
 	}
 
-	public void update(BoardDTO boardDTO) {
+	public void update(BoardDTO boardDTO, MultipartFile boardFile) throws Exception {
 		//boardDTO.setUpdatedDate(new Timestamp(System.currentTimeMillis()));
+		
+		//1. 파일을 서버에 저장하고
+		if (!boardFile.isEmpty()) {
+			String filepath = "C:\\bootworks\\bootboard\\src\\main\\resources\\static\\upload\\";
+			
+			UUID uuid = UUID.randomUUID();	//무작위 아이디 생성(중복 파일 이름의 생성)
+			
+			String filename = uuid.toString() + "_" + boardFile.getOriginalFilename();	//원본 파일
+			
+			//File 클래스로 객체 생성
+			File savedFile = new File(filepath, filename);	//upload 폴더에 저장
+			boardFile.transferTo(savedFile);	//서버 폴더에 저장
+		
+		//2. 파일 이름은 db에 저장
+			boardDTO.setFilename(filename);
+			boardDTO.setFilepath("/upload/" + filename);
+		}
+		
 		Board board = Board.toUpdateBoardEntity(boardDTO);
 		boardRepository.save(board);
 		
@@ -72,7 +112,8 @@ public class BoardService {
 		Page<BoardDTO> boardDTOList = boardList.map(board ->
 				new BoardDTO(board.getId(), board.getBoardTitle(), 
 						board.getBoardWriter(), board.getBoardContent(), 
-						board.getBoardCategory(), board.getBoardHits(), 
+						board.getBoardCategory(), board.getBoardHits(),
+						board.getFilename(), board.getFilepath(),
 						board.getCreatedDate(), board.getUpdatedDate()));
 		
 		return boardDTOList;
@@ -88,6 +129,7 @@ public class BoardService {
 				new BoardDTO(board.getId(), board.getBoardTitle(), 
 						board.getBoardWriter(), board.getBoardContent(), 
 						board.getBoardCategory(), board.getBoardHits(), 
+						board.getFilename(), board.getFilepath(),
 						board.getCreatedDate(), board.getUpdatedDate()));
 
 		return boardDTOList;
@@ -103,6 +145,7 @@ public class BoardService {
 				new BoardDTO(board.getId(), board.getBoardTitle(), 
 						board.getBoardWriter(), board.getBoardContent(), 
 						board.getBoardCategory(), board.getBoardHits(), 
+						board.getFilename(), board.getFilepath(),
 						board.getCreatedDate(), board.getUpdatedDate()));
 
 		return boardDTOList;
@@ -143,6 +186,7 @@ public class BoardService {
 				new BoardDTO(board.getId(), board.getBoardTitle(), 
 						board.getBoardWriter(), board.getBoardContent(), 
 						board.getBoardCategory(), board.getBoardHits(), 
+						board.getFilename(), board.getFilepath(),
 						board.getCreatedDate(), board.getUpdatedDate()));
 		
 		return boardDTOList;
@@ -161,6 +205,7 @@ public class BoardService {
 				new BoardDTO(board.getId(), board.getBoardTitle(), 
 						board.getBoardWriter(), board.getBoardContent(), 
 						board.getBoardCategory(), board.getBoardHits(), 
+						board.getFilename(), board.getFilepath(),
 						board.getCreatedDate(), board.getUpdatedDate()));
 		
 		return boardDTOList;
@@ -178,6 +223,7 @@ public class BoardService {
 				new BoardDTO(board.getId(), board.getBoardTitle(), 
 						board.getBoardWriter(), board.getBoardContent(), 
 						board.getBoardCategory(), board.getBoardHits(), 
+						board.getFilename(), board.getFilepath(),
 						board.getCreatedDate(), board.getUpdatedDate()));
 		
 		return boardDTOList;
@@ -193,6 +239,7 @@ public class BoardService {
 				new BoardDTO(board.getId(), board.getBoardTitle(), 
 						board.getBoardWriter(), board.getBoardContent(), 
 						board.getBoardCategory(), board.getBoardHits(), 
+						board.getFilename(), board.getFilepath(),
 						board.getCreatedDate(), board.getUpdatedDate()));
 
 		return boardDTOList;
@@ -208,6 +255,7 @@ public class BoardService {
 				new BoardDTO(board.getId(), board.getBoardTitle(), 
 						board.getBoardWriter(), board.getBoardContent(), 
 						board.getBoardCategory(), board.getBoardHits(), 
+						board.getFilename(), board.getFilepath(),
 						board.getCreatedDate(), board.getUpdatedDate()));
 
 		return boardDTOList;

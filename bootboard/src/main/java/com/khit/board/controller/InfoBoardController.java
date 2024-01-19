@@ -1,6 +1,5 @@
 package com.khit.board.controller;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -22,31 +21,30 @@ import com.khit.board.service.BoardService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@RequestMapping("/board")
-@Slf4j
+@RequestMapping("/infoboard")
 @RequiredArgsConstructor
 @Controller
-public class BoardController {
+public class InfoBoardController {
 
 	private final BoardService boardService;
 	
 	//글쓰기 페이지
 	@GetMapping("/write")
 	public String writeForm(BoardDTO boardDTO) {
-		return "/board/write";
+		return "/infoboard/write";
 	}
 	
 	//글쓰기
 	@PostMapping("/write")
 	public String write(@Valid BoardDTO boardDTO, BindingResult bindingResult, MultipartFile boardFile) throws Exception {
 		if(bindingResult.hasErrors()) {		//에러가 있으면 글쓰기 폼으로 이동
-			return "/board/write";
+			return "/infoboard/write";
 		}
 		//글쓰기 처리
+		boardDTO.setBoardCategory("infoboard");
 		boardService.save(boardDTO, boardFile);
-		return "redirect:/board/";
+		return "redirect:/infoboard/";
 	}
 	
 	//글 목록 보기
@@ -59,23 +57,13 @@ public class BoardController {
 		model.addAttribute("field", field);
 		model.addAttribute("kw", kw);
 		model.addAttribute("page", page);
-		return "/board/list";
+		return "/infoboard/list";
 	}
 	
 	/*
 	@GetMapping("/")
-	public String getPageList(@PageableDefault(page=1) Pageable pageable, Model model
-					@RequestParam(value="keyword", required = false) String keyword,
-					@RequestParam(value="type", required = false) type) {
-		Page<BoardDTO> boardList = null;
-		if(boardList == null){
-			Page<BoardDTO> boardList = boardService.findListAll(pageable);
-		}else if(type != null && type.equals("title")){
-			Page<BoardDTO> boardList = boardService.findByBoardTitleContaing(kw, pageable);
-		}else if(type != null && type.equals("content")){
-			Page<BoardDTO> boardList = boardService.findByBoardContentContaing(kw, pageable);
-		}
-		
+	public String getPageList(@PageableDefault(page=1) Pageable pageable, Model model) {
+		Page<BoardDTO> boardList = boardService.findListAll(pageable);
 		
 		//하단의 페이지 블럭 만들기
 		int blockLimit = 10;	//하단에 보여줄 페이지 개수
@@ -87,24 +75,21 @@ public class BoardController {
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("nowPage", nowPage);
-		model.addAttribute("type", type);
-		model.addAttribute("keyword", keyword);
 		return "/board/pagelist";
 	}
 	*/
 	@GetMapping("/")
-	public String getPageList(@PageableDefault(page=1) Pageable pageable, 
-			Model model, @RequestParam(value="field", required = false) String field, 
-			@RequestParam(value="kw", required = false) String kw) {
+	public String getPageList(@PageableDefault(page=1) Pageable pageable, Model model, String field, String kw) {
+		String c = "infoboard";
 		Page<BoardDTO> boardList;
 		if ("t".equals(field)) {
-			boardList = boardService.findByTitle(kw, pageable);
+			boardList = boardService.findByTitle(kw, pageable, c);
 		} else if ("c".equals(field)) {
-			boardList = boardService.findByContent(kw, pageable);
+			boardList = boardService.findByContent(kw, pageable, c);
 		} else if ("w".equals(field)){
-			boardList = boardService.findByWriter(kw, pageable);
+			boardList = boardService.findByWriter(kw, pageable, c);
 		}else {
-			boardList = boardService.findListAll(pageable);
+			boardList = boardService.findListAll(pageable, c);
 		}   
 		//하단의 페이지 블럭 만들기
 		int blockLimit = 10;	//하단에 보여줄 페이지 개수
@@ -120,27 +105,26 @@ public class BoardController {
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("field", field);
 		model.addAttribute("kw", kw);
-		return "/board/pagelist";
+		return "/infoboard/pagelist";
 	}
 	
 	
 	
 	//글 상세보기
 	@GetMapping("/{id}")
-	public String getBoard(@PageableDefault(page=1) Pageable pageable, @PathVariable Long id, Model model) {
+	public String getBoard(@PathVariable Long id, Model model) {
 		//조회수
 		boardService.updateHits(id);
 		//글 상세보기
 		BoardDTO boardDTO = boardService.findById(id);
 		model.addAttribute("board", boardDTO);
-		model.addAttribute("page", pageable.getPageNumber());
-		return "/board/detail";
+		return "/infoboard/detail";
 	}
 	
 	@GetMapping("/delete/{id}")
 	public String deleteBoard(@PathVariable Long id) {
 		boardService.delete(id);
-		return "redirect:/board/";
+		return "redirect:/infoboard/";
 	}
 	
 	@GetMapping("/update/{id}")
@@ -148,13 +132,13 @@ public class BoardController {
 		boardService.updateHits2(id);
 		BoardDTO boardDTO = boardService.findById(id);
 		model.addAttribute("board", boardDTO);
-		return "/board/boardupdate";
+		return "/infoboard/boardupdate";
 	}
 	
 	@PostMapping("/update")
 	public String update(@ModelAttribute BoardDTO boardDTO, MultipartFile boardFile) throws Exception {
 		boardService.update(boardDTO, boardFile);
-		return "redirect:/board/" + boardDTO.getId();
+		return "redirect:/infoboard/" + boardDTO.getId();
 	}
 		
 }

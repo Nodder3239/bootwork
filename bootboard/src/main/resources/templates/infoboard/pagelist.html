@@ -8,7 +8,7 @@
 	<div th:replace="~{/layout/header}"></div>
 		<div id="content">
 		<div class="content_list">
-		<h2 class="text-left">유저게시판</h2>
+		<h2 class="text-left">정보게시판</h2>
 		<table class="table" id="tbl_list">
 			<thead>
 				<tr>
@@ -22,7 +22,7 @@
 			<tbody>
 				<tr th:each="board : ${boardList}">
 	                <th th:text="${board.id}"></th>
-	                <td class="td_title"><a th:href="@{|/userboard/${board.id}|}" th:text="${board.boardTitle}">
+	                <td class="td_title"><a th:href="@{|/infoboard/${board.id}|}" th:text="${board.boardTitle}">
 	                        <!-- <small th:if="${board.replyCount ne 0}">[&nbsp;<c:out value="${board.replyCount}"/>&nbsp;]</small>-->
 	                    </a></td>
 	                <td th:text="${board.boardWriter}"></td>
@@ -57,7 +57,7 @@
           <!-- 페이징처리 끝 -->
 		<!-- 검색 영역 -->
 		<div style="width:50%; margin: 0px auto;">
-		  <form th:action="@{/userboard/}" method="get">
+		  <form th:action="@{/infoboard/}" method="get">
 		  	<div style="display: flex; justify-content: center;">
 				<select name="field" class="btn btn-outline-secondary dropdown-toggle">
 					<option value="t" th:selected="${field eq 't'}">제목</option>
@@ -67,7 +67,7 @@
 				<input type="text" class="form-control" name="kw" th:value="${kw}" id="inputGroupFile04" 
 						placeholder="검색" aria-describedby="inputGroupFileAddon04" aria-label="Upload" style="width:50%">
 				<button type="submit" class="btn btn-outline-secondary"><i class="fa-solid fa-magnifying-glass"></i></button>
-		  		<a th:href = "@{/userboard/write}"><button type="button" class="btn btn-outline-secondary">글쓰기</button></a>
+		  		<a th:href = "@{/infoboard/write}"><button type="button" class="btn btn-outline-secondary">글쓰기</button></a>
 		  	</div>
 		  </form>
 		 </div>

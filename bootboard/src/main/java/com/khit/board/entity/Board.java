@@ -1,11 +1,5 @@
 package com.khit.board.entity;
 
-import java.time.LocalDateTime;
-import java.util.Date;
-
-import org.hibernate.annotations.ColumnDefault;
-import org.hibernate.annotations.CreationTimestamp;
-
 import com.khit.board.dto.BoardDTO;
 
 import jakarta.persistence.Column;
@@ -16,7 +10,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -50,6 +43,12 @@ public class Board extends BaseEntity{
 	@Column
 	private Integer boardHits;
 	
+	@Column
+	private String filename;
+	
+	@Column
+	private String filepath;
+	
 	/*
 	@CreationTimestamp	//현재 날짜와 시간 자동 생성
 	private Date createdDate;
@@ -58,13 +57,15 @@ public class Board extends BaseEntity{
 	private Date updatedDate;
 	*/
 	
-
+	//dto를 entity로 변환하는 정적 메서드
 	public static Board toSaveBoardEntity(BoardDTO boardDTO) {
 		Board board = new Board();
 		board.setBoardTitle(boardDTO.getBoardTitle());
 		board.setBoardWriter(boardDTO.getBoardWriter());
 		board.setBoardContent(boardDTO.getBoardContent());
 		board.setBoardCategory(boardDTO.getBoardCategory());
+		board.setFilename(boardDTO.getFilename());
+		board.setFilepath(boardDTO.getFilepath());
 		board.setBoardHits(0);
 		return board;
 	}
@@ -78,6 +79,8 @@ public class Board extends BaseEntity{
 		board.setBoardContent(boardDTO.getBoardContent());
 		board.setBoardCategory(boardDTO.getBoardCategory());
 		board.setBoardHits(boardDTO.getBoardHits());
+		board.setFilename(boardDTO.getFilename());
+		board.setFilepath(boardDTO.getFilepath());
 		return board;
 	}
 }

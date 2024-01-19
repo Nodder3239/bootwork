@@ -14,7 +14,7 @@
 	<div th:replace="~{/layout/header}"></div>
 		<div id="content">
 		<h2>글쓰기</h2>
-		<form th:action="@{/userboard/write}" method="post" th:object="${boardDTO}" enctype="multipart/form-data">
+		<form th:action="@{/infoboard/write}" method="post" th:object="${boardDTO}" enctype="multipart/form-data">
 			<input type="text" th:field=*{boardTitle} class="form-control mt-4 mb-2"
 				placeholder="제목을 입력해주세요." required
 			>
@@ -36,7 +36,7 @@
 			<div class="d-flex justify-content-center">
 				<input class="btn btn-outline-secondary" type="submit" value="등록">&nbsp;
 				<input class="btn btn-outline-secondary" type="reset" value="초기화">&nbsp;
-				<a th:href="@{/userboard/}"><input type="button" class="btn btn-outline-secondary" value="목록"></a>
+				<a th:href="@{/infoboard/}"><input type="button" class="btn btn-outline-secondary" value="목록"></a>
 			</div>
 		</form>
 	</div>

@@ -29,8 +29,12 @@ public class BoardDTO {
 	@NotEmpty(message = "내용은 필수 항목입니다.")
 	@Size(max=2000)
 	private String boardContent;
+	
 	private String boardCategory;
 	private Integer boardHits;
+	private String filename;
+	private String filepath;
+	
 	private LocalDateTime createdDate;
 	private LocalDateTime updatedDate;
 	
@@ -56,6 +60,8 @@ public class BoardDTO {
 				.boardContent(board.getBoardContent())
 				.boardCategory(board.getBoardCategory())
 				.boardHits(board.getBoardHits())
+				.filename(board.getFilename())
+				.filepath(board.getFilepath())
 				.createdDate(board.getCreatedDate())
 				.updatedDate(board.getUpdatedDate())
 				.build();

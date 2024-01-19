@@ -7,7 +7,7 @@
 <body>
 	<div th:replace="~{/layout/header}"></div>
 		<div id="content">
-		<h2>유저게시판 글 상세보기</h2>
+		<h2>정보게시판 글 상세보기</h2>
 		<table class="tbl_detail">
 			<tr>
 				<td>
@@ -55,15 +55,15 @@
 			<tr>
 				<td>
 					<span th:if="${session.sessionName == board.boardWriter}">
-						<a th:href="@{|/userboard/update/${board.id}|}">
+						<a th:href="@{|/infoboard/update/${board.id}|}">
 				            <button class="btn btn-outline-secondary">수정</button>
 				        </a>
-				        <a th:href="@{|/userboard/delete/${board.id}|}" onclick="return confirm('정말로 삭제하시겠습니까?')">
+				        <a th:href="@{|/infoboard/delete/${board.id}|}" onclick="return confirm('정말로 삭제하시겠습니까?')">
 				           <button class="btn btn-outline-secondary">삭제</button>
 				        </a>
 					</span>
 					<!-- <a href="/board/paging?page=${page }"><button class="btn btn-outline-secondary">목록</button></a> -->
-					<a th:href="@{/userboard/(page=${page})}">
+					<a th:href="@{/infoboard/(page=${page})}">
 				        <button class="btn btn-outline-secondary">목록</button>
 				    </a>
 				</td>

@@ -11,6 +11,7 @@ public class BoardServiceTest {
 	@Autowired
 	private BoardService boardService;
 	
+	/*
 	@Test
 	void testInsertBoard() {
 		for(int i=1; i<=256; i++){
@@ -23,4 +24,5 @@ public class BoardServiceTest {
 			boardService.save(boardDTO);
 		}
 	}
+	*/
 }

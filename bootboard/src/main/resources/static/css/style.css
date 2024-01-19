@@ -63,7 +63,7 @@ footer{
 
 /* 게시판 */
 #tbl_list {margin: 0 auto; width: 100%; text-align: center;}
-.td_title {width: 50%; text-overflow: ellipsis;}
+.td_title {width: 50%; text-overflow: ellipsis; white-space:nowrap;}
 .btn_write {width: 100%; margin: 10px auto;}
 
 /* 게시판 상세보기 */
