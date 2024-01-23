@@ -5,23 +5,22 @@
 <title>게시글 작성</title>
 </head>
 <body>
-	<th:block th:if="${session.sessionId == null}">
+	<!-- <th:block th:if="${session.sessionId == null}">
 	    <script type="text/javascript">
 	        alert("로그인 후 이용 가능합니다.");
 	        location.href = "/member/login";
 	    </script>
-	</th:block>
+	</th:block> -->
 	<div th:replace="~{/layout/header}"></div>
 		<div id="content">
 		<h2>글쓰기</h2>
 		<form th:action="@{/board/write}" method="post" th:object="${board}" enctype="multipart/form-data">
-			<input type="text" th:field=*{title} class="form-control mt-4 mb-2" style=""
-				placeholder="제목을 입력해주세요." required
-			>
-			<div th:if="${#fields.hasAnyErrors()}">
+			<input type="text" th:field=*{title} class="form-control mt-4 mb-2" style="width:60%; margin:0 auto;"
+				placeholder="제목을 입력해주세요." required>
+			<!-- <div th:if="${#fields.hasAnyErrors()}">
 				<div th:each="err: ${#fields.allErrors()}" th:text="${err}" class="alert-danger"></div>			
-			</div>
-			<!-- <input type="hidden" name="member" th:value="${session.sessionId}"> -->
+			</div> -->
+			<!-- <input type="hidden" th:field=*{member} th:value="${#authentication.principal.member}"> -->
 			<div class="form-group">
 				<textarea class="form-control" rows="10" th:field=*{content}
 					placeholder="내용을 입력해주세요" style="resize: none;" required

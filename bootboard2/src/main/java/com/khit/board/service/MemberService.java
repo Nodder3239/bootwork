@@ -5,9 +5,12 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.domain.Sort;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 
 import com.khit.board.entity.Member;
+import com.khit.board.entity.Role;
+import com.khit.board.exception.BootBoardException;
 import com.khit.board.repository.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -19,9 +22,15 @@ import lombok.extern.slf4j.Slf4j;
 public class MemberService {
 	
 	private final MemberRepository memberRepository;
+	
+	private final PasswordEncoder pwEncoder;
 
 	public void insert(Member member) {		
-		//db 안으로 저장(entity를 저장해야함)
+		//1.비밀번호 암호화
+		String encPw = pwEncoder.encode(member.getPassword());
+		member.setPassword(encPw);
+		//2.권한 설정
+		member.setRole(Role.MEMBER);
 		memberRepository.save(member);
 		
 	}
@@ -39,10 +48,12 @@ public class MemberService {
 	public Member findById(Long id) {
 		//db에서 member 1건 꺼내옴 - findById(id).get();
 		//id가 없을때 오류 처리 - "url을 찾을 수 없습니다."
-		Member member = memberRepository.findById(id).get();
-
-		return member;
-
+		Optional<Member> findMember = memberRepository.findById(id);
+		if(findMember.isPresent()) {
+			return findMember.get();
+		}else {
+			throw new BootBoardException("페이지를 찾을 수 없습니다.");
+		}
 	}
 
 	public void delete(Long id) {
@@ -51,6 +62,9 @@ public class MemberService {
 	}
 
 	public void update(Member member) {
+		String encPw = pwEncoder.encode(member.getPassword());
+		member.setPassword(encPw);
+		member.setRole(Role.MEMBER);
 		memberRepository.save(member);		
 	}
 
@@ -74,7 +88,7 @@ public class MemberService {
 		return "NO";	//사용불가
 	}
 
-	public Member findByMemberId(String memberId) {
+	public Member findByMemberId(String memberId) throws Exception {
 		//db에서 이메일로 검색한 회원 객체 가져오고
 		Optional<Member> member = memberRepository.findByMemberId(memberId);
 		return member.get();

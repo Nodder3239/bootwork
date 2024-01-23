@@ -26,7 +26,7 @@ public class RelationMappingTest {
 	
 	@Test
 	public void testInsertData() {
-		
+		/*
 		//일반 회원	
 		Member member1 = new Member();
 		member1.setMemberId("member1");
@@ -66,6 +66,7 @@ public class RelationMappingTest {
 			
 			boardRepository.save(board);
 		}
+		*/
 	}
 	
 	

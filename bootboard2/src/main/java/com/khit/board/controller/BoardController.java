@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -16,7 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.khit.board.entity.Board;
+import com.khit.board.entity.Member;
 import com.khit.board.service.BoardService;
+import com.khit.board.service.MemberService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -27,6 +31,7 @@ import lombok.RequiredArgsConstructor;
 public class BoardController {
 
 	private final BoardService boardService;
+	private final MemberService memberService;
 	
 	//글쓰기 페이지
 	@GetMapping("/write")
@@ -37,8 +42,14 @@ public class BoardController {
 	//글쓰기
 	@PostMapping("/write")
 	public String write(@Valid Board board) throws Exception {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+	    // Principal에서 사용자 정보를 얻어옵니다.
+	    String memberId = authentication.getName(); // 사용자 아이디
+	    Member member = memberService.findByMemberId(memberId);
+	    board.setMember(member);
 		//글쓰기 처리
-		boardService.save(board);
+		boardService.save(board);		
 		return "redirect:/board/";
 	}
 	
@@ -52,9 +63,9 @@ public class BoardController {
 			boardList = boardService.findByTitle(kw, pageable);
 		} else if ("c".equals(field)) {
 			boardList = boardService.findByContent(kw, pageable);
-		} /*else if ("w".equals(field)){
-			boardList = boardService.findByWriter(kw, pageable);
-		}*/else {
+		} else if ("w".equals(field)){
+			boardList = boardService.findByMember(kw, pageable);
+		}else {
 			boardList = boardService.findListAll(pageable);
 		}   
 		//하단의 페이지 블럭 만들기
@@ -100,6 +111,12 @@ public class BoardController {
 	
 	@PostMapping("/update")
 	public String update(@ModelAttribute Board board) throws Exception {
+		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+	    // Principal에서 사용자 정보를 얻어옵니다.
+	    String memberId = authentication.getName(); // 사용자 아이디
+	    Member member = memberService.findByMemberId(memberId);
+	    board.setMember(member);
 		boardService.update(board);
 		return "redirect:/board/" + board.getId();
 	}

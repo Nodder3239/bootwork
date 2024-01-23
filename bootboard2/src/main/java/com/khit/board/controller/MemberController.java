@@ -2,6 +2,8 @@ package com.khit.board.controller;
 
 import java.util.List;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,21 +50,20 @@ public class MemberController {
 		return "/member/list";
 	}
 	
+	
 	@GetMapping("/login")
 	public String loginForm() {
 		return "/member/login";
 	}
-	
+	/*
 	@PostMapping("/login")
 	public String login(@ModelAttribute Member member, HttpSession session, Model model) {
 		Member loginMember = memberService.login(member);
-		
-		
-		//Member loginMember = memberService.login(memberDTO);
+	
 		//로그인 성공, 실패
 		if(loginMember !=null && loginMember.getPassword().equals(member.getPassword())) {
-			session.setAttribute("sessionId", loginMember.getMemberId());
-			session.setAttribute("sessionName", loginMember.getName());
+			//session.setAttribute("sessionId", loginMember.getMemberId());
+			//session.setAttribute("sessionName", loginMember.getName());
 			return "/index";	//http://localhost:8080/
 		}else {
 			String error = "아이디나 비밀번호를 확인해 주세요";
@@ -70,13 +71,13 @@ public class MemberController {
 			return "/member/login";
 		}
 	}
-	
+	*/
 	//회원 상세보기
 	@GetMapping("/{id}")
 	public String getMember(@PathVariable Long id, Model model) {
 		Member member = memberService.findById(id);
 		model.addAttribute("member", member);
-		return "member/detail";
+		return "/member/detail";
 	}
 	
 	//회원 삭제
@@ -94,11 +95,15 @@ public class MemberController {
 	}
 	
 	@GetMapping("/update")
-	public String updateForm2(HttpSession session, Model model) {
-		String memberId = (String) session.getAttribute("sessionId");
-		Member member = memberService.findByMemberId(memberId);
-		model.addAttribute("member", member);
-		return "/member/update";
+	public String updateForm2(Model model) throws Exception {
+	    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+	    // Principal에서 사용자 정보를 얻어옵니다.
+	    String memberId = authentication.getName(); // 사용자 아이디
+	    Member member = memberService.findByMemberId(memberId);
+
+	    model.addAttribute("member", member);
+	    return "/member/update";
 	}
 	
 	@PostMapping("/update")

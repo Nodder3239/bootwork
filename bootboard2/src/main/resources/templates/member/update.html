@@ -12,30 +12,25 @@
 		<form th:action="@{/member/update}" method="post" name="userform">
 				<div class="mb-3">
 					<input type="hidden" name="id" th:value="${member.id }">
-		          <label for="userEmail">이메일</label>
+		          <label for="userEmail">아이디</label>
 		          <div class="input-group">
-		            <input type="text" class="form-control" name="memberEmail" id="email" th:value="${member.memberEmail }" readonly>
+		            <input type="text" class="form-control" name="memberId" id="memberId" th:value="${member.memberId }" readonly>
 		          </div>
 		          <p id="check-result"></p>
 		        </div>
 				<div class="mb-3">
 		          <label for="userPassword">비밀번호</label>
 		          <div class="input-group">
-		            <input type="password" class="form-control" name="memberPassword" id="password" th:value="${member.memberPassword }" required>
+		            <input type="password" class="form-control" name="password" id="password" th:value="${member.password }" required>
 		          </div>
 		        </div>
 				<div class="mb-3">
 		          <label for="userName">이름</label>
 		          <div class="input-group">
-		            <input type="text" class="form-control" name="memberName" id="name" th:value="${member.memberName }" required>
+		            <input type="text" class="form-control" name="name" id="name" th:value="${member.name }" required>
 		          </div>
 		        </div>
-		        <div class="mb-3">
-		          <label for="userAge">나이</label>
-		          <div class="input-group">
-		            <input type="text" class="form-control" name="memberAge" id="age" th:value="${member.memberAge }">
-		          </div>
-		        </div>
+	            <input type="hidden" class="form-control" name="role" id="role" th:value="${member.role.name() }">
 		        <div class="mb-3">
 		        	<input class="btn btn-secondary" type="submit" value="수정">
 		        	<button class="btn btn-secondary" type="button" onclick="list()">목록</button>
@@ -47,6 +42,34 @@
 	<script>
 		const list = function(){
 			location.href="/member/";			
+		}
+
+		const checkId = function(){
+			let inputId = document.getElementById("memberId").value;
+			let checkResult = document.getElementById("check-result");
+			
+			if(inputEmail != null && inputEmail != ""){
+				$.ajax({
+					//요청방식, url, data, 함수 - (성공, 실패)
+					type: "POST",
+					url: "/member/checkId",
+					data:{memberId: inputId},
+					success: function(res){
+						if(res == "OK"){
+							checkResult.innerHTML = "사용가능한 이메일입니다.";
+							checkResult.style.color = "blue";
+						}else{
+							checkResult.innerHTML = "이미 가입된 이메일입니다.";
+							checkResult.style.color = "red";
+						}
+					},
+					error: function(err){
+					}
+				})
+			}else{
+				checkResult.innerHTML = "아이디를 입력하세요.";
+				checkResult.style.color = "red";
+			}
 		}
 	</script>
 </body>

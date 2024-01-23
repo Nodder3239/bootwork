@@ -1,6 +1,7 @@
 package com.khit.board.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -9,7 +10,9 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 
 import com.khit.board.entity.Board;
+import com.khit.board.entity.Member;
 import com.khit.board.repository.BoardRepository;
+import com.khit.board.repository.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -34,7 +37,7 @@ public class BoardService {
 		
 	}
 
-	public void update(Board board) throws Exception {
+	public void update(Board board){
 	    boardRepository.save(board);		
 	}
 	
@@ -57,16 +60,16 @@ public class BoardService {
 		return boardList;
    	}
 	
-	/*
-	public Page<Board> findByWriter(String kw, Pageable pageable) {
+	
+	public Page<Board> findByMember(String kw, Pageable pageable) {
 		int page = pageable.getPageNumber() - 1;
 		int pageSize = 10;
 		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
 		
-		Page<Board> boardList = boardRepository.findByWriterContaining(kw, pageable);
+		Page<Board> boardList = boardRepository.findByMemberMemberIdContaining(kw, pageable);
 		return boardList;
    	}
-   	*/
+   	
 
 
 	public Page<Board> findListAll(Pageable pageable) {

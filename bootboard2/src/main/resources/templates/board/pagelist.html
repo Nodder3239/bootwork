@@ -22,7 +22,7 @@
 				<tr th:each="board : ${boardList}">
 	                <th th:text="${board.id}"></th>
 	                <td class="td_title"><a th:href="@{|/board/${board.id}|(page=${boardList.number+1})}" th:text="${board.title}"></a></td>
-	                <td th:text="${board.member.name}"></td>
+	                <td th:text="${board.member.memberId}"></td>
 	                <td th:utext="${board.updatedDate != null ? #dates.format(board.updatedDate, 'yyyy-MM-dd HH:mm') : #dates.format(board.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
 	            </tr>
 			</tbody>
