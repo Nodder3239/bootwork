@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>회원 수정</title>
+</head>
+<body>
+	<div th:replace="~{/layout/header}"></div>
+	<div id="content">
+		<div id="content_join">
+		<h2>회원 수정</h2>
+		<form th:action="@{/member/update}" method="post" name="userform">
+				<div class="mb-3">
+					<input type="hidden" name="id" th:value="${member.id }">
+		          <label for="userEmail">이메일</label>
+		          <div class="input-group">
+		            <input type="text" class="form-control" name="memberEmail" id="email" th:value="${member.memberEmail }" readonly>
+		          </div>
+		          <p id="check-result"></p>
+		        </div>
+				<div class="mb-3">
+		          <label for="userPassword">비밀번호</label>
+		          <div class="input-group">
+		            <input type="password" class="form-control" name="memberPassword" id="password" th:value="${member.memberPassword }" required>
+		          </div>
+		        </div>
+				<div class="mb-3">
+		          <label for="userName">이름</label>
+		          <div class="input-group">
+		            <input type="text" class="form-control" name="memberName" id="name" th:value="${member.memberName }" required>
+		          </div>
+		        </div>
+		        <div class="mb-3">
+		          <label for="userAge">나이</label>
+		          <div class="input-group">
+		            <input type="text" class="form-control" name="memberAge" id="age" th:value="${member.memberAge }">
+		          </div>
+		        </div>
+		        <div class="mb-3">
+		        	<input class="btn btn-secondary" type="submit" value="수정">
+		        	<button class="btn btn-secondary" type="button" onclick="list()">목록</button>
+		        </div>
+			</form>
+		</div>
+	</div>
+	<div th:replace="~{/layout/footer}"></div>
+	<script>
+		const list = function(){
+			location.href="/member/";			
+		}
+	</script>
+</body>
+</html>

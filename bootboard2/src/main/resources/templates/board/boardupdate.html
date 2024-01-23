@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>게시글 수정</title>
+</head>
+<body>
+	<div th:replace="~{/layout/header}"></div>
+   		<div id="content">
+        <h2>글 수정하기</h2>
+        <form th:action="@{/board/update}" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="id" th:value="${board.id}">
+            <!-- <input type="hidden" name="boardWriter" th:value="${board.boardWriter}"> -->
+
+            <input type="text" name="title" class="form-control mt-4 mb-2" th:value="${board.title}" required>
+            <div class="form-group">
+                <textarea class="form-control" rows="10" name="content" required style="resize: none;"
+                    th:text="${board.content}"></textarea>
+            </div>
+            <div class="my-1">
+	            <input class="btn btn-outline-secondary" type="submit" value="수정">
+	            <input class="btn btn-outline-secondary" type="reset" value="초기화">
+	            <a th:href="@{|/board/${board.id}|}">
+	                <input type="button" class="btn btn-outline-secondary" value="뒤로">
+	            </a>
+            </div>
+        </form>
+    </div>
+	<div th:replace="~{/layout/footer}"></div>
+</body>
+</html>

@@ -78,9 +78,8 @@ public class BoardService {
 
 	public void update(BoardDTO boardDTO, MultipartFile boardFile) throws Exception {
 		//boardDTO.setUpdatedDate(new Timestamp(System.currentTimeMillis()));
-		
 		//1. 파일을 서버에 저장하고
-		if (!boardFile.isEmpty()) {
+		if (!boardFile.isEmpty()) {		//
 			String filepath = "C:\\bootworks\\bootboard\\src\\main\\resources\\static\\upload\\";
 			
 			UUID uuid = UUID.randomUUID();	//무작위 아이디 생성(중복 파일 이름의 생성)
@@ -94,11 +93,15 @@ public class BoardService {
 		//2. 파일 이름은 db에 저장
 			boardDTO.setFilename(filename);
 			boardDTO.setFilepath("/upload/" + filename);
-		}
-		
-		Board board = Board.toUpdateBoardEntity(boardDTO);
-		boardRepository.save(board);
-		
+			
+
+		}else{
+	         //Board board = Board.toUpdateNoFile(boardDTO);
+	         //boardRepository.save(board);
+	         boardDTO.setFilepath(findById(boardDTO.getId()).getFilepath());
+	    }
+	    Board board = Board.toUpdateBoardEntity(boardDTO);
+	    boardRepository.save(board);		
 	}
 	
 	public Page<BoardDTO> findByTitle(String kw, Pageable pageable) {

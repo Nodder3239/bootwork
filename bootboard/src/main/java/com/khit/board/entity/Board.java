@@ -43,6 +43,8 @@ public class Board extends BaseEntity{
 	@Column
 	private Integer boardHits;
 	
+	//write.html에서 name 값과 다른 이름으로 만들 것
+	//MultipartFile과 String 타입이 서로 다르므로<
 	@Column
 	private String filename;
 	
@@ -81,6 +83,17 @@ public class Board extends BaseEntity{
 		board.setBoardHits(boardDTO.getBoardHits());
 		board.setFilename(boardDTO.getFilename());
 		board.setFilepath(boardDTO.getFilepath());
+		return board;
+	}
+	
+	public static Board toUpdateNoFileBoardEntity(BoardDTO boardDTO) {
+		Board board = new Board();
+		board.setId(boardDTO.getId());
+		board.setBoardTitle(boardDTO.getBoardTitle());
+		board.setBoardWriter(boardDTO.getBoardWriter());
+		board.setBoardContent(boardDTO.getBoardContent());
+		board.setBoardCategory(boardDTO.getBoardCategory());
+		board.setBoardHits(boardDTO.getBoardHits());
 		return board;
 	}
 }

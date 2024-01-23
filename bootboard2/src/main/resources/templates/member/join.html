@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>회원가입...</title>
+</head>
+<body>
+	<div th:replace="~{/layout/header}"></div>
+	<div id="content">
+		<div id="content_join">
+		<h2>회원 가입</h2>
+		<form th:action="@{/member/join}" method="post" name="userform">
+				<div class="input-group mb-3">
+		          <label for="memberEmail">이메일</label>
+		          	<div class="input-group">
+			            <input type="text" class="form-control" name="memberId" id="memberId" placeholder="ID" onblur="checkId()" required>
+		         	</div>
+		          <p id="check-result"></p>
+		        </div>
+				<div class="mb-3">
+		          <label for="memberPassword">비밀번호</label>
+		          <div class="input-group">
+		            <input type="password" class="form-control" name="password" id="password" placeholder="영문자, 숫자, 특수문자 포함 8자 이상" required>
+		          </div>
+		        </div>
+				<div class="mb-3">
+		          <label for="memberPassword2">비밀번호 확인</label>
+		          <div class="input-group">
+		            <input type="password" class="form-control" name="password2" id="password2" placeholder="비밀번호 확인" required>
+		          </div>
+		        </div>
+				<div class="mb-3">
+		          <label for="memberName">이름</label>
+		          <div class="input-group">
+		            <input type="text" class="form-control" name="name" id="name" placeholder="한글만 입력" required>
+		          </div>
+		        </div>
+		        <div class="mb-3">
+		        	<input class="btn btn-secondary" type="submit" th:onclick="checkMember()" value="등록">
+					<input class="btn btn-secondary" type="reset" value="취소">
+		        </div>
+			</form>
+		</div>
+	</div>
+	<div th:replace="~{/layout/footer}"></div>
+<script>
+	const checkId = function(){
+		let inputId = document.getElementById("memberId").value;
+		let checkResult = document.getElementById("check-result");
+		
+		if(inputEmail != null && inputEmail != ""){
+			$.ajax({
+				//요청방식, url, data, 함수 - (성공, 실패)
+				type: "POST",
+				url: "/member/checkId",
+				data:{memberId: inputId},
+				success: function(res){
+					if(res == "OK"){
+						checkResult.innerHTML = "사용가능한 이메일입니다.";
+						checkResult.style.color = "blue";
+					}else{
+						checkResult.innerHTML = "이미 가입된 이메일입니다.";
+						checkResult.style.color = "red";
+					}
+				},
+				error: function(err){
+				}
+			})
+		}else{
+			checkResult.innerHTML = "아이디를 입력하세요.";
+			checkResult.style.color = "red";
+		}
+	}
+</script>
+</body>
+</html>
