@@ -24,7 +24,7 @@ import lombok.ToString;
 @ToString(exclude="member")
 @Entity
 @Table(name = "t_board")
-public class Board {
+public class Board extends BaseEntity{
 	
 	@Id	//기본키(설정 안하면 오류)
 	@GeneratedValue(strategy=GenerationType.IDENTITY) //자동 순번
@@ -38,15 +38,7 @@ public class Board {
 	
 	@Column(columnDefinition = "int default 0")
 	private int hits;
-	
-	@CreationTimestamp
-	@Column(updatable = false)
-	private Timestamp createdDate;	//생성일
-	
-	@UpdateTimestamp
-	@Column(insertable = false)
-	private Timestamp updatedDate;	//수정일
-	
+		
 	//Board 엔티티와 연관관계 매핑
 	//다대일 매핑(fetch는 조회할 때 EAGER-전체조회를 함, LAZY-특정한 조회만 됨)
 	//JoinColumn() - 외래키(FK) 설정

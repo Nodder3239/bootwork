@@ -46,7 +46,7 @@ public class Member {
 	//Board와 관계 매핑
 	//주인 설정(다 쪽이 주인)
 	//cascade : 참조 객체가 삭제되면 참조하는 객체도 삭제됨
-	@OneToMany(mappedBy="member", fetch = FetchType.EAGER, 
+	@OneToMany(mappedBy="member", /*fetch = FetchType.LAZY,*/ 
 			cascade = CascadeType.ALL)
 	private List<Board> boardList = new ArrayList<>();
 

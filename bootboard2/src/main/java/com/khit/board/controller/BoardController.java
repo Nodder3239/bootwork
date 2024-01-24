@@ -56,8 +56,8 @@ public class BoardController {
 	}
 	*/
 	@PostMapping("/write")
-	public String write(@ModelAttribute Board board
-			, @AuthenticationPrincipal SecurityUser principal) {
+	public String write(@ModelAttribute Board board, 
+			@AuthenticationPrincipal SecurityUser principal) {
 	
 	    board.setMember(principal.getMember());
 		//글쓰기 처리
@@ -137,12 +137,12 @@ public class BoardController {
 	}
 	*/
 	@PostMapping("/update")
-	public String update(@ModelAttribute Board board
-			, @AuthenticationPrincipal SecurityUser principal) {
+	public String update(@ModelAttribute Board board, 
+			@AuthenticationPrincipal SecurityUser principal) {
 	
 	    board.setMember(principal.getMember());
 		//글쓰기 처리
-		boardService.save(board);		
-		return "redirect:/board/";
+		boardService.update(board);		
+		return "redirect:/board/" + board.getId();
 	}	
 }

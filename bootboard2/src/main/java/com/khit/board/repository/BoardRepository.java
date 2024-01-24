@@ -15,11 +15,11 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
     Page<Board> findByContentContaining(String kw, Pageable pageable);
     
     Page<Board> findByMemberMemberIdContaining(String kw, Pageable pageable);
-    
+    /*
     @Modifying
     @Query(value="delete from Board where id=:id")
     void deleteById(Long id);
-    
+    */
     @Modifying
     @Query(value="update Board b set b.hits=b.hits+1 where b.id=:id")
 	public void updateHits(Long id);

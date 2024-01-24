@@ -32,7 +32,7 @@ public class BoardService {
 		
 	}
 	
-	@Transactional
+	/* @Transactional */
 	public void deleteById(Long id) {
 		boardRepository.deleteById(id);
 	}
