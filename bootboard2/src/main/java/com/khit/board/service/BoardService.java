@@ -1,28 +1,28 @@
 package com.khit.board.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.khit.board.entity.Board;
-import com.khit.board.entity.Member;
 import com.khit.board.repository.BoardRepository;
-import com.khit.board.repository.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RequiredArgsConstructor
 @Controller
 public class BoardService {
 	
 	private final BoardRepository boardRepository;
 	
-	public void save(Board board) throws Exception{
+	public void save(Board board){
 		boardRepository.save(board);
 	}
 
@@ -31,14 +31,24 @@ public class BoardService {
 		return board;
 		
 	}
-
-	public void delete(Long id) {
+	
+	@Transactional
+	public void deleteById(Long id) {
 		boardRepository.deleteById(id);
-		
 	}
 
 	public void update(Board board){
 	    boardRepository.save(board);		
+	}
+	
+	@Transactional
+	public void updateHits(Long id) {
+		boardRepository.updateHits(id);
+	}
+   	
+   	@Transactional
+	public void updateHits2(Long id) {
+		boardRepository.updateHits2(id);	
 	}
 	
 	public Page<Board> findByTitle(String kw, Pageable pageable) {

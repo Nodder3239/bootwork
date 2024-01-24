@@ -5,43 +5,45 @@
 <title>회원 목록</title>
 </head>
 <body>
-	<!-- <th:block th:if="${#authentication.getPrincipal().member.role.name() != 'ADMIN'}">
+	<th:block th:if="${#authentication.getPrincipal().member.role.name() != 'ADMIN'}">
 	    <script type="text/javascript">
 	        alert("관리자만 이용 가능합니다.");
 	        location.href = "/member/login";
 	    </script>
-	</th:block> -->
+	</th:block>
 	<div th:replace="~{/layout/header}"></div>
 	<div id="content">
-		<h2>회원 목록</h2>
-		<table class="table" id="tbl_list" style="width:60%; margin:0 auto;">		
-			<thead>	
-			<tr>
-				<th scope="col">번호</th>
-				<th scope="col">아이디</th>
-				<!-- <th scope="col">비밀번호</th> -->
-				<th scope="col">이름</th>
-				<th scope="col">권한</th>
-				<th scope="col">조회</th>
-				<th scope="col">삭제</th>
-			</tr>
-			</thead>
-			<tbody>
-			<tr th:forEach th:each="member : ${memberList}">
-				<th scope="row" th:text="${member.id}"></th>
-		        <td th:text="${member.memberId}"></td>
-		        <!-- <td th:text="${member.password}"></td> -->
-		        <td th:text="${member.name}"></td>
-		        <td th:text="${member.role.name()}"></td>
-				<td>
-					<a th:href="@{|/member/${member.id}|}"><i class="fa-solid fa-eye" style="color: #000;"></i></a>
-				</td>
-				<td>
-					<a th:href="@{|/member/delete/${member.id}|}"><i class="fa-solid fa-square-xmark" style="color: #000;"></i></a>
-				</td>
-			</tr>
-			</tbody>
-		</table>
+		<div class="wrap">
+			<h2>회원 목록</h2>
+			<table class="table" id="tbl_list" style="width:60%; margin:0 auto;">		
+				<thead>	
+				<tr>
+					<th scope="col">번호</th>
+					<th scope="col">아이디</th>
+					<!-- <th scope="col">비밀번호</th> -->
+					<th scope="col">이름</th>
+					<th scope="col">권한</th>
+					<th scope="col">조회</th>
+					<th scope="col">삭제</th>
+				</tr>
+				</thead>
+				<tbody>
+				<tr th:forEach th:each="member : ${memberList}">
+					<th scope="row" th:text="${member.id}"></th>
+			        <td th:text="${member.memberId}"></td>
+			        <!-- <td th:text="${member.password}"></td> -->
+			        <td th:text="${member.name}"></td>
+			        <td th:text="${member.role.name()}"></td>
+					<td>
+						<a th:href="@{|/member/${member.id}|}"><i class="fa-solid fa-eye" style="color: #000;"></i></a>
+					</td>
+					<td>
+						<a th:href="@{|/member/delete/${member.id}|}"><i class="fa-solid fa-square-xmark" style="color: #000;"></i></a>
+					</td>
+				</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 	<div th:replace="~{/layout/footer}"></div>
 </body>

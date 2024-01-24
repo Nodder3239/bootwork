@@ -1,12 +1,10 @@
 package com.khit.board.controller;
 
-
-import java.util.List;
-
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.khit.board.config.SecurityUser;
 import com.khit.board.entity.Board;
 import com.khit.board.entity.Member;
 import com.khit.board.service.BoardService;
@@ -24,10 +23,12 @@ import com.khit.board.service.MemberService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RequestMapping("/board")
 @RequiredArgsConstructor
 @Controller
+@Slf4j
 public class BoardController {
 
 	private final BoardService boardService;
@@ -40,14 +41,25 @@ public class BoardController {
 	}
 	
 	//글쓰기
+	/*
 	@PostMapping("/write")
 	public String write(@Valid Board board) throws Exception {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 
 	    // Principal에서 사용자 정보를 얻어옵니다.
-	    String memberId = authentication.getName(); // 사용자 아이디
+	    String memberId = authentication.getName();
 	    Member member = memberService.findByMemberId(memberId);
 	    board.setMember(member);
+		//글쓰기 처리
+		boardService.save(board);		
+		return "redirect:/board/";
+	}
+	*/
+	@PostMapping("/write")
+	public String write(@ModelAttribute Board board
+			, @AuthenticationPrincipal SecurityUser principal) {
+	
+	    board.setMember(principal.getMember());
 		//글쓰기 처리
 		boardService.save(board);		
 		return "redirect:/board/";
@@ -89,6 +101,8 @@ public class BoardController {
 	//글 상세보기
 	@GetMapping("/{id}")
 	public String getBoard(@PageableDefault(page=1) Pageable pageable, @PathVariable Long id, Model model) {
+		//조회수
+		boardService.updateHits(id);
 		//글 상세보기
 		Board board = boardService.findById(id);
 		model.addAttribute("board", board);
@@ -98,17 +112,18 @@ public class BoardController {
 	
 	@GetMapping("/delete/{id}")
 	public String deleteBoard(@PathVariable Long id) {
-		boardService.delete(id);
+		boardService.deleteById(id);
 		return "redirect:/board/";
 	}
 	
 	@GetMapping("/update/{id}")
 	public String updateForm(Model model, @PathVariable Long id) {
+		boardService.updateHits2(id);
 		Board board = boardService.findById(id);
 		model.addAttribute("board", board);
 		return "/board/boardupdate";
 	}
-	
+	/*
 	@PostMapping("/update")
 	public String update(@ModelAttribute Board board) throws Exception {
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -120,5 +135,14 @@ public class BoardController {
 		boardService.update(board);
 		return "redirect:/board/" + board.getId();
 	}
-		
+	*/
+	@PostMapping("/update")
+	public String update(@ModelAttribute Board board
+			, @AuthenticationPrincipal SecurityUser principal) {
+	
+	    board.setMember(principal.getMember());
+		//글쓰기 처리
+		boardService.save(board);		
+		return "redirect:/board/";
+	}	
 }

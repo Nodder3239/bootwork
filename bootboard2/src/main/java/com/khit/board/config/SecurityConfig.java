@@ -8,6 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
@@ -28,11 +29,15 @@ public class SecurityConfig {
 		http
 		  .authorizeHttpRequests(authorize -> authorize
 				  .requestMatchers("/", "/css/**", "/images/**", 
-						  "/auth/main", "/member/**").permitAll()
+						  "/auth/main", "/member/**", "/board/").permitAll()
+				  .requestMatchers("/board/write").authenticated()
 				  .anyRequest().authenticated()
 				  )
 		          .formLogin(form -> form.loginPage("/member/login"));
-		
+		/*http.logout().logoutUrl("/member/logout")
+				.logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
+				.invalidateHttpSession(true)
+				.logoutSuccessUrl("/");*/
 		return http.build();
 	}
 	

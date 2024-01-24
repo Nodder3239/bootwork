@@ -3,19 +3,21 @@
 *{margin: 0; padding: 0;}
 
 #content{
-	width: 60%; margin: 50px auto;
+	width: 60%; 
+	margin: 0px auto;
 	height: auto;
   	min-height: 100%;
-  	padding-bottom: 80px;
+  	padding-bottom: 40px;
 	}
 h2{color: #000; text-align: center;}
 .main-pic{text-align: center;}
 .menu{text-align: center;}
 a{text-decoration: none; color:#000;}
 ul li{list-style: none;}
+.wrap{margin: 50px;}
 
 /* 헤더 */
-header{height: 80px; background: #ccc;}
+header{height: 80px; background: #ccc; z-index: 1;}
 header #logo{float: left;}
 #logo h1{line-height: 80px;}
 #logo h1 a{color: #111; padding-left: 24px; font-style: italic;}
@@ -38,10 +40,11 @@ header nav{width: 50%; float: right;}
 /* footer 스타일 */
 footer{
 	width: 100%;
-	height: 80px; 
+	height: 40px; 
 	border-top: 2px solid #222; 
 	clear: both;
-	position : relative;
+	position : fixed;
+	bottom: 0;
   	transform : translateY(-100%);
   	}
 #bottomMenu{margin: 10px 20px;}
@@ -51,8 +54,8 @@ footer{
 #bottomMenu li:last-child{border: none;}
 
 /* 메인  */
-.main {text-align:center;}
-.main_pic {width: 50%; margin: 0 auto;}
+.main {text-align:center; margin-top: 50px;}
+.main_pic {width: 50%; margin: 50px auto;}
 
 /* 로그인 */
 #content_login {width: 20%; margin: 200px auto;}
@@ -71,3 +74,11 @@ footer{
 
 /* 글쓰기 */
 .tbl_write tr{margin: 10px 0px;}
+#button_form input{margin: 10px 5px;}
+
+/* 채팅방 */
+#chat{
+	position: fixed;
+	bottom: 80px;
+	z-index: -1;
+}

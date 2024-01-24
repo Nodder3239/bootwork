@@ -73,7 +73,6 @@ public class BoardService {
 
 	public void delete(Long id) {
 		boardRepository.deleteById(id);
-		
 	}
 
 	public void update(BoardDTO boardDTO, MultipartFile boardFile) throws Exception {

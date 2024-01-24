@@ -8,6 +8,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 
+import com.khit.board.config.SecurityUser;
 import com.khit.board.entity.Member;
 import com.khit.board.entity.Role;
 import com.khit.board.exception.BootBoardException;
@@ -62,6 +63,7 @@ public class MemberService {
 	}
 
 	public void update(Member member) {
+		//암호화, 권한 설정
 		String encPw = pwEncoder.encode(member.getPassword());
 		member.setPassword(encPw);
 		member.setRole(Role.MEMBER);
@@ -93,7 +95,11 @@ public class MemberService {
 		Optional<Member> member = memberRepository.findByMemberId(memberId);
 		return member.get();
 	}
-
+	
+	public Member findByMemberId(SecurityUser principal) {
+		Optional<Member> member = memberRepository.findByMemberId(principal.getUsername());
+		return member.get();
+	}
 
 
 }

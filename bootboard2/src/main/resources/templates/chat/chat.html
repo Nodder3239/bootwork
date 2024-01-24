@@ -10,10 +10,12 @@
 
 <body>
 
-	<div th:replace="~{/layout/header}"></div>
+<div th:replace="~{/layout/header}"></div>
 
-<div>
-        <div class="container" style="height: 800px;">
+
+<div id="content">
+	<div class="wrap">
+        <div class="container" id="chat">
             <div class="col-6">
                 <label><b>채팅방</b></label>
             </div>
@@ -28,8 +30,10 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div>        
+    </div>
 </div>
+<div th:replace="~{/layout/footer}"></div>
 <script th:inline="javascript">
             $(document).ready(function(){
 
@@ -116,6 +120,9 @@
                 }
             }
             })
+            
+
+
 </script>
 </body>
 

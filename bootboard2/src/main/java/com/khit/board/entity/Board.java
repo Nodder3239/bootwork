@@ -36,6 +36,9 @@ public class Board {
 	@Column(length=2000, nullable=false)
 	private String content;
 	
+	@Column(columnDefinition = "int default 0")
+	private int hits;
+	
 	@CreationTimestamp
 	@Column(updatable = false)
 	private Timestamp createdDate;	//생성일

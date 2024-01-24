@@ -13,31 +13,34 @@
 	</th:block> -->
 	<div th:replace="~{/layout/header}"></div>
 		<div id="content">
-		<h2>글쓰기</h2>
-		<form th:action="@{/board/write}" method="post" th:object="${board}" enctype="multipart/form-data">
-			<input type="text" th:field=*{title} class="form-control mt-4 mb-2" style="width:60%; margin:0 auto;"
-				placeholder="제목을 입력해주세요." required>
-			<!-- <div th:if="${#fields.hasAnyErrors()}">
-				<div th:each="err: ${#fields.allErrors()}" th:text="${err}" class="alert-danger"></div>			
-			</div> -->
-			<!-- <input type="hidden" th:field=*{member} th:value="${#authentication.principal.member}"> -->
-			<div class="form-group">
-				<textarea class="form-control" rows="10" th:field=*{content}
-					placeholder="내용을 입력해주세요" style="resize: none;" required
-				></textarea>
+			<div class="wrap">
+				<h2>글쓰기</h2>
+				<form th:action="@{/board/write}" method="post" th:object="${board}" enctype="multipart/form-data">
+					<div>
+					<input type="text" th:field=*{title} class="form-control mt-4 mb-2" style="width:60%; margin:0 auto;"
+						placeholder="제목을 입력해주세요." required>
+					</div>
+					<!-- <div th:if="${#fields.hasAnyErrors()}">
+						<div th:each="err: ${#fields.allErrors()}" th:text="${err}" class="alert-danger"></div>			
+					</div> -->
+					<div class="form-group">
+						<textarea class="form-control" rows="10" th:field=*{content}
+							placeholder="내용을 입력해주세요" style="resize: none;" required
+						></textarea>
+					</div>
+					<!-- <div class="form-group">
+					    <label for="exampleFormControlFile1">사진 업로드</label>
+					    <div class="my-1">
+					   		<input type="file" accept="image/*" class="form-control-file" id="exampleFormControlFile1" name=boardFile>
+					    </div>
+					</div> -->
+					<div class="d-flex justify-content-center" id="button_form">
+						<input class="btn btn-outline-secondary" type="submit" value="등록">
+						<input class="btn btn-outline-secondary" type="reset" value="초기화">
+						<a th:href="@{/board/}"><input type="button" class="btn btn-outline-secondary" value="목록"></a>
+					</div>
+				</form>
 			</div>
-			<!-- <div class="form-group">
-			    <label for="exampleFormControlFile1">사진 업로드</label>
-			    <div class="my-1">
-			   		<input type="file" accept="image/*" class="form-control-file" id="exampleFormControlFile1" name=boardFile>
-			    </div>
-			</div> -->
-			<div class="d-flex justify-content-center">
-				<input class="btn btn-outline-secondary" type="submit" value="등록">&nbsp;
-				<input class="btn btn-outline-secondary" type="reset" value="초기화">&nbsp;
-				<a th:href="@{/board/}"><input type="button" class="btn btn-outline-secondary" value="목록"></a>
-			</div>
-		</form>
 	</div>
 	<div th:replace="~{/layout/footer}"></div>
 </body>
