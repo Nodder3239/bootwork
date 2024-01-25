@@ -55,7 +55,7 @@ footer{
 
 /* 메인  */
 .main {text-align:center; margin-top: 50px;}
-.main_pic {width: 50%; margin: 50px auto;}
+.main_pic {width: 40%; margin: 50px auto;}
 
 /* 로그인 */
 #content_login {width: 20%; margin: 200px auto;}

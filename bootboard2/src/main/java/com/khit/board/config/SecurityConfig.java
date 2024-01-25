@@ -28,7 +28,7 @@ public class SecurityConfig {
 		// 로그인이 필요: 그외의 경로
 		http
 		  .authorizeHttpRequests(authorize -> authorize
-				  .requestMatchers("/", "/css/**", "/images/**", 
+				  .requestMatchers("/", "/css/**", "/images/**", "/js/**",					  
 						  "/auth/main", "/member/**", "/board/").permitAll()
 				  .requestMatchers("/board/write").authenticated()
 				  .anyRequest().authenticated()

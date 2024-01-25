@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>대문...</title>
+<script th:src="@{https://code.jquery.com/jquery-3.7.1.min.js}"></script>
 </head>
 <body>
 	<div th:replace="~{layout/header}"></div>
@@ -64,7 +65,17 @@
 			  </button>
 			</div>
 		</div>
+		
+	</div>
+	<div class="weather mt-3">
+		<h3>오늘의 날씨</h3>
+			<h4 class="result">
+			  <!-- 20240125, 0600, -9.1 -->
+			</h4>
+		
 	</div>
 	<div th:replace="~{layout/footer}"></div>
+	
+	<script th:src="@{/js/weather.js}"></script>
 </body>
 </html>
