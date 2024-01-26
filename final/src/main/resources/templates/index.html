@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+<meta charset="UTF-8">
+<title>임시 메인</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+<script th:src="@{https://code.jquery.com/jquery-3.7.1.min.js}"></script>
+</head>
+<body>
+	<p><a th:href="@{/board/}">게시판</a></p>
+	<p><a th:href="@{/board/}">공지게시판</a></p>
+	<p><a th:href="@{/board/}">정보게시판</a></p>
+	<p><a th:href="@{/board/}">후기게시판</a></p>
+	<p><a th:href="@{/board/}">질문게시판</a></p>
+</body>
+</html>

@@ -1,11 +1,11 @@
 package com.khit.board.entity;
 
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
+import java.util.List;
 
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.UpdateTimestamp;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -14,37 +14,46 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.OrderBy;
 import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
-@Setter
 @ToString(exclude="member")
-@Entity
+@Setter
+@Getter
 @Table(name = "t_board")
+@Entity
 public class Board extends BaseEntity{
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Integer id;
 	
-	@Id	//기본키(설정 안하면 오류)
-	@GeneratedValue(strategy=GenerationType.IDENTITY) //자동 순번
-	private Long id;
-	
-	@Column(nullable=false)
+	@Column(nullable = false)
 	private String title;
-		
-	@Column(length=2000, nullable=false)
+	
+	@Column(length = 2000, nullable = false)
 	private String content;
 	
 	@Column(columnDefinition = "int default 0")
 	private int hits;
-		
+	
+	
 	//Board 엔티티와 연관관계 매핑
-	//다대일 매핑(fetch는 조회할 때 EAGER-전체조회를 함, LAZY-특정한 조회만 됨)
-	//JoinColumn() - 외래키(FK) 설정
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="member_id")
+	//다대일 매핑
+	//fetch는 조회할때 EAGER-전체 조회를 함, LAZY-특정한 조회만 됨)
+	//JoinColumn - 외래키 설정
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn
 	private Member member;
-
-
+	
+	//1쪽이 board가 주인이 아님
+	@OneToMany(mappedBy = "board", cascade = CascadeType.ALL)
+	@OrderBy("id asc")
+	private List<Reply> replyList;
+	
 }
+
+

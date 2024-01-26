@@ -1,8 +1,11 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 <meta charset="UTF-8">
+<meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+<meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
 <title>게시글 상세보기</title>
+<script th:src="@{https://code.jquery.com/jquery-3.7.1.min.js}"></script>
 </head>
 <body>
 	<div th:replace="~{/layout/header}"></div>
@@ -62,11 +65,53 @@
 						</td>
 					</tr>
 				</table>
+			<!-- 댓글 보기 -->
+			<div class = "reply">
+				<div th:each="reply : ${board.replyList}">
+					<p th:text="${reply.content}"></p>
+					<p th:text="'작성자: ' + ${reply.member.name}" style="font-size: 18px; font-weight:bold"></p>
+					<p th:if="${reply.updatedDate ne null}" 
+						th:text="'작성일시: ' + ${#dates.format(reply.createdDate, 'yyyy-MM-dd HH:mm:ss')}</br>
+							'수정일시: ' + ${#dates.format(reply.updatedDate, 'yyyy-MM-dd HH:mm:ss')}" style="font-size: small; font-weight:bold"></p>
+					<p th:if="${reply.updatedDate eq null}"
+						th:text="'작성일시: ' + ${#dates.format(reply.createdDate, 'yyyy-MM-dd HH:mm:ss')}" style="font-size: small; font-weight:bold"></p>	
+					<p th:if="${#authentication.getPrincipal.getUsername() == reply.member.memberId}">
+						<a th:href="'#'">수정</a> | 
+						<!-- 자바스크립트에서 자료형 값을 유지 [[값]] -->
+						<a th:href="'#'" th:onclick="replyObject.deleteReply([[${board.id}]], [[${reply.id}]])">삭제</a>
+					</p>		
+					<hr>
+				</div>			
+			</div>
+			
+			<!-- 댓글 등록 -->
+			<div class="replyWrite" sec:authorize="isAuthenticated()">
+				<input type="hidden" name="boardId" id="boardId" th:value="${board.id }">
+				<p>
+				<textarea name="content" id="replyContent" class="form-control" rows="5"
+						placeholder="댓글 작성란" style="resize: none;"></textarea>
+				</p>
+				<input type="button" id="btn-save-reply" class="btn btn-outline-secondary" value="등록"></input>	
+			</div>
 		</div>		
 	</div>
 	<div th:replace="~{/layout/footer}"></div>
+	<script src="/js/reply.js"></script>
+	
 	<script>
-		
+		/* const checkReply = function() {
+			//댓글 등록이 비어있으면 "댓글을 입력해 주세요"
+			//댓글 내용이 있으면 서버에 전송
+			let content = document.getElementById("replyContent");
+			if(content.value == ""){
+				alert("댓글을 입력해 주세요.")
+				content.focus();
+				return false;
+			}else{
+				document.replyform.submit();
+			}
+				
+		} */
 	</script>
 </body>
 </html>
