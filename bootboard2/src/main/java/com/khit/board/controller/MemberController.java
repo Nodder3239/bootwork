@@ -11,6 +11,7 @@ import org.springframework.security.web.authentication.logout.LogoutSuccessHandl
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.khit.board.config.SecurityUser;
+import com.khit.board.dto.MemberDTO;
 import com.khit.board.entity.Member;
 import com.khit.board.service.MemberService;
 
@@ -43,17 +45,22 @@ public class MemberController {
 	}
 	
 	@PostMapping("/join")
-	public String join(@ModelAttribute Member member) {
+	public String join(@ModelAttribute MemberDTO memberDTO,
+			BindingResult bindingResult) {
+		if(bindingResult.hasErrors()) {
+			//에러가 있으면 회원 가입 페이지에 머무름
+			return "/member/join";
+		}
 		//회원 가입 처리(저장)
-		memberService.insert(member);
+		memberService.insert(memberDTO);
 		return "redirect:/member/login";
 	}
 	
 	@GetMapping("/")
 	public String getList(Model model) {
 		//memberDTO로 반환할 것
-		List<Member> memberList = memberService.findAll();
-		model.addAttribute("memberList", memberList);
+		List<MemberDTO> memberDTOList = memberService.findAll();
+		model.addAttribute("memberList", memberDTOList);
 		return "/member/list";
 	}
 	
@@ -82,8 +89,8 @@ public class MemberController {
 	//회원 상세보기
 	@GetMapping("/{id}")
 	public String getMember(@PathVariable Long id, Model model) {
-		Member member = memberService.findById(id);
-		model.addAttribute("member", member);
+		MemberDTO memberDTO = memberService.findById(id);
+		model.addAttribute("memberDTO", memberDTO);
 		return "/member/detail";
 	}
 	
@@ -96,8 +103,8 @@ public class MemberController {
 	
 	@GetMapping("/update/{id}")
 	public String updateForm(@PathVariable Long id, Model model) {
-		Member member = memberService.findById(id);
-		model.addAttribute("member", member);
+		MemberDTO memberDTO = memberService.findById(id);
+		model.addAttribute("memberDTO", memberDTO);
 		return "/member/update";
 	}
 	/*
@@ -118,16 +125,16 @@ public class MemberController {
 	@GetMapping("/update")
 	public String updateForm2(@AuthenticationPrincipal SecurityUser principal, Model model) {
 	    // Principal에서 사용자 정보를 얻어옵니다.
-	    Member member = memberService.findByMemberId(principal);
-	    model.addAttribute("member", member);
+	    MemberDTO memberDTO = memberService.findByMemberId(principal);
+	    model.addAttribute("memberDTO", memberDTO);
 	    return "/member/update";
 	}
 	
 	
 	@PostMapping("/update")
-	public String update(@ModelAttribute Member member) {
-		memberService.update(member);
-		return "redirect:/member/" + member.getId();
+	public String update(@ModelAttribute MemberDTO memberDTO) {
+		memberService.update(memberDTO);
+		return "redirect:/member/" + memberDTO.getId();
 	}
 	
 	//아이디 중복 검사

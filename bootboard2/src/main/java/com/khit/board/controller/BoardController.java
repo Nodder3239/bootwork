@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.khit.board.config.SecurityUser;
+import com.khit.board.dto.BoardDTO;
 import com.khit.board.entity.Board;
 import com.khit.board.entity.Member;
 import com.khit.board.service.BoardService;
@@ -32,8 +33,8 @@ import lombok.extern.slf4j.Slf4j;
 public class BoardController {
 
 	private final BoardService boardService;
-	private final MemberService memberService;
 	
+
 	//글쓰기 페이지
 	@GetMapping("/write")
 	public String writeForm(Board board) {
@@ -56,12 +57,12 @@ public class BoardController {
 	}
 	*/
 	@PostMapping("/write")
-	public String write(@ModelAttribute Board board, 
+	public String write(@ModelAttribute BoardDTO boardDTO, 
 			@AuthenticationPrincipal SecurityUser principal) {
 	
-	    board.setMember(principal.getMember());
+	    boardDTO.setMember(principal.getMember());
 		//글쓰기 처리
-		boardService.save(board);		
+		boardService.save(boardDTO);		
 		return "redirect:/board/";
 	}
 	
@@ -70,7 +71,7 @@ public class BoardController {
 	public String getPageList(@PageableDefault(page=1) Pageable pageable, 
 			Model model, @RequestParam(value="field", required = false) String field, 
 			@RequestParam(value="kw", required = false) String kw) {
-		Page<Board> boardList;
+		Page<BoardDTO> boardList;
 		if ("t".equals(field)) {
 			boardList = boardService.findByTitle(kw, pageable);
 		} else if ("c".equals(field)) {
@@ -104,8 +105,8 @@ public class BoardController {
 		//조회수
 		boardService.updateHits(id);
 		//글 상세보기
-		Board board = boardService.findById(id);
-		model.addAttribute("board", board);
+		BoardDTO boardDTO = boardService.findById(id);
+		model.addAttribute("board", boardDTO);
 		model.addAttribute("page", pageable.getPageNumber());
 		return "/board/detail";
 	}
@@ -119,8 +120,8 @@ public class BoardController {
 	@GetMapping("/update/{id}")
 	public String updateForm(Model model, @PathVariable Long id) {
 		boardService.updateHits2(id);
-		Board board = boardService.findById(id);
-		model.addAttribute("board", board);
+		BoardDTO boardDTO = boardService.findById(id);
+		model.addAttribute("board", boardDTO);
 		return "/board/boardupdate";
 	}
 	/*
@@ -137,12 +138,12 @@ public class BoardController {
 	}
 	*/
 	@PostMapping("/update")
-	public String update(@ModelAttribute Board board, 
+	public String update(@ModelAttribute BoardDTO boardDTO, 
 			@AuthenticationPrincipal SecurityUser principal) {
 	
-	    board.setMember(principal.getMember());
+	    boardDTO.setMember(principal.getMember());
 		//글쓰기 처리
-		boardService.update(board);		
-		return "redirect:/board/" + board.getId();
+		boardService.update(boardDTO);		
+		return "redirect:/board/" + boardDTO.getId();
 	}	
 }

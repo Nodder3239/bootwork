@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.khit.media.entity.Reply;
 import com.khit.media.repository.ReplyRepository;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -38,6 +39,12 @@ public class ReplyService {
 
 	public void delete(Long id) {
 		replyRepository.deleteById(id);
+		
+	}
+
+	@Transactional
+	public void deleteByBoardId(Long id) {
+		replyRepository.deleteByBoardId(id);
 		
 	}
 

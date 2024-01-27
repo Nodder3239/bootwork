@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>대문...</title>
+<script th:src="@{https://code.jquery.com/jquery-3.7.1.min.js}"></script>
+</head>
+<body>
+	<div th:replace="~{layout/header}"></div>
+		<div id="content">
+		<h1 class="main">권한이 없습니다. 다른 메뉴를 사용해주세요.</h1>
+		
+		
+		</div>
+	<div th:replace="~{layout/footer}"></div>
+	
+	<script th:src="@{/js/weather.js}"></script>
+</body>
+</html>

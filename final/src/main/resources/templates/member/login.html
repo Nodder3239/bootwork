@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" >
+<head>
+<meta charset="UTF-8">
+<title>로그인</title>
+</head>
+<body>
+	<div id="content">
+		<div id="content_login" class="text-center">
+			<form class="form-signin" th:action="@{/member/login}" method="post" >
+			  <h1 class="h3 mb-3 font-weight-normal">로그인</h1>
+			  <label for="inputEmail" class="sr-only">아이디</label>
+			  <input type="text" id="inputId" class="form-control" placeholder="대화명" required autofocus name="name">
+			  <button type="submit" class="btn btn-secondary">로그인</button>
+      		<button type="button" class="btn btn-secondary" onclick="index()">취소</button>
+			  <p class="mt-3 mb-3 text-muted">&copy; 2023-2024</p>
+			</form>
+		</div>
+	</div>
+	<script>
+		const index = function(){
+			location.href="/";
+		}
+	</script>
+</body>
+</html>

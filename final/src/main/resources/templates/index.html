@@ -5,13 +5,30 @@
 <meta charset="UTF-8">
 <title>임시 메인</title>
 <link rel="stylesheet" th:href="@{/css/style.css}">
+<script src="https://kit.fontawesome.com/69798321c6.js" ></script>
 <script th:src="@{https://code.jquery.com/jquery-3.7.1.min.js}"></script>
 </head>
 <body>
-	<p><a th:href="@{/board/}">게시판</a></p>
-	<p><a th:href="@{/board/}">공지게시판</a></p>
-	<p><a th:href="@{/board/}">정보게시판</a></p>
-	<p><a th:href="@{/board/}">후기게시판</a></p>
-	<p><a th:href="@{/board/}">질문게시판</a></p>
+	<form th:action="@{/board/}" method="get">
+	  	<div style="display: flex; justify-content: center;">
+			<select name="field" class="btn btn-outline-secondary dropdown-toggle">
+				<option value="t" th:selected="${field == 't'}" th:text="제목"></option>
+                   <option value="c" th:selected="${field == 'c'}" th:text="내용"></option>
+                   <option value="w" th:selected="${field == 'w'}" th:text="작성자"></option>
+               </select>
+			<input type="text" class="form-control" name="kw" th:value="${kw}" id="inputGroupFile04" 
+					placeholder="검색" aria-describedby="inputGroupFileAddon04" aria-label="Upload" style="width:50%">
+			<button type="submit" class="btn btn-outline-secondary"><i class="fa-solid fa-magnifying-glass"></i></button>
+	  	</div>
+	</form>
+	<div>
+		<p><a th:href="@{/noticeboard/}">공지게시판</a></p>
+		<p><a th:href="@{/infoboard/}">정보게시판</a></p>
+		<p><a th:href="@{/reviewboard/}">후기게시판</a></p>
+		<p><a th:href="@{/qnaboard/}">질문게시판</a></p>
+		<p><a th:href="@{/chat/}">채팅방</a></p>
+		<p th:if="${session.sessionId == null }"><a th:href="@{/member/login}">로그인</a></p>
+		<p th:if="${session.sessionId != null }"><a th:href="@{/member/logout}">로그아웃</a></p>
+	</div>
 </body>
 </html>

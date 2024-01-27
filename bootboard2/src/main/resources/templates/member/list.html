@@ -5,12 +5,12 @@
 <title>회원 목록</title>
 </head>
 <body>
-	<th:block th:if="${#authentication.getPrincipal().member.role.name() != 'ADMIN'}">
+	<!-- <th:block th:if="${#authentication.getPrincipal().member.role.name() != 'ADMIN'}">
 	    <script type="text/javascript">
 	        alert("관리자만 이용 가능합니다.");
 	        location.href = "/member/login";
 	    </script>
-	</th:block>
+	</th:block> -->
 	<div th:replace="~{/layout/header}"></div>
 	<div id="content">
 		<div class="wrap">

@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.khit.board.dto.BoardDTO;
 import com.khit.board.entity.Board;
 import com.khit.board.repository.BoardRepository;
 
@@ -22,13 +23,15 @@ public class BoardService {
 	
 	private final BoardRepository boardRepository;
 	
-	public void save(Board board){
+	public void save(BoardDTO boardDTO){
+		Board board = Board.toSaveEntity(boardDTO);
 		boardRepository.save(board);
 	}
 
-	public Board findById(Long id) {
+	public BoardDTO findById(Long id) {
 		Board board = boardRepository.findById(id).get();
-		return board;
+		BoardDTO boardDTO = BoardDTO.toSaveDTO(board);
+		return boardDTO;
 		
 	}
 	
@@ -37,7 +40,8 @@ public class BoardService {
 		boardRepository.deleteById(id);
 	}
 
-	public void update(Board board){
+	public void update(BoardDTO boardDTO){
+		Board board = Board.toSaveEntity(boardDTO);
 	    boardRepository.save(board);		
 	}
 	
@@ -51,48 +55,74 @@ public class BoardService {
 		boardRepository.updateHits2(id);	
 	}
 	
-	public Page<Board> findByTitle(String kw, Pageable pageable) {
+	public Page<BoardDTO> findByTitle(String kw, Pageable pageable) {
 		int page = pageable.getPageNumber() - 1;
 		int pageSize = 10;
 		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
 		
 		Page<Board> boardList = boardRepository.findByTitleContaining(kw, pageable);
-				
-		return boardList;
+		
+		//생성자 방식으로 boardDTOList를 가져오기
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+		new BoardDTO(board.getId(), board.getTitle(), 
+				board.getContent(), board.getHits(), 
+				board.getMember(), board.getCreatedDate(),
+				board.getUpdatedDate()));
+		return boardDTOList;
 	}
 
-	public Page<Board> findByContent(String kw, Pageable pageable) {
+	public Page<BoardDTO> findByContent(String kw, Pageable pageable) {
 		int page = pageable.getPageNumber() - 1;
 		int pageSize = 10;
 		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
 		
 		Page<Board> boardList = boardRepository.findByContentContaining(kw, pageable);
-		return boardList;
+		
+		//생성자 방식으로 boardDTOList를 가져오기
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+		new BoardDTO(board.getId(), board.getTitle(), 
+				board.getContent(), board.getHits(), 
+				board.getMember(), board.getCreatedDate(),
+				board.getUpdatedDate()));
+		return boardDTOList;
    	}
 	
 	
-	public Page<Board> findByMember(String kw, Pageable pageable) {
+	public Page<BoardDTO> findByMember(String kw, Pageable pageable) {
 		int page = pageable.getPageNumber() - 1;
 		int pageSize = 10;
 		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
 		
 		Page<Board> boardList = boardRepository.findByMemberMemberIdContaining(kw, pageable);
-		return boardList;
+		
+		//생성자 방식으로 boardDTOList를 가져오기
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+		new BoardDTO(board.getId(), board.getTitle(), 
+				board.getContent(), board.getHits(), 
+				board.getMember(), board.getCreatedDate(),
+				board.getUpdatedDate()));
+		
+		return boardDTOList;
    	}
    	
 
 
-	public Page<Board> findListAll(Pageable pageable) {
+	public Page<BoardDTO> findListAll(Pageable pageable) {
 		int page = pageable.getPageNumber() - 1;	//db가 1 작음
 		int pageSize = 10;
 		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
 		
-		Page<Board> boardList = boardRepository.findAll(pageable);				
-		return boardList;
+		Page<Board> boardList = boardRepository.findAll(pageable);	
+		
+		//생성자 방식으로 boardDTOList를 가져오기
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+				new BoardDTO(board.getId(), board.getTitle(), 
+						board.getContent(), board.getHits(), 
+						board.getMember(), board.getCreatedDate(),
+						board.getUpdatedDate()));
+		
+		return boardDTOList;
 	}
 
-	public List<Board> findAll() {
-		return boardRepository.findAll();
-	}
 }
 	

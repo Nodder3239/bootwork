@@ -36,4 +36,7 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
     @Query(value="UPDATE Board b SET b.replyCount = (SELECT count(r.id) FROM Reply r WHERE r.boardId = :id) WHERE b.id = :id")
 	public void updateReplyCount(Long id);
 	
+	@Modifying
+    @Query(value="UPDATE Board b SET b.likeCount = (SELECT count(v.id) FROM Vote v WHERE v.boardId = :id) WHERE b.id = :id")
+	public void updateLikeCount(Long id);
 }

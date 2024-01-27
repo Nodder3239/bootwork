@@ -7,6 +7,7 @@ import com.khit.board.entity.Reply;
 import com.khit.board.repository.BoardRepository;
 import com.khit.board.repository.ReplyRepository;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -22,7 +23,8 @@ public class ReplyService {
 		//댓글 저장
 		replyRepository.save(reply);
 	}
-
+	
+	@Transactional
 	public void deleteById(Long replyId) {
 		replyRepository.deleteById(replyId);
 	}

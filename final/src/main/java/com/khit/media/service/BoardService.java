@@ -28,7 +28,7 @@ public class BoardService {
 		
 		//1. 파일을 서버에 저장하고
 		if (!boardFile.isEmpty()) {
-			String filepath = "C:\\bootworks\\bootboard\\src\\main\\resources\\static\\upload\\";
+			String filepath = "C:\\bootworks\\final\\src\\main\\resources\\static\\upload\\";
 			
 			UUID uuid = UUID.randomUUID();	//무작위 아이디 생성(중복 파일 이름의 생성)
 			
@@ -58,7 +58,7 @@ public class BoardService {
 	public void update(Board board, MultipartFile boardFile) throws Exception {
 		//1. 파일을 서버에 저장하고
 		if (!boardFile.isEmpty()) {		//
-			String filepath = "C:\\bootworks\\media\\src\\main\\resources\\static\\upload\\";
+			String filepath = "C:\\bootworks\\final\\src\\main\\resources\\static\\upload";
 			
 			UUID uuid = UUID.randomUUID();	//무작위 아이디 생성(중복 파일 이름의 생성)
 			
@@ -181,6 +181,11 @@ public class BoardService {
 	@Transactional
 	public void updateReplyCount(Long id) {
 		boardRepository.updateReplyCount(id);		
+	}
+	
+	@Transactional
+	public void updateLikeCount(Long id) {
+		boardRepository.updateLikeCount(id);		
 	}
 	
 

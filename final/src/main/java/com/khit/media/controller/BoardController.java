@@ -19,6 +19,7 @@ import com.khit.media.entity.Board;
 import com.khit.media.entity.Reply;
 import com.khit.media.service.BoardService;
 import com.khit.media.service.ReplyService;
+import com.khit.media.service.VoteService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -29,7 +30,9 @@ public class BoardController {
 
 	private final BoardService boardService;
 	private final ReplyService replyService;
+	private final VoteService voteService;
 	
+	/*
 	//글쓰기 페이지
 	@GetMapping("/write")
 	public String writeForm(Board board) {
@@ -46,6 +49,7 @@ public class BoardController {
 		boardService.save(board, boardFile);
 		return "redirect:/board/";
 	}
+	*/
 	
 	//글 목록 보기
 	@GetMapping("/")
@@ -100,6 +104,8 @@ public class BoardController {
 	@GetMapping("/delete/{id}")
 	public String deleteBoard(@PathVariable Long id) {
 		boardService.delete(id);
+		replyService.deleteByBoardId(id);
+		voteService.deleteByBoardId(id);
 		return "redirect:/board/";
 	}
 	
@@ -116,5 +122,5 @@ public class BoardController {
 		boardService.update(board, boardFile);
 		return "redirect:/board/" + board.getId();
 	}
-		
+
 }

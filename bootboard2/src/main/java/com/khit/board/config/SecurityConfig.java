@@ -29,18 +29,23 @@ public class SecurityConfig {
 		http
 		  .authorizeHttpRequests(authorize -> authorize
 				  .requestMatchers("/", "/css/**", "/images/**", "/js/**",					  
-						  "/auth/main", "/member/**", "/board/").permitAll()
+						  "/auth/main").permitAll()
 				  .requestMatchers("/board/write").authenticated()
+				  .requestMatchers("/member/").hasAnyAuthority("ADMIN")
+				  .requestMatchers("/member/**", "/board/**").permitAll()
 				  .anyRequest().authenticated()
 				  )
 		          .formLogin(form -> form.loginPage("/member/login"));
+		//접근 권한 페이지
+		http.exceptionHandling().accessDeniedPage("/auth/accessDenied");
+		
 		/*http.logout().logoutUrl("/member/logout")
 				.logoutRequestMatcher(new AntPathRequestMatcher("/member/logout"))
 				.invalidateHttpSession(true)
 				.logoutSuccessUrl("/");*/
 		return http.build();
 	}
-	
+
 	//암호화 설정
 	//PasswordEncoder를 상속받은 BCryptPasswordEncoder를 반환
 	@Bean

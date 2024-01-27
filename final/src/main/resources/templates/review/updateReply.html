@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>후기게시판</title>
+</head>
+<body>
+	<div class="replyUpdateForm">
+		    <form th:action="@{/reviewreply/update}" method="post" class="replyUpdateForm2">
+				<!-- 'hidden'은 ui를 만들지 않고 데이터 숨겨서 보낼때 사용 -->
+				<input type="hidden" name="id" th:value="${reply.id}">
+				<input type="hidden" name="replyer" th:value="${session.sessionId}">
+				<input type="hidden" name="boardId" th:value="${reply.boardId }">
+				<table>
+					<tbody>
+						<tr>
+							<td><textarea name="rcontent" class="replycontent" th:text="${reply.rcontent}"></textarea></td>
+						</tr>
+						<tr>
+							<td class="writeBot">
+								<button type="submit" class="writebtn">저장</button>
+								<button type="reset" class="writebtn">리셋</button>
+								<a th:href="@{|/reviewboard/${reply.boardId}|}"><button type="button" class="writebtn">취소</button></a>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</form>
+		</div>
+</body>
+</html>
