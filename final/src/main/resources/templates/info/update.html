@@ -6,11 +6,13 @@
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+	<div th:replace="~{layout/header}"></div>
+
    		<div id="content">
         <h2>정보게시판 글 수정하기</h2>
         <form th:action="@{/infoboard/update}" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" th:value="${board.id}">
-            <input type="hidden" name="boardCategory" th:value="info">
+            <input type="hidden" name="boardCategory" th:value="${board.boardCategory}">
             <input type="hidden" name="boardHits" th:value="${board.boardHits}">
             <input type="hidden" name="boardWriter" th:value="${board.boardWriter}">
 

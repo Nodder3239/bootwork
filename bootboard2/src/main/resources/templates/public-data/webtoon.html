@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>대문...</title>
+<script th:src="@{https://code.jquery.com/jquery-3.7.1.min.js}"></script>
+</head>
+<body>
+	<div th:replace="~{layout/header}"></div>
+		<div id="content" >
+			<button type="button" id="btn1">실행</button>
+			<table id="result1" class="table" >
+				<thead>
+					<tr>
+						<th scope="col">일련번호</th>
+						<th scope="col">제목</th>
+						<th scope="col">썸네일</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- 데이터 출력 -->
+				</tbody>
+			
+			</table>
+			
+		
+		</div>
+		
+	<div th:replace="~{layout/footer}"></div>
+	
+<script>
+/* jquery 환경 - 버튼 클릭 이벤트 */
+	$(document).ready(function(){
+		$("#btn1").click(function(){
+			//alert("test...");
+			
+			$.ajax({
+				//요청방식(type), url, data,dataType, success, error
+				type: "GET",
+				url: "https://webtoon-crawler.nomadcoders.workers.dev/today",
+				dataType: "JSON",	//받는 데이터는 json 유형임을 명시 필수
+				success: function(data){
+					console.log(data);
+					
+					let value = ""; // 테이블 데이터를 저장할 변수
+	                data.forEach(function(webtoon) {
+	                    // 각 웹툰 정보를 테이블의 한 행으로 추가
+	                    value += "<tr>"
+	                             + "<td>" + webtoon.id + "</td>"
+	                             + "<td>" + webtoon.title + "</td>"
+	                             + "<td><img src='" + webtoon.thumb + "' style='width:50%;' alt='...'></td>"
+	                             + "</tr>";
+	                });
+	                // 결과를 테이블에 삽입
+	                $("#result1 tbody").html(value);
+				},
+				error: function(error){
+					alert("에러 발생: " + error);
+				}
+			});
+		});
+	});
+</script>
+</body>
+</html>

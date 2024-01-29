@@ -148,32 +148,32 @@ public class BoardService {
 		return boardList;
 	}
 
-	public Page<Board> findByTitle(String kw, Pageable pageable, String c) {
+	public Page<Board> findByTitle(String kw, Pageable pageable, String cate) {
 		int page = pageable.getPageNumber() - 1;
 		int pageSize = 10;
 		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
 		
-		Page<Board> boardList = boardRepository.findByBoardCategoryAndBoardTitleContaining(c, kw, pageable);
+		Page<Board> boardList = boardRepository.findByBoardCategoryContainingAndBoardTitleContaining(cate, kw, pageable);
 				
 		return boardList;
 	}
 
-	public Page<Board> findByContent(String kw, Pageable pageable, String c) {
+	public Page<Board> findByContent(String kw, Pageable pageable, String cate) {
 		int page = pageable.getPageNumber() - 1;
 		int pageSize = 10;
 		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
 		
-		Page<Board> boardList = boardRepository.findByBoardCategoryAndBoardContentContaining(c, kw, pageable);
+		Page<Board> boardList = boardRepository.findByBoardCategoryContainingAndBoardContentContaining(cate, kw, pageable);
 
 		return boardList;
    	}
 
-	public Page<Board> findByWriter(String kw, Pageable pageable, String c) {
+	public Page<Board> findByWriter(String kw, Pageable pageable, String cate) {
 		int page = pageable.getPageNumber() - 1;
 		int pageSize = 10;
 		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
 		
-		Page<Board> boardList = boardRepository.findByBoardCategoryAndBoardWriterContaining(c, kw, pageable);
+		Page<Board> boardList = boardRepository.findByBoardCategoryContainingAndBoardWriterContaining(cate, kw, pageable);
 
 		return boardList;
    	}
@@ -187,6 +187,27 @@ public class BoardService {
 	public void updateLikeCount(Long id) {
 		boardRepository.updateLikeCount(id);		
 	}
-	
+
+	public Page<Board> findListAllOrderByVoteCount(Pageable pageable) {
+		int page = pageable.getPageNumber() - 1;
+		int pageSize = 5;
+		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "likeCount");
+		
+		Page<Board> boardList = boardRepository.findAll(pageable);
+		return boardList;
+	}
+
+	public Board findNotice() {
+		String cate = "notice";
+		List<Board> boardList = boardRepository.findByBoardCategoryContaining(cate);
+		if (!boardList.isEmpty()) {
+	        Board notice = boardList.get(0);
+	        return notice;
+	    } else {
+	        // 빈 페이지 처리 또는 예외 처리
+	        return null; // 또는 예외를 throw하여 처리할 수 있음
+	    }
+	}
+
 
 }

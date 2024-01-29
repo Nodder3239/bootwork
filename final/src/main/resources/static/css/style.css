@@ -1,7 +1,36 @@
 @charset "UTF-8";
 
-*{margin: 0; padding: 0; background: black; color: white;}
-a{text-decoration: none; color:#fff;}
-ul li{list-style: none; float: left;}
-.table{text-align: center; width: 800px;}
+*{margin: 0; padding: 0;}
 
+#content{
+	width: 60%; 
+	margin: 0px auto;
+	height: auto;
+  	min-height: 100%;
+  	padding-bottom: 40px;
+	}
+h2{color: #000; text-align: center;}
+.main-pic{text-align: center;}
+.menu{text-align: center;}
+a{text-decoration: none; color:#000;}
+ul li{list-style: none;}
+.wrap{margin: 50px;}
+
+/* 게시판 */
+#tbl_list {margin: 0 auto; width: 100%; text-align: center;}
+.td_title {width: 50%; text-overflow: ellipsis; white-space:nowrap;}
+.btn_write {width: 100%; margin: 10px auto;}
+
+/* 게시판 상세보기 */
+.tbl_detail {width: 100%; margin: 50px auto; padding: 20px;}
+
+/* 글쓰기 */
+.tbl_write tr{margin: 10px 0px;}
+#button_form input{margin: 10px 5px;}
+
+/* 채팅방 */
+#chat{
+	position: fixed;
+	bottom: 80px;
+	z-index: -1;
+}

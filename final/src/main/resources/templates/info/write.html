@@ -5,20 +5,29 @@
 <title>정보게시판</title>
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
-<body>
+<body>	
 	<th:block th:if="${session.sessionId == null}">
 	    <script type="text/javascript">
 	        alert("로그인 후 이용 가능합니다.");
 	        location.href = "/member/login";
 	    </script>
 	</th:block>
+		<div th:replace="~{layout/header}"></div>
+	
 		<div id="content">
 		<h2>정보게시판 글쓰기</h2>
 		<form th:action="@{/infoboard/write}" method="post" th:object="${board}" enctype="multipart/form-data">
+			<select class="form-select" aria-label="Disabled select example" name="boardCategory">
+			  <option value="info1" selected>서울</option>
+			  <option value="info2">인천/경기</option>
+			  <option value="info3">강원</option>
+			  <option value="info4">대전/충청</option>
+			  <option value="info5">광주/전라</option>
+			  <option value="info6">부산/경상</option>
+			</select>
 			<input type="text" th:field=*{boardTitle} class="form-control mt-4 mb-2"
 				placeholder="제목을 입력해주세요." required
-			>
-			<input type="hidden" name="boardCategory" th:value="info">	
+			>	
 			<input type="hidden" name="boardWriter" th:value="${session.sessionId}">
 			<div class="form-group">
 				<textarea class="form-control" rows="10" th:field=*{boardContent}

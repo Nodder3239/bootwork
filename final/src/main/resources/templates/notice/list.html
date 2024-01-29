@@ -7,13 +7,15 @@
 <script src="https://kit.fontawesome.com/69798321c6.js" ></script>
 </head>
 <body>
+	<div th:replace="~{layout/header}"></div>
+
 		<div id="content">
 		<div class="content_list">
 		<h2 class="text-left">공지사항</h2>
 		<table class="table" id="tbl_list">
 			<thead>
 				<tr>
-					<th scope="col">글번호</th>
+					<th scope="col">글분류</th>
 					<th scope="col">글제목</th>
 					<th scope="col">글쓴이</th>
 					<th scope="col">작성일</th>
@@ -23,7 +25,7 @@
 			</thead>
 			<tbody>
 				<tr th:each="board : ${boardList}">
-	                <th th:text="${board.id}"></th>
+	                <th th:text="공지사항"></th>
 
 				    <td class="td_title" style="width:200px;">
 					    <a th:href="@{|/noticeboard/${board.id}|(page=${boardList.number+1})}">
@@ -74,7 +76,7 @@
 					<input type="text" class="form-control" name="kw" th:value="${kw}" id="inputGroupFile04" 
 							placeholder="검색" aria-describedby="inputGroupFileAddon04" aria-label="Upload" style="width:50%">
 					<button type="submit" class="btn btn-outline-secondary"><i class="fa-solid fa-magnifying-glass"></i></button>
-			  		<a th:href = "@{/noticeboard/write}"><button type="button" class="btn btn-outline-secondary">글쓰기</button></a>
+			  		<a th:if="${session.sessionRole == 'ADMIN'}" th:href = "@{/noticeboard/write}"><button type="button" class="btn btn-outline-secondary">글쓰기</button></a>
 			  	</div>
 			  </form>
 			 </div>

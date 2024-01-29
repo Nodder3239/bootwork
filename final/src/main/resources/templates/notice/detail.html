@@ -6,6 +6,8 @@
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+		<div th:replace="~{layout/header}"></div>
+	
 	<div id="content">
 		<h2>공지사항 상세보기</h2>
 		<table class="tbl_detail">
@@ -21,23 +23,32 @@
 				    <div style="margin-left: 5px; font-size: 15px" th:if="${board.updatedDate eq null}">
 				        작성일시: <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm:ss')}"></span>    
 				    </div>
-					<div class="text-right" th:if="${board.boardHits != null}">
-					조회수: <span th:text="${board.boardHits } + '회'"></span>
-					</div>
-					<div class="text-right" th:if="${board.likeCount != null}">
-					추천수: <span th:text="${board.likeCount } + '회'"></span>
+					<div style="display: flex; justify-content: space-between;">
+					    <div th:if="${board.boardHits != null}">
+					        조회수: <span th:text="${board.boardHits} + '회'"></span>
+					    </div>
+					    <div th:if="${board.likeCount != null}">
+					        추천수: <span th:text="${board.likeCount} + '회'"></span>
+					    </div>
 					</div>
 					<hr>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<div class="text-left" >
-						<p class="font-weight-light" style="font-size: 18px; font-weight:bold">
-							 작성자: <span th:text="${board.boardWriter}"></span>
-						</p>	
-					</div>			
-					<hr>
+					<div style="display: flex; justify-content: space-between;">
+						<div class="text-left" >
+							<p class="font-weight-light" style="font-size: 18px; font-weight:bold">
+								 작성자: <span th:text="${board.boardWriter}"></span>
+							</p>	
+						</div>	
+						<div>
+							<a th:href="@{|/vote/${board.id}/작성자|}">
+						    	추천
+						    </a>
+					    </div>
+					</div>		
+					<hr style="margin-top:-10px;">
 				</td>
 			</tr>
 			<tr th:if="${not #strings.isEmpty(board.filepath)}">
@@ -57,17 +68,14 @@
 				<td>
 					<span th:if="${session.sessionId == board.boardWriter}">
 						<a th:href="@{|/noticeboard/update/${board.id}|}">
-				            <button>수정</button>
+				            <button class="btn btn-outline-secondary">수정</button>
 				        </a>
 				        <a th:href="@{|/noticeboard/delete/${board.id}|}" onclick="return confirm('정말로 삭제하시겠습니까?')">
-				           <button>삭제</button>
+				           <button class="btn btn-outline-secondary">삭제</button>
 				        </a>
 					</span>
 					<a th:href="@{/noticeboard/(page=${page})}">
-				        <button>목록</button>
-				    </a>
-				    <a th:href="@{|/noticevote/${board.id}/작성자|}">
-				    	추천
+				        <button class="btn btn-outline-secondary">목록</button>
 				    </a>
 				</td>
 			</tr>
@@ -101,12 +109,11 @@
 					<input type="hidden" name="boardId" th:value="${board.id}">
 					<input type="hidden" name="replyer" th:value="${session.sessionId}">
 					<p>
-					<textarea name="rcontent" class="rcontent"
-							placeholder="댓글 작성란"></textarea>
+					<textarea name="rcontent" id="replyContent" class="form-control" rows="5"
+						placeholder="댓글 작성란" style="resize: none;"></textarea>
 					</p>
-					<button type="submit" class="writebtn">등록</button>
+					<button type="submit" class="btn btn-outline-secondary">등록</button>
 				</form>	
-
 			</div>	
 	     </div>		
 	</div>

@@ -53,17 +53,21 @@ public class InfoBoardController {
 	@GetMapping("/")
 	public String getPageList(@PageableDefault(page=1) Pageable pageable, 
 			Model model, @RequestParam(value="field", required = false) String field, 
-			@RequestParam(value="kw", required = false) String kw) {
-		String c = "info";
+			@RequestParam(value="kw", required = false) String kw, 
+			@RequestParam(value="cate", required = false) String cate) {
+		if (cate == null) {
+	        cate = "info"; // 기본 카테고리 설정
+	    }
+		
 		Page<Board> boardList;
 		if ("t".equals(field)) {
-			boardList = boardService.findByTitle(kw, pageable, c);
+			boardList = boardService.findByTitle(kw, pageable, cate);
 		} else if ("c".equals(field)) {
-			boardList = boardService.findByContent(kw, pageable, c);
+			boardList = boardService.findByContent(kw, pageable, cate);
 		} else if ("w".equals(field)){
-			boardList = boardService.findByWriter(kw, pageable, c);
-		}else {
-			boardList = boardService.findListAll(pageable, c);
+			boardList = boardService.findByWriter(kw, pageable, cate);
+		} else {
+			boardList = boardService.findListAll(pageable, cate);
 		}    
 		//하단의 페이지 블럭 만들기
 		int blockLimit = 10;	//하단에 보여줄 페이지 개수
@@ -73,12 +77,18 @@ public class InfoBoardController {
 		if(endPage == 0) {
 	         endPage = 1;
 	      }
+		
 		model.addAttribute("boardList", boardList);
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("field", field);
 		model.addAttribute("kw", kw);
+		model.addAttribute("cate", cate);
+		
+		//공지 띄우기
+		Board notice = boardService.findNotice();
+		model.addAttribute("notice", notice);
 		return "/info/list";
 	}
 	

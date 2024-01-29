@@ -54,16 +54,16 @@ public class NoticeBoardController {
 	public String getPageList(@PageableDefault(page=1) Pageable pageable, 
 			Model model, @RequestParam(value="field", required = false) String field, 
 			@RequestParam(value="kw", required = false) String kw) {
-		String c = "notice";
+		String cate = "notice";
 		Page<Board> boardList;
 		if ("t".equals(field)) {
-			boardList = boardService.findByTitle(kw, pageable, c);
+			boardList = boardService.findByTitle(kw, pageable, cate);
 		} else if ("c".equals(field)) {
-			boardList = boardService.findByContent(kw, pageable, c);
+			boardList = boardService.findByContent(kw, pageable, cate);
 		} else if ("w".equals(field)){
-			boardList = boardService.findByWriter(kw, pageable, c);
+			boardList = boardService.findByWriter(kw, pageable, cate);
 		}else {
-			boardList = boardService.findListAll(pageable, c);
+			boardList = boardService.findListAll(pageable, cate);
 		}    
 		//하단의 페이지 블럭 만들기
 		int blockLimit = 10;	//하단에 보여줄 페이지 개수

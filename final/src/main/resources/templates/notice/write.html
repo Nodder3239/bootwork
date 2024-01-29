@@ -12,8 +12,10 @@
 	        location.href = "/member/login";
 	    </script>
 	</th:block>
+		<div th:replace="~{layout/header}"></div>
+	
 		<div id="content">
-		<h2>공지사항 ㄴ글쓰기</h2>
+		<h2>공지사항 글쓰기</h2>
 		<form th:action="@{/noticeboard/write}" method="post" th:object="${board}" enctype="multipart/form-data">
 			<input type="text" th:field=*{boardTitle} class="form-control mt-4 mb-2"
 				placeholder="제목을 입력해주세요." required

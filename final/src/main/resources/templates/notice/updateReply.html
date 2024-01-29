@@ -5,6 +5,8 @@
 <title>공지사항</title>
 </head>
 <body>
+	<div th:replace="~{layout/header}"></div>
+
 	<div class="replyUpdateForm">
 		    <form th:action="@{/noticereply/update}" method="post" class="replyUpdateForm2">
 				<!-- 'hidden'은 ui를 만들지 않고 데이터 숨겨서 보낼때 사용 -->
@@ -18,9 +20,9 @@
 						</tr>
 						<tr>
 							<td class="writeBot">
-								<button type="submit" class="writebtn">저장</button>
-								<button type="reset" class="writebtn">리셋</button>
-								<a th:href="@{|/noticeboard/${reply.boardId}|}"><button type="button" class="writebtn">취소</button></a>
+								<button type="submit" class="btn btn-outline-secondary">저장</button>
+								<button type="reset" class="btn btn-outline-secondary">리셋</button>
+								<a th:href="@{|/noticeboard/${reply.boardId}|}"><button type="button" class="btn btn-outline-secondary">취소</button></a>
 							</td>
 						</tr>
 					</tbody>

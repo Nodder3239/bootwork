@@ -29,13 +29,16 @@ public class SecurityConfig {
 		http
 		  .authorizeHttpRequests(authorize -> authorize
 				  .requestMatchers("/", "/css/**", "/images/**", "/js/**",					  
-						  "/auth/main").permitAll()
+						  "/auth/main", "/error").permitAll()
 				  .requestMatchers("/board/write").authenticated()
 				  .requestMatchers("/member/").hasAnyAuthority("ADMIN")
-				  .requestMatchers("/member/**", "/board/**").permitAll()
+				  .requestMatchers("/member/**", "/board/**", "/public-data/**").permitAll()
 				  .anyRequest().authenticated()
 				  )
-		          .formLogin(form -> form.loginPage("/member/login"));
+		          .formLogin(form -> form
+		        		  .loginPage("/member/login")
+		        		  .defaultSuccessUrl("/"));
+					
 		//접근 권한 페이지
 		http.exceptionHandling().accessDeniedPage("/auth/accessDenied");
 		

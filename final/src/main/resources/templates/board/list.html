@@ -7,13 +7,15 @@
 <script src="https://kit.fontawesome.com/69798321c6.js" ></script>
 </head>
 <body>
+	<div th:replace="~{layout/header}"></div>
+
 		<div id="content">
 		<div class="content_list">
 		<h2 class="text-left">전체글 목록</h2>
 		<table class="table" id="tbl_list">
 			<thead>
 				<tr>
-					<th scope="col">글번호</th>
+					<th scope="col">글분류</th>
 					<th scope="col">글제목</th>
 					<th scope="col">글쓴이</th>
 					<th scope="col">작성일</th>
@@ -23,8 +25,16 @@
 			</thead>
 			<tbody>
 				<tr th:each="board : ${boardList}">
-	                <th th:text="${board.id}"></th>
-
+	                <th>
+	                	<span th:if="${board.boardCategory eq 'notice'}"><a th:href="@{/noticeboard/}">공지사항</a></span>
+	                	<span th:if="${board.boardCategory eq 'qna'}"><a th:href="@{/qnaboard/}">QnA</a></span>
+	                	<span th:if="${board.boardCategory eq 'info1'}"><a th:href="@{/infoboard/?cate=info1}">서울</a></span>
+	                	<span th:if="${board.boardCategory eq 'info2'}"><a th:href="@{/infoboard/?cate=info2}">인천/경기</a></span>
+	                	<span th:if="${board.boardCategory eq 'info3'}"><a th:href="@{/infoboard/?cate=info3}">강원</a></span>
+	                	<span th:if="${board.boardCategory eq 'info4'}"><a th:href="@{/infoboard/?cate=info4}">대전/충청</a></span>
+	                	<span th:if="${board.boardCategory eq 'info5'}"><a th:href="@{/infoboard/?cate=info5}">광주/전라</a></span>
+	                	<span th:if="${board.boardCategory eq 'info6'}"><a th:href="@{/infoboard/?cate=info6}">부산/경상</a></span>
+	                </th>
 				    <td class="td_title" style="width:200px;">
 					    <a th:href="@{|/board/${board.id}|(page=${boardList.number+1})}">
 					    	<span th:text="${board.boardTitle}"></span>

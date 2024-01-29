@@ -6,6 +6,8 @@
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+	<div th:replace="~{layout/header}"></div>
+
 	<th:block th:if="${session.sessionId == null}">
 	    <script type="text/javascript">
 	        alert("로그인 후 이용 가능합니다.");

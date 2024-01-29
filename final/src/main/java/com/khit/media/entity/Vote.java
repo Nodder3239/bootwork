@@ -16,7 +16,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-@Table(name = "m_blike")
+@Table(name = "m_vote")
 @Entity
 @Getter
 @Setter

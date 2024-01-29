@@ -20,13 +20,20 @@ public class MemberController {
 	@PostMapping("/login")
 	public String login(HttpSession session, String name) {
 		session.setAttribute("sessionId", name);
+		session.setAttribute("sessionRole", "MEMBER");
 		return "redirect:/";
 	}
 	
+	@PostMapping("/login2")
+	public String login2(HttpSession session, String name) {
+		session.setAttribute("sessionId", name);
+		session.setAttribute("sessionRole", "ADMIN");
+		return "redirect:/";
+	}
 	
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
 		session.invalidate();
-		return "/index";
+		return "redirect:/";
 	}
 }

@@ -64,10 +64,10 @@ public class BoardService {
 		
 		//생성자 방식으로 boardDTOList를 가져오기
 		Page<BoardDTO> boardDTOList = boardList.map(board ->
-		new BoardDTO(board.getId(), board.getTitle(), 
-				board.getContent(), board.getHits(), 
-				board.getMember(), board.getCreatedDate(),
-				board.getUpdatedDate()));
+			new BoardDTO(board.getId(), board.getTitle(), 
+					board.getContent(), board.getHits(), 
+					board.getMember(), board.getReplyList(),
+					board.getCreatedDate(), board.getUpdatedDate()));
 		return boardDTOList;
 	}
 
@@ -80,10 +80,10 @@ public class BoardService {
 		
 		//생성자 방식으로 boardDTOList를 가져오기
 		Page<BoardDTO> boardDTOList = boardList.map(board ->
-		new BoardDTO(board.getId(), board.getTitle(), 
-				board.getContent(), board.getHits(), 
-				board.getMember(), board.getCreatedDate(),
-				board.getUpdatedDate()));
+			new BoardDTO(board.getId(), board.getTitle(), 
+					board.getContent(), board.getHits(), 
+					board.getMember(), board.getReplyList(),
+					board.getCreatedDate(),	board.getUpdatedDate()));
 		return boardDTOList;
    	}
 	
@@ -97,10 +97,10 @@ public class BoardService {
 		
 		//생성자 방식으로 boardDTOList를 가져오기
 		Page<BoardDTO> boardDTOList = boardList.map(board ->
-		new BoardDTO(board.getId(), board.getTitle(), 
-				board.getContent(), board.getHits(), 
-				board.getMember(), board.getCreatedDate(),
-				board.getUpdatedDate()));
+			new BoardDTO(board.getId(), board.getTitle(), 
+					board.getContent(), board.getHits(), 
+					board.getMember(), board.getReplyList(),
+					board.getCreatedDate(), board.getUpdatedDate()));
 		
 		return boardDTOList;
    	}
@@ -118,8 +118,8 @@ public class BoardService {
 		Page<BoardDTO> boardDTOList = boardList.map(board ->
 				new BoardDTO(board.getId(), board.getTitle(), 
 						board.getContent(), board.getHits(), 
-						board.getMember(), board.getCreatedDate(),
-						board.getUpdatedDate()));
+						board.getMember(), board.getReplyList(),
+						board.getCreatedDate(),	board.getUpdatedDate()));
 		
 		return boardDTOList;
 	}

@@ -7,13 +7,15 @@
 <script src="https://kit.fontawesome.com/69798321c6.js" ></script>
 </head>
 <body>
+	<div th:replace="~{layout/header}"></div>
+
 		<div id="content">
 		<div class="content_list">
 		<h2 class="text-left">질문게시판</h2>
 		<table class="table" id="tbl_list">
 			<thead>
 				<tr>
-					<th scope="col">글번호</th>
+					<th scope="col">글분류</th>
 					<th scope="col">글제목</th>
 					<th scope="col">글쓴이</th>
 					<th scope="col">작성일</th>
@@ -22,8 +24,22 @@
 				</tr>
 			</thead>
 			<tbody>
+				<tr style="background:#ddd">
+					<th><a th:href="@{|/noticeboard/}">공지사항</a></th>
+					<td class="td_title" style="width:200px;">
+					    <a th:href="@{|/noticeboard/${notice.id}|}">
+					    	<span th:text="${notice.boardTitle}"></span>
+					    	<span style="font-size:small;" th:if="${notice.replyCount != 0}" th:text="'[ ' + ${notice.replyCount} + ' ]'"></span>
+					    </a>
+					</td>
+
+	                <td th:text="${notice.boardWriter}"></td>
+	                <td th:utext="${notice.updatedDate != null ? #temporals.format(notice.updatedDate, 'yyyy-MM-dd hh:mm') : #temporals.format(notice.createdDate, 'yyyy-MM-dd hh:mm')}"></td>
+	                <td th:text="${notice.boardHits}"></td>
+	                <td th:text="${notice.likeCount}"></td>
+	            </tr>
 				<tr th:each="board : ${boardList}">
-	                <th th:text="${board.id}"></th>
+	                <th th:text="QnA"></th>
 
 				    <td class="td_title" style="width:200px;">
 					    <a th:href="@{|/qnaboard/${board.id}|(page=${boardList.number+1})}">
