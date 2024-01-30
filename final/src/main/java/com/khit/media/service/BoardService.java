@@ -209,5 +209,10 @@ public class BoardService {
 	    }
 	}
 
+	public void deleteByBoardWriter(String memberName) {
+		boardRepository.deleteByBoardWriter(memberName);
+		
+	}
+
 
 }

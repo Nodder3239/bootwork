@@ -36,7 +36,7 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr style="background:#ddd">
+					<tr style="background:#ddd" th:if="${notice != null}">
 						<th><a th:href="@{|/noticeboard/}">공지사항</a></th>
 						<td class="td_title" style="width:200px;">
 						    <a th:href="@{|/noticeboard/${notice.id}|}">
@@ -81,7 +81,9 @@
 			<p><a th:href="@{/infoboard/}">제보게시판</a></p>
 			<p><a th:href="@{/qnaboard/}">질문게시판</a></p>
 			<p><a th:href="@{/chat/}">채팅방</a></p>
-			<p><a th:href="@{/data/data}">데이터</a></p>
+			<p><a th:href="@{/data/data}">재난문자</a></p>
+			<p><a th:href="@{/data/data2}">산불</a></p>
+			<p><a th:href="@{/data/data3}">지진</a></p>
 			<p th:if="${session.sessionId == null }"><a th:href="@{/member/login}">로그인</a></p>
 			<p th:if="${session.sessionId != null }"><a th:href="@{/member/logout}">로그아웃</a></p>
 		</div>

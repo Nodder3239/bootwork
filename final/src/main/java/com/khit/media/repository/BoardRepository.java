@@ -45,5 +45,7 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
 
 	List<Board> findByBoardCategoryContaining(String cate);
 
+	void deleteByBoardWriter(String memberName);
+
 
 }

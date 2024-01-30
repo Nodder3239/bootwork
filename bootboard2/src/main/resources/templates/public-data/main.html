@@ -4,10 +4,12 @@
 <meta charset="UTF-8">
 <title>대문...</title>
 <script th:src="@{https://code.jquery.com/jquery-3.7.1.min.js}"></script>
+<script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=nl0l2fzr3a"></script>
 </head>
 <body>
 	<div th:replace="~{layout/header}"></div>
 		<div id="content" style="width:80%;">
+			<div id="map" style="width:100%;height:400px;"></div>
 			<h1>지진 해일 대피소 정보</h1>
 			<button type="button" id="btn1">실행</button>
 			<table id="result1" class="table" >
@@ -90,6 +92,13 @@
 			});
 		});
 	});
+	
+	var mapOptions = {
+		    center: new naver.maps.LatLng(37.5338151, 126.8969784),
+		    zoom: 15
+		};
+
+		var map = new naver.maps.Map('map', mapOptions);
 </script>
 </body>
 </html>

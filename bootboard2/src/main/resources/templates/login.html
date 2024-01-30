@@ -5,10 +5,10 @@
 <title>로그인</title>
 </head>
 <body>
-	<div th:replace="~{/layout/header}"></div>
+	<div th:replace="~{header}"></div>
 	<div id="content">
 		<div id="content_login" class="text-center">
-			<form class="form-signin" th:action="@{/member/login}" method="post" >
+			<form class="form-signin" th:action="@{/login}" method="post" >
 			  <h1 class="h3 mb-3 font-weight-normal">로그인</h1>
 			  <label for="inputEmail" class="sr-only">아이디</label>
 			  <input type="text" id="inputId" class="form-control" placeholder="ID" required autofocus name="username">
@@ -25,7 +25,7 @@
 			</form>
 		</div>
 	</div>
-	<div th:replace="~{/layout/footer}"></div>
+	<div th:replace="~{footer}"></div>
 	<script>
 		const index = function(){
 			location.href="/";

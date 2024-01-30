@@ -8,7 +8,7 @@
 <script th:src="@{https://code.jquery.com/jquery-3.7.1.min.js}"></script>
 </head>
 <body>
-	<div th:replace="~{/layout/header}"></div>
+	<div th:replace="~{header}"></div>
 		<div id="content">
 			<div class="wrap">
 				<h2>글 상세보기</h2>
@@ -50,16 +50,16 @@
 						</td>
 					</tr>
 					<tr>
-						<td>
-							<span th:if="${#authentication.getPrincipal.getUsername() == board.member.memberId}">
-								<a th:href="@{|/board/update/${board.id}|}">
+						<td>	
+					    	<th:block th:if="${#authentication.principal.username == board.member.memberId}">
+						        <a th:href="@{|/board/update/${board.id}|}">
 						            <button class="btn btn-outline-secondary">수정</button>
 						        </a>
 						        <a th:href="@{|/board/delete/${board.id}|}" onclick="return confirm('정말로 삭제하시겠습니까?')">
-						           <button class="btn btn-outline-secondary">삭제</button>
+						            <button class="btn btn-outline-secondary">삭제</button>
 						        </a>
-							</span>
-							<a th:href="@{/board/(page=${page})}">
+					   		</th:block>			    
+						    <a th:href="@{/board/(page=${page})}">
 						        <button class="btn btn-outline-secondary">목록</button>
 						    </a>
 						</td>
@@ -95,7 +95,7 @@
 			</div>
 		</div>		
 	</div>
-	<div th:replace="~{/layout/footer}"></div>
+	<div th:replace="~{footer}"></div>
 	<script src="/js/reply.js"></script>
 	
 	<script>

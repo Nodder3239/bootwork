@@ -1,75 +1,51 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-<meta charset="UTF-8">
-<title>대문...</title>
-<script th:src="@{https://code.jquery.com/jquery-3.7.1.min.js}"></script>
+    <meta charset="UTF-8">
+    <title>산불 정보</title>
+    <script th:src="@{https://code.jquery.com/jquery-3.7.1.min.js}"></script>
 </head>
 <body>
-	<div th:replace="~{layout/header}"></div>
-		<div id="content" >
-			<a th:href = "@{/}"><button type="button" id="btn1" class="btn btn-outline-secondary">처음으로</button></a>
-			<table id="result1" class="table" >
-				<thead>
-					<tr>
-						<th scope="col">일련번호</th>
-						<th scope="col">수신지역 코드</th>
-						<th scope="col">수신지역 이름</th>
-						<th scope="col">내용</th>
-						<th scope="col">생성일시</th>
-						<th scope="col">발신처</th>
-					</tr>
-				</thead>
-				<tbody>
-					<!-- 데이터 출력 -->
-				</tbody>
-			
-			</table>
-			
-		
-		</div>
-		
-	
-<script>
-/* jquery 환경 - 버튼 클릭 이벤트 */
-	$(document).ready(function(){
-		
-			//alert("test...");
-			
-			$.ajax({
-				//요청방식(type), url, data,dataType, success, error
-				type: "GET",
-				url: "https://www.safemap.go.kr/dvct/data/LsmsDataAPISample.do",
-				dataType: "JSON",	//받는 데이터는 json 유형임을 명시 필수
-				success: function(data){
-					console.log(data);
-					
-					let itemArr = data.DisasterMsg[1].row;
-				
-					
-					//테이블 작성
-					let value = ""; //태그 + data
-					for(let i=0; i<itemArr.length; i++){
-						let item = itemArr[i];	//각각의 인덱스에 객체 생성
-						value += "<tr>"
-								+ "<td>" + item.md101_sn + "</td>"
-	                            + "<td>" + item.location_id + "</td>"
-	                            + "<td>" + item.location_name + "</td>"
-	                            + "<td>" + item.msg + "</td>"
-	                            + "<td>" + item.create_date + "</td>"
-	                            + "<td>" + item.send_platform + "</td>"
-	                            + "</tr>";
-					};
+<div th:replace="~{layout/header}"></div>
 
-	                // 결과를 테이블에 삽입
-	                $("#result1 tbody").html(value);
-				},
-				error: function(error){
-					alert("에러 발생: " + error);
-				}
-			});
-		
-	});
-</script>
+    <a th:href="@{/}"><button type="button" id="btn1" class="btn btn-outline-secondary">처음으로</button></a>
+    <table id="result1" class="table" style="font-size:14px;">
+         <thead>
+		        <tr>
+		            <th scope="col">ID</th>
+		            <th scope="col">산불신고X좌표</th>
+		            <th scope="col">산불신고Y좌표</th>
+		            <th scope="col">산불신고일시</th>
+		            <th scope="col">산불신고주소</th>
+		            <th scope="col" style="width:4%;">산불발생구분코드</th>
+		            <th scope="col" style="width:4%;">산불진행상태코드</th>
+		            <th scope="col">산불발화일시</th>
+		            <th scope="col">산불발생주소</th>
+		            <th scope="col">산불위치X좌표</th>
+		            <th scope="col">산불위치Y좌표</th>
+		            <th scope="col">최초등록일시</th>
+		            <th scope="col">최종수정일시</th>
+		        </tr>
+		    </thead>
+		    <tbody>
+		        <!-- Thymeleaf를 사용하여 데이터를 테이블에 반복하여 채웁니다. -->
+		        <tr th:each="item : ${dataList}">
+		            <td th:text="${item.FRFR_INFO_ID}"></td>
+		            <td th:text="${item.FRFR_STTMN_LCTN_XCRD}"></td>
+		            <td th:text="${item.FRFR_STTMN_LCTN_YCRD}"></td>
+		            <td th:text="${item.FRFR_STTMN_DT + item.FRFR_STTMN_HMS}"></td>
+		            <td th:text="${item.FRFR_STTMN_ADDR}"></td>
+		            <td th:text="${item.FRFR_OCCRR_TPCD}"></td>
+		            <td th:text="${item.FRFR_PRGRS_STCD}"></td>
+		            <td th:text="${item.FRFR_FRNG_DTM}"></td>
+		            <td th:text="${item.FRFR_OCCRR_ADDR}"></td>
+		           	<td th:text="${item.FRFR_LCTN_XCRD}"></td>
+		            <td th:text="${item.FRFR_LCTN_YCRD}"></td>
+		            <td th:text="${item.FRST_RGSTN_DTM}"></td>
+		            <td th:text="${item.LAST_UPDT_DTM}"></td>
+		        </tr>
+		    </tbody>
+    </table>
+
 </body>
 </html>

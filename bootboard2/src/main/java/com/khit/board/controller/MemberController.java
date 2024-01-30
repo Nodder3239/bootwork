@@ -53,7 +53,7 @@ public class MemberController {
 		}
 		//회원 가입 처리(저장)
 		memberService.insert(memberDTO);
-		return "redirect:/member/login";
+		return "redirect:/login";
 	}
 	
 	@GetMapping("/")
@@ -67,7 +67,7 @@ public class MemberController {
 	
 	@GetMapping("/login")
 	public String loginForm() {
-		return "/member/login";
+		return "/login";
 	}
 	/*
 	@PostMapping("/login")
