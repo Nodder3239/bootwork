@@ -25,7 +25,7 @@ public class MemberController {
 	
 	@GetMapping("/login")
 	public String loginform() {
-		return "/member/login";
+		return "member/login";
 	}
 	
 	@PostMapping("/login")

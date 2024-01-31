@@ -1,6 +1,7 @@
 package com.khit.media.service;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -12,6 +13,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.khit.media.dto.BoardDTO;
 import com.khit.media.entity.Board;
 import com.khit.media.repository.BoardRepository;
 
@@ -24,7 +26,7 @@ public class BoardService {
 	
 	private final BoardRepository boardRepository;
 	
-	public void save(Board board, MultipartFile boardFile) throws Exception{
+	public void save(BoardDTO boardDTO, MultipartFile boardFile) throws Exception{
 		
 		//1. 파일을 서버에 저장하고
 		if (!boardFile.isEmpty()) {
@@ -39,15 +41,17 @@ public class BoardService {
 			boardFile.transferTo(savedFile);	//서버 폴더에 저장
 		
 		//2. 파일 이름은 db에 저장
-			board.setFilename(filename);
-			board.setFilepath("/upload/" + filename);
+			boardDTO.setFilename(filename);
+			boardDTO.setFilepath("/upload/" + filename);
 		}
+		Board board = Board.toSaveBoardEntity(boardDTO);
 		boardRepository.save(board);
 	}
 
-	public Board findById(Long id) {
+	public BoardDTO findById(Long id) {
 		Optional<Board> board = boardRepository.findById(id);
-		return board.get();
+		BoardDTO boardDTO = BoardDTO.toSaveBoardDTO(board.get());
+		return boardDTO;
 		
 	}
 
@@ -55,7 +59,8 @@ public class BoardService {
 		boardRepository.deleteById(id);
 	}
 
-	public void update(Board board, MultipartFile boardFile) throws Exception {
+	public void update(BoardDTO boardDTO, MultipartFile boardFile) throws Exception {
+		Board board;
 		//1. 파일을 서버에 저장하고
 		if (!boardFile.isEmpty()) {		//
 			String filepath = "C:\\bootworks\\final\\src\\main\\resources\\static\\upload";
@@ -69,54 +74,95 @@ public class BoardService {
 			boardFile.transferTo(savedFile);	//서버 폴더에 저장
 		
 		//2. 파일 이름은 db에 저장
-			board.setFilename(filename);
-			board.setFilepath("/upload/" + filename);
+			boardDTO.setFilename(filename);
+			boardDTO.setFilepath("/upload/" + filename);
+			board = Board.toUpdateBoardEntity(boardDTO);
 			
 
 		}else{
 	         //Board board = Board.toUpdateNoFile(boardDTO);
 	         //boardRepository.save(board);
-	         board.setFilepath(findById(board.getId()).getFilepath());
+	         boardDTO.setFilepath(findById(boardDTO.getId()).getFilepath());
+			 board = Board.toUpdateNoFileBoardEntity(boardDTO);
 	    }
+		
 	    boardRepository.save(board);		
 	}
 	
-	public Page<Board> findByTitle(String kw, Pageable pageable) {
+	public Page<BoardDTO> findByTitle(String kw, Pageable pageable) {
 		int page = pageable.getPageNumber() - 1;
 		int pageSize = 10;
 		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
 		
 		Page<Board> boardList = boardRepository.findByBoardTitleContaining(kw, pageable);
-				
-		return boardList;
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+		new BoardDTO(board.getId(), board.getBoardTitle(), 
+				board.getBoardWriter(), board.getBoardContent(), 
+				board.getBoardCategory(), board.getBoardHits(),
+				board.getReplyCount(), board.getLikeCount(),
+				board.getFilename(), board.getFilepath(),
+				board.getCreatedDate(), board.getUpdatedDate()));
+		
+		return boardDTOList;
 	}
 
-	public Page<Board> findByContent(String kw, Pageable pageable) {
+	public Page<BoardDTO> findByContent(String kw, Pageable pageable) {
 		int page = pageable.getPageNumber() - 1;
 		int pageSize = 10;
 		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
 		
 		Page<Board> boardList = boardRepository.findByBoardContentContaining(kw, pageable);
-
-		return boardList;
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+		new BoardDTO(board.getId(), board.getBoardTitle(), 
+				board.getBoardWriter(), board.getBoardContent(), 
+				board.getBoardCategory(), board.getBoardHits(),
+				board.getReplyCount(), board.getLikeCount(),
+				board.getFilename(), board.getFilepath(),
+				board.getCreatedDate(), board.getUpdatedDate()));
+		return boardDTOList;
    	}
 
-	public Page<Board> findByWriter(String kw, Pageable pageable) {
+	public Page<BoardDTO> findByWriter(String kw, Pageable pageable) {
 		int page = pageable.getPageNumber() - 1;
 		int pageSize = 10;
 		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
 		
 		Page<Board> boardList = boardRepository.findByBoardWriterContaining(kw, pageable);
-
-		return boardList;
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+		new BoardDTO(board.getId(), board.getBoardTitle(), 
+				board.getBoardWriter(), board.getBoardContent(), 
+				board.getBoardCategory(), board.getBoardHits(),
+				board.getReplyCount(), board.getLikeCount(),
+				board.getFilename(), board.getFilepath(),
+				board.getCreatedDate(), board.getUpdatedDate()));
+		return boardDTOList;
    	}
 
-   	public List<Board> findAll() {
-   		List<Board> boardList = boardRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
-		
-		return boardList;
-   	}
-   	
+	public List<BoardDTO> findAll() {
+	    List<Board> boardList = boardRepository.findAll(Sort.by(Sort.Direction.DESC, "id"));
+	    List<BoardDTO> boardDTOList = new ArrayList<>();
+
+	    for (Board board : boardList) {
+	        BoardDTO boardDTO = new BoardDTO();
+	        boardDTO.setId(board.getId());
+	        boardDTO.setBoardTitle(board.getBoardTitle());
+	        boardDTO.setBoardWriter(board.getBoardWriter());
+	        boardDTO.setBoardContent(board.getBoardContent());
+	        boardDTO.setBoardCategory(board.getBoardCategory());
+	        boardDTO.setBoardHits(board.getBoardHits());
+	        boardDTO.setReplyCount(board.getReplyCount());
+	        boardDTO.setLikeCount(board.getLikeCount());
+	        boardDTO.setFilename(board.getFilename());
+	        boardDTO.setFilepath(board.getFilepath());
+	        boardDTO.setCreatedDate(board.getCreatedDate());
+	        boardDTO.setUpdatedDate(board.getUpdatedDate());
+
+	        boardDTOList.add(boardDTO);
+	    }
+
+	    return boardDTOList;
+	}
+
    	@Transactional
 	public void updateHits(Long id) {
 		boardRepository.updateHits(id);
@@ -127,55 +173,85 @@ public class BoardService {
 		boardRepository.updateHits2(id);	
 	}
    	
-	public Page<Board> findListAll(Pageable pageable) {
+	public Page<BoardDTO> findListAll(Pageable pageable) {
 		int page = pageable.getPageNumber() - 1;	//db가 1 작음
 		int pageSize = 10;
 		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
 		
 		Page<Board> boardList = boardRepository.findAll(pageable);
-						
-		return boardList;
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+		new BoardDTO(board.getId(), board.getBoardTitle(), 
+				board.getBoardWriter(), board.getBoardContent(), 
+				board.getBoardCategory(), board.getBoardHits(),
+				board.getReplyCount(), board.getLikeCount(),
+				board.getFilename(), board.getFilepath(),
+				board.getCreatedDate(), board.getUpdatedDate()));				
+		return boardDTOList;
 	}
 	
 	//임시
-	public Page<Board> findListAll(Pageable pageable, String c) {
+	public Page<BoardDTO> findListAll(Pageable pageable, String c) {
 		int page = pageable.getPageNumber() - 1;	//db가 1 작음
 		int pageSize = 10;
 		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
 		
 		Page<Board> boardList = boardRepository.findByBoardCategoryContaining(c, pageable);
-
-		return boardList;
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+		new BoardDTO(board.getId(), board.getBoardTitle(), 
+				board.getBoardWriter(), board.getBoardContent(), 
+				board.getBoardCategory(), board.getBoardHits(),
+				board.getReplyCount(), board.getLikeCount(),
+				board.getFilename(), board.getFilepath(),
+				board.getCreatedDate(), board.getUpdatedDate()));
+		return boardDTOList;
 	}
 
-	public Page<Board> findByTitle(String kw, Pageable pageable, String cate) {
+	public Page<BoardDTO> findByTitle(String kw, Pageable pageable, String cate) {
 		int page = pageable.getPageNumber() - 1;
 		int pageSize = 10;
 		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
 		
 		Page<Board> boardList = boardRepository.findByBoardCategoryContainingAndBoardTitleContaining(cate, kw, pageable);
-				
-		return boardList;
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+		new BoardDTO(board.getId(), board.getBoardTitle(), 
+				board.getBoardWriter(), board.getBoardContent(), 
+				board.getBoardCategory(), board.getBoardHits(),
+				board.getReplyCount(), board.getLikeCount(),
+				board.getFilename(), board.getFilepath(),
+				board.getCreatedDate(), board.getUpdatedDate()));		
+		return boardDTOList;
 	}
 
-	public Page<Board> findByContent(String kw, Pageable pageable, String cate) {
+	public Page<BoardDTO> findByContent(String kw, Pageable pageable, String cate) {
 		int page = pageable.getPageNumber() - 1;
 		int pageSize = 10;
 		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
 		
 		Page<Board> boardList = boardRepository.findByBoardCategoryContainingAndBoardContentContaining(cate, kw, pageable);
-
-		return boardList;
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+		new BoardDTO(board.getId(), board.getBoardTitle(), 
+				board.getBoardWriter(), board.getBoardContent(), 
+				board.getBoardCategory(), board.getBoardHits(),
+				board.getReplyCount(), board.getLikeCount(),
+				board.getFilename(), board.getFilepath(),
+				board.getCreatedDate(), board.getUpdatedDate()));
+		return boardDTOList;
    	}
 
-	public Page<Board> findByWriter(String kw, Pageable pageable, String cate) {
+	public Page<BoardDTO> findByWriter(String kw, Pageable pageable, String cate) {
 		int page = pageable.getPageNumber() - 1;
 		int pageSize = 10;
 		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
 		
 		Page<Board> boardList = boardRepository.findByBoardCategoryContainingAndBoardWriterContaining(cate, kw, pageable);
-
-		return boardList;
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+		new BoardDTO(board.getId(), board.getBoardTitle(), 
+				board.getBoardWriter(), board.getBoardContent(), 
+				board.getBoardCategory(), board.getBoardHits(),
+				board.getReplyCount(), board.getLikeCount(),
+				board.getFilename(), board.getFilepath(),
+				board.getCreatedDate(), board.getUpdatedDate()));
+		return boardDTOList;
    	}
 	
 	@Transactional
@@ -188,21 +264,29 @@ public class BoardService {
 		boardRepository.updateLikeCount(id);		
 	}
 
-	public Page<Board> findListAllOrderByVoteCount(Pageable pageable) {
+	public Page<BoardDTO> findListAllOrderByVoteCount(Pageable pageable) {
 		int page = pageable.getPageNumber() - 1;
 		int pageSize = 5;
 		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "likeCount");
 		
 		Page<Board> boardList = boardRepository.findAll(pageable);
-		return boardList;
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+		new BoardDTO(board.getId(), board.getBoardTitle(), 
+				board.getBoardWriter(), board.getBoardContent(), 
+				board.getBoardCategory(), board.getBoardHits(),
+				board.getReplyCount(), board.getLikeCount(),
+				board.getFilename(), board.getFilepath(),
+				board.getCreatedDate(), board.getUpdatedDate()));
+		return boardDTOList;
 	}
 
-	public Board findNotice() {
+	public BoardDTO findNotice() {
 		String cate = "notice";
 		List<Board> boardList = boardRepository.findByBoardCategoryContaining(cate);
 		if (!boardList.isEmpty()) {
 	        Board notice = boardList.get(0);
-	        return notice;
+	        BoardDTO noticeDTO = BoardDTO.toSaveBoardDTO(notice);
+	        return noticeDTO;
 	    } else {
 	        // 빈 페이지 처리 또는 예외 처리
 	        return null; // 또는 예외를 throw하여 처리할 수 있음

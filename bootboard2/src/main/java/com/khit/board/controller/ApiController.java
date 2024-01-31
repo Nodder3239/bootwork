@@ -17,7 +17,7 @@ public class ApiController {
 	
 	@GetMapping("/public-data/main")
 	public String dataMain() {
-		return "/public-data/main";
+		return "public-data/main";
 	}
 	
 	@GetMapping("/disaster.do")
@@ -72,7 +72,7 @@ public class ApiController {
 	
 	@GetMapping("/public-data/webtoon")
 	public String dataToon() {
-		return "/public-data/webtoon";
+		return "public-data/webtoon";
 	}
 	
 	@GetMapping("/webtoon.do")
@@ -118,5 +118,10 @@ public class ApiController {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	@GetMapping("/public-data/test")
+	public String dataTest() {
+		return "public-data/test";
 	}
 }

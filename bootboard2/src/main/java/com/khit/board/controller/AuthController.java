@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class AuthController {
 	@GetMapping("/main")
 	public String authMain() {
-		return "/auth/main";
+		return "auth/main";
 	}
 	@GetMapping("/accessDenied")
 	public String accessDenied() {
-		return "/auth/accessDenied";
+		return "auth/accessDenied";
 	}	
 }

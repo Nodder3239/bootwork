@@ -6,46 +6,46 @@
     <script th:src="@{https://code.jquery.com/jquery-3.7.1.min.js}"></script>
 </head>
 <body>
-<div th:replace="~{layout/header}"></div>
+<div th:replace="~{header}"></div>
 
-    <a th:href="@{/}"><button type="button" id="btn1" class="btn btn-outline-secondary">처음으로</button></a>
-    <table id="result1" class="table" style="font-size:14px;">
-         <thead>
-		        <tr>
-		            <th scope="col">ID</th>
-		            <th scope="col">산불신고X좌표</th>
-		            <th scope="col">산불신고Y좌표</th>
-		            <th scope="col">산불신고일시</th>
-		            <th scope="col">산불신고주소</th>
-		            <th scope="col" style="width:4%;">산불발생구분코드</th>
-		            <th scope="col" style="width:4%;">산불진행상태코드</th>
-		            <th scope="col">산불발화일시</th>
-		            <th scope="col">산불발생주소</th>
-		            <th scope="col">산불위치X좌표</th>
-		            <th scope="col">산불위치Y좌표</th>
-		            <th scope="col">최초등록일시</th>
-		            <th scope="col">최종수정일시</th>
-		        </tr>
-		    </thead>
-		    <tbody>
-		        <!-- Thymeleaf를 사용하여 데이터를 테이블에 반복하여 채웁니다. -->
-		        <tr th:each="item : ${dataList}">
-		            <td th:text="${item.FRFR_INFO_ID}"></td>
-		            <td th:text="${item.FRFR_STTMN_LCTN_XCRD}"></td>
-		            <td th:text="${item.FRFR_STTMN_LCTN_YCRD}"></td>
-		            <td th:text="${item.FRFR_STTMN_DT + item.FRFR_STTMN_HMS}"></td>
-		            <td th:text="${item.FRFR_STTMN_ADDR}"></td>
-		            <td th:text="${item.FRFR_OCCRR_TPCD}"></td>
-		            <td th:text="${item.FRFR_PRGRS_STCD}"></td>
-		            <td th:text="${item.FRFR_FRNG_DTM}"></td>
-		            <td th:text="${item.FRFR_OCCRR_ADDR}"></td>
-		           	<td th:text="${item.FRFR_LCTN_XCRD}"></td>
-		            <td th:text="${item.FRFR_LCTN_YCRD}"></td>
-		            <td th:text="${item.FRST_RGSTN_DTM}"></td>
-		            <td th:text="${item.LAST_UPDT_DTM}"></td>
-		        </tr>
-		    </tbody>
-    </table>
-
+    <div id="data_content">
+	    <table id="result1" class="table" style="font-size:14px;">
+	         <thead>
+			        <tr>
+			            <th scope="col">ID</th>
+			            <th scope="col">산불신고X좌표</th>
+			            <th scope="col">산불신고Y좌표</th>
+			            <th scope="col">산불신고일시</th>
+			            <th scope="col">산불신고주소</th>
+			            <th scope="col" style="width:4%;">산불발생구분코드</th>
+			            <th scope="col" style="width:4%;">산불진행상태코드</th>
+			            <th scope="col">산불발화일시</th>
+			            <th scope="col">산불발생주소</th>
+			            <th scope="col">산불위치X좌표</th>
+			            <th scope="col">산불위치Y좌표</th>
+			            <th scope="col">최초등록일시</th>
+			            <th scope="col">최종수정일시</th>
+			        </tr>
+			    </thead>
+			    <tbody>
+			        <!-- Thymeleaf를 사용하여 데이터를 테이블에 반복하여 채웁니다. -->
+			        <tr th:each="item : ${dataList}">
+			            <td th:text="${item.FRFR_INFO_ID}"></td>
+			            <td th:text="${item.FRFR_STTMN_LCTN_XCRD}"></td>
+			            <td th:text="${item.FRFR_STTMN_LCTN_YCRD}"></td>
+			            <td th:text="${item.FRFR_STTMN_DT + item.FRFR_STTMN_HMS}"></td>
+			            <td th:text="${item.FRFR_STTMN_ADDR}"></td>
+			            <td th:text="${item.FRFR_OCCRR_TPCD}"></td>
+			            <td th:text="${item.FRFR_PRGRS_STCD}"></td>
+			            <td th:text="${item.FRFR_FRNG_DTM}"></td>
+			            <td th:text="${item.FRFR_OCCRR_ADDR}"></td>
+			           	<td th:text="${item.FRFR_LCTN_XCRD}"></td>
+			            <td th:text="${item.FRFR_LCTN_YCRD}"></td>
+			            <td th:text="${item.FRST_RGSTN_DTM}"></td>
+			            <td th:text="${item.LAST_UPDT_DTM}"></td>
+			        </tr>
+			    </tbody>
+	    </table>
+	</div>
 </body>
 </html>

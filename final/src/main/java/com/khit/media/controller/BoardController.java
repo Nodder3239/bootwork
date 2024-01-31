@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.khit.media.dto.BoardDTO;
 import com.khit.media.entity.Board;
 import com.khit.media.entity.Reply;
 import com.khit.media.service.BoardService;
@@ -36,27 +37,37 @@ public class BoardController {
 	//글쓰기 페이지
 	@GetMapping("/write")
 	public String writeForm(Board board) {
-		return "/board/write";
+		return "board/write";
 	}
 	
 	//글쓰기
 	@PostMapping("/write")
-	public String write(Board board, MultipartFile boardFile) throws Exception {
+	public String write(BoardDTO boardDTO, MultipartFile boardFile) throws Exception {
 		//글쓰기 처리
-		board.setBoardHits(0);
-		board.setReplyCount(0);
-		board.setLikeCount(0);
+		boardDTO.setBoardHits(0);
+		boardDTO.setReplyCount(0);
+		boardDTO.setLikeCount(0);
 		boardService.save(board, boardFile);
 		return "redirect:/board/";
 	}
 	*/
+	
+	@GetMapping("/main")
+	public String indexForm(@PageableDefault(page=1) Pageable pageable, Model model) {
+		Page<BoardDTO> boardList = boardService.findListAllOrderByVoteCount(pageable);	
+		model.addAttribute("boardList", boardList);
+		BoardDTO notice = boardService.findNotice();
+		model.addAttribute("notice", notice);
+		return "board/main";
+	}
+	
 	
 	//글 목록 보기
 	@GetMapping("/")
 	public String getPageList(@PageableDefault(page=1) Pageable pageable, 
 			Model model, @RequestParam(value="field", required = false) String field, 
 			@RequestParam(value="kw", required = false) String kw) {
-		Page<Board> boardList;
+		Page<BoardDTO> boardList;
 		if ("t".equals(field)) {
 			boardList = boardService.findByTitle(kw, pageable);
 		} else if ("c".equals(field)) {
@@ -80,7 +91,7 @@ public class BoardController {
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("field", field);
 		model.addAttribute("kw", kw);
-		return "/board/list";
+		return "board/list";
 	}
 	
 	
@@ -92,13 +103,13 @@ public class BoardController {
 		boardService.updateHits(id);
 		boardService.updateReplyCount(id);
 		//글 상세보기
-		Board boardDTO = boardService.findById(id);
+		BoardDTO boardDTO = boardService.findById(id);
 		//댓글 목록
 		List<Reply> replyList = replyService.findByBoardId(id);
 		model.addAttribute("board", boardDTO);
 		model.addAttribute("replyList", replyList);
 		model.addAttribute("page", pageable.getPageNumber());
-		return "/board/detail";
+		return "board/detail";
 	}
 	
 	@GetMapping("/delete/{id}")
@@ -112,15 +123,15 @@ public class BoardController {
 	@GetMapping("/update/{id}")
 	public String updateForm(Model model, @PathVariable Long id) {
 		boardService.updateHits2(id);
-		Board board = boardService.findById(id);
-		model.addAttribute("board", board);
-		return "/board/update";
+		BoardDTO boardDTO = boardService.findById(id);
+		model.addAttribute("board", boardDTO);
+		return "board/update";
 	}
 	
 	@PostMapping("/update")
-	public String update(@ModelAttribute Board board, MultipartFile boardFile) throws Exception {
-		boardService.update(board, boardFile);
-		return "redirect:/board/" + board.getId();
+	public String update(@ModelAttribute BoardDTO boardDTO, MultipartFile boardFile) throws Exception {
+		boardService.update(boardDTO, boardFile);
+		return "redirect:/board/" + boardDTO.getId();
 	}
 
 }

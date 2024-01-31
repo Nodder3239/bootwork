@@ -7,7 +7,7 @@
 <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=nl0l2fzr3a"></script>
 </head>
 <body>
-	<div th:replace="~{layout/header}"></div>
+	<div th:replace="~{header}"></div>
 		<div id="content" style="width:80%;">
 			<div id="map" style="width:100%;height:400px;"></div>
 			<h1>지진 해일 대피소 정보</h1>
@@ -40,7 +40,7 @@
 		
 		</div>
 		
-	<div th:replace="~{layout/footer}"></div>
+	<div th:replace="~{footer}"></div>
 	
 <script>
 /* jquery 환경 - 버튼 클릭 이벤트 */
@@ -87,7 +87,7 @@
 				},
 				error: function(error){
 					alert("에러 발생: " + error);
-					console.log(error)
+					console.log(error);
 				}
 			});
 		});

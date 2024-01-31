@@ -1,6 +1,5 @@
 package com.khit.board.service;
 
-import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,9 +13,7 @@ import com.khit.board.entity.Board;
 import com.khit.board.repository.BoardRepository;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @RequiredArgsConstructor
 @Controller
 public class BoardService {

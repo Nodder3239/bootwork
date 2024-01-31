@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.khit.media.dto.BoardDTO;
 import com.khit.media.entity.Board;
 import com.khit.media.service.BoardService;
 
@@ -21,10 +22,10 @@ public class MainController {
 	
 	@GetMapping
 	public String index(@PageableDefault(page=1) Pageable pageable, Model model) {
-		Page<Board> boardList = boardService.findListAllOrderByVoteCount(pageable);	
+		Page<BoardDTO> boardList = boardService.findListAllOrderByVoteCount(pageable);	
 		model.addAttribute("boardList", boardList);
-		Board notice = boardService.findNotice();
+		BoardDTO notice = boardService.findNotice();
 		model.addAttribute("notice", notice);
-		return "/index";	//index.html
+		return "index";	//index.html
 	}
 }

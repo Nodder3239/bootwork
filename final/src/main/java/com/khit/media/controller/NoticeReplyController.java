@@ -30,7 +30,7 @@ public class NoticeReplyController {
 	public String updateReplyForm(Model model, @PathVariable Long id) {
 		Reply reply = replyService.findById(id);
 		model.addAttribute("reply", reply);
-		return "/notice/updateReply";
+		return "notice/updateReply";
 	}
 	
 	@PostMapping("/update")

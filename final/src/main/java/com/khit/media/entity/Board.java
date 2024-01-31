@@ -1,5 +1,7 @@
 package com.khit.media.entity;
 
+import com.khit.media.dto.BoardDTO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -54,4 +56,49 @@ public class Board extends BaseEntity{
 	
 	@Column
 	private String filepath;
+	
+	public static Board toSaveBoardEntity(BoardDTO boardDTO) {
+		Board board = Board.builder()
+				.boardTitle(boardDTO.getBoardTitle())
+				.boardWriter(boardDTO.getBoardWriter())
+				.boardContent(boardDTO.getBoardContent())
+				.boardCategory(boardDTO.getBoardCategory())
+				.boardHits(boardDTO.getBoardHits())
+				.replyCount(boardDTO.getReplyCount())
+				.likeCount(boardDTO.getLikeCount())
+				.filename(boardDTO.getFilename())
+				.filepath(boardDTO.getFilepath())
+				.build();
+		return board;
+	}
+	
+	public static Board toUpdateBoardEntity(BoardDTO boardDTO) {
+		Board board = Board.builder()
+				.id(boardDTO.getId())
+				.boardTitle(boardDTO.getBoardTitle())
+				.boardWriter(boardDTO.getBoardWriter())
+				.boardContent(boardDTO.getBoardContent())
+				.boardCategory(boardDTO.getBoardCategory())
+				.boardHits(boardDTO.getBoardHits())
+				.replyCount(boardDTO.getReplyCount())
+				.likeCount(boardDTO.getLikeCount())
+				.filename(boardDTO.getFilename())
+				.filepath(boardDTO.getFilepath())
+				.build();
+		return board;
+	}
+	
+	public static Board toUpdateNoFileBoardEntity(BoardDTO boardDTO) {
+		Board board = Board.builder()
+				.id(boardDTO.getId())
+				.boardTitle(boardDTO.getBoardTitle())
+				.boardWriter(boardDTO.getBoardWriter())
+				.boardContent(boardDTO.getBoardContent())
+				.boardCategory(boardDTO.getBoardCategory())
+				.boardHits(boardDTO.getBoardHits())
+				.replyCount(boardDTO.getReplyCount())
+				.likeCount(boardDTO.getLikeCount())
+				.build();
+		return board;
+	}
 }

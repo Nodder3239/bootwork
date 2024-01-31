@@ -5,56 +5,56 @@
     <title>Data 3</title>
 </head>
 <body>
-<div th:replace="~{layout/header}"></div>
-	<a th:href="@{/}"><button type="button" id="btn1" class="btn btn-outline-secondary">처음으로</button></a>
-	
-    <!-- 테이블 시작 -->
-    <table id="result1" class="table" style="font-size:14px;">
-        <thead>
-            <!-- 테이블 헤더 정의 -->
-            <tr>
-                <!-- 각 열의 제목 지정 -->
-                <th scope="col">위치</th>
-                <th scope="col">통보레벨</th>
-                <th scope="col">참고번호</th>
-                <th scope="col">위도</th>
-                <th scope="col">상세정보</th>
-                <th scope="col">진원 시각</th>
-                <th scope="col">발표 시작</th>
-                <th scope="col">지진번호</th>
-                <th scope="col">지점번호</th>
-                <th scope="col">입수일시</th>
-                <th scope="col">경도</th>
-                <th scope="col">계기진도</th>
-                <th scope="col">재난유형종류</th>
-                <th scope="col">참고사항</th>
-                <th scope="col">규모</th>
-                <th scope="col">일련번호</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- 데이터 리스트를 반복하여 각 항목을 출력 -->
-            <tr th:each="item : ${dataList}">
-                <!-- 각 열에 해당하는 데이터 출력 -->
-                <td th:text="${item.LOC_LOC}"></td>
-                <td th:text="${item.GB_LVL}"></td>
-                <td th:text="${item.NO_REF}"></td>
-                <td th:text="${item.CORD_LAT}"></td>
-                <td><a th:href="${item.INTENSITY_PAGEURI}">#</a></td>
-                <td th:text="${item.DT_STFC}"></td>
-                <td th:text="${item.DT_TM_FC}"></td>
-                <td th:text="${item.DT_ID}"></td>
-                <td th:text="${item.CD_STN}"></td>
-                <td th:text="${item.DT_REGT}"></td>
-                <td th:text="${item.CORD_LON}"></td>
-                <td th:text="${item.INTENSITY_DESC}"></td>
-                <td th:text="${item.NO_ORD}"></td>
-                <td th:text="${item.STAT_OTHER}"></td>
-                <td th:text="${item.SECT_SCLE}"></td>
-                <td th:text="${item.NO_REGT_SEQ}"></td>
-            </tr>
-        </tbody>
-    </table>
-    <!-- 테이블 종료 -->
+<div th:replace="~{header}"></div>
+	<div id="data_content">
+	    <!-- 테이블 시작 -->
+	    <table id="result1" class="table" style="font-size:14px;">
+	        <thead>
+	            <!-- 테이블 헤더 정의 -->
+	            <tr>
+	                <!-- 각 열의 제목 지정 -->
+	                <th scope="col">위치</th>
+	                <th scope="col">통보레벨</th>
+	                <th scope="col">참고번호</th>
+	                <th scope="col">위도</th>
+	                <th scope="col">상세정보</th>
+	                <th scope="col">진원 시각</th>
+	                <th scope="col">발표 시작</th>
+	                <th scope="col">지진번호</th>
+	                <th scope="col">지점번호</th>
+	                <th scope="col">입수일시</th>
+	                <th scope="col">경도</th>
+	                <th scope="col">계기진도</th>
+	                <th scope="col">재난유형종류</th>
+	                <th scope="col">참고사항</th>
+	                <th scope="col">규모</th>
+	                <th scope="col">일련번호</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <!-- 데이터 리스트를 반복하여 각 항목을 출력 -->
+	            <tr th:each="item : ${dataList}">
+	                <!-- 각 열에 해당하는 데이터 출력 -->
+	                <td th:text="${item.LOC_LOC}"></td>
+	                <td th:text="${item.GB_LVL}"></td>
+	                <td th:text="${item.NO_REF}"></td>
+	                <td th:text="${item.CORD_LAT}"></td>
+	                <td><a th:href="${item.INTENSITY_PAGEURI}">#</a></td>
+	                <td th:text="${item.DT_STFC}"></td>
+	                <td th:text="${item.DT_TM_FC}"></td>
+	                <td th:text="${item.DT_ID}"></td>
+	                <td th:text="${item.CD_STN}"></td>
+	                <td th:text="${item.DT_REGT}"></td>
+	                <td th:text="${item.CORD_LON}"></td>
+	                <td th:text="${item.INTENSITY_DESC}"></td>
+	                <td th:text="${item.NO_ORD}"></td>
+	                <td th:text="${item.STAT_OTHER}"></td>
+	                <td th:text="${item.SECT_SCLE}"></td>
+	                <td th:text="${item.NO_REGT_SEQ}"></td>
+	            </tr>
+	        </tbody>
+	    </table>
+    	<!-- 테이블 종료 -->
+    </div>
 </body>
 </html>

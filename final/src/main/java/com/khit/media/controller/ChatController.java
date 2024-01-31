@@ -17,6 +17,6 @@ public class ChatController {
 	public String chat(Model model, HttpSession session) {
 		String id = (String) session.getAttribute("sessionId");
         model.addAttribute("chatname", id);
-		return "/chat/chat";
+		return "chat/chat";
 	}
 }

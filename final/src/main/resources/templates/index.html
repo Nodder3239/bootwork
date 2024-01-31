@@ -9,84 +9,131 @@
 <script th:src="@{https://code.jquery.com/jquery-3.7.1.min.js}"></script>
 </head>
 <body>
-	<div th:replace="~{layout/header}"></div>
-	<div>
-		<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-			<form th:action="@{/board/}" method="get">
-			  	<div style="display: flex; justify-content: center;">
-					<select name="field" class="btn btn-outline-secondary dropdown-toggle">
-						<option value="t" th:selected="${field == 't'}" th:text="제목"></option>
-		                   <option value="c" th:selected="${field == 'c'}" th:text="내용"></option>
-		                   <option value="w" th:selected="${field == 'w'}" th:text="작성자"></option>
-		               </select>
-					<input type="text" class="form-control" name="kw" th:value="${kw}" id="inputGroupFile04" 
-							placeholder="검색" aria-describedby="inputGroupFileAddon04" aria-label="Upload" style="width:100%">
-					<button type="submit" class="btn btn-outline-secondary"><i class="fa-solid fa-magnifying-glass"></i></button>
-			  	</div>
-			</form>
-			<table class="table" id="tbl_list">
-				<thead>
-					<tr>
-						<th scope="col">글분류</th>
-						<th scope="col">글제목</th>
-						<th scope="col">글쓴이</th>
-						<th scope="col">작성일</th>
-						<th scope="col">조회수</th>
-						<th scope="col">추천</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr style="background:#ddd" th:if="${notice != null}">
-						<th><a th:href="@{|/noticeboard/}">공지사항</a></th>
-						<td class="td_title" style="width:200px;">
-						    <a th:href="@{|/noticeboard/${notice.id}|}">
-						    	<span th:text="${notice.boardTitle}"></span>
-						    	<span style="font-size:small;" th:if="${notice.replyCount != 0}" th:text="'[ ' + ${notice.replyCount} + ' ]'"></span>
-						    </a>
-						</td>
-	
-		                <td th:text="${notice.boardWriter}"></td>
-		                <td th:utext="${notice.updatedDate != null ? #temporals.format(notice.updatedDate, 'yyyy-MM-dd hh:mm') : #temporals.format(notice.createdDate, 'yyyy-MM-dd hh:mm')}"></td>
-		                <td th:text="${notice.boardHits}"></td>
-		                <td th:text="${notice.likeCount}"></td>
-		            </tr>
-					<tr th:each="board : ${boardList}">
-		                <th>
-		                	<span th:if="${board.boardCategory eq 'notice'}"><a th:href="@{/noticeboard/}">공지사항</a></span>
-		                	<span th:if="${board.boardCategory eq 'qna'}"><a th:href="@{/qnaboard/}">QnA</a></span>
-		                	<span th:if="${board.boardCategory eq 'info1'}"><a th:href="@{/infoboard/?cate=info1}">서울</a></span>
-		                	<span th:if="${board.boardCategory eq 'info2'}"><a th:href="@{/infoboard/?cate=info2}">인천/경기</a></span>
-		                	<span th:if="${board.boardCategory eq 'info3'}"><a th:href="@{/infoboard/?cate=info3}">강원</a></span>
-		                	<span th:if="${board.boardCategory eq 'info4'}"><a th:href="@{/infoboard/?cate=info4}">대전/충청</a></span>
-		                	<span th:if="${board.boardCategory eq 'info5'}"><a th:href="@{/infoboard/?cate=info5}">광주/전라</a></span>
-		                	<span th:if="${board.boardCategory eq 'info6'}"><a th:href="@{/infoboard/?cate=info6}">부산/경상</a></span>
-		                </th>
-					    <td class="td_title" style="width:200px;">
-						    <a th:href="@{|/board/${board.id}|(page=${boardList.number+1})}">
-						    	<span th:text="${board.boardTitle}"></span>
-						    	<span style="font-size:small;" th:if="${board.replyCount != 0}" th:text="'[ ' + ${board.replyCount} + ' ]'"></span>
-						    </a>
-						</td>
-	
-		                <td th:text="${board.boardWriter}"></td>
-		                <td th:utext="${board.updatedDate != null ? #temporals.format(board.updatedDate, 'yyyy-MM-dd hh:mm') : #temporals.format(board.createdDate, 'yyyy-MM-dd hh:mm')}"></td>
-		                <td th:text="${board.boardHits}"></td>
-		                <td th:text="${board.likeCount}"></td>
-		            </tr>
-				</tbody>
-			</table>
-		</div>
-		<div>
-			<p><a th:href="@{/noticeboard/}">공지게시판</a></p>
-			<p><a th:href="@{/infoboard/}">제보게시판</a></p>
-			<p><a th:href="@{/qnaboard/}">질문게시판</a></p>
-			<p><a th:href="@{/chat/}">채팅방</a></p>
-			<p><a th:href="@{/data/data}">재난문자</a></p>
-			<p><a th:href="@{/data/data2}">산불</a></p>
-			<p><a th:href="@{/data/data3}">지진</a></p>
-			<p th:if="${session.sessionId == null }"><a th:href="@{/member/login}">로그인</a></p>
-			<p th:if="${session.sessionId != null }"><a th:href="@{/member/logout}">로그아웃</a></p>
-		</div>
+	<div th:replace="~{header}"></div>
+	<div class="main">
+		<nav class="news_section">
+			<h3>재난안전 상황정보</h3>
+			<ul id="result_data">
+			
+			</ul>
+		</nav>
+		<div class="board_section">
+			<div>
+				<form th:action="@{/board/}" method="get">
+				  	<div style="display: flex; justify-content: center;">
+						<select name="field" class="btn btn-outline-secondary dropdown-toggle">
+							<option value="t" th:selected="${field == 't'}" th:text="제목"></option>
+			                   <option value="c" th:selected="${field == 'c'}" th:text="내용"></option>
+			                   <option value="w" th:selected="${field == 'w'}" th:text="작성자"></option>
+			               </select>
+						<input type="text" class="form-control" name="kw" th:value="${kw}" id="inputGroupFile04" 
+								placeholder="검색" aria-describedby="inputGroupFileAddon04" aria-label="Upload" style="width:100%">
+						<button type="submit" class="btn btn-outline-secondary"><i class="fa-solid fa-magnifying-glass"></i></button>
+				  	</div>
+				</form>
+				<table class="table" id="tbl_list">
+					<thead>
+						<tr>
+							<th scope="col">글분류</th>
+							<th scope="col">글제목</th>
+							<th scope="col">글쓴이</th>
+							<th scope="col">작성일</th>
+							<th scope="col">조회수</th>
+							<th scope="col">추천</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr style="background:#ddd" th:if="${notice != null}">
+							<th><a th:href="@{|/noticeboard/}">공지사항</a></th>
+							<td class="td_title" style="width:200px;">
+							    <a th:href="@{|/noticeboard/${notice.id}|}">
+							    	<span th:text="${notice.boardTitle}"></span>
+							    	<span style="font-size:small;" th:if="${notice.replyCount != 0}" th:text="'[ ' + ${notice.replyCount} + ' ]'"></span>
+							    </a>
+							</td>
+		
+			                <td th:text="${notice.boardWriter}"></td>
+			                <td th:utext="${notice.updatedDate != null ? #temporals.format(notice.updatedDate, 'yyyy-MM-dd hh:mm') : #temporals.format(notice.createdDate, 'yyyy-MM-dd hh:mm')}"></td>
+			                <td th:text="${notice.boardHits}"></td>
+			                <td th:text="${notice.likeCount}"></td>
+			            </tr>
+						<tr th:each="board : ${boardList}">
+			                <th>
+			                	<span th:if="${board.boardCategory eq 'notice'}"><a th:href="@{/noticeboard/}">공지사항</a></span>
+			                	<span th:if="${board.boardCategory eq 'qna'}"><a th:href="@{/qnaboard/}">QnA</a></span>
+			                	<span th:if="${board.boardCategory eq 'info1'}"><a th:href="@{/infoboard/?cate=info1}">서울</a></span>
+			                	<span th:if="${board.boardCategory eq 'info2'}"><a th:href="@{/infoboard/?cate=info2}">인천/경기</a></span>
+			                	<span th:if="${board.boardCategory eq 'info3'}"><a th:href="@{/infoboard/?cate=info3}">강원</a></span>
+			                	<span th:if="${board.boardCategory eq 'info4'}"><a th:href="@{/infoboard/?cate=info4}">대전/충청</a></span>
+			                	<span th:if="${board.boardCategory eq 'info5'}"><a th:href="@{/infoboard/?cate=info5}">광주/전라</a></span>
+			                	<span th:if="${board.boardCategory eq 'info6'}"><a th:href="@{/infoboard/?cate=info6}">부산/경상</a></span>
+			                </th>
+						    <td class="td_title" style="width:200px;">
+							    <a th:href="@{|/board/${board.id}|(page=${boardList.number+1})}">
+							    	<span th:text="${board.boardTitle}"></span>
+							    	<span style="font-size:small;" th:if="${board.replyCount != 0}" th:text="'[ ' + ${board.replyCount} + ' ]'"></span>
+							    </a>
+							</td>
+		
+			                <td th:text="${board.boardWriter}"></td>
+			                <td th:utext="${board.updatedDate != null ? #temporals.format(board.updatedDate, 'yyyy-MM-dd hh:mm') : #temporals.format(board.createdDate, 'yyyy-MM-dd hh:mm')}"></td>
+			                <td th:text="${board.boardHits}"></td>
+			                <td th:text="${board.likeCount}"></td>
+			            </tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="weather mt-3">
+				<h3>오늘의 기온</h3>
+					<h4 class="result">
+					  <!-- 20240125, 0600, -9.1 -->
+					</h4>				
+			</div>			
+		</div>	
+		
 	</div>
+	<div style="position: absolute; top: 90%; left: 90%; transform: translate(-90%, -90%); z-index: 1;">
+		<p th:if="${session.sessionRole eq 'ADMIN'}"><a th:href="@{#}">회원목록</a></p>
+	</div>	
+	
+<script th:src="@{/js/weather.js}"></script>	
+<script>
+/* jquery 환경 - 버튼 클릭 이벤트 */
+	$(document).ready(function(){
+		
+			//alert("test...");
+			
+			$.ajax({
+				//요청방식(type), url, data,dataType, success, error
+				type: "GET",
+				url: "https://apis.data.go.kr/1741000/DisasterMsg3/getDisasterMsg1List?serviceKey=pZIPx6rGWghV%2FnfyNbIb%2F%2BdtiOcNqfETtzb11gxLE1FYTMqF76zPptT2EFFcaFWMJOOPPUz2C1v9a8SUQ04c5g%3D%3D&pageNo=1&numOfRows=5&type=json",
+				dataType: "json",	//받는 데이터는 json 유형임을 명시 필수
+				success: function(data){
+					console.log(data);
+					
+					let itemArr = data.DisasterMsg[1].row;
+				
+					
+					//테이블 작성
+					let value = ""; //태그 + data
+					for(let i=0; i<itemArr.length; i++){
+						let item = itemArr[i];	//각각의 인덱스에 객체 생성
+						value += "<li>"
+								+ "<span class='org_name'>" + item.location_name + "</span>"
+								+ "<p><strong>" + item.create_date + "</strong></p>"
+	                            + "<p>" + item.msg + "</p>"	                            
+	                            + "</li>";
+					};
+
+	                // 결과를 테이블에 삽입
+	                $("#result_data").html(value);
+				},
+				error: function(error){
+					alert("에러 발생: " + error);
+				}
+			});
+		
+	});
+</script>
 </body>
 </html>

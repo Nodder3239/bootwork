@@ -2,13 +2,13 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>댓글 수정</title>
 </head>
 <body>
-	<div th:replace="~{layout/header}"></div>
-
-	<div class="replyUpdateForm">
-		    <form th:action="@{/reply/update}" method="post" class="replyUpdateForm2">
+	<div th:replace="~{header}"></div>
+	<div id="content">
+		<div class="replyUpdateForm">
+		    <form th:action="@{/reply/update}" method="post" id="replyform">
 				<!-- 'hidden'은 ui를 만들지 않고 데이터 숨겨서 보낼때 사용 -->
 				<input type="hidden" name="id" th:value="${reply.id}">
 				<input type="hidden" name="replyer" th:value="${session.sessionId}">
@@ -16,7 +16,8 @@
 				<table>
 					<tbody>
 						<tr>
-							<td><textarea name="rcontent" class="replycontent" th:text="${reply.rcontent}"></textarea></td>
+							<td><textarea name="rcontent" class="form-control" th:text="${reply.rcontent}"
+							rows="5" style="resize: none;"></textarea></td>
 						</tr>
 						<tr>
 							<td class="writeBot">
@@ -29,5 +30,6 @@
 				</table>
 			</form>
 		</div>
+	</div>
 </body>
 </html>

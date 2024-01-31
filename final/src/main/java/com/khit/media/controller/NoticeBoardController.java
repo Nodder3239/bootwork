@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.khit.media.dto.BoardDTO;
 import com.khit.media.entity.Board;
 import com.khit.media.entity.Reply;
 import com.khit.media.service.BoardService;
@@ -35,17 +36,17 @@ public class NoticeBoardController {
 	//글쓰기 페이지
 	@GetMapping("/write")
 	public String writeForm(Board board) {
-		return "/notice/write";
+		return "notice/write";
 	}
 	
 	//글쓰기
 	@PostMapping("/write")
-	public String write(Board board, MultipartFile boardFile) throws Exception {
+	public String write(BoardDTO boardDTO, MultipartFile boardFile) throws Exception {
 		//글쓰기 처리
-		board.setBoardHits(0);
-		board.setReplyCount(0);
-		board.setLikeCount(0);
-		boardService.save(board, boardFile);
+		boardDTO.setBoardHits(0);
+		boardDTO.setReplyCount(0);
+		boardDTO.setLikeCount(0);
+		boardService.save(boardDTO, boardFile);
 		return "redirect:/noticeboard/";
 	}
 	
@@ -55,7 +56,7 @@ public class NoticeBoardController {
 			Model model, @RequestParam(value="field", required = false) String field, 
 			@RequestParam(value="kw", required = false) String kw) {
 		String cate = "notice";
-		Page<Board> boardList;
+		Page<BoardDTO> boardList;
 		if ("t".equals(field)) {
 			boardList = boardService.findByTitle(kw, pageable, cate);
 		} else if ("c".equals(field)) {
@@ -79,7 +80,7 @@ public class NoticeBoardController {
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("field", field);
 		model.addAttribute("kw", kw);
-		return "/notice/list";
+		return "notice/list";
 	}
 	
 	
@@ -91,13 +92,13 @@ public class NoticeBoardController {
 		boardService.updateHits(id);
 		boardService.updateReplyCount(id);
 		//글 상세보기
-		Board boardDTO = boardService.findById(id);
+		BoardDTO boardDTO = boardService.findById(id);
 		//댓글 목록
 		List<Reply> replyList = replyService.findByBoardId(id);
 		model.addAttribute("board", boardDTO);
 		model.addAttribute("replyList", replyList);
 		model.addAttribute("page", pageable.getPageNumber());
-		return "/notice/detail";
+		return "notice/detail";
 	}
 	
 	@GetMapping("/delete/{id}")
@@ -111,15 +112,15 @@ public class NoticeBoardController {
 	@GetMapping("/update/{id}")
 	public String updateForm(Model model, @PathVariable Long id) {
 		boardService.updateHits2(id);
-		Board board = boardService.findById(id);
-		model.addAttribute("board", board);
-		return "/notice/update";
+		BoardDTO boardDTO = boardService.findById(id);
+		model.addAttribute("board", boardDTO);
+		return "notice/update";
 	}
 	
 	@PostMapping("/update")
-	public String update(@ModelAttribute Board board, MultipartFile boardFile) throws Exception {
-		boardService.update(board, boardFile);
-		return "redirect:/noticeboard/" + board.getId();
+	public String update(@ModelAttribute BoardDTO boardDTO, MultipartFile boardFile) throws Exception {
+		boardService.update(boardDTO, boardFile);
+		return "redirect:/noticeboard/" + boardDTO.getId();
 	}
 
 }

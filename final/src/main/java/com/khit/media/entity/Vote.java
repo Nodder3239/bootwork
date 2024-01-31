@@ -1,5 +1,7 @@
 package com.khit.media.entity;
 
+import com.khit.media.dto.VoteDTO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,4 +34,12 @@ public class Vote {
 	
 	@Column(length=30, nullable=false)
 	private String voter;
+	
+	public static Vote toSaveVoteEntity(VoteDTO voteDTO) {
+		Vote vote = Vote.builder()
+				.boardId(voteDTO.getBoardId())
+				.voter(voteDTO.getVoter())
+				.build();
+		return vote;
+	}
 }

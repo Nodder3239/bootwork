@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class DataController {
     @GetMapping("/data")
     public String data() {
-        return "/data/data";
+        return "data/data";
     }
 
     @GetMapping("/data2")
@@ -87,7 +87,7 @@ public class DataController {
         }
 
         // 렌더링할 뷰의 이름 반환
-        return "/data/data2";
+        return "data/data2";
     }
     
     
@@ -151,6 +151,6 @@ public class DataController {
         }
 
         // 렌더링할 뷰의 이름 반환
-        return "/data/data3";
+        return "data/data3";
     }
 }

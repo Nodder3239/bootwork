@@ -6,7 +6,7 @@
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-		<div th:replace="~{layout/header}"></div>
+		<div th:replace="~{header}"></div>
 	
 	<div id="content">
 		<h2>공지사항 상세보기</h2>
@@ -27,7 +27,7 @@
 					    <div th:if="${board.boardHits != null}">
 					        조회수: <span th:text="${board.boardHits} + '회'"></span>
 					    </div>
-					    <div th:if="${board.likeCount != null}">
+					    <div th:if="${board.likeCount != null && board.likeCount != 0}">
 					        추천수: <span th:text="${board.likeCount} + '회'"></span>
 					    </div>
 					</div>
@@ -44,7 +44,7 @@
 						</div>	
 						<div>
 							<a th:href="@{|/vote/${board.id}/작성자|}">
-						    	추천
+						    	[추천]
 						    </a>
 					    </div>
 					</div>		
@@ -110,7 +110,7 @@
 					<input type="hidden" name="replyer" th:value="${session.sessionId}">
 					<p>
 					<textarea name="rcontent" id="replyContent" class="form-control" rows="5"
-						placeholder="댓글 작성란" style="resize: none;"></textarea>
+						placeholder="댓글 작성란" style="resize: none;" required></textarea>
 					</p>
 					<button type="submit" class="btn btn-outline-secondary">등록</button>
 				</form>	

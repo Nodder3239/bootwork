@@ -14,6 +14,6 @@ public class ChatController {
     public String chatGET(HttpSession session){
         log.info("@ChatController, chat GET()");
         
-        return "/chat/chat";
+        return "chat/chat";
     }
 }

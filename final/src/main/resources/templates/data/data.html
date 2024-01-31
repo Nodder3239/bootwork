@@ -6,9 +6,8 @@
 <script th:src="@{https://code.jquery.com/jquery-3.7.1.min.js}"></script>
 </head>
 <body>
-	<div th:replace="~{layout/header}"></div>
-		<div id="content" >
-			<a th:href = "@{/}"><button type="button" id="btn1" class="btn btn-outline-secondary">처음으로</button></a>
+	<div th:replace="~{header}"></div>
+		<div id="data_content" >
 			<table id="result1" class="table" >
 				<thead>
 					<tr>
@@ -23,10 +22,7 @@
 				<tbody>
 					<!-- 데이터 출력 -->
 				</tbody>
-			
 			</table>
-			
-		
 		</div>
 		
 	

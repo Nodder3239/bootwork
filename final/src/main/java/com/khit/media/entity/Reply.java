@@ -1,5 +1,7 @@
 package com.khit.media.entity;
 
+import com.khit.media.dto.ReplyDTO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -34,5 +36,15 @@ public class Reply extends BaseEntity{
 	
 	@Column(length = 200, nullable = false)
 	private String rcontent;
+	
+	public static Reply toSaveReplyEntity(ReplyDTO replyDTO) {
+		Reply reply = Reply.builder()
+				.boardId(replyDTO.getBoardId())
+				.replyer(replyDTO.getReplyer())
+				.rcontent(replyDTO.getRcontent())
+				.build();
+		return reply;
+	}
+	
 	
 }

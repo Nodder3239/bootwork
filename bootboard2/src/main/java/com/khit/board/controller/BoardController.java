@@ -38,7 +38,7 @@ public class BoardController {
 	//글쓰기 페이지
 	@GetMapping("/write")
 	public String writeForm(Board board) {
-		return "/board/write";
+		return "board/write";
 	}
 	
 	//글쓰기
@@ -96,7 +96,7 @@ public class BoardController {
 		model.addAttribute("nowPage", nowPage);
 		model.addAttribute("field", field);
 		model.addAttribute("kw", kw);
-		return "/board/pagelist";
+		return "board/pagelist";
 	}
 
 	//글 상세보기
@@ -108,7 +108,7 @@ public class BoardController {
 		BoardDTO boardDTO = boardService.findById(id);
 		model.addAttribute("board", boardDTO);
 		model.addAttribute("page", pageable.getPageNumber());
-		return "/board/detail";
+		return "board/detail";
 	}
 	
 	@GetMapping("/delete/{id}")
@@ -122,7 +122,7 @@ public class BoardController {
 		boardService.updateHits2(id);
 		BoardDTO boardDTO = boardService.findById(id);
 		model.addAttribute("board", boardDTO);
-		return "/board/boardupdate";
+		return "board/boardupdate";
 	}
 	/*
 	@PostMapping("/update")
