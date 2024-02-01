@@ -29,7 +29,7 @@
 					<td class="td_title" style="width:200px;">
 					    <a th:href="@{|/noticeboard/${notice.id}|}">
 					    	<span th:text="${notice.boardTitle}"></span>
-					    	<span style="font-size:small;" th:if="${notice.replyCount != 0}" th:text="'[ ' + ${notice.replyCount} + ' ]'"></span>
+					    	<span style="font-size:0.7vw;" th:if="${notice.replyCount != 0}" th:text="'[ ' + ${notice.replyCount} + ' ]'"></span>
 					    </a>
 					</td>
 

@@ -97,7 +97,7 @@
 					        수정일시: [[${#temporals.format(reply.updatedDate, 'yyyy-MM-dd HH:mm:ss')}]]
 					    </span>
 					</p>	
-					<p th:if="${sessionId == reply.replyer}">
+					<p th:if="${session.sessionId == reply.replyer}">
 					<a th:href="@{|/reply/update/${reply.id }|}">수정</a> | 
 						<a th:href="@{|/reply/delete/${reply.id }|}">삭제</a>
 					</p>
