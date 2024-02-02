@@ -11,7 +11,7 @@
 <header th:fragment="header-fragment">
 	<div id="head_header">
 		<div style="background: #fff; height: 80px;">
-			<h1><a th:href="@{/}">4노라면</a></h1>
+			<h1><a th:href="@{/}">Plan B</a></h1>
 		</div>
 		<div>
 	   		<nav>
@@ -26,7 +26,7 @@
 							<li><a th:href="@{/data/data3}">지진</a></li>
 						</ul>
 					</li>		
-					<li><a th:href="@{/chat/}">채팅방</a></li>
+					<li><a th:href="@{#}" onclick="chatOpen()">채팅방</a></li>
 					<li class="nav-item dropdown">
 		                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
 		                  게시판
@@ -34,7 +34,7 @@
 		                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<li><a th:href="@{/board/main}">인기글</a></li>
 							<li><a th:href="@{/noticeboard/}">공지사항</a></li>
-							<li><a th:href="@{/infoboard/}">제보/신고</a></li>
+							<li><a th:href="@{/infoboard/}">제보/소식</a></li>
 							<li><a th:href="@{/qnaboard/}">질문/답변</a></li>
 						</ul>
 	              	</li>
@@ -44,8 +44,16 @@
 			</nav>
        </div>
     </div>
-    <div id="socketAlertDiv">
-	<div id="socketAlert" class="alert alert-warning" role="alert"></div>
-</div>
+ 
+<script th:inline="javascript">
+
+function chatOpen() {
+    let popupX = (window.screen.width - 820);
+    let popupY = (window.screen.height - 400);
+    
+    window.open("/chat/", "채팅방", "width=820, height=400, left=" + popupX + ", top=" + popupY);
+}
+</script>
+
 </header>
 </html>

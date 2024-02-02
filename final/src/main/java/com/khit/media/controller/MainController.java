@@ -12,6 +12,7 @@ import com.khit.media.dto.BoardDTO;
 import com.khit.media.entity.Board;
 import com.khit.media.service.BoardService;
 
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -21,11 +22,16 @@ public class MainController {
 	private final BoardService boardService;
 	
 	@GetMapping
-	public String index(@PageableDefault(page=1) Pageable pageable, Model model) {
+	public String index(@PageableDefault(page=1) Pageable pageable, Model model, HttpSession session) {
 		Page<BoardDTO> boardList = boardService.findListAllOrderByVoteCount(pageable);	
 		model.addAttribute("boardList", boardList);
 		BoardDTO notice = boardService.findNotice();
 		model.addAttribute("notice", notice);
+		
+		if(session != null) {
+		String id = (String) session.getAttribute("sessionId");
+        model.addAttribute("chatname", id);
+		}
 		return "index";	//index.html
 	}
 }

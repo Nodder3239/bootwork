@@ -11,7 +11,7 @@
 
 		<div id="content">
 		<div class="content_list">
-		<h2 class="text-left">제보게시판</h2>
+		<h2 class="text-left">재난 제보 소식</h2>
 		<table class="table" id="tbl_list">
 			<thead>
 				<tr>
@@ -46,6 +46,7 @@
 	                	<span th:if="${board.boardCategory eq 'info4'}"><a th:href="@{/infoboard/?cate=info4}">대전/충청</a></span>
 	                	<span th:if="${board.boardCategory eq 'info5'}"><a th:href="@{/infoboard/?cate=info5}">광주/전라</a></span>
 	                	<span th:if="${board.boardCategory eq 'info6'}"><a th:href="@{/infoboard/?cate=info6}">부산/경상</a></span>
+	                	<span th:if="${board.boardCategory eq 'info7'}"><a th:href="@{/infoboard/?cate=info7}">제주</a></span>
 	                </th>
 				    <td class="td_title" style="width:200px;">
 					    <a th:href="@{|/infoboard/${board.id}|(page=${boardList.number+1})}">
@@ -85,7 +86,7 @@
 	       </div>
           <!-- 페이징처리 끝 -->
 		<!-- 검색 영역 -->
-			<div style="width:50%; margin: 0px auto;">
+			<div class="search_btn">
 			  <form th:action="@{/infoboard/}" method="get">
 			  	<div style="display: flex; justify-content: center;">
 			  		<input type="hidden" name="cate" th:value="${cate}">
@@ -96,12 +97,13 @@
 	                </select>
 					<input type="text" class="form-control" name="kw" th:value="${kw}" id="inputGroupFile04" 
 							placeholder="검색" aria-describedby="inputGroupFileAddon04" aria-label="Upload" style="width:50%">
-					<button type="submit" class="btn btn-outline-secondary"><i class="fa-solid fa-magnifying-glass"></i></button>
-			  		<a th:href = "@{/infoboard/write}"><button type="button" class="btn btn-outline-secondary">글쓰기</button></a>
+					<button type="submit" class="board_btn2"><i class="fa-solid fa-magnifying-glass"></i></button>
+			  		<a th:href = "@{/infoboard/write}"><button type="button" class="board_btn1">글쓰기</button></a>
 			  	</div>
 			  </form>
 			 </div>
 		</div>
 	</div>
+	
 </body>
 </html>

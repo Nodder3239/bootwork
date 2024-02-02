@@ -34,7 +34,7 @@ import lombok.ToString;
 public class Board extends BaseEntity{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Integer id;
+	private Long id;
 	
 	@Column(nullable = false)
 	private String title;
