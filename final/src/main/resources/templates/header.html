@@ -36,10 +36,12 @@
 							<li><a th:href="@{/noticeboard/}">공지사항</a></li>
 							<li><a th:href="@{/infoboard/}">제보/소식</a></li>
 							<li><a th:href="@{/qnaboard/}">질문/답변</a></li>
+							<li><a th:href="@{/report/}">신고</a></li>
 						</ul>
 	              	</li>
-					<li th:if="${session.sessionId == null }"><a th:href="@{/member/login}">로그인</a></li>
-					<li th:if="${session.sessionId != null }"><a th:href="@{/member/logout}">로그아웃</a></li>					
+					<li sec:authorize="isAnonymous()"><a th:href="@{/login}">로그인</a></li>
+					<li sec:authorize="isAuthenticated()"><a th:href="@{/logout}">로그아웃</a></li>
+									
 				</ul>
 			</nav>
        </div>

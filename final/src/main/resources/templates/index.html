@@ -93,7 +93,7 @@
 		
 	</div>
 	<div style="position: absolute; top: 90%; left: 90%; transform: translate(-90%, -90%); z-index: 1;">
-		<p th:if="${session.sessionRole eq 'ADMIN'}"><a th:href="@{#}">회원목록</a></p>
+		<p sec:authorize="hasAnyAuthority('ADMIN')"><a th:href="@{#}">회원목록</a></p>
 	</div>	
 	
 <script th:src="@{/js/weather.js}"></script>	

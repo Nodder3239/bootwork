@@ -100,8 +100,9 @@ public class BoardService {
 				board.getBoardWriter(), board.getBoardContent(), 
 				board.getBoardCategory(), board.getBoardHits(),
 				board.getReplyCount(), board.getLikeCount(),
-				board.getFilename(), board.getFilepath(),
-				board.getCreatedDate(), board.getUpdatedDate()));
+				board.getReportCount(),	board.getFilename(), 
+				board.getFilepath(), board.getCreatedDate(), 
+				board.getUpdatedDate()));
 		
 		return boardDTOList;
 	}
@@ -117,8 +118,9 @@ public class BoardService {
 				board.getBoardWriter(), board.getBoardContent(), 
 				board.getBoardCategory(), board.getBoardHits(),
 				board.getReplyCount(), board.getLikeCount(),
-				board.getFilename(), board.getFilepath(),
-				board.getCreatedDate(), board.getUpdatedDate()));
+				board.getReportCount(),	board.getFilename(), 
+				board.getFilepath(), board.getCreatedDate(), 
+				board.getUpdatedDate()));
 		return boardDTOList;
    	}
 
@@ -133,8 +135,9 @@ public class BoardService {
 				board.getBoardWriter(), board.getBoardContent(), 
 				board.getBoardCategory(), board.getBoardHits(),
 				board.getReplyCount(), board.getLikeCount(),
-				board.getFilename(), board.getFilepath(),
-				board.getCreatedDate(), board.getUpdatedDate()));
+				board.getReportCount(),	board.getFilename(), 
+				board.getFilepath(), board.getCreatedDate(), 
+				board.getUpdatedDate()));
 		return boardDTOList;
    	}
 
@@ -184,8 +187,9 @@ public class BoardService {
 				board.getBoardWriter(), board.getBoardContent(), 
 				board.getBoardCategory(), board.getBoardHits(),
 				board.getReplyCount(), board.getLikeCount(),
-				board.getFilename(), board.getFilepath(),
-				board.getCreatedDate(), board.getUpdatedDate()));				
+				board.getReportCount(),	board.getFilename(), 
+				board.getFilepath(), board.getCreatedDate(), 
+				board.getUpdatedDate()));				
 		return boardDTOList;
 	}
 	
@@ -201,8 +205,9 @@ public class BoardService {
 				board.getBoardWriter(), board.getBoardContent(), 
 				board.getBoardCategory(), board.getBoardHits(),
 				board.getReplyCount(), board.getLikeCount(),
-				board.getFilename(), board.getFilepath(),
-				board.getCreatedDate(), board.getUpdatedDate()));
+				board.getReportCount(),	board.getFilename(), 
+				board.getFilepath(), board.getCreatedDate(), 
+				board.getUpdatedDate()));
 		return boardDTOList;
 	}
 
@@ -217,8 +222,9 @@ public class BoardService {
 				board.getBoardWriter(), board.getBoardContent(), 
 				board.getBoardCategory(), board.getBoardHits(),
 				board.getReplyCount(), board.getLikeCount(),
-				board.getFilename(), board.getFilepath(),
-				board.getCreatedDate(), board.getUpdatedDate()));		
+				board.getReportCount(),	board.getFilename(), 
+				board.getFilepath(), board.getCreatedDate(), 
+				board.getUpdatedDate()));		
 		return boardDTOList;
 	}
 
@@ -233,8 +239,9 @@ public class BoardService {
 				board.getBoardWriter(), board.getBoardContent(), 
 				board.getBoardCategory(), board.getBoardHits(),
 				board.getReplyCount(), board.getLikeCount(),
-				board.getFilename(), board.getFilepath(),
-				board.getCreatedDate(), board.getUpdatedDate()));
+				board.getReportCount(),	board.getFilename(), 
+				board.getFilepath(), board.getCreatedDate(), 
+				board.getUpdatedDate()));
 		return boardDTOList;
    	}
 
@@ -249,8 +256,9 @@ public class BoardService {
 				board.getBoardWriter(), board.getBoardContent(), 
 				board.getBoardCategory(), board.getBoardHits(),
 				board.getReplyCount(), board.getLikeCount(),
-				board.getFilename(), board.getFilepath(),
-				board.getCreatedDate(), board.getUpdatedDate()));
+				board.getReportCount(),	board.getFilename(), 
+				board.getFilepath(), board.getCreatedDate(), 
+				board.getUpdatedDate()));
 		return boardDTOList;
    	}
 	
@@ -262,6 +270,11 @@ public class BoardService {
 	@Transactional
 	public void updateLikeCount(Long id) {
 		boardRepository.updateLikeCount(id);		
+	}
+	
+	@Transactional
+	public void updateReportCount(Long id) {
+		boardRepository.updateReportCount(id);		
 	}
 
 	public Page<BoardDTO> findListAllOrderByVoteCount(Pageable pageable) {
@@ -275,8 +288,9 @@ public class BoardService {
 				board.getBoardWriter(), board.getBoardContent(), 
 				board.getBoardCategory(), board.getBoardHits(),
 				board.getReplyCount(), board.getLikeCount(),
-				board.getFilename(), board.getFilepath(),
-				board.getCreatedDate(), board.getUpdatedDate()));
+				board.getReportCount(),	board.getFilename(), 
+				board.getFilepath(), board.getCreatedDate(), 
+				board.getUpdatedDate()));
 		return boardDTOList;
 	}
 
@@ -297,6 +311,5 @@ public class BoardService {
 		boardRepository.deleteByBoardWriter(memberName);
 		
 	}
-
 
 }

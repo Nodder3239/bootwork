@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -46,6 +45,10 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
 	List<Board> findByBoardCategoryContaining(String cate);
 
 	void deleteByBoardWriter(String memberName);
+	
+	@Modifying
+    @Query(value="UPDATE Board b SET b.reportCount = (SELECT count(t.id) FROM Report t WHERE t.boardId = :id) WHERE b.id = :id")
+	public void updateReportCount(Long id);
 
 
 }

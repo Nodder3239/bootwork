@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>제보게시판</title>
+<title>신고게시판</title>
 <link rel="stylesheet" th:href="@{/css/style.css}">
 <script src="https://kit.fontawesome.com/69798321c6.js" ></script>
 </head>
@@ -12,35 +11,22 @@
 
       <div id="content">
       <div class="content_list">
-      <h2 style="font-weight: bold;">제보게시판</h2>
+      <h2 style="font-weight: bold;">신고게시판</h2>
       <table class="tbl_list">
          <thead>
             <tr style="border-bottom: 2px solid #000; height: 50px;">
-               <th scope="col"><a th:href="@{/infoboard/}">지역</a></th>
+               <th scope="col">글분류</th>
                <th scope="col">글제목</th>
                <th scope="col">글쓴이</th>
                <th scope="col">작성일</th>
-               <th scope="col">조회수</th>
-               <th scope="col">추천</th>
+               <th scope="col">신고수</th>
+               <th scope="col">삭제</th>
             </tr>
          </thead>
          <tbody>
-         	<tr style="background:#fff; border-bottom: 1px solid #000; height: 50px;">
-				<th><a th:href="@{/noticeboard/}">공지사항</a></th>
-				<td class="td_title" style="width:200px;">
-				    <a th:href="@{|/noticeboard/${notice.id}|}">
-				    	<span th:text="${notice.boardTitle}"></span>
-				    	<span style="font-size:small;" th:if="${notice.replyCount != 0}" th:text="'[ ' + ${notice.replyCount} + ' ]'"></span>
-				    </a>
-				</td>
-
-                <td th:text="${notice.boardWriter}"></td>
-                <td th:utext="${notice.updatedDate != null ? #temporals.format(notice.updatedDate, 'yyyy-MM-dd hh:mm') : #temporals.format(notice.createdDate, 'yyyy-MM-dd hh:mm')}"></td>
-                <td th:text="${notice.boardHits}"></td>
-                <td th:text="${notice.likeCount}"></td>
-            </tr>
             <tr th:each="board : ${boardList}" style="border-bottom: 1px solid #000; height: 50px;">
                 <th>
+                	<span th:if="${board.boardCategory eq 'notice'}"><a th:href="@{/infoboard/?cate=notice}">공지사항</a></span>
                 	<span th:if="${board.boardCategory eq 'info1'}"><a th:href="@{/infoboard/?cate=info1}">서울</a></span>
                 	<span th:if="${board.boardCategory eq 'info2'}"><a th:href="@{/infoboard/?cate=info2}">인천/경기</a></span>
                 	<span th:if="${board.boardCategory eq 'info3'}"><a th:href="@{/infoboard/?cate=info3}">강원</a></span>
@@ -48,10 +34,11 @@
                 	<span th:if="${board.boardCategory eq 'info5'}"><a th:href="@{/infoboard/?cate=info5}">광주/전라</a></span>
                 	<span th:if="${board.boardCategory eq 'info6'}"><a th:href="@{/infoboard/?cate=info6}">부산/경상</a></span>
                 	<span th:if="${board.boardCategory eq 'info7'}"><a th:href="@{/infoboard/?cate=info7}">제주</a></span>
+                	<span th:if="${board.boardCategory eq 'qna'}"><a th:href="@{/infoboard/?cate=qna}">QnA</a></span>
                 </th>
 
                 <td class="td_title" style="width:40%;">
-                   <a th:href="@{|/infoboard/${board.id}|(page=${boardList.number+1})}">
+                   <a th:href="@{|/qnaboard/${board.id}|(page=${boardList.number+1})}">
                       <span th:text="${board.boardTitle}"></span>
                       <span style="font-size:small;" th:if="${board.replyCount != 0}" th:text="'[ ' + ${board.replyCount} + ' ]'"></span>
                    </a>
@@ -60,7 +47,9 @@
                    <td th:text="${board.boardWriter}"></td>
                    <td th:utext="${board.updatedDate != null ? #temporals.format(board.updatedDate, 'yyyy-MM-dd hh:mm') : #temporals.format(board.createdDate, 'yyyy-MM-dd hh:mm')}"></td>
                    <td th:text="${board.boardHits}"></td>
-                   <td th:text="${board.likeCount}"></td>
+                   <td><a th:href="@{|/report/delete/${board.id}|}" onclick="return confirm('정말로 삭제하시겠습니까?')">
+                   		<i class="fa-solid fa-square-xmark"></i>
+                   </a></td>
                </tr>
          </tbody>
       </table>
@@ -68,39 +57,39 @@
          <div style="width: 50%; margin: 10px auto;">
                  <ul class="pagination_btn">                 
                       <li th:class="${nowPage eq 1} ? 'page-btn disabled' : 'page-btn'">
-                          <a class="page-box" th:href="${startPage eq 1}? '/infoboard/?page=1' : @{/infoboard/(page=${startPage-1})}">&lt;&lt;</a>
+                          <a class="page-box" th:href="${startPage eq 1}? '/report/?page=1' : @{/report/(page=${startPage-1})}">&lt;&lt;</a>
                       </li>
                       <li th:class="${nowPage eq 1} ? 'page-btn disabled' : 'page-btn'">
-                          <a class="page-box" th:href="${boardList.first}? '/infoboard/?page=1' : @{/infoboard/(page=${boardList.number})}">&lt;</a>
+                          <a class="page-box" th:href="${boardList.first}? '/report/?page=1' : @{/report/(page=${boardList.number})}">&lt;</a>
                       </li>
                       <li th:class="${nowPage eq page} ? 'page-btn active' : 'page-btn'" th:each="page : ${#numbers.sequence(startPage, endPage)}">
-                      <a class="page-box" th:href="@{/infoboard/(page=${page})}">
+                      <a class="page-box" th:href="@{/report/(page=${page})}">
                           <span th:text="${page}"></span>
                       </a>
                   </li>
                       <li th:class="${nowPage eq boardList.totalPages} ? 'page-btn disabled' : 'page-btn'">
-                          <a class="page-box" th:href="${boardList.last}? @{/infoboard/(page=${endPage})} : @{/infoboard/(page=${boardList.number+2})}">&gt;</a>
+                          <a class="page-box" th:href="${boardList.last}? @{/report/(page=${endPage})} : @{/report/(page=${boardList.number+2})}">&gt;</a>
                       </li>
                       <li th:class="${nowPage eq boardList.totalPages} ? 'page-btn disabled' : 'page-btn'">
-                          <a class="page-box" th:href="${boardList.totalPages eq endPage}? @{/infoboard/(page=${endPage})} : @{/infoboard/(page=${endPage+1})}">&gt;&gt;</a>
+                          <a class="page-box" th:href="${boardList.totalPages eq endPage}? @{/report/(page=${endPage})} : @{/report/(page=${endPage+1})}">&gt;&gt;</a>
                       </li>
                  </ul>
           </div>
           <!-- 페이징처리 끝 -->
       <!-- 검색 영역 -->
          <div class="search_btn">
-           <form th:action="@{/infoboard/}" method="get">
+           <form th:action="@{/reportboard/}" method="get">
               <div style="display: flex; justify-content: center;">
-               <select name="field" class="toggle_btn">
-                  <option value="t" th:selected="${field == 't'}" th:text="제목"></option>
-                       <option value="c" th:selected="${field == 'c'}" th:text="내용"></option>
-                       <option value="w" th:selected="${field == 'w'}" th:text="작성자"></option>
-                   </select>
-               <input type="text" class="search_box" name="kw" th:value="${kw}" id="inputGroupFile04" 
-                     placeholder="검색" aria-describedby="inputGroupFileAddon04" aria-label="Upload" style="width:50%">
-               <button type="submit" class="board_btn2">검색</button>
-                 <a th:href = "@{/infoboard/write}"><button type="button" class="board_btn1">글쓰기</button></a>
-              </div>
+	               <select name="field" class="toggle_btn">
+	                  <option value="t" th:selected="${field == 't'}" th:text="제목"></option>
+	                       <option value="c" th:selected="${field == 'c'}" th:text="내용"></option>
+	                       <option value="w" th:selected="${field == 'w'}" th:text="작성자"></option>
+	                   </select>
+	               <input type="text" class="search_box" name="kw" th:value="${kw}" id="inputGroupFile04" 
+	                     placeholder="검색" aria-describedby="inputGroupFileAddon04" aria-label="Upload" style="width:50%">
+	               <button type="submit" class="board_btn2">검색</button>
+					<span class="board_btn1"></span>
+				</div>
            </form>
           </div>
       </div>

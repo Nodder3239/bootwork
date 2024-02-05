@@ -1,9 +1,11 @@
 package com.khit.media.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.khit.media.dto.ReplyDTO;
 import com.khit.media.entity.Reply;
 import com.khit.media.repository.ReplyRepository;
 
@@ -17,22 +19,38 @@ public class ReplyService {
 	private final ReplyRepository replyRepository;
 	
 	
-	public void insert(Reply reply) {
+	public void insert(ReplyDTO replyDTO) {
+		Reply reply = Reply.toSaveReplyEntity(replyDTO);
 		replyRepository.save(reply);
 	}
 
 
-	public List<Reply> findByBoardId(Long boardId) {	
-		return replyRepository.findByBoardId(boardId);
+	public List<ReplyDTO> findByBoardId(Long boardId) {	
+		List<Reply> replyList = replyRepository.findByBoardId(boardId);
+		List<ReplyDTO> replyDTOList = new ArrayList<>();
+		
+		for(Reply reply : replyList) {
+			ReplyDTO replyDTO = ReplyDTO.toSaveReplyDTO(reply);
+			replyDTOList.add(replyDTO);
+		}
+		return replyDTOList;
 	}
 
 
-	public Reply findById(Long id) {
-		return replyRepository.findById(id).get();
+	public ReplyDTO findById(Long id) {
+		Reply reply = replyRepository.findById(id).get();
+		ReplyDTO replyDTO = ReplyDTO.toSaveReplyDTO(reply);
+		return replyDTO;
+	}
+	
+	public Reply findEntityById(Long id) {
+		Reply reply = replyRepository.findById(id).get();
+		return reply;
 	}
 
 
-	public void update(Reply reply) {
+	public void update(ReplyDTO replyDTO) {
+		Reply reply = Reply.toSaveReplyEntity(replyDTO);
 		replyRepository.save(reply);		
 	}
 

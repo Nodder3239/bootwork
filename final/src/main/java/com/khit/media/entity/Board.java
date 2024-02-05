@@ -49,6 +49,9 @@ public class Board extends BaseEntity{
 	@Column(columnDefinition = "Integer default 0")
 	private Integer likeCount;
 	
+	@Column(columnDefinition = "Integer default 0")
+	private Integer reportCount;
+	
 	//write.html에서 name 값과 다른 이름으로 만들 것
 	//MultipartFile과 String 타입이 서로 다르므로<
 	@Column
@@ -66,6 +69,7 @@ public class Board extends BaseEntity{
 				.boardHits(boardDTO.getBoardHits())
 				.replyCount(boardDTO.getReplyCount())
 				.likeCount(boardDTO.getLikeCount())
+				.reportCount(boardDTO.getReportCount())
 				.filename(boardDTO.getFilename())
 				.filepath(boardDTO.getFilepath())
 				.build();
@@ -82,6 +86,7 @@ public class Board extends BaseEntity{
 				.boardHits(boardDTO.getBoardHits())
 				.replyCount(boardDTO.getReplyCount())
 				.likeCount(boardDTO.getLikeCount())
+				.reportCount(boardDTO.getReportCount())
 				.filename(boardDTO.getFilename())
 				.filepath(boardDTO.getFilepath())
 				.build();
@@ -98,6 +103,7 @@ public class Board extends BaseEntity{
 				.boardHits(boardDTO.getBoardHits())
 				.replyCount(boardDTO.getReplyCount())
 				.likeCount(boardDTO.getLikeCount())
+				.reportCount(boardDTO.getReportCount())
 				.build();
 		return board;
 	}

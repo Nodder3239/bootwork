@@ -43,6 +43,9 @@ public class BoardDTO{
 	@Column(columnDefinition = "Integer default 0")
 	private Integer likeCount;
 	
+	@Column(columnDefinition = "Integer default 0")
+	private Integer reportCount;
+	
 	//write.html에서 name 값과 다른 이름으로 만들 것
 	//MultipartFile과 String 타입이 서로 다르므로<
 	@Column
@@ -65,6 +68,7 @@ public class BoardDTO{
 				.boardHits(board.getBoardHits())
 				.replyCount(board.getReplyCount())
 				.likeCount(board.getLikeCount())
+				.reportCount(board.getReportCount())
 				.filename(board.getFilename())
 				.filepath(board.getFilepath())
 				.createdDate(board.getCreatedDate())

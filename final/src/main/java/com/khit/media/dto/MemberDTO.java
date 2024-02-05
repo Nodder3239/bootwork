@@ -1,0 +1,62 @@
+package com.khit.media.dto;
+
+import java.sql.Timestamp;
+
+import com.khit.media.entity.Member;
+import com.khit.media.entity.Role;
+
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.Size;
+import lombok.Builder;
+import lombok.Data;
+
+@Builder
+@Data
+public class MemberDTO {
+	
+	private Integer id;
+	
+	//아이디는 4자~20자로 입력
+	@Size(min=4, max=20)
+	@NotEmpty(message = "사용자 ID는 필수 항목입니다.")
+	private String memberId;
+	
+	@NotEmpty(message = "비밀번호는 필수 항목입니다.")
+	private String password;
+	
+	@NotEmpty(message = "이름은 필수 항목입니다.")
+	private String name;
+	
+	@NotEmpty(message = "이메일은 필수 항목입니다.")
+	private String memberEmail;
+	
+	@NotEmpty(message = "나이는 필수 항목입니다.")
+	private String memberAge;
+	
+	@NotEmpty(message = "전화번호는 필수 항목입니다.")
+	private String mnumber;
+	   
+	@NotEmpty(message = "지역은 필수 항목입니다.")
+	private String memberArea;
+	
+	private Role role;
+	
+	//entity(model<db>에 저장됨) -> dto(view로 보기)로 변환
+	//목록보기, 상세보기
+	public static MemberDTO toSaveDTO(Member member) {
+		MemberDTO memberDTO = MemberDTO.builder()
+				.id(member.getId())
+				.memberId(member.getMemberId())
+				.password(member.getPassword())
+				.name(member.getName())
+				.memberEmail(member.getMemberEmail())
+				.memberAge(member.getMemberAge())
+				.mnumber(member.getMnumber())
+				.memberArea(member.getMemberArea())				
+				.role(member.getRole())
+				.build();
+		
+		return memberDTO;
+	}
+
+}

@@ -44,10 +44,7 @@ public class Member extends BaseEntity{
 	
 	@Column(nullable = false, length = 30)
 	private String name;
-	
-	//@Column
-	//private String role;   //권한
-	
+		
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	
@@ -72,14 +69,5 @@ public class Member extends BaseEntity{
 				.build();
 		return member;
 	}
-	
-	
-	//Board와 관계 매핑
-	//주인 설정(다쪽이-board 주인)
-	//cascade : 참조된 객체가 삭제되면 참조하는 객체도 삭제됨
-	@OneToMany(mappedBy="member", cascade = CascadeType.ALL)
-	private List<Board> boardList = new ArrayList<>();
-	
-	@OneToMany(mappedBy="member", cascade = CascadeType.ALL)
-	private List<Reply> replyList;
+
 }

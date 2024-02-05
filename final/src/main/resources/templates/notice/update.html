@@ -6,34 +6,46 @@
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-	<div th:replace="~{header}"></div>
 
-   		<div id="content">
-        <h2>공지사항 수정하기</h2>
-        <form th:action="@{/noticeboard/update}" method="post" enctype="multipart/form-data">
-            <input type="hidden" name="id" th:value="${board.id}">
-            <input type="hidden" name="boardCategory" th:value="notice">
-            <input type="hidden" name="boardHits" th:value="${board.boardHits}">
-            <input type="hidden" name="boardWriter" th:value="${board.boardWriter}">
+      <div th:replace="~{header}"></div>
+   
+      <div id="content">
+      <h2>공지사항 글 수정</h2>
+      <form th:action="@{/noticeboard/update}" method="post" th:object="${board}" enctype="multipart/form-data">
+         <input type="hidden" name="id" th:value="${board.id}">
+         <input type="hidden" name="boardCategory" th:value="${board.boardCategory}">
+         <input type="hidden" name="boardHits" th:value="${board.boardHits}">
+         <input type="hidden" name="boardWriter" th:value="${board.boardWriter}">
 
-            <input type="text" name="boardTitle" class="form-control mt-4 mb-2" th:value="${board.boardTitle}" required>
-            <div class="form-group">
-                <textarea class="form-control" rows="10" name="boardContent" required style="resize: none;"
+         <input type="text" name="boardTitle" class="form-control mt-4 mb-2" th:value="${board.boardTitle}" required>
+         <div class="form-group">
+		    <div class="custom-file">
+		        <input type="file" accept="image/*" class="custom-file-input" id="file_upload" name="boardFile" onchange="displayFileName(this)">
+		        <div class="file-label-container">
+		            <label class="custom-file-label" for="file_upload">사진 선택</label>
+		            <span class="file-name" id="file_name"></span> 
+		        </div>
+		    </div>
+		</div>	  
+         <div class="form-group">
+                <textarea class="form-control" rows="15" name="boardContent" required style="resize: none;"
                     th:text="${board.boardContent}"></textarea>
             </div>
-            <div class="form-group">
-                <label for="exampleFormControlFile1">사진 수정</label>
-                <input type="file" accept="image/*" class="form-control-file" id="exampleFormControlFile1" name="boardFile" />
-                <!-- <input type="hidden" name="filepath" th:value="${board.filepath}"> -->
-            </div>
-            <div class="my-1">
-	            <input class="btn btn-outline-secondary" type="submit" value="수정">
-	            <input class="btn btn-outline-secondary" type="reset" value="초기화">
-	            <a th:href="@{|/noticeboard/${board.id}|}">
-	                <input type="button" class="btn btn-outline-secondary" value="뒤로">
-	            </a>
-            </div>
-        </form>
-    </div>
+         <div class="my-1">
+            <input class="board_btn" type="submit" value="수정" style="margin: 5px;">
+            <input class="board_btn" type="reset" value="초기화" style="margin: 5px;">
+            <a th:href="@{|/noticeboard/${board.id}|}">
+                <input type="button" class="board_btn" value="뒤로" style="margin: 5px;">
+            </a>
+           </div>
+      </form>
+   </div>
+<script>
+function displayFileName(input) {
+    var fileName = input.files[0].name;
+    var output = document.getElementById('file_name');
+    output.innerText = fileName;
+}
+</script>
 </body>
 </html>

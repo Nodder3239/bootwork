@@ -2,22 +2,16 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>정보게시판</title>
+<title>제보게시판</title>
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
-<body>	
-	<th:block th:if="${session.sessionId == null}">
-	    <script type="text/javascript">
-	        alert("로그인 후 이용 가능합니다.");
-	        location.href = "/member/login";
-	    </script>
-	</th:block>
-		<div th:replace="~{header}"></div>
-	
-		<div id="content">
-		<h2>정보게시판 글쓰기</h2>
-		<form th:action="@{/infoboard/write}" method="post" th:object="${board}" enctype="multipart/form-data">
-			<select class="form-select" aria-label="Disabled select example" name="boardCategory">
+<body>
+      <div th:replace="~{header}"></div>
+   
+      <div id="content">
+      <h2>제보게시판 글쓰기</h2>
+      <form th:action="@{/infoboard/write}" method="post" th:object="${boardDTO}" enctype="multipart/form-data">
+         <select class="form-select" aria-label="Disabled select example" name="boardCategory" style="margin-bottom: -10px;">
 			  <option value="info1" selected>서울</option>
 			  <option value="info2">인천/경기</option>
 			  <option value="info3">강원</option>
@@ -25,28 +19,37 @@
 			  <option value="info5">광주/전라</option>
 			  <option value="info6">부산/경상</option>
 			  <option value="info7">제주</option>
-			</select>
-			<input type="text" th:field=*{boardTitle} class="form-control mt-4 mb-2"
-				placeholder="제목을 입력해주세요." required
-			>	
-			<input type="hidden" name="boardWriter" th:value="${session.sessionId}">
-			<div class="form-group">
-				<textarea class="form-control" rows="10" th:field=*{boardContent}
-					placeholder="내용을 입력해주세요" style="resize: none;" required
-				></textarea>
-			</div>
-			<div class="form-group">
-			    <label for="exampleFormControlFile1">사진 업로드</label>
-			    <div class="my-1">
-			   		<input type="file" accept="image/*" class="form-control-file" id="exampleFormControlFile1" name=boardFile>
-			    </div>
-			</div>
-			<div class="d-flex justify-content-center">
-				<input class="btn btn-outline-secondary" type="submit" value="등록">&nbsp;
-				<input class="btn btn-outline-secondary" type="reset" value="초기화">&nbsp;
-				<a th:href="@{/infoboard/}"><input type="button" class="btn btn-outline-secondary" value="목록"></a>
-			</div>
-		</form>
-	</div>
+		 </select>
+         <input type="text" id=boardTitle th:field=*{boardTitle} class="form-control mt-4 mb-2"
+            placeholder="제목을 입력해주세요." required
+         >
+         <div class="form-group">
+		    <div class="custom-file">
+		        <input type="file" accept="image/*" class="custom-file-input" id="file_upload" name="boardFile" onchange="displayFileName(this)">
+		        <div class="file-label-container">
+		            <label class="custom-file-label" for="file_upload">사진 선택</label>
+		            <span class="file-name" id="file_name"></span> 
+		        </div>
+		    </div>
+		</div>	  
+         <div class="form-group">
+            <textarea class="form-control" rows="15" th:field=*{boardContent}
+               placeholder="내용을 입력해주세요" style="resize: none;" required
+            ></textarea>
+         </div>
+         <div class="d-flex justify-content-center" >
+            <button class="board_btn" type="submit" id="noticeBtn" style="margin: 8px;">등록</button>
+            <button class="board_btn" type="reset" style="margin: 8px;">초기화</button>
+            <a th:href="@{/infoboard/}"><input type="button" class="board_btn" value="목록" style="margin: 8px;"></a>
+         </div>
+      </form>
+   </div>
+<script>
+function displayFileName(input) {
+    var fileName = input.files[0].name;
+    var output = document.getElementById('file_name');
+    output.innerText = fileName;
+}
+</script>
 </body>
 </html>

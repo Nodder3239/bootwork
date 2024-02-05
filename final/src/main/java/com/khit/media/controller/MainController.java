@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.khit.media.dto.BoardDTO;
-import com.khit.media.entity.Board;
 import com.khit.media.service.BoardService;
 
 import jakarta.servlet.http.HttpSession;

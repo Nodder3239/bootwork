@@ -1,11 +1,13 @@
 package com.khit.media.controller;
 
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import jakarta.servlet.http.HttpSession;
+import com.khit.media.config.SecurityUser;
+
 import lombok.RequiredArgsConstructor;
 
 @RequestMapping("/chat")
@@ -14,8 +16,8 @@ import lombok.RequiredArgsConstructor;
 public class ChatController {
 	
 	@GetMapping("/")
-	public String chat(Model model, HttpSession session) {
-		String id = (String) session.getAttribute("sessionId");
+	public String chat(Model model, @AuthenticationPrincipal SecurityUser principal) {
+		String id = principal.getMember().getName();
         model.addAttribute("chatname", id);
 		return "chat/chat";
 	}

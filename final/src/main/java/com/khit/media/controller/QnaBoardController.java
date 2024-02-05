@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.khit.media.config.SecurityUser;
 import com.khit.media.dto.BoardDTO;
-import com.khit.media.entity.Board;
-import com.khit.media.entity.Reply;
+import com.khit.media.dto.ReplyDTO;
 import com.khit.media.service.BoardService;
 import com.khit.media.service.ReplyService;
 import com.khit.media.service.VoteService;
@@ -35,14 +36,16 @@ public class QnaBoardController {
 	
 	//글쓰기 페이지
 	@GetMapping("/write")
-	public String writeForm(Board board) {
+	public String writeForm(BoardDTO boardDTO) {
 		return "qna/write";
 	}
 	
 	//글쓰기
 	@PostMapping("/write")
-	public String write(BoardDTO boardDTO, MultipartFile boardFile) throws Exception {
+	public String write(BoardDTO boardDTO, MultipartFile boardFile,
+			@AuthenticationPrincipal SecurityUser principal) throws Exception {
 		//글쓰기 처리
+		boardDTO.setBoardWriter(principal.getMember().getName());
 		boardDTO.setBoardHits(0);
 		boardDTO.setReplyCount(0);
 		boardDTO.setLikeCount(0);
@@ -98,7 +101,7 @@ public class QnaBoardController {
 		//글 상세보기
 		BoardDTO boardDTO = boardService.findById(id);
 		//댓글 목록
-		List<Reply> replyList = replyService.findByBoardId(id);
+		List<ReplyDTO> replyList = replyService.findByBoardId(id);
 		model.addAttribute("board", boardDTO);
 		model.addAttribute("replyList", replyList);
 		model.addAttribute("page", pageable.getPageNumber());
