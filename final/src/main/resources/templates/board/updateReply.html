@@ -7,6 +7,7 @@
 <body>
 	<div th:replace="~{header}"></div>
 	<div id="content">
+		<div class="board_content">
 		<div class="replyUpdateForm">
 		    <form th:action="@{/reply/update}" method="post" id="replyform">
 				<!-- 'hidden'은 ui를 만들지 않고 데이터 숨겨서 보낼때 사용 -->
@@ -29,6 +30,7 @@
 					</tbody>
 				</table>
 			</form>
+		</div>
 		</div>
 	</div>
 </body>

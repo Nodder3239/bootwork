@@ -33,4 +33,9 @@ public class MainController {
 		}
 		return "index";	//index.html
 	}
+	
+	@GetMapping("/ex/game")
+	public String ex() {
+		return "ex/game";
+	}
 }

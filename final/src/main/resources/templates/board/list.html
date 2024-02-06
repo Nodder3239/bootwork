@@ -8,10 +8,9 @@
 </head>
 <body>
 	<div th:replace="~{header}"></div>
-
+<h2 class="board_h2">전체글 목록</h2>
 		<div id="content">
-		<div class="content_list">
-		<h2 class="text-left">전체글 목록</h2>
+		<div class="board_content">
 		<table class="table" id="tbl_list">
 			<thead>
 				<tr>
@@ -34,6 +33,7 @@
 	                	<span th:if="${board.boardCategory eq 'info4'}"><a th:href="@{/infoboard/?cate=info4}">대전/충청</a></span>
 	                	<span th:if="${board.boardCategory eq 'info5'}"><a th:href="@{/infoboard/?cate=info5}">광주/전라</a></span>
 	                	<span th:if="${board.boardCategory eq 'info6'}"><a th:href="@{/infoboard/?cate=info6}">부산/경상</a></span>
+	                	<span th:if="${board.boardCategory eq 'info7'}"><a th:href="@{/infoboard/?cate=info7}">제주</a></span>
 	                </th>
 				    <td class="td_title" style="width:200px;">
 					    <a th:href="@{|/board/${board.id}|(page=${boardList.number+1})}">
@@ -51,45 +51,45 @@
 		</table>
 		<!-- 페이징처리 시작 -->
 			<div style="width: 50%; margin: 10px auto;">
-	              <ul class="pagination justify-content-center">                 
-	                   <li th:class="${nowPage eq 1} ? 'page-item disabled' : 'page-item'">
-	                       <a class="page-link" th:href="${startPage eq 1}? '/board/?page=1' : @{/board/(page=${startPage-1})}">&lt;&lt;</a>
-	                   </li>
-	                   <li th:class="${nowPage eq 1} ? 'page-item disabled' : 'page-item'">
-	                       <a class="page-link" th:href="${boardList.first}? '/board/?page=1' : @{/board/(page=${boardList.number})}">&lt;</a>
-	                   </li>
-	                   <li th:class="${nowPage eq page} ? 'page-item active' : 'page-item'" th:each="page : ${#numbers.sequence(startPage, endPage)}">
-						    <a class="page-link" th:href="@{/board/(page=${page})}">
-						        <span th:text="${page}"></span>
-						    </a>
-						</li>
-	                   <li th:class="${nowPage eq boardList.totalPages} ? 'page-item disabled' : 'page-item'">
-	                       <a class="page-link" th:href="${boardList.last}? @{/board/(page=${endPage})} : @{/board/(page=${boardList.number+2})}">&gt;</a>
-	                   </li>
-	                   <li th:class="${nowPage eq boardList.totalPages} ? 'page-item disabled' : 'page-item'">
-	                       <a class="page-link" th:href="${boardList.totalPages eq endPage}? @{/board/(page=${endPage})} : @{/board/(page=${endPage+1})}">&gt;&gt;</a>
-	                   </li>
-	              </ul>
+	              <ul class="pagination_btn">                 
+                      <li th:class="${nowPage eq 1} ? 'page-btn disabled' : 'page-btn'">
+                          <a class="page-box" th:href="${startPage eq 1}? '/board/?page=1' : @{/board/(page=${startPage-1})}">&lt;&lt;</a>
+                      </li>
+                      <li th:class="${nowPage eq 1} ? 'page-btn disabled' : 'page-btn'">
+                          <a class="page-box" th:href="${boardList.first}? '/board/?page=1' : @{/board/(page=${boardList.number})}">&lt;</a>
+                      </li>
+                      <li th:class="${nowPage eq page} ? 'page-btn active' : 'page-btn'" th:each="page : ${#numbers.sequence(startPage, endPage)}">
+                      <a class="page-box" th:href="@{/board/(page=${page})}">
+                          <span th:text="${page}"></span>
+                      </a>
+                  </li>
+                      <li th:class="${nowPage eq boardList.totalPages} ? 'page-btn disabled' : 'page-btn'">
+                          <a class="page-box" th:href="${boardList.last}? @{/board/(page=${endPage})} : @{/board/(page=${boardList.number+2})}">&gt;</a>
+                      </li>
+                      <li th:class="${nowPage eq boardList.totalPages} ? 'page-btn disabled' : 'page-btn'">
+                          <a class="page-box" th:href="${boardList.totalPages eq endPage}? @{/board/(page=${endPage})} : @{/board/(page=${endPage+1})}">&gt;&gt;</a>
+                      </li>
+                 </ul>
 	       </div>
           <!-- 페이징처리 끝 -->
 		<!-- 검색 영역 -->
-			<div style="width:50%; margin: 0px auto;">
+			<div class="search_btn2">
 			  <form th:action="@{/board/}" method="get">
 			  	<div style="display: flex; justify-content: center;">
-					<select name="field" class="btn btn-outline-secondary dropdown-toggle">
+					<select name="field" class="toggle_btn">
 						<option value="t" th:selected="${field == 't'}" th:text="제목"></option>
 	                    <option value="c" th:selected="${field == 'c'}" th:text="내용"></option>
 	                    <option value="w" th:selected="${field == 'w'}" th:text="작성자"></option>
 	                </select>
-					<input type="text" class="form-control" name="kw" th:value="${kw}" id="inputGroupFile04" 
+					<input type="text" class="search_box" name="kw" th:value="${kw}" id="inputGroupFile04" 
 							placeholder="검색" aria-describedby="inputGroupFileAddon04" aria-label="Upload" style="width:50%">
-					<button type="submit" class="btn btn-outline-secondary"><i class="fa-solid fa-magnifying-glass"></i></button>
+					<button type="submit" class="board_btn2">검색</button>
 			  		<!-- <a th:href = "@{/board/write}"><button type="button" class="btn btn-outline-secondary">글쓰기</button></a> -->
 			  	</div>
 			  </form>
 			 </div>
-			 <a th:href = "@{/}">처음으로</a>
 		</div>
 	</div>
+<div th:replace="~{footer}"></div>
 </body>
 </html>

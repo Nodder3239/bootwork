@@ -1,51 +1,355 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
     <title>산불 정보</title>
-    <script th:src="@{https://code.jquery.com/jquery-3.7.1.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+   
 </head>
 <body>
-<div th:replace="~{header}"></div>
+	<!-- <div th:replace="~{header}"></div> -->
+	<div class="main-main">
+	<div id="state_sub" class="bg_4">
+    <div class="stateWrap">
+                <strong>산불</strong>
+        <ul>
+                <li class=""><a th:href="@{/data/data3}"><strong>지진</strong></a></li>
+                
+                <li class=""><a href=""><strong>산사태</strong></a></li>
+                
+                <li class=""><a href=""><strong>대기오염</strong></a></li>
+                <li class=""><a href=""><strong>붕괴</strong></a></li>
+                
+                <li class="active"><a href=""><strong>산불</strong></a></li>
+                
+        </ul>
+    </div>
+</div>
+		<div class="Area">
+			<div class="leftArea">
+				<img alt="" src="/images/산불.png">
+			</div>
 
-    <div id="data_content">
-	    <table id="result1" class="table" style="font-size:14px;">
-	         <thead>
-			        <tr>
-			            <th scope="col">ID</th>
-			            <th scope="col">산불신고X좌표</th>
-			            <th scope="col">산불신고Y좌표</th>
-			            <th scope="col">산불신고일시</th>
-			            <th scope="col">산불신고주소</th>
-			            <th scope="col" style="width:4%;">산불발생구분코드</th>
-			            <th scope="col" style="width:4%;">산불진행상태코드</th>
-			            <th scope="col">산불발화일시</th>
-			            <th scope="col">산불발생주소</th>
-			            <th scope="col">산불위치X좌표</th>
-			            <th scope="col">산불위치Y좌표</th>
-			            <th scope="col">최초등록일시</th>
-			            <th scope="col">최종수정일시</th>
-			        </tr>
-			    </thead>
-			    <tbody>
-			        <!-- Thymeleaf를 사용하여 데이터를 테이블에 반복하여 채웁니다. -->
-			        <tr th:each="item : ${dataList}">
-			            <td th:text="${item.FRFR_INFO_ID}"></td>
-			            <td th:text="${item.FRFR_STTMN_LCTN_XCRD}"></td>
-			            <td th:text="${item.FRFR_STTMN_LCTN_YCRD}"></td>
-			            <td th:text="${item.FRFR_STTMN_DT + item.FRFR_STTMN_HMS}"></td>
-			            <td th:text="${item.FRFR_STTMN_ADDR}"></td>
-			            <td th:text="${item.FRFR_OCCRR_TPCD}"></td>
-			            <td th:text="${item.FRFR_PRGRS_STCD}"></td>
-			            <td th:text="${item.FRFR_FRNG_DTM}"></td>
-			            <td th:text="${item.FRFR_OCCRR_ADDR}"></td>
-			           	<td th:text="${item.FRFR_LCTN_XCRD}"></td>
-			            <td th:text="${item.FRFR_LCTN_YCRD}"></td>
-			            <td th:text="${item.FRST_RGSTN_DTM}"></td>
-			            <td th:text="${item.LAST_UPDT_DTM}"></td>
-			        </tr>
-			    </tbody>
-	    </table>
+			<div class="rightArea">
+				<div class="todayArea">
+					<h2>금일 산불 현황</h2>
+					<ul>
+						<li><strong>진화중</strong> <span>0<i>건</i></span></li>
+						<li><strong>진화완료</strong> <span>0<i>건</i></span></li>
+						<li><strong>산불 외 종료</strong> <span>0<i>건</i></span></li>
+					</ul>
+				</div>
+				<div class="occurArea">
+					<div class="titArea1">
+						<h2>최근 산불 내역</h2>
+					</div>
+					<div class="tableArea">
+						<table id="result1" class="table" style="font-size: 14px;">
+							<thead>
+								<tr>
+									<th scope="col">산불신고일시</th>
+									<th scope="col">산불신고주소</th>
+									<th scope="col">산불발화일시</th>
+									<th scope="col">산불발생주소</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="item : ${dataList}">
+									<td th:text="${item.FRFR_STTMN_DT + item.FRFR_STTMN_HMS}"></td>
+									<td th:text="${item.FRFR_STTMN_ADDR}"></td>
+									<td th:text="${item.FRFR_FRNG_DTM}"></td>
+									<td th:text="${item.FRFR_OCCRR_ADDR}"></td>
+
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+				</div>
+
+			</div>
+		</div>
+		<div class="termsWrap">
+			<h2>재난용어 및 관련정보 - 산불</h2>
+			<div class="tabSlideWrap" style="padding: 0px;">
+				<div class="tabSlide swiper-container-horizontal"
+					style="position: relative;">
+					<ul class="swiper-wrapper">
+
+
+						<li class="swiper-slide swiper-slide-active on"
+							style="margin-right: 10px;"><a href="javascript:;"
+							onclick="terms('terms317',this);">산불의 종류</a></li>
+
+
+						<li class="swiper-slide swiper-slide-next"
+							style="margin-right: 10px;"><a href="javascript:;"
+							onclick="terms('terms318',this);">산불단계 발령조건</a></li>
+
+
+						<li class="swiper-slide" style="margin-right: 10px;"><a
+							href="javascript:;" onclick="terms('terms319',this);">산불 확산
+								배경</a></li>
+
+
+						<li class="swiper-slide" style="margin-right: 10px;"><a
+							href="javascript:;" onclick="terms('terms320',this);">역대 대형산불</a></li>
+
+
+						<li class="swiper-slide" style="margin-right: 10px;"><a
+							href="javascript:;" onclick="terms('terms321',this);">산불발생 원인</a></li>
+
+
+					</ul>
+					
+				</div>
+				<!-- Add Arrows -->
+				<div class="swiper-button-next swiper-button-disabled"
+					style="display: none;">다음</div>
+				<div class="swiper-button-prev swiper-button-disabled"
+					style="display: none;">이전</div>
+			</div>
+			<div class="termsText">
+
+
+				<div class="terms317" style="">
+					<p>
+						<img
+							src="https://s3.ap-northeast-2.amazonaws.com/kbs-disportal-upload/smeditor/202304/c1964ff4-1649-4eeb-8826-dcbdc0c00f76.png"
+							alt="" style="color: rgb(40, 40, 40);">
+					</p>
+					<span noto="" sans",="" dotum,="" gulim;="" font-size:=""
+						14.6667px;"="" style="color: rgb(40, 40, 40);"><div
+							align="left">&nbsp;</div>
+						<div align="left">
+							<br>
+						</div></span>
+					<p align="left">
+						<span noto="" sans",="" dotum,="" gulim;="" font-size:=""
+							14.6667px;"="" style="color: rgb(40, 40, 40);">· 지중화: 땅 속의
+							낙엽 부식층과 뿌리를 태우는 불</span>
+					</p>
+					<p align="left">
+						<span noto="" sans",="" dotum,="" gulim;="" font-size:=""
+							14.6667px;"="" style="color: rgb(40, 40, 40);">&nbsp;</span>
+					</p>
+					<p align="left">
+						<span noto="" sans",="" dotum,="" gulim;="" font-size:=""
+							14.6667px;"="" style="color: rgb(40, 40, 40);"></span><span
+							noto="" sans",="" dotum,="" gulim;="" font-size:=""
+							14.6667px;"="" style="color: rgb(40, 40, 40);">· 지표화: 지표에
+							있는 잡초나 낙엽, 관목 등을 태우는 불</span>
+					</p>
+					<p align="left">
+						<span noto="" sans",="" dotum,="" gulim;="" font-size:=""
+							14.6667px;"="" style="color: rgb(40, 40, 40);">&nbsp;</span>
+					</p>
+					<p align="left">
+						<span noto="" sans",="" dotum,="" gulim;="" font-size:=""
+							14.6667px;"="" style="color: rgb(40, 40, 40);">​</span><span
+							noto="" sans",="" dotum,="" gulim;="" font-size:=""
+							14.6667px;"="" style="color: rgb(40, 40, 40);">· 수간화: 서 있는
+							나무의 줄기를 태우는 불</span><span noto="" sans",="" dotum,="" gulim;=""
+							font-size:="" 14.6667px;"="" style="color: rgb(40, 40, 40);">​</span>
+					</p>
+					<p align="left">&nbsp;</p>
+					<p align="left">
+						​<span noto="" sans",="" dotum,="" gulim;="" font-size:=""
+							14.6667px;"="" style="color: rgb(40, 40, 40);">​</span><span
+							noto="" sans",="" dotum,="" gulim;="" font-size:=""
+							14.6667px;"="" style="color: rgb(40, 40, 40);">· 수관화: 서 있는
+							나무의 가지와 잎을 태우는 불</span>
+					</p>
+					<p align="left">
+						<span noto="" sans",="" dotum,="" gulim;="" font-size:=""
+							14.6667px;"="" style="color: rgb(40, 40, 40);">&nbsp;</span>
+					</p>
+					<p align="left">
+						​<span noto="" sans",="" dotum,="" gulim;="" font-size:=""
+							14.6667px;"="" style="color: rgb(40, 40, 40);">​</span><span
+							noto="" sans",="" dotum,="" gulim;="" font-size:=""
+							14.6667px;"="" style="color: rgb(40, 40, 40);">· 비화: 산불의
+							불기둥으로 인해 상승한 불똥이 강한 바람을 타고 날아가 또 다른 산불을 만들어 내는 불</span>​​
+					</p>
+					<p>&nbsp;​&nbsp;</p>
+				</div>
+
+
+				<div class="terms318" style="display: none;">
+					<div align="center">
+						<img
+							src="https://s3.ap-northeast-2.amazonaws.com/kbs-disportal-upload/smeditor/202304/1d01aa27-0b06-4cd6-872a-c9cced348ca8.png"
+							alt="">&nbsp; &nbsp; &nbsp;&nbsp;<img
+							src="https://s3.ap-northeast-2.amazonaws.com/kbs-disportal-upload/smeditor/202304/1ffda9d3-2e0a-4b5a-ac86-cd5b3a8a0c16.png"
+							alt="">
+					</div>
+					<div align="center">
+						<br>
+					</div>
+					<div align="center">
+						<img
+							src="https://s3.ap-northeast-2.amazonaws.com/kbs-disportal-upload/smeditor/202304/8e24ef85-5cc2-495b-9b37-957dcba28cd0.png"
+							alt="">&nbsp; &nbsp; &nbsp;&nbsp;<img
+							src="https://s3.ap-northeast-2.amazonaws.com/kbs-disportal-upload/smeditor/202304/f5b45896-91e1-442e-88cc-a0002c716786.png"
+							alt="" style="text-align: center;">
+					</div>
+				</div>
+
+
+				<div class="terms319" style="display: none;">
+					<p>&nbsp;</p>
+					<table border="0" cellpadding="0" cellspacing="0" class="__se_tbl"
+						style="text-align: center; border-width: 1px 1px 0px 0px; border-top-style: solid; border-right-style: solid; border-top-color: rgb(210, 210, 210); border-right-color: rgb(210, 210, 210); border-image: initial; border-left-style: initial; border-left-color: initial; border-bottom-style: initial; border-bottom-color: initial;">
+						<tbody>
+							<tr>
+								<td class=""
+									style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 210px; height: 63px; background-color: rgb(235, 235, 235);"><p
+										align="center">
+										<span style="font-size: 14.6667px;"><b>바람</b></span>
+									</p></td>
+								<td class="" colspan="2" rowspan="1"
+									style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 822px; height: 63px; background-color: rgb(255, 255, 255);"><p
+										align="center">
+										<span style="font-size: 11pt;">가장 많은 영향. 6m/s 속도로 바람이
+											불면 무풍 때보다 26배나 빠르게 확산</span>
+									</p></td>
+							</tr>
+							<tr>
+								<td class=""
+									style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 210px; height: 81px; background-color: rgb(235, 235, 235);"><p
+										align="center">
+										<b><span style="font-size: 11pt;">&nbsp;습도</span></b>
+									</p></td>
+								<td class="" colspan="2" rowspan="1"
+									style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 822px; height: 81px; background-color: rgb(255, 255, 255);"><p
+										align="center">
+										<span style="font-size: 14.6667px;">공기 중 실효습도가 40% 이하로
+											떨어지면 낙엽 수분함량 10% 정도.&nbsp;</span><span style="font-size: 14.6667px;">수분함량
+											15% 이하&nbsp;</span>
+									</p>
+									<p align="center">
+										<span style="font-size: 14.6667px;">낙엽은 35%보다 25배 발화율
+											증가</span>
+									</p></td>
+							</tr>
+							<tr>
+								<td class=""
+									style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 210px; height: 83px; background-color: rgb(235, 235, 235);"><p
+										align="center">
+										<span style="font-size: 11pt;"><b>수종</b></span>
+									</p></td>
+								<td class="" colspan="2" rowspan="1"
+									style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 822px; height: 83px; background-color: rgb(255, 255, 255);"><p
+										align="center">
+										<span style="font-size: 14.6667px;">소나무 봄에도 가지에 잎이 달려
+											있어 낙엽층만 타면 될 산불이 나무 위까지 옮겨 붙어</span>
+									</p>
+									<p align="center">
+										<span style="font-size: 14.6667px;">불똥이 날아가며 확산</span>
+									</p></td>
+							</tr>
+							<tr>
+								<td class=""
+									style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 210px; height: 83px; background-color: rgb(235, 235, 235);"><p
+										align="center">
+										<span style="font-size: 11pt;"><b>&nbsp;지형</b></span>
+									</p></td>
+								<td class="" colspan="2" rowspan="1"
+									style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 822px; height: 83px; background-color: rgb(255, 255, 255);"><p
+										align="center">
+										<span style="font-size: 11pt;">&nbsp;경사가 급할수록 불이 빨리 확산.
+											30도 정도 급경사에선 평지보다 최대 4배 빠르게 확산</span>
+									</p></td>
+							</tr>
+						</tbody>
+					</table>
+					<p>&nbsp;</p>
+				</div>
+
+
+				<div class="terms320" style="display: none;">
+					<div align="center">
+						<img
+							src="https://uploadd.kbs.co.kr/smeditor/202304/c837bb6c-e7fd-4311-9c4d-a0ea2ead4a5a.png"
+							alt="">
+					</div>
+				</div>
+
+
+				<div class="terms321" style="display: none;">
+					<p align="center">
+						<img
+							src="https://uploadd.kbs.co.kr/smeditor/202304/01891f4b-104a-40f3-8e7a-6411e4a80bee.png"
+							alt="">
+					</p>
+					<p align="center">&nbsp;*자료:산림청&nbsp;</p>
+				</div>
+
+
+			</div>
+		</div>
 	</div>
+	<script>
+  // JavaScript 코드
+
+  // 산불 탭을 클릭할 때의 동작
+  // JavaScript 코드
+
+  // 산불 탭을 클릭할 때의 동작
+  document.querySelector('.swiper-slide-active').addEventListener('click', function () {
+    showTabContent('terms317');
+    setActiveTab(this);
+  });
+
+  document.querySelector('.swiper-slide-next').addEventListener('click', function () {
+    showTabContent('terms318');
+    setActiveTab(this);
+  });
+
+  document.querySelector('.swiper-wrapper li:nth-child(3)').addEventListener('click', function () {
+    showTabContent('terms319');
+    setActiveTab(this);
+  });
+
+  document.querySelector('.swiper-wrapper li:nth-child(4)').addEventListener('click', function () {
+    showTabContent('terms320');
+    setActiveTab(this);
+  });
+
+  document.querySelector('.swiper-wrapper li:nth-child(5)').addEventListener('click', function () {
+    showTabContent('terms321');
+    setActiveTab(this);
+  });
+
+  // 각 탭에 대한 내용을 보여주는 함수
+  function showTabContent(tabId) {
+    // 모든 탭의 내용을 숨김
+    document.querySelectorAll('.termsText > div').forEach(function (tabContent) {
+      tabContent.style.display = 'none';
+    });
+
+    // 클릭한 탭의 내용을 보여줌
+    document.querySelector('.' + tabId).style.display = 'block';
+  }
+
+  // 활성화된 탭에 'on' 클래스를 추가/제거하는 함수
+  function setActiveTab(tab) {
+    // 모든 탭에서 'on' 클래스 제거
+    document.querySelectorAll('.swiper-slide').forEach(function (slide) {
+      slide.classList.remove('on');
+    });
+
+    // 클릭한 탭에 'on' 클래스 추가
+    tab.classList.add('on');
+  }
+
+</script>
+<style>
+  .swiper-slide.on {
+    color: white; /* 탭 텍스트 색상 */
+    background-color: 	#4169E1; /* 탭 배경 색상 */
+  }
+</style>
 </body>
 </html>

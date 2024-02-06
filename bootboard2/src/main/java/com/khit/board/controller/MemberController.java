@@ -40,7 +40,7 @@ public class MemberController {
 	private final MemberService memberService;
 
 	@GetMapping("/join")
-	public String joinForm() {
+	public String joinForm(MemberDTO memberDTO) {
 		return "member/join";
 	}
 	

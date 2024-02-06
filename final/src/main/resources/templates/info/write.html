@@ -6,10 +6,10 @@
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-      <div th:replace="~{header}"></div>
-   
+<div th:replace="~{header}"></div>
+   <h2 class="board_h2">제보게시판 글쓰기</h2>
       <div id="content">
-      <h2>제보게시판 글쓰기</h2>
+      <div class="board_content">
       <form th:action="@{/infoboard/write}" method="post" th:object="${boardDTO}" enctype="multipart/form-data">
          <select class="form-select" aria-label="Disabled select example" name="boardCategory" style="margin-bottom: -10px;">
 			  <option value="info1" selected>서울</option>
@@ -43,6 +43,7 @@
             <a th:href="@{/infoboard/}"><input type="button" class="board_btn" value="목록" style="margin: 8px;"></a>
          </div>
       </form>
+      </div>
    </div>
 <script>
 function displayFileName(input) {

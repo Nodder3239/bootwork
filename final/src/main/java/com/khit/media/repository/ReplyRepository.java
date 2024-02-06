@@ -13,5 +13,8 @@ public interface ReplyRepository extends JpaRepository<Reply, Long>{
 	
 	@Modifying
 	void deleteByBoardId(Long id);
+	
+	@Modifying
+	void deleteByReplyer(String name);
 
 }

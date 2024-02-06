@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Emergency Contact</title>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=6xvfgyr9wc"></script>
+<script src="https://kit.fontawesome.com/b70f42fdf2.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<div th:replace="~{header}"></div>
+
+	<div id="container_emer">
+        <section id="main">
+        	<div id="emer_title">
+        		<h2>비상연락처</h2>
+        	</div>
+            <table id="emer_tbl">
+                <tbody>
+                    <tr>
+                        <td class="region" data-js-file="/js/contact_seoul.js">서울 특별시</td>
+                        <td class="region" data-js-file="/js/contact_busan.js">부산 광역시</td>
+                        <td class="region" data-js-file="/js/contact_daegu.js">대구 광역시</td>
+                        <td class="region" data-js-file="/js/contact_incheon.js">인천 광역시</td>
+                        <td class="region" data-js-file="/js/contact_gwangju.js">광주 광역시</td>
+                        <td class="region" data-js-file="/js/contact_daejeon.js">대전 광역시</td>
+                    </tr>
+                    <tr>
+                    	<td class="region" data-js-file="/js/contact_ulsan.js">울산 광역시</td>
+                        <td class="region" data-js-file="/js/contact_sejong.js">세종특별자치시</td>
+                        <td class="region" data-js-file="/js/contact_gyeonggi.js">경기도</td>
+                        <td class="region" data-js-file="/js/contact_gangwon.js">강원특별자치도</td>
+                        <td class="region" data-js-file="/js/contact_chungbuk.js">충청북도</td>
+                        <td class="region" data-js-file="/js/contact_chungnam.js">충청남도</td>
+                    </tr>
+                    <tr>
+                    	<td class="region" data-js-file="/js/contact_jeonbuk.js">전북특별자치도</td>
+                        <td class="region" data-js-file="/js/contact_jeonnam.js">전라남도</td>
+                        <td class="region" data-js-file="/js/contact_gyeongbuk.js">경상북도</td>
+                        <td class="region" data-js-file="/js/contact_gyeongnam.js">경상남도</td>
+                        <td class="region" data-js-file="/js/contact_jeju.js">제주특별자치도</td>
+                    </tr>
+                    <tr>
+                        
+                    </tr>
+                    <tr>
+                        
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+    <div id="map"></div>
+<div th:replace="~{footer}"></div>
+    
+    <script>
+		
+    $(document).ready(function () {
+        // 클릭 이벤트 핸들러
+        function handleRegionClick() {
+            var jsFile = $(this).data('js-file');
+            
+            //이전에 선택된 지역의 스타일을 초기화한다
+            $('.region').css({
+            	'color': '',
+            	'background-color': '',
+            	'text-decoration' : 'none'
+            });
+            //선택된 지역의 스타일을 변경
+            $(this).css({
+            	'color': '#f3eeea',
+            	'background-color': '#004aad',
+            	'text-decoration' : 'underline'
+            });
+            
+            // 동적으로 JavaScript 파일을 로드
+            $.getScript(jsFile, function (data, textStatus, jqxhr) {
+                console.log('Script loaded:', jsFile);
+             	
+            });
+        }
+        $('.region').on('click', handleRegionClick);
+
+		// 서울특별시가 기본 map
+        $('.region[data-js-file="/js/contact_seoul.js"]').click();
+		
+    });
+           
+    </script>
+</body>
+</html>

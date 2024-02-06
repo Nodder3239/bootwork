@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+/*============================================================
+	<<나눔 스퀘어 라운드>>
+	light :300;
+	regular : 500;
+	bold : 700;
+	bolder: 900;
+=================================================================*/
+
+@font-face {
+    font-family: 'NanumSquareRound'; /* 폰트 이름 설정 */
+    src: url('/static/fonts/NanumSquareRound.otf') format('opentype'),
+    	 url('/static/fonts/NanumSquareRound.ttf') format('truetype'); /* 폰트 경로 설정 */
+}
+@font-face {
+    font-family: 'NanumSquareRound';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+

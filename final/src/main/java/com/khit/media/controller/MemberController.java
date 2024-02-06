@@ -13,7 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.khit.media.config.SecurityUser;
 import com.khit.media.dto.MemberDTO;
+import com.khit.media.entity.Member;
+import com.khit.media.service.BoardService;
 import com.khit.media.service.MemberService;
+import com.khit.media.service.ReplyService;
+import com.khit.media.service.VoteService;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -23,6 +27,9 @@ import lombok.RequiredArgsConstructor;
 public class MemberController {
 	
 	private final MemberService memberService;
+	private final BoardService boardService;
+	private final ReplyService replyService;
+	private final VoteService voteService;
 	
     //로그인 페이지 요청 :  /login
 	@GetMapping("/login")
@@ -75,6 +82,11 @@ public class MemberController {
 	@GetMapping("/member/delete/{id}")
 	public String deleteMember(@PathVariable Integer id) {
 		memberService.deleteById(id);
+		MemberDTO memberDTO = memberService.findById(id);
+		String name = memberDTO.getName();
+		boardService.deleteByBoardWriter(name);
+		replyService.deleteByReplyer(name);
+		voteService.deleteByVoter(name);
 		return "redirect:/member/list";
 	}
 	
@@ -94,5 +106,8 @@ public class MemberController {
 		memberService.update(memberDTO);
 		return "redirect:/member/" + memberDTO.getId();
 	}
-	
+	@GetMapping("/member/account")
+	public String account() {
+		return "member/account";
+	}
 }

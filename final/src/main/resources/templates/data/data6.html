@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>재난 홈페이지</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        header {
+            background-color: #3498db;
+            padding: 20px;
+            color: white;
+            text-align: center;
+            font-size: 24px;
+        }
+
+        .container {
+            margin: 20px;
+        }
+
+        .search-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .search-input {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .search-button {
+            width: 20%;
+            padding: 10px;
+            background-color: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 15px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #2c3e50;
+            color: white;
+        }
+
+        tbody tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        .pagination {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .pagination a {
+            text-decoration: none;
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .pagination a.active {
+            background-color: #3498db;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<header>재난 홈페이지</header>
+
+<div class="container">
+    <a th:href="@{/}"><button type="button" id="btn1" class="btn btn-outline-secondary">처음으로</button></a>
+
+    <!-- 검색 폼 추가 -->
+    <form th:action="@{/data6}" method="get" class="search-container">
+        <input type="text" name="search" class="search-input" placeholder="검색어를 입력하세요">
+        <button type="submit" class="search-button">검색</button>
+    </form>
+
+    <!-- 테이블 시작 -->
+    <table id="result1" class="table">
+        <thead>
+        <!-- 테이블 헤더 정의 -->
+        <tr>
+            <!-- 각 열의 제목 지정 -->
+            <th scope="col">발생예보발령기관명</th>
+            <th scope="col">예보발령일시</th>
+            <th scope="col">예보발령종류코드</th>
+            <th scope="col">예보발령종류코드명</th>
+            <th scope="col">예보발령상태</th>
+            <th scope="col">예측분석일시</th>
+            <th scope="col">예보해제일시</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- 데이터 리스트를 반복하여 각 항목을 출력 -->
+        <tr th:each="item : ${dataList}">
+            <!-- 각 열에 해당하는 데이터 출력 -->
+            <td th:text="${item.OCRN_FRCST_ISSU_INSTT_NM}"></td>
+            <td th:text="${item.FRST_FRCST_ISSU_DT}"></td>
+            <td th:text="${item.FRCST_ISSU_KIND_CD}"></td>
+            <td th:text="${item.FRCST_ISSU_KIND_NM}"></td>
+            <td th:text="${item.FRCST_ISSU_STTS}"></td>
+            <td th:text="${item.PRCTN_INFO_ANLSS_DT}"></td>
+            <td th:text="${item.LAST_FRCST_RMV_DT}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <!-- 테이블 종료 -->
+
+    <!-- 페이지 링크 시작 -->
+    <div class="pagination">
+        <ul>
+            <!-- 전체 페이지 수가 1보다 큰 경우에만 페이지 링크를 생성 -->
+            <li th:if="${totalPages > 1}">
+                <!-- 이전 페이지 링크 -->
+                <a th:href="@{'/data6?pageNum=' + (pageNum - 1)}" th:if="${pageNum > 1}" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+
+                <!-- 페이지 번호 링크 -->
+                <a th:each="page : ${#numbers.sequence(1, totalPages)}" th:href="@{'/data6?pageNum=' + page}"
+                   th:class="${page == pageNum} ? 'active' : ''">
+                    <span th:text="${page}"></span>
+                </a>
+
+                <!-- 다음 페이지 링크 -->
+                <a th:href="@{'/data6?pageNum=' + (pageNum + 1)}" th:if="${pageNum < totalPages}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- 페이지 링크 종료 -->
+
+</div>
+
+</body>
+</html>

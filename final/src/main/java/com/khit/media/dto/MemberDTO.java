@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 import com.khit.media.entity.Member;
 import com.khit.media.entity.Role;
 
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
 import lombok.Builder;
@@ -28,6 +29,7 @@ public class MemberDTO {
 	private String name;
 	
 	@NotEmpty(message = "이메일은 필수 항목입니다.")
+	@Email(message = "이메일 형식으로 입력하세요.")
 	private String memberEmail;
 	
 	@NotEmpty(message = "나이는 필수 항목입니다.")

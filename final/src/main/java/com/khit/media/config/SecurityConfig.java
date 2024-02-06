@@ -28,13 +28,13 @@ public class SecurityConfig {
 		// 로그인이 필요: 그외의 경로
 		http
 		  .authorizeHttpRequests(authorize -> authorize
-				  .requestMatchers("/", "/css/**", "/images/**", "/js/**", "/error").permitAll()
-				  .requestMatchers("/infoboard/write", "/qnaboard/write", 
+				  .requestMatchers("/", "/css/**", "/images/**", "/js/**", "/error", "/ex/**",
+						  "/board/", "/infoboard/", "/noticeboard/", "/qnaboard/", "/board/").permitAll()
+				  .requestMatchers("/infoboard/**", "/qnaboard/**", "/noticeboard/**", "/board/**",  
 						  "/noticereply/**", "/inforeply/**", "/qnareply/**",
 						  "/noticevote/**", "/infovote/**", "/qnavote/**", "/reply/**", "/vote/**").authenticated()
 				  .requestMatchers("/member/list", "/noticeboard/write").hasAnyAuthority("ADMIN")
-				  .requestMatchers("/member/**", "/board/**", "/data/**"
-						  ,"/infoboard/**", "/noticeboard/**", "/qnaboard/**").permitAll()
+				  .requestMatchers("/member/**", "/data/**").permitAll()
 				  .anyRequest().authenticated()
 				  )
 		          .formLogin(form -> form

@@ -7,7 +7,8 @@
 </head>
 <body>
 	<div th:replace="~{header}"></div>
-		<div id="data_content" >
+		<div id="content" >
+			<a th:href = "@{/}"><button type="button" id="btn1" class="btn btn-outline-secondary">처음으로</button></a>
 			<table id="result1" class="table" >
 				<thead>
 					<tr>
@@ -22,7 +23,10 @@
 				<tbody>
 					<!-- 데이터 출력 -->
 				</tbody>
+			
 			</table>
+			
+		
 		</div>
 		
 	

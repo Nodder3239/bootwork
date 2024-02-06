@@ -6,11 +6,10 @@
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-
-      <div th:replace="~{header}"></div>
-   
+<div th:replace="~{header}"></div>
+   <h2 class="board_h2">공지사항 글 수정</h2>
       <div id="content">
-      <h2>공지사항 글 수정</h2>
+      <div class="board_content">
       <form th:action="@{/noticeboard/update}" method="post" th:object="${board}" enctype="multipart/form-data">
          <input type="hidden" name="id" th:value="${board.id}">
          <input type="hidden" name="boardCategory" th:value="${board.boardCategory}">
@@ -39,6 +38,7 @@
             </a>
            </div>
       </form>
+      </div>
    </div>
 <script>
 function displayFileName(input) {

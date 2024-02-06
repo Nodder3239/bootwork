@@ -7,9 +7,9 @@
 </head>
 <body>
 	<div th:replace="~{header}"></div>
-
-   		<div id="content">
-        <h2>글 수정하기</h2>
+<h2 class="board_h2">글 수정하기</h2>
+   	<div id="content">
+        <div class="board_content">
         <form th:action="@{/board/update}" method="post" enctype="multipart/form-data">
             <input type="hidden" name="id" th:value="${board.id}">
             <input type="hidden" name="boardCategory" th:value="${board.boardCategory}">          
@@ -34,6 +34,7 @@
 	            </a>
             </div>
         </form>
+        </div>
     </div>
 </body>
 </html>

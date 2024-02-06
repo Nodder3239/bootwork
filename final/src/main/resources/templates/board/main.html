@@ -10,72 +10,19 @@
 </head>
 <body>
 	<div th:replace="~{header}"></div>
-	<div>
+	<h2 class="board_h2">게시판 임시(인기글)</h2>
+	<div id="content">
+	<div class="board_content">
 		<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-			<form th:action="@{/board/}" method="get">
-			  	<div style="display: flex; justify-content: center;">
-					<select name="field" class="btn btn-outline-secondary dropdown-toggle">
-						<option value="t" th:selected="${field == 't'}" th:text="제목"></option>
-		                   <option value="c" th:selected="${field == 'c'}" th:text="내용"></option>
-		                   <option value="w" th:selected="${field == 'w'}" th:text="작성자"></option>
-		               </select>
-					<input type="text" class="form-control" name="kw" th:value="${kw}" id="inputGroupFile04" 
-							placeholder="검색" aria-describedby="inputGroupFileAddon04" aria-label="Upload" style="width:100%">
-					<button type="submit" class="btn btn-outline-secondary"><i class="fa-solid fa-magnifying-glass"></i></button>
-			  	</div>
-			</form>
-			<table class="table" id="tbl_list">
-				<thead>
-					<tr>
-						<th scope="col">글분류</th>
-						<th scope="col">글제목</th>
-						<th scope="col">글쓴이</th>
-						<th scope="col">작성일</th>
-						<th scope="col">조회수</th>
-						<th scope="col">추천</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr style="background:#ddd" th:if="${notice != null}">
-						<th><a th:href="@{|/noticeboard/}">공지사항</a></th>
-						<td class="td_title" style="width:200px;">
-						    <a th:href="@{|/noticeboard/${notice.id}|}">
-						    	<span th:text="${notice.boardTitle}"></span>
-						    	<span style="font-size:small;" th:if="${notice.replyCount != 0}" th:text="'[ ' + ${notice.replyCount} + ' ]'"></span>
-						    </a>
-						</td>
-	
-		                <td th:text="${notice.boardWriter}"></td>
-		                <td th:utext="${notice.updatedDate != null ? #temporals.format(notice.updatedDate, 'yyyy-MM-dd hh:mm') : #temporals.format(notice.createdDate, 'yyyy-MM-dd hh:mm')}"></td>
-		                <td th:text="${notice.boardHits}"></td>
-		                <td th:text="${notice.likeCount}"></td>
-		            </tr>
-					<tr th:each="board : ${boardList}">
-		                <th>
-		                	<span th:if="${board.boardCategory eq 'notice'}"><a th:href="@{/noticeboard/}">공지사항</a></span>
-		                	<span th:if="${board.boardCategory eq 'qna'}"><a th:href="@{/qnaboard/}">QnA</a></span>
-		                	<span th:if="${board.boardCategory eq 'info1'}"><a th:href="@{/infoboard/?cate=info1}">서울</a></span>
-		                	<span th:if="${board.boardCategory eq 'info2'}"><a th:href="@{/infoboard/?cate=info2}">인천/경기</a></span>
-		                	<span th:if="${board.boardCategory eq 'info3'}"><a th:href="@{/infoboard/?cate=info3}">강원</a></span>
-		                	<span th:if="${board.boardCategory eq 'info4'}"><a th:href="@{/infoboard/?cate=info4}">대전/충청</a></span>
-		                	<span th:if="${board.boardCategory eq 'info5'}"><a th:href="@{/infoboard/?cate=info5}">광주/전라</a></span>
-		                	<span th:if="${board.boardCategory eq 'info6'}"><a th:href="@{/infoboard/?cate=info6}">부산/경상</a></span>
-		                </th>
-					    <td class="td_title" style="width:200px;">
-						    <a th:href="@{|/board/${board.id}|(page=${boardList.number+1})}">
-						    	<span th:text="${board.boardTitle}"></span>
-						    	<span style="font-size:small;" th:if="${board.replyCount != 0}" th:text="'[ ' + ${board.replyCount} + ' ]'"></span>
-						    </a>
-						</td>
-	
-		                <td th:text="${board.boardWriter}"></td>
-		                <td th:utext="${board.updatedDate != null ? #temporals.format(board.updatedDate, 'yyyy-MM-dd hh:mm') : #temporals.format(board.createdDate, 'yyyy-MM-dd hh:mm')}"></td>
-		                <td th:text="${board.boardHits}"></td>
-		                <td th:text="${board.likeCount}"></td>
-		            </tr>
-				</tbody>
-			</table>
+			<div>
+				<a th:href="@{/noticeboard/}">1. 공지사항</a>
+				<a th:href="@{/infoboard/}">2. 제보게시판</a>
+				<a th:href="@{/qnaboard/}">3. 질문게시판</a>
+				<a th:href="@{/report/}" sec:authorize="hasAnyAuthority('ADMIN')" >4. 신고게시판</a>
+			</div>
+		</div>
 		</div>
 	</div>
+<div th:replace="~{footer}"></div>
 </body>
 </html>

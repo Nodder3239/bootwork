@@ -8,14 +8,15 @@
 <body>
 	<div th:replace="~{header}"></div>
 
-	<th:block th:if="${session.sessionId == null}">
+	<!-- <th:block th:if="${session.sessionId == null}">
 	    <script type="text/javascript">
 	        alert("로그인 후 이용 가능합니다.");
 	        location.href = "/member/login";
 	    </script>
-	</th:block>
+	</th:block> -->
+	<h2 class="board_h2">글쓰기</h2>
 		<div id="content">
-		<h2>글쓰기</h2>
+		<div class="board_content">
 		<form th:action="@{/board/write}" method="post" th:object="${board}" enctype="multipart/form-data">
 			<input type="text" th:field=*{boardTitle} class="form-control mt-4 mb-2"
 				placeholder="제목을 입력해주세요." required
@@ -38,6 +39,7 @@
 				<a th:href="@{/board/}"><input type="button" class="btn btn-outline-secondary" value="목록"></a>
 			</div>
 		</form>
+		</div>
 	</div>
 </body>
 </html>

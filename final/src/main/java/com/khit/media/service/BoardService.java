@@ -44,6 +44,10 @@ public class BoardService {
 			boardDTO.setFilename(filename);
 			boardDTO.setFilepath("/upload/" + filename);
 		}
+		boardDTO.setBoardHits(0);
+		boardDTO.setReplyCount(0);
+		boardDTO.setLikeCount(0);
+		boardDTO.setReportCount(0);
 		Board board = Board.toSaveBoardEntity(boardDTO);
 		boardRepository.save(board);
 	}
@@ -82,6 +86,7 @@ public class BoardService {
 		}else{
 	         //Board board = Board.toUpdateNoFile(boardDTO);
 	         //boardRepository.save(board);
+			 boardDTO.setFilename(findById(boardDTO.getId()).getFilename());
 	         boardDTO.setFilepath(findById(boardDTO.getId()).getFilepath());
 			 board = Board.toUpdateNoFileBoardEntity(boardDTO);
 	    }
@@ -311,5 +316,75 @@ public class BoardService {
 		boardRepository.deleteByBoardWriter(memberName);
 		
 	}
+	
 
+	//신고게시판용
+	public Page<BoardDTO> findReportListAll(Pageable pageable) {
+		int page = pageable.getPageNumber() - 1;	//db가 1 작음
+		int pageSize = 10;
+		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "reportCount");
+		
+		Page<Board> boardList = boardRepository.findAll(pageable);
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+		new BoardDTO(board.getId(), board.getBoardTitle(), 
+				board.getBoardWriter(), board.getBoardContent(), 
+				board.getBoardCategory(), board.getBoardHits(),
+				board.getReplyCount(), board.getLikeCount(),
+				board.getReportCount(),	board.getFilename(), 
+				board.getFilepath(), board.getCreatedDate(), 
+				board.getUpdatedDate()));
+		return boardDTOList;
+	}
+
+	public Page<BoardDTO> findReportByTitle(String kw, Pageable pageable) {
+		int page = pageable.getPageNumber() - 1;
+		int pageSize = 10;
+		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "reportCount");
+		
+		Page<Board> boardList = boardRepository.findByBoardTitleContaining(kw, pageable);
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+		new BoardDTO(board.getId(), board.getBoardTitle(), 
+				board.getBoardWriter(), board.getBoardContent(), 
+				board.getBoardCategory(), board.getBoardHits(),
+				board.getReplyCount(), board.getLikeCount(),
+				board.getReportCount(),	board.getFilename(), 
+				board.getFilepath(), board.getCreatedDate(), 
+				board.getUpdatedDate()));		
+		return boardDTOList;
+	}
+
+	public Page<BoardDTO> findReportByContent(String kw, Pageable pageable) {
+		int page = pageable.getPageNumber() - 1;
+		int pageSize = 10;
+		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "reportCount");
+		
+		Page<Board> boardList = boardRepository.findByBoardContentContaining(kw, pageable);
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+		new BoardDTO(board.getId(), board.getBoardTitle(), 
+				board.getBoardWriter(), board.getBoardContent(), 
+				board.getBoardCategory(), board.getBoardHits(),
+				board.getReplyCount(), board.getLikeCount(),
+				board.getReportCount(),	board.getFilename(), 
+				board.getFilepath(), board.getCreatedDate(), 
+				board.getUpdatedDate()));
+		return boardDTOList;
+   	}
+
+	public Page<BoardDTO> findReportByWriter(String kw, Pageable pageable) {
+		int page = pageable.getPageNumber() - 1;
+		int pageSize = 10;
+		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "reportCount");
+		
+		Page<Board> boardList = boardRepository.findByBoardWriterContaining(kw, pageable);
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+		new BoardDTO(board.getId(), board.getBoardTitle(), 
+				board.getBoardWriter(), board.getBoardContent(), 
+				board.getBoardCategory(), board.getBoardHits(),
+				board.getReplyCount(), board.getLikeCount(),
+				board.getReportCount(),	board.getFilename(), 
+				board.getFilepath(), board.getCreatedDate(), 
+				board.getUpdatedDate()));
+		return boardDTOList;
+   	}
+	
 }

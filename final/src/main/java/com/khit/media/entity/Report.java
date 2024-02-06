@@ -1,6 +1,8 @@
 package com.khit.media.entity;
 
 
+import com.khit.media.dto.ReportDTO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -33,5 +35,12 @@ public class Report {
 	@Column(length=30, nullable=false)
 	private String reporter;
 	
-
+	public static Report toSaveReportEntity(ReportDTO reportDTO) {
+		Report report = Report.builder()
+				.id(reportDTO.getId())
+				.boardId(reportDTO.getBoardId())
+				.reporter(reportDTO.getReporter())
+				.build();
+		return report;
+	}
 }

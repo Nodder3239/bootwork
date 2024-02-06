@@ -8,9 +8,10 @@
 <body>
 
       <div th:replace="~{header}"></div>
-   
+   <h2 class="board_h2">공지사항 글쓰기</h2>
       <div id="content">
-      <h2>공지사항 글쓰기</h2>
+      
+      <div class="board_content">
       <form th:action="@{/noticeboard/write}" method="post" th:object="${boardDTO}" enctype="multipart/form-data">
          <select class="form-select" aria-label="Disabled select example" name="boardCategory" disabled style="margin-bottom: -10px;">
 			  <option value="notice" selected>공지사항</option>
@@ -38,6 +39,7 @@
             <a th:href="@{/noticeboard/}"><input type="button" class="board_btn" value="목록" style="margin: 8px;"></a>
          </div>
       </form>
+      </div>
    </div>
 <script>
 function displayFileName(input) {

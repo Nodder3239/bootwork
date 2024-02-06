@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Data 4</title>
+</head>
+<body>
+<div th:replace="~{layout/header}"></div>
+	<a th:href="@{/}"><button type="button" id="btn1" class="btn btn-outline-secondary">처음으로</button></a>
+	
+    <!-- 테이블 시작 -->
+    <table id="result1" class="table" style="font-size:14px;">
+        <thead>
+            <!-- 테이블 헤더 정의 -->
+            <tr>
+                <!-- 각 열의 제목 지정 -->
+                <th scope="col">발생MT</th>
+            	<th scope="col">발생일시</th>
+            	<th scope="col">주소</th>
+            	<th scope="col">도로명주소</th>
+           <th scope="col">사고원인</th>
+           <th scope="col">사상자수</th>
+            <th scope="col">사망자수</th>
+           <th scope="col">부상자수</th>
+            <th scope="col">피해액</th>
+           <th scope="col">도시코드</th>
+            <th scope="col">시군구코드</th>
+            <th scope="col">읍면동코드</th>
+            <th scope="col">도시코드</th>
+                
+              
+                
+                
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 데이터 리스트를 반복하여 각 항목을 출력 -->
+             <tr th:each="dataMap : ${dataMapList}">
+            <!-- dataMap에서 필요한 데이터 가져오기 -->
+            <td th:text="${dataMap['OCCU_MT']}">없음</td>
+            <td th:text="${dataMap['OCCU_DE']}">없음</td>
+            <td th:text="${dataMap['ADRES']}">없음</td>
+            <td th:text="${dataMap['RN_ADRES']}">없음</td>
+            <td th:text="${dataMap['RESN']}">없음</td>
+            <td th:text="${dataMap['CASLT']}">없음</td>
+            <td th:text="${dataMap['DEATH']}">없음</td>
+            <td th:text="${dataMap['INJPSN']}">없음</td>
+            <td th:text="${dataMap['AMOUNT']}">없음</td>
+            <td th:text="${dataMap['CTPRVN_CD']}">없음</td>
+            <td th:text="${dataMap['SGG_CD']}">없음</td>
+            <td th:text="${dataMap['EMD_CD']}">없음</td>
+            <td th:text="${dataMap['CTPRVN_CD']}">없음</td>
+            </tr>
+        </tbody>
+    </table>
+    <!-- 테이블 종료 -->
+</body>
+</html>

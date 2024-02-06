@@ -8,10 +8,9 @@
 </head>
 <body>
    <div th:replace="~{header}"></div>
-
-      <div id="content">
-      <div class="content_list">
-      <h2 style="font-weight: bold;">질문게시판</h2>
+<h2 class="board_h2">질문게시판</h2>
+   <div id="content">
+      <div class="board_content">
       <table class="tbl_list">
          <thead>
             <tr style="border-bottom: 2px solid #000; height: 50px;">
@@ -24,7 +23,7 @@
             </tr>
          </thead>
          <tbody>
-         	<tr style="background:#fff; border-bottom: 1px solid #000; height: 50px;">
+         	<tr style="background:#ddd; border-bottom: 1px solid #000; height: 50px;">
 				<th><a th:href="@{/noticeboard/}">공지사항</a></th>
 				<td class="td_title" style="width:200px;">
 				    <a th:href="@{|/noticeboard/${notice.id}|}">

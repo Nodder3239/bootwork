@@ -7,13 +7,13 @@
 </head>
 <body>
       <div th:replace="~{header}"></div>
-   
+   <h2 class="board_h2">질문게시판 상세보기</h2>
    <div id="content">
-      <h2>질문게시판 상세보기</h2>
+      <div class="board_content">
       <table class="tbl_detail">
          <tr style="border-bottom: 2px solid #000;">
             <td>
-               <div style="font-size: 33px; font-weight:bold">
+               <div style="font-size: 33px;">
                   <span th:text="${board.boardTitle}"></span>
                </div>
                 <div style="font-size: 15px" th:if="${board.updatedDate ne null}">
@@ -42,8 +42,12 @@
                      </p>   
                   </div>   
                   <div style="font-weight:bold">
-                     <a th:href="@{|/vote/${board.id}/|}">
-                         [추천]
+                     <a th:href="@{|/qnavote/${board.id}/|}">
+                         추천
+                      </a>
+                      |
+                      <a th:href="@{|/qnareport/${board.id}|}">
+                         신고
                       </a>
                    </div>
                </div>      
@@ -113,7 +117,8 @@
                <button type="submit" class="board_btn" id="replyAddBtn">등록</button>
             </form>   
          </div>   
-        </div>      
+        </div> 
+        </div>     
    </div>
 </body>
 </html>

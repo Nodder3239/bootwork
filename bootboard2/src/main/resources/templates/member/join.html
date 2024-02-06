@@ -15,7 +15,7 @@
 			          <label for="memberEmail">이메일</label>
 			          	<div class="input-group">
 				            <input type="text" class="form-control" th:field="*{memberId}" placeholder="ID" onblur="checkId()" required>
-				            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></p>
+				            <p th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}" class="error"></p>
 			         	</div>
 			          <p id="check-result"></p>
 			        </div>
@@ -23,14 +23,13 @@
 			          <label for="memberPassword">비밀번호</label>
 			          <div class="input-group">
 			            <input type="password" class="form-control" th:field="*{password}" placeholder="영문자, 숫자, 특수문자 포함 8자 이상" required>
-			            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></p>
+			            <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="error"></p>
 			          </div>
 			        </div>
 					<div class="mb-3">
 			          <label for="memberPassword2">비밀번호 확인</label>
 			          <div class="input-group">
-			            <input type="password" class="form-control" th:field="*{password2}" placeholder="비밀번호 확인" required>
-			            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></p>
+			            <input type="password" class="form-control" placeholder="비밀번호 확인" required>
 			          </div>
 			        </div>
 					<div class="mb-3">

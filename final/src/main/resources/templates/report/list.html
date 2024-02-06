@@ -7,11 +7,10 @@
 <script src="https://kit.fontawesome.com/69798321c6.js" ></script>
 </head>
 <body>
-   <div th:replace="~{header}"></div>
-
+<div th:replace="~{header}"></div>
+<h2 class="board_h2">신고게시판</h2>
       <div id="content">
-      <div class="content_list">
-      <h2 style="font-weight: bold;">신고게시판</h2>
+      <div class="board_content">
       <table class="tbl_list">
          <thead>
             <tr style="border-bottom: 2px solid #000; height: 50px;">
@@ -38,7 +37,7 @@
                 </th>
 
                 <td class="td_title" style="width:40%;">
-                   <a th:href="@{|/qnaboard/${board.id}|(page=${boardList.number+1})}">
+                   <a th:href="@{|/board/${board.id}|(page=${boardList.number+1})}">
                       <span th:text="${board.boardTitle}"></span>
                       <span style="font-size:small;" th:if="${board.replyCount != 0}" th:text="'[ ' + ${board.replyCount} + ' ]'"></span>
                    </a>
@@ -46,7 +45,7 @@
 
                    <td th:text="${board.boardWriter}"></td>
                    <td th:utext="${board.updatedDate != null ? #temporals.format(board.updatedDate, 'yyyy-MM-dd hh:mm') : #temporals.format(board.createdDate, 'yyyy-MM-dd hh:mm')}"></td>
-                   <td th:text="${board.boardHits}"></td>
+                   <td th:text="${board.reportCount}"></td>
                    <td><a th:href="@{|/report/delete/${board.id}|}" onclick="return confirm('정말로 삭제하시겠습니까?')">
                    		<i class="fa-solid fa-square-xmark"></i>
                    </a></td>
@@ -77,7 +76,7 @@
           </div>
           <!-- 페이징처리 끝 -->
       <!-- 검색 영역 -->
-         <div class="search_btn">
+         <div class="search_btn2">
            <form th:action="@{/reportboard/}" method="get">
               <div style="display: flex; justify-content: center;">
 	               <select name="field" class="toggle_btn">
@@ -88,7 +87,6 @@
 	               <input type="text" class="search_box" name="kw" th:value="${kw}" id="inputGroupFile04" 
 	                     placeholder="검색" aria-describedby="inputGroupFileAddon04" aria-label="Upload" style="width:50%">
 	               <button type="submit" class="board_btn2">검색</button>
-					<span class="board_btn1"></span>
 				</div>
            </form>
           </div>

@@ -66,6 +66,11 @@ public class ReplyService {
 		
 	}
 
+	@Transactional
+	public void deleteByReplyer(String name) {
+		replyRepository.deleteByReplyer(name);		
+	}
+
 
 
 }

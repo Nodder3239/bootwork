@@ -8,11 +8,10 @@
 <script src="https://kit.fontawesome.com/69798321c6.js" ></script>
 </head>
 <body>
-   <div th:replace="~{header}"></div>
-
-      <div id="content">
-      <div class="content_list">
-      <h2 style="font-weight: bold;">공지사항</h2>
+<div th:replace="~{header}"></div>
+<h2 class="board_h2">공지사항</h2>
+   <div id="content">
+      <div class="board_content">
       <table class="tbl_list">
          <thead>
             <tr style="border-bottom: 2px solid #000; height: 50px;">
@@ -66,8 +65,8 @@
           </div>
           <!-- 페이징처리 끝 -->
       <!-- 검색 영역 -->
-         <div class="search_btn">
-           <form th:action="@{/noticeboard/}" method="get">
+		<div th:class="${#authorization.expression('hasAnyAuthority(''ADMIN'')') ? 'search_btn' : 'search_btn2'}">
+			<form th:action="@{/noticeboard/}" method="get">
               <div style="display: flex; justify-content: center;">
                <select name="field" class="toggle_btn">
                   <option value="t" th:selected="${field == 't'}" th:text="제목"></option>
@@ -78,7 +77,6 @@
                      placeholder="검색" aria-describedby="inputGroupFileAddon04" aria-label="Upload" style="width:50%">
                <button type="submit" class="board_btn2">검색</button>
                  <a sec:authorize="hasAnyAuthority('ADMIN')" th:href = "@{/noticeboard/write}"><button type="button" class="board_btn1">글쓰기</button></a>
-                 <span sec:authorize="hasAnyAuthority('MEMBER')" class="board_btn1"></span>
               </div>
            </form>
           </div>

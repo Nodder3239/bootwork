@@ -22,7 +22,7 @@ public class QnaVoteController {
 	private final VoteService voteService;
 	private final BoardService boardService;
 	
-	@GetMapping("/{boardId}/")
+	@GetMapping("/{boardId}")
 	public String vote(@PathVariable Long boardId,
 			@AuthenticationPrincipal SecurityUser principal) {
 		List<VoteDTO> findVote = voteService.findByBoardIdAndVoter(boardId, principal.getMember().getName());
@@ -36,6 +36,6 @@ public class QnaVoteController {
 		}
 		boardService.updateHits2(boardId);
 		boardService.updateLikeCount(boardId);
-		return "redirect:/board/" + boardId;
+		return "redirect:/qnaboard/" + boardId;
 	}
 }

@@ -6,7 +6,7 @@
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <div th:replace="~{header::header-fragment}"></div>
+    <div th:replace="~{header}"></div>
 	<div id="container">
 	  <section id="memberlist">
 		<h2>회원 목록</h2>
@@ -16,8 +16,13 @@
 		  	    <th>번호</th>
 		  	    <th>아이디</th>
 		  	    <th>이름</th>
+		  	    
+		  	    <th>이메일</th>
+		  	    <th>생년월일</th>
+		  	    <th>전화번호</th>
+		  	    <th>지역</th>
+		  	    
 		  	    <th>권한</th>
-		  	    <th>가입일</th>
 		  	    <th>조회</th>
 		  	    <th>삭제</th>
 		  	  </tr>
@@ -27,10 +32,14 @@
 		  	    <td th:text="${member.id}"></td>
 		  	    <td th:text="${member.memberId}"></td>
 		  	    <td th:text="${member.name}"></td> 
+		  	    
+		  	    <td th:text="${member.memberEmail}"></td>
+		  	    <td th:text="${member.memberAge}"></td>
+		  	    <td th:text="${member.mnumber}"></td> 
+		  	    <td th:text="${member.memberArea}"></td>
+		  	    
 		  	    <td th:text="${member.role}"></td>
-		  	    <td th:text="${#dates.format(member.createdDate, 'yyyy-MM-dd HH:mm')}"></td>
-		  	    <td><a th:href="@{|/member/${member.id}|}">조회</a></td>
-		  	    <!-- 버티컬바(|)는 ${member.id}를 숫자로 유지시켜줌 -->
+		  	    <!-- <td><a th:href="@{|/member/${member.id}|}">조회</a></td> -->
 		  	    <td><a th:href="@{|/member/delete/${member.id}|}"
 		  	           onclick="return confirm('해당 회원을 삭제하시겠습니까?')">삭제</a></td>
 		  	  </tr>

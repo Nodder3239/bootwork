@@ -38,9 +38,16 @@ public class VoteService {
 	public void deleteByBoardIdAndVoter(Long boardId, String voter) {
 		voteRepository.deleteByBoardIdAndVoter(boardId, voter);
 	}
-
+	
+	@Transactional
 	public void deleteByBoardId(Long id) {
 		voteRepository.deleteByBoardId(id);
+		
+	}
+	
+	@Transactional
+	public void deleteByVoter(String name) {
+		voteRepository.deleteByVoter(name);
 		
 	}
 

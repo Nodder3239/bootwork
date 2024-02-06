@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Data 7</title>
+</head>
+<body>
+<div th:replace="~{layout/header}"></div>
+<a th:href="@{/}"><button type="button" id="btn1" class="btn btn-outline-secondary">처음으로</button></a>
+
+<form th:action="@{/search}" method="get">
+    <input type="text" name="query" placeholder="검색어를 입력하세요">
+    <button type="submit">검색</button>
+</form>
+
+<!-- 테이블 시작 -->
+<table id="result1" class="table" style="font-size:14px;">
+    <thead>
+        <!-- 테이블 헤더 정의 -->
+        <tr>
+            <!-- 각 열의 제목 지정 -->
+           		 <th scope="col">대구</th>
+				<th scope="col">충청남도</th>
+				<th scope="col">인천</th>
+				<th scope="col">대전</th>
+				<th scope="col">경상북도</th>
+				<th scope="col">세종</th>
+				<th scope="col">광주</th>
+				<th scope="col">전라북도</th>
+				<th scope="col">강원도</th>
+				<th scope="col">울산</th>
+				<th scope="col">전라남도</th>
+				<th scope="col">서울</th>
+				<th scope="col">부산</th>
+				<th scope="col">제주</th>
+				<th scope="col">충청북도</th>
+				<th scope="col">경상남도</th>
+				<th scope="col">데이터 시간</th>
+				<th scope="col">데이터 구분</th>
+				<th scope="col">경기도</th>
+				<th scope="col">데이터 항목 코드</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- 데이터 리스트를 반복하여 각 항목을 출력 -->
+        <tr th:each="item : ${dataList}">
+            <!-- 각 열에 해당하는 데이터 출력 -->
+            <td th:text="${item.daegu}"></td>
+            <td th:text="${item.chungnam}"></td>
+            <td th:text="${item.incheon}"></td>
+            <td th:text="${item.daejeon}"></td>
+            <td th:text="${item.gyeongbuk}"></td>
+            <td th:text="${item.sejong}"></td>
+            <td th:text="${item.gwangju}"></td>
+            <td th:text="${item.jeonbuk}"></td>
+            <td th:text="${item.gangwon}"></td>
+            <td th:text="${item.ulsan}"></td>
+            <td th:text="${item.jeonnam}"></td>
+            <td th:text="${item.seoul}"></td>
+            <td th:text="${item.busan}"></td>
+            <td th:text="${item.jeju}"></td>
+            <td th:text="${item.chungbuk}"></td>
+            <td th:text="${item.gyeongnam}"></td>
+            <td th:text="${item.dataTime}"></td>
+            <td th:text="${item.dataGubun}"></td>
+            <td th:text="${item.gyeonggi}"></td>
+            <td th:text="${item.itemCode}"></td>
+        </tr>
+    </tbody>
+</table>
+<!-- 테이블 종료 -->
+</body>
+</html>
