@@ -6,21 +6,22 @@
 <title>임시 메인</title>
 <link rel="stylesheet" th:href="@{/css/style.css}">
 <script src="https://kit.fontawesome.com/69798321c6.js" ></script>
-<script th:src="@{https://code.jquery.com/jquery-3.7.1.min.js}"></script>
 </head>
 <body>
 	<div th:replace="~{header}"></div>
 	<h2 class="board_h2">게시판 임시(인기글)</h2>
 	<div id="content">
-	<div class="board_content">
-		<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
-			<div>
-				<a th:href="@{/noticeboard/}">1. 공지사항</a>
-				<a th:href="@{/infoboard/}">2. 제보게시판</a>
-				<a th:href="@{/qnaboard/}">3. 질문게시판</a>
-				<a th:href="@{/report/}" sec:authorize="hasAnyAuthority('ADMIN')" >4. 신고게시판</a>
+		<div class="board_content">
+			<div class="main_board">
+				<div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+					<div>
+						<a th:href="@{/noticeboard/}">1. 공지사항</a>
+						<a th:href="@{/infoboard/}">2. 제보게시판</a>
+						<a th:href="@{/qnaboard/}">3. 질문게시판</a>
+						<a th:href="@{/report/}" sec:authorize="hasAnyAuthority('ADMIN')" >4. 신고게시판</a>
+					</div>
+				</div>
 			</div>
-		</div>
 		</div>
 	</div>
 <div th:replace="~{footer}"></div>

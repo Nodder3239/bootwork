@@ -37,7 +37,7 @@
                 </th>
 
                 <td class="td_title" style="width:40%;">
-                   <a th:href="@{|/board/${board.id}|(page=${boardList.number+1})}">
+                   <a th:href="@{|/report/${board.id}|(page=${boardList.number+1})}">
                       <span th:text="${board.boardTitle}"></span>
                       <span style="font-size:small;" th:if="${board.replyCount != 0}" th:text="'[ ' + ${board.replyCount} + ' ]'"></span>
                    </a>
@@ -92,5 +92,6 @@
           </div>
       </div>
    </div>
+   <div th:replace="~{footer}"></div>
 </body>
 </html>

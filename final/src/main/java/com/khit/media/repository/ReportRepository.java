@@ -14,5 +14,8 @@ public interface ReportRepository extends JpaRepository<Report, Long>{
 	
 	@Modifying
 	void deleteByBoardIdAndReporter(Long boardId, String reporter);
+	
+	@Modifying
+	void deleteByBoardId(Long id);
 
 }

@@ -7,6 +7,7 @@
 </head>
 <body>
 	<div th:replace="~{header}"></div>
+	
 		<div id="content" >
 			<a th:href = "@{/}"><button type="button" id="btn1" class="btn btn-outline-secondary">처음으로</button></a>
 			<table id="result1" class="table" >
@@ -29,7 +30,7 @@
 		
 		</div>
 		
-	
+	<div th:replace="~{footer}"></div>
 <script>
 /* jquery 환경 - 버튼 클릭 이벤트 */
 	$(document).ready(function(){

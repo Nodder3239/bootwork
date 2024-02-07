@@ -6,10 +6,12 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
+	<div th:replace="~{header}"></div>
+	<h2 class="board_h2">지진</h2>
 	<div class="main-main">
 	<div id="state_sub" class="bg_4">
     <div class="stateWrap">
-                <strong>지진</strong>
+                
         <ul>
                 <li class="active"><a th:href="@{/data/data3}"><strong>지진</strong></a></li>
                 <li class=""><a href=""><strong>산사태</strong></a></li>
@@ -64,5 +66,6 @@
         </tbody>
     </table> 
     <!-- 테이블 종료 -->
+    <div th:replace="~{footer}"></div>
 </body>
 </html>

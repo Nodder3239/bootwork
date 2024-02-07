@@ -6,8 +6,9 @@
   <script th:src="'https://maps.googleapis.com/maps/api/js?key=' + ${googleMapsApiKey} + '&libraries=places'"></script>
 </head>
 <body>
+<div th:replace="~{header}"></div>
   <div id="map" style="height: 400px;"></div>
-
+<div th:replace="~{footer}"></div>
   <script>
     // Google Maps API 키
     var googleMapsApiKey = 'AIzaSyDf0SG5J3TQn8Hhoi7Q1EJSXdEg1iI1HK4';

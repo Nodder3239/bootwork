@@ -23,7 +23,7 @@
             </tr>
          </thead>
          <tbody>
-         	<tr style="background:#ddd; border-bottom: 1px solid #000; height: 50px;">
+         	<tr th:if="${notice != null}" style="background:#ddd; border-bottom: 1px solid #000; height: 50px;">
 				<th><a th:href="@{/noticeboard/}">공지사항</a></th>
 				<td class="td_title" style="width:200px;">
 				    <a th:href="@{|/noticeboard/${notice.id}|}">
@@ -95,5 +95,6 @@
           </div>
       </div>
    </div>
+   <div th:replace="~{footer}"></div>
 </body>
 </html>

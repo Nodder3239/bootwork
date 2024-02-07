@@ -39,5 +39,11 @@ public class ReportService {
 		
 	}
 	
+	@Transactional
+	public void deleteByBoardId(Long id) {
+		reportRepository.deleteByBoardId(id);
+		
+	}
+	
 	
 }

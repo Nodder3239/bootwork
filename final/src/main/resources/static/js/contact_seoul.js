@@ -173,7 +173,7 @@
 	    });
 	    var contentString1 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="종로구청" class="thumb" /><br />',
+	        '<img src="/images/jongno_gu_office.jpg" width="50" height="50" alt="종로구청" class="thumb" /><br />',
 	        '<h3>종로구청</h3>',
 	        '<p><i class="fa-solid fa-location-dot"></i> 서울특별시 종로구 종로1길 36 <br />',
 	        '<i class="fa-solid fa-phone"></i> 대표전화: 02-2148-1114(120다산콜센터), <br/>',

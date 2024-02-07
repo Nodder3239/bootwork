@@ -34,7 +34,7 @@ public class SecurityConfig {
 						  "/noticereply/**", "/inforeply/**", "/qnareply/**",
 						  "/noticevote/**", "/infovote/**", "/qnavote/**", "/reply/**", "/vote/**").authenticated()
 				  .requestMatchers("/member/list", "/noticeboard/write").hasAnyAuthority("ADMIN")
-				  .requestMatchers("/member/**", "/data/**").permitAll()
+				  .requestMatchers("/member/**", "/data/**", "/contact/**").permitAll()
 				  .anyRequest().authenticated()
 				  )
 		          .formLogin(form -> form

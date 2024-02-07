@@ -11,10 +11,9 @@
       <div id="content">
       <div class="board_content">
       <form th:action="@{/qnaboard/write}" method="post" th:object="${boardDTO}" enctype="multipart/form-data">
-         <select class="form-select" aria-label="Disabled select example" name="boardCategory" disabled style="margin-bottom: -10px;">
-			  <option value="qna" selected>QnA</option>
-		 </select>
-         <input type="text" id=boardTitle th:field=*{boardTitle} class="form-control mt-4 mb-2"
+         <input type="text" class="form-control" placeholder="QnA" style="" readonly>
+         <input type="hidden" id="boardCategory" name="boardCategory" value="qna">
+         <input type="text" id=boardTitle th:field=*{boardTitle} class="form-control"
             placeholder="제목을 입력해주세요." required
          >
          <div class="form-group">
@@ -39,6 +38,8 @@
       </form>
       </div>
    </div>
+   
+   <div th:replace="~{footer}"></div>
 <script>
 function displayFileName(input) {
     var fileName = input.files[0].name;

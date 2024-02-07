@@ -97,8 +97,7 @@
     </style>
 </head>
 <body>
-
-<header>재난 홈페이지</header>
+<div th:replace="~{header}"></div>
 
 <div class="container">
     <a th:href="@{/}"><button type="button" id="btn1" class="btn btn-outline-secondary">처음으로</button></a>
@@ -166,6 +165,6 @@
     <!-- 페이지 링크 종료 -->
 
 </div>
-
+<div th:replace="~{footer}"></div>
 </body>
 </html>

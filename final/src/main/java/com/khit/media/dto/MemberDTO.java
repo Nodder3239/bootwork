@@ -1,6 +1,7 @@
 package com.khit.media.dto;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 import com.khit.media.entity.Member;
 import com.khit.media.entity.Role;
@@ -8,9 +9,13 @@ import com.khit.media.entity.Role;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Builder
 @Data
 public class MemberDTO {

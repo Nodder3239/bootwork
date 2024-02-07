@@ -1,7 +1,6 @@
 package com.khit.board.service;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -32,20 +31,19 @@ public class BoardService {
 		
 		//1. 파일을 서버에 저장하고
 		if (!boardFile.isEmpty()) {
-			String filepath = "C:\\bootworks\\bootboard\\src\\main\\resources\\static\\upload\\";
-			
+						
 			UUID uuid = UUID.randomUUID();	//무작위 아이디 생성(중복 파일 이름의 생성)
 			
 			String filename = uuid.toString() + "_" + boardFile.getOriginalFilename();	//원본 파일
+			String filepath = "C:/springfiles/" + filename;
 			
 			//File 클래스로 객체 생성
-			File savedFile = new File(filepath, filename);	//upload 폴더에 저장
+			File savedFile = new File(filepath);	//upload 폴더에 저장
 			boardFile.transferTo(savedFile);	//서버 폴더에 저장
 		
 		//2. 파일 이름은 db에 저장
 			boardDTO.setFilename(filename);
-			//boardDTO.setFilepath(filepath);
-			boardDTO.setFilepath("/upload/" + filename);
+			boardDTO.setFilepath(filepath);
 		}
 		
 		//dto -> entity로 변환
@@ -78,22 +76,21 @@ public class BoardService {
 	public void update(BoardDTO boardDTO, MultipartFile boardFile) throws Exception {
 		//boardDTO.setUpdatedDate(new Timestamp(System.currentTimeMillis()));
 		//1. 파일을 서버에 저장하고
-		if (!boardFile.isEmpty()) {		//
-			String filepath = "C:\\bootworks\\bootboard\\src\\main\\resources\\static\\upload\\";
+		if (!boardFile.isEmpty()) {
 			
 			UUID uuid = UUID.randomUUID();	//무작위 아이디 생성(중복 파일 이름의 생성)
 			
 			String filename = uuid.toString() + "_" + boardFile.getOriginalFilename();	//원본 파일
+			String filepath = "C:/springfiles/" + filename;
 			
 			//File 클래스로 객체 생성
-			File savedFile = new File(filepath, filename);	//upload 폴더에 저장
+			File savedFile = new File(filepath);	//upload 폴더에 저장
 			boardFile.transferTo(savedFile);	//서버 폴더에 저장
 		
 		//2. 파일 이름은 db에 저장
 			boardDTO.setFilename(filename);
-			boardDTO.setFilepath("/upload/" + filename);
-			
-
+			boardDTO.setFilepath(filepath);
+		
 		}else{
 	         //Board board = Board.toUpdateNoFile(boardDTO);
 	         //boardRepository.save(board);

@@ -39,7 +39,7 @@
 			</tr>
 			<tr th:if="${not #strings.isEmpty(board.filepath)}">
 				<td>
-					<img th:src="${board.filepath}" alt="" style="width:100%">
+					<img th:src="@{|/upload/${board.filename}|}" alt="" style="width:100%">
 				</td>
 			</tr>
 			<tr>

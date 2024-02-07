@@ -39,8 +39,8 @@
 			</tr>
 			<!-- <tr>
 				<td>
-				<c:if test="${not empty board.boardFilename }">
-					<img src="/resources\\upload/${board.boardFilename }" alt="" style="width:100%">
+				<c:if test="${not empty board.filename }">
+					<img th:src="@{|/upload/${board.filename}|}" alt="" style="width:100%">
 				</c:if>
 				</td>
 			</tr> -->

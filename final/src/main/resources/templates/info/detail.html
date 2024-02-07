@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>제보게시판</title>
+
 <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
@@ -11,8 +12,8 @@
    <div id="content">
       <div class="board_content">
       <table class="tbl_detail">
-         <tr style="border-bottom: 2px solid #000;">
-            <td>
+         <tr >
+            <td style="border-bottom: 2px solid #000;">
                <div style="font-size: 33px;">
                   <span th:text="${board.boardTitle}"></span>
                </div>
@@ -33,9 +34,9 @@
                </div>
             </td>
          </tr>
-         <tr style="border-bottom: 2px solid #000;">
-            <td>
-               <div style="display: flex; justify-content: space-between; margin-top: 5px; margin-bottom: -10px;">
+         <tr>
+            <td style="border-bottom: 2px solid #000; height: 30px;">
+               <div style="display: flex; justify-content: space-between;">
                   <div>
                      <p style="font-size: 18px;">
                          작성자: <span th:text="${board.boardWriter}"></span>
@@ -55,12 +56,12 @@
          </tr>
          <tr th:if="${not #strings.isEmpty(board.filepath)}">
             <td>
-               <div style="width:512px; margin: 10px auto;"><img th:src="${board.filepath}" alt="" style="width:100%;"></div>
+               <div style="width:50%; margin: 10px auto;"><img th:src="@{|/upload/${board.filename}|}" alt="" style="width:100%;"></div>
             </td>
          </tr>
-         <tr style="border-bottom: 2px solid #000;">
-            <td>
-               <div class="text-left" style="height:400px;">
+         <tr>
+            <td style="border-bottom: 2px solid #000;">
+               <div style="height:400px;">
                        <span th:text="${board.boardContent}"></span>
                </div>
             </td>
@@ -86,7 +87,7 @@
       <!-- 댓글 -->
       <div class="replyform">
            <p class="rtitle">댓글</p>
-             <div class = "reply" th:each="reply : ${replyList}">
+             <div class = "reply_reply" th:each="reply : ${replyList}">
                <div class = "rcontent">
                   <span th:text=${reply.rcontent}></span>
                </div>
@@ -111,7 +112,7 @@
             <form th:action="@{/inforeply/write}" method="post" id="replyform">
                <input type="hidden" name="boardId" th:value="${board.id}">
                <p>
-               <textarea name="rcontent" id="rontent" class="form-control" rows="5"
+               <textarea name="rcontent" id="rcontent" class="form-control" rows="5"
                   placeholder="댓글 작성란" style="resize: none;" required></textarea>
                </p>
                <button type="submit" class="board_btn" id="replyAddBtn">등록</button>
@@ -120,5 +121,6 @@
         </div> 
         </div>     
    </div>
+   <div th:replace="~{footer}"></div>
 </body>
 </html>
