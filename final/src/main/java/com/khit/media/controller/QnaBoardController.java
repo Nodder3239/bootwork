@@ -21,6 +21,7 @@ import com.khit.media.dto.BoardDTO;
 import com.khit.media.dto.ReplyDTO;
 import com.khit.media.service.BoardService;
 import com.khit.media.service.ReplyService;
+import com.khit.media.service.ReportService;
 import com.khit.media.service.VoteService;
 
 import lombok.RequiredArgsConstructor;
@@ -33,6 +34,7 @@ public class QnaBoardController {
 	private final BoardService boardService;
 	private final ReplyService replyService;
 	private final VoteService voteService;
+	private final ReportService reportService;
 	
 	//글쓰기 페이지
 	@GetMapping("/write")
@@ -113,12 +115,12 @@ public class QnaBoardController {
 		boardService.delete(id);
 		replyService.deleteByBoardId(id);
 		voteService.deleteByBoardId(id);
+		reportService.deleteByBoardId(id);
 		return "redirect:/qnaboard/";
 	}
 	
 	@GetMapping("/update/{id}")
 	public String updateForm(Model model, @PathVariable Long id) {
-		boardService.updateHits2(id);
 		BoardDTO boardDTO = boardService.findById(id);
 		model.addAttribute("board", boardDTO);
 		return "qna/update";
@@ -126,6 +128,7 @@ public class QnaBoardController {
 	
 	@PostMapping("/update")
 	public String update(@ModelAttribute BoardDTO boardDTO, MultipartFile boardFile) throws Exception {
+		boardService.updateHits2(boardDTO.getId());
 		boardService.update(boardDTO, boardFile);
 		return "redirect:/qnaboard/" + boardDTO.getId();
 	}

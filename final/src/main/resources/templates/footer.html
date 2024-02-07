@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <link rel="stylesheet" href="/css/style.css">
     <script src="https://kit.fontawesome.com/6673aed616.js" crossorigin="anonymous"></script>
@@ -19,7 +20,7 @@
 		 		</div>
 				<!-- ADMIN -->
 				<div class="footer-wrap-admin">			
-		 			<a th:href="@{/member/list}"><i class="fa-solid fa-user-lock"></i> ADMIN</a> <!-- [상현]ADMIN 전용 유저관리 페이지 href -->
+		 			<a sec:authorize="hasAnyAuthority('ADMIN')" th:href="@{/member/list}"><i class="fa-solid fa-user-lock"></i> ADMIN</a> <!-- [상현]ADMIN 전용 유저관리 페이지 href -->
 		 		</div> 
 		 	</div>
 		 		

@@ -17,6 +17,7 @@ import com.khit.media.entity.Member;
 import com.khit.media.service.BoardService;
 import com.khit.media.service.MemberService;
 import com.khit.media.service.ReplyService;
+import com.khit.media.service.ReportService;
 import com.khit.media.service.VoteService;
 
 import jakarta.validation.Valid;
@@ -30,6 +31,7 @@ public class MemberController {
 	private final BoardService boardService;
 	private final ReplyService replyService;
 	private final VoteService voteService;
+	private final ReportService reportService;
 	
     //로그인 페이지 요청 :  /login
 	@GetMapping("/login")
@@ -87,6 +89,7 @@ public class MemberController {
 		boardService.deleteByBoardWriter(name);
 		replyService.deleteByReplyer(name);
 		voteService.deleteByVoter(name);
+		reportService.deleteByReporter(name);
 		return "redirect:/member/list";
 	}
 	
