@@ -3,9 +3,15 @@ package com.khit.media.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import com.khit.media.dto.BoardDTO;
 import com.khit.media.dto.ReplyDTO;
+import com.khit.media.entity.Board;
 import com.khit.media.entity.Reply;
 import com.khit.media.repository.ReplyRepository;
 
@@ -72,5 +78,17 @@ public class ReplyService {
 	}
 
 
+	public Page<ReplyDTO> findByReplyer3(String name, Pageable pageable) {
+		int page = pageable.getPageNumber() - 1;
+		int pageSize = 3;
+		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
+		
+		Page<Reply> replyList = replyRepository.findByReplyer(name, pageable);
+		Page<ReplyDTO> replyDTOList = replyList.map(reply ->
+		new ReplyDTO(reply.getId(), reply.getBoardId(), 
+				reply.getReplyer(), reply.getRcontent(), 
+				reply.getCreatedDate(), reply.getUpdatedDate()));
+		return replyDTOList;
+	}
 
 }

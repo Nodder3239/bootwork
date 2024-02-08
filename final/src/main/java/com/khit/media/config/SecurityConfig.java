@@ -31,7 +31,7 @@ public class SecurityConfig {
 				  .requestMatchers("/", "/css/**", "/images/**", "/js/**", "/error", "/ex/**",
 						  "/board/", "/infoboard/", "/noticeboard/", "/qnaboard/", "/board/").permitAll()
 				  .requestMatchers("/infoboard/**", "/qnaboard/**", "/noticeboard/**", "/board/**",  
-						  "/noticereply/**", "/inforeply/**", "/qnareply/**",
+						  "/noticereply/**", "/inforeply/**", "/qnareply/**", "/member/account",
 						  "/noticevote/**", "/infovote/**", "/qnavote/**", "/reply/**", "/vote/**").authenticated()
 				  .requestMatchers("/member/list", "/noticeboard/write").hasAnyAuthority("ADMIN")
 				  .requestMatchers("/member/**", "/data/**", "/contact/**").permitAll()

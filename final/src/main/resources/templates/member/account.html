@@ -6,6 +6,33 @@
 </head>
 <body>
 	<div th:replace="~{header}"></div>
+	
+	<p>추천한 글</p>
+	<table>
+		<tbody>
+			<tr th:each="vote : ${voteList}">
+				<th><a th:href="@{|/board/${vote.id}|}" th:text="${vote.boardTitle}"></a></th>
+			</tr>
+		</tbody>
+	</table>
+	
+	<p>내가 쓴 글</p>
+	<table>
+		<tbody>
+			<tr th:each="board : ${myBoardList}">
+				<th><a th:href="@{|/board/${board.id}|}" th:text="${board.boardTitle}"></a></th>
+			</tr>
+		</tbody>
+	</table>
+	
+	<p>내가 쓴 댓글</p>
+	<table>
+		<tbody>
+			<tr th:each="reply : ${myReplyList}">
+				<th><a th:href="@{|/board/${reply.BoardId}|}" th:text="${reply.rcontent}"></a></th>
+			</tr>		
+		</tbody>	
+	</table>
 	<div th:replace="~{footer}"></div>
 </body>
 </html>

@@ -45,7 +45,7 @@
 
                    <td th:text="${board.boardWriter}"></td>
                    <td th:utext="${board.updatedDate != null ? #temporals.format(board.updatedDate, 'yyyy-MM-dd hh:mm') : #temporals.format(board.createdDate, 'yyyy-MM-dd hh:mm')}"></td>
-                   <td th:text="${board.reportCount}"></td>
+                   <td th:text="${board.reportCount}"><th:block th:if="${board.reportCount == null}" th:text="0"></th:block></td>
                    <td><a th:href="@{|/report/delete/${board.id}|}" onclick="return confirm('정말로 삭제하시겠습니까?')">
                    		<i class="fa-solid fa-square-xmark"></i>
                    </a></td>
@@ -77,7 +77,7 @@
           <!-- 페이징처리 끝 -->
       <!-- 검색 영역 -->
          <div class="search_btn2">
-           <form th:action="@{/reportboard/}" method="get">
+           <form th:action="@{/report/}" method="get">
               <div style="display: flex; justify-content: center;">
 	               <select name="field" class="toggle_btn">
 	                  <option value="t" th:selected="${field == 't'}" th:text="제목"></option>

@@ -2,6 +2,8 @@ package com.khit.media.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 
@@ -16,5 +18,8 @@ public interface ReplyRepository extends JpaRepository<Reply, Long>{
 	
 	@Modifying
 	void deleteByReplyer(String name);
+
+	Page<Reply> findByReplyer(String name, Pageable pageable);
+
 
 }

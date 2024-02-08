@@ -112,7 +112,7 @@
             <form th:action="@{/inforeply/write}" method="post" id="replyform">
                <input type="hidden" name="boardId" th:value="${board.id}">
                <p>
-               <textarea name="rcontent" id="rcontent" class="form-control" rows="5"
+               <textarea name="rcontent" id="rcontent" class="write-control" rows="5"
                   placeholder="댓글 작성란" style="resize: none;" required></textarea>
                </p>
                <button type="submit" class="board_btn" id="replyAddBtn">등록</button>

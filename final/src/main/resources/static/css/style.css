@@ -5,13 +5,21 @@
 
 *{margin: 0; padding: 0; font-family: 'NanumSquareRound';}
 
-html, body{height:auto; min-height:100%; min-width:1440px; width:100%; color: #353535; background: #e9e9e9;}
+html, body{height:auto; min-height:100%; width:100%; color: #353535; background: #e9e9e9;}
 
 a{text-decoration: none; color:#353535; font-weight:900;}
 a:hover{text-decoration: none; color: #004aad; font-weight:900;}
 ul li{list-style: none;}
 
-
+h2.board_h2{
+	color: #fff; text-align: center;
+	width: 100%;
+	height: 60px;
+	background-color: #004aad;
+	font-weight: bold;
+	margin: 0;
+	line-height: 60px;
+}
 
 
 /* nagyung */
@@ -409,16 +417,7 @@ ul li{list-style: none;}
 	margin: 0px auto;
 	height: 100%;
 }
-h2.board_h2{
-	color: #fff; text-align: center;
-	width: 100%;
-	height: 60px;
-	background-color: #004aad;
-	font-weight: bold;
-	margin: 0;
-	line-height: 60px;
-	
-}
+
 
 .main_board{
 	height: 35vw;
@@ -467,11 +466,17 @@ h2.board_h2{
 	text-align: center; 
 	border-collapse: collapse;
 }
-.tbl_list td, th{
+.tbl_list tr{
 	border-left: none;
 	border-right: none;
 	border-bottom: 1px solid black;
+	height: 50px;
 }
+
+.tbl_list .reply_count{
+	font-size: 0.8rem;
+}
+
 .td_title {width: 50%; text-overflow: ellipsis; white-space:nowrap;}
 
 .board_btn {
@@ -654,14 +659,21 @@ h2.board_h2{
 }
 
 .file-name{
-	line-height: 35px;
+	line-height: 57px;
 }
 
 .form-control{
 	margin: 10px 0;
 	border: 1px solid #dee2e6;
     border-radius: 0.375rem;
-    width: 100%
+    width: 100%;
+    height: 30px;
+}
+.write-control{
+	margin: 10px 0;
+	border: 1px solid #dee2e6;
+    border-radius: 0.375rem;
+    width: 100%;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -684,13 +696,20 @@ h2.board_h2{
 
 @media (max-width: 1024px) {
   #content {
-    width:100%;
+    width:100vw;
   }
-  table{
+  .tbl_list{
   font-size: 1.5vw
+  }
+  .tbl_list .reply_count{
+  font-size: 1vw
   }
   .search_btn{
   	width: 425px;
+  }
+  
+  .tbl_list tr, td, th{
+	height: 3vw;
   }
 }
 
@@ -700,7 +719,7 @@ h2.board_h2{
   #content {
     width:355px;
   }
-  table{
+  .tbl_list{
   font-size: 10px;
   }
   .search_btn{
@@ -725,3 +744,5 @@ header #head_header h1{
 #top_menu li{display: inline-block; margin: 0 20px; }
 #top_menu li a{color: #444; padding: 0 20px;}
 #top_menu li a:hover{color: #111;}
+
+

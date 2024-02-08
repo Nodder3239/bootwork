@@ -1,19 +1,20 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 <meta charset="UTF-8">
 <title>게시판 목록</title>
-<link rel="stylesheet" th:href="@{/css/style.css}">
 <script src="https://kit.fontawesome.com/69798321c6.js" ></script>
+<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 	<div th:replace="~{header}"></div>
 <h2 class="board_h2">전체글 목록</h2>
-		<div id="content">
+	<div id="content">
 		<div class="board_content">
-		<table class="table" id="tbl_list">
+		<table class="tbl_list">
 			<thead>
-				<tr>
+				<tr style="border-bottom: 2px solid #000; height: 50px;">
 					<th scope="col">글분류</th>
 					<th scope="col">글제목</th>
 					<th scope="col">글쓴이</th>
@@ -35,17 +36,17 @@
 	                	<span th:if="${board.boardCategory eq 'info6'}"><a th:href="@{/infoboard/?cate=info6}">부산/경상</a></span>
 	                	<span th:if="${board.boardCategory eq 'info7'}"><a th:href="@{/infoboard/?cate=info7}">제주</a></span>
 	                </th>
-				    <td class="td_title" style="width:200px;">
+				    <td class="td_title" style="width:40%;">
 					    <a th:href="@{|/board/${board.id}|(page=${boardList.number+1})}">
 					    	<span th:text="${board.boardTitle}"></span>
-					    	<span style="font-size:0.7vw;" th:if="${board.replyCount != 0}" th:text="'[ ' + ${board.replyCount} + ' ]'"></span>
+					    	<span class="reply_count" th:if="${board.replyCount != 0}" th:text="'[ ' + ${board.replyCount} + ' ]'"></span>
 					    </a>
 					</td>
 
 	                <td th:text="${board.boardWriter}"></td>
 	                <td th:utext="${board.updatedDate != null ? #temporals.format(board.updatedDate, 'yyyy-MM-dd hh:mm') : #temporals.format(board.createdDate, 'yyyy-MM-dd hh:mm')}"></td>
 	                <td th:text="${board.boardHits}"></td>
-	                <td th:text="${board.likeCount}"></td>
+	                <td th:text="${board.likeCount}"><th:block th:if="${board.likeCount == null}" th:text="0"></th:block></td>
 	            </tr>
 			</tbody>
 		</table>

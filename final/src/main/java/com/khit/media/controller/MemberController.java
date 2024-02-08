@@ -2,6 +2,9 @@ package com.khit.media.controller;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +15,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.khit.media.config.SecurityUser;
+import com.khit.media.dto.BoardDTO;
 import com.khit.media.dto.MemberDTO;
+import com.khit.media.dto.ReplyDTO;
 import com.khit.media.entity.Member;
 import com.khit.media.service.BoardService;
 import com.khit.media.service.MemberService;
@@ -110,7 +115,17 @@ public class MemberController {
 		return "redirect:/member/" + memberDTO.getId();
 	}
 	@GetMapping("/member/account")
-	public String account() {
+	public String account(
+			@AuthenticationPrincipal SecurityUser principal,
+			@PageableDefault(page=1) Pageable pageable, Model model) {
+		Page<BoardDTO> voteList = boardService.findVoteListAll3(principal.getMember().getName(), pageable);
+		Page<BoardDTO> myboardList = boardService.findByWriter3(principal.getMember().getName() ,pageable);
+		Page<ReplyDTO> myReplyList = replyService.findByReplyer3(principal.getMember().getName(), pageable);
+		
+		model.addAttribute("voteList", voteList);
+		model.addAttribute("myBoardList", myboardList);
+		model.addAttribute("myReplyList", myReplyList);
+		
 		return "member/account";
 	}
 }

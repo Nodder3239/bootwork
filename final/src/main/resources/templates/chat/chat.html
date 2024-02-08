@@ -11,7 +11,7 @@
 </head>
 
 <body>
-   <div style="width: 800px; margin: 0 auto;" id="chatRoom">
+   <div style="width: 750px; margin: 0 auto;" id="chatRoom">
        <div class="col-12">
            <h2><label>채팅방</label></h2>
        </div>
@@ -42,7 +42,7 @@ $("#button-send").on("click", (e) => {
     send();
 });
 
-const websocket = new WebSocket("ws://192.168.20.57:8080/ws/chat");
+const websocket = new WebSocket("ws://localhost:8080/ws/chat");
 
 websocket.onmessage = onMessage;
 websocket.onopen = onOpen;

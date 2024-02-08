@@ -24,21 +24,21 @@
             </tr>
          </thead>
          <tbody>
-         	<tr th:if="${notice != null}" style="background:#ddd; border-bottom: 1px solid #000; height: 50px;">
+         	<tr th:if="${notice != null}" style="background:#ddd;">
 				<th><a th:href="@{/noticeboard/}">공지사항</a></th>
 				<td class="td_title" style="width:200px;">
 				    <a th:href="@{|/noticeboard/${notice.id}|}">
 				    	<span th:text="${notice.boardTitle}"></span>
-				    	<span style="font-size:small;" th:if="${notice.replyCount != 0}" th:text="'[ ' + ${notice.replyCount} + ' ]'"></span>
+				    	<span class="reply_count" th:if="${notice.replyCount != 0}" th:text="'[ ' + ${notice.replyCount} + ' ]'"></span>
 				    </a>
 				</td>
 
                 <td th:text="${notice.boardWriter}"></td>
                 <td th:utext="${notice.updatedDate != null ? #temporals.format(notice.updatedDate, 'yyyy-MM-dd hh:mm') : #temporals.format(notice.createdDate, 'yyyy-MM-dd hh:mm')}"></td>
                 <td th:text="${notice.boardHits}"></td>
-                <td th:text="${notice.likeCount}"></td>
+                <td th:text="${notice.likeCount}"><th:block th:if="${board.likeCount == null}" th:text="0"></th:block></td>
             </tr>
-            <tr th:each="board : ${boardList}" style="border-bottom: 1px solid #000; height: 50px;">
+            <tr th:each="board : ${boardList}">
                 <th>
                 	<span th:if="${board.boardCategory eq 'info1'}"><a th:href="@{/infoboard/?cate=info1}">서울</a></span>
                 	<span th:if="${board.boardCategory eq 'info2'}"><a th:href="@{/infoboard/?cate=info2}">인천/경기</a></span>
@@ -52,7 +52,7 @@
                 <td class="td_title" style="width:40%;">
                    <a th:href="@{|/infoboard/${board.id}|(page=${boardList.number+1})}">
                       <span th:text="${board.boardTitle}"></span>
-                      <span style="font-size:small;" th:if="${board.replyCount != 0}" th:text="'[ ' + ${board.replyCount} + ' ]'"></span>
+                      <span class="reply_count" th:if="${board.replyCount != 0}" th:text="'[ ' + ${board.replyCount} + ' ]'"></span>
                    </a>
                </td>
 

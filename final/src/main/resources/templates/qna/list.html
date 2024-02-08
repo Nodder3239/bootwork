@@ -23,12 +23,12 @@
             </tr>
          </thead>
          <tbody>
-         	<tr th:if="${notice != null}" style="background:#ddd; border-bottom: 1px solid #000; height: 50px;">
+         	<tr th:if="${notice != null}" style="background:#ddd;">
 				<th><a th:href="@{/noticeboard/}">공지사항</a></th>
 				<td class="td_title" style="width:200px;">
 				    <a th:href="@{|/noticeboard/${notice.id}|}">
 				    	<span th:text="${notice.boardTitle}"></span>
-				    	<span style="font-size:small;" th:if="${notice.replyCount != 0}" th:text="'[ ' + ${notice.replyCount} + ' ]'"></span>
+				    	<span class="reply_count" th:if="${notice.replyCount != 0}" th:text="'[ ' + ${notice.replyCount} + ' ]'"></span>
 				    </a>
 				</td>
 
@@ -37,20 +37,20 @@
                 <td th:text="${notice.boardHits}"></td>
                 <td th:text="${notice.likeCount}"></td>
             </tr>
-            <tr th:each="board : ${boardList}" style="border-bottom: 1px solid #000; height: 50px;">
+            <tr th:each="board : ${boardList}">
                 <th th:text="QnA"></th>
 
                 <td class="td_title" style="width:40%;">
                    <a th:href="@{|/qnaboard/${board.id}|(page=${boardList.number+1})}">
                       <span th:text="${board.boardTitle}"></span>
-                      <span style="font-size:small;" th:if="${board.replyCount != 0}" th:text="'[ ' + ${board.replyCount} + ' ]'"></span>
+                      <span class="reply_count" th:if="${board.replyCount != 0}" th:text="'[ ' + ${board.replyCount} + ' ]'"></span>
                    </a>
                </td>
 
                    <td th:text="${board.boardWriter}"></td>
                    <td th:utext="${board.updatedDate != null ? #temporals.format(board.updatedDate, 'yyyy-MM-dd hh:mm') : #temporals.format(board.createdDate, 'yyyy-MM-dd hh:mm')}"></td>
                    <td th:text="${board.boardHits}"></td>
-                   <td th:text="${board.likeCount}"></td>
+                   <td th:text="${board.likeCount}"><th:block th:if="${board.likeCount == null}" th:text="0"></th:block></td>
                </tr>
          </tbody>
       </table>
