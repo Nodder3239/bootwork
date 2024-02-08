@@ -23,7 +23,7 @@
 				    <div style="margin-left: 5px; font-size: 15px" th:if="${board.updatedDate eq null}">
 				        작성일시: <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm:ss')}"></span>    
 				    </div>
-					<div style="display: flex; justify-content: space-between;">
+					<div style="display: flex; justify-content: space-between; margin: 5px">
 					    <div th:if="${board.boardHits != null}">
 					        조회수: <span th:text="${board.boardHits} + '회'"></span>
 					    </div>
@@ -36,8 +36,8 @@
 			<tr>
 				<td style="border-bottom: 2px solid #000;">
 					<div style="display: flex; justify-content: space-between;">
-						<div class="text-left" >
-							<p class="font-weight-light" style="font-size: 18px; font-weight:bold">
+						<div style="margin-left: 5px;" >
+							<p class="font-weight-light" style="font-size: 18px;">
 								 작성자: <span th:text="${board.boardWriter}"></span>
 							</p>	
 						</div>	
@@ -60,7 +60,7 @@
 	         </tr>
 			<tr style="border-bottom: 2px solid #000;">
 				<td>
-					<div class="text-left" style="height:400px;">
+					<div style="height:400px; padding: 5px;">
 	                  <span th:text="${board.boardContent}"></span>
 	               </div>
 				</td>
@@ -77,7 +77,7 @@
 				        </a>
 					</span>
 					<a th:href="@{/board/(page=${page})}">
-				        <button class="board_btn">목록</button>
+				        <button class="board_btn">전체목록</button>
 				    </a>
 				    </div>
 				</td>

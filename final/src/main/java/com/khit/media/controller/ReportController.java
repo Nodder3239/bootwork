@@ -146,7 +146,7 @@ public class ReportController {
 		return "redirect:/qnaboard/" + boardId;
 	}
 	
-	@GetMapping("/delete/{id}")
+	@GetMapping("/report/delete/{id}")
 	public String deleteReport(@PathVariable Long id) {
 		boardService.delete(id);
 		replyService.deleteByBoardId(id);

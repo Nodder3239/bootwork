@@ -95,6 +95,8 @@ h2.board_h2{
 
 
 
+
+
 /* chaehee */
 
 .ch{
@@ -219,8 +221,101 @@ h2.board_h2{
     color: white;
     font-weight: bold;
   }
+  /* account 스타일 */
+  #account{
+    width: 60%;
+    margin: 100px auto;
+    display: flex;
+    border: 1px solid #004aad;
+    background-color: #f5f5f5;
+    max-width: 1024px;
+  }
+  #left{
+    width: 40%;
+    height: 100%;
+  }
+  #left #mimage{
+    width: 50%;
+    aspect-ratio: 1 / 1;
+    margin: 20px auto;
+    background-color: #dadada;
+    border-radius: 50%;
+    margin-top: 25%;
+    overflow: hidden;
+  }
+   #left #mimage img{
+   display: block;
+   width: 100%;
+   }
+  #left h6{
+    padding-bottom: 50px;
+    text-align: center;
+    font-size: 15px;
+  }
+  #left .mbutton{
+    margin: 10% auto;
+    padding: 5%;
+    width: 50%;
+    border-radius: 30px;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+  }
+  #left #modify{
+    background-color: #dadada;
+    font-size: 15px;
+  }
+  #left #logout{
+    background-color: #004aad;
+    font-size: 15px;
+  }
+  #right{
+    margin: auto;
+    padding: 30px;
+    width: 90%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  #right h5{
+    width: 100%;
+    margin: 10px;
+  }
+  #right .mcontent{
+    display: flex;
+    flex-direction: column;
+    margin: 5px 0 25px 0;
+    padding: 5px 0;
+    width: 100%;
+    background-color: #ececec;
+    border-top: 1px solid #004aad;
+    border-bottom: 1px solid #004aad;
+    align-items: center;
+  }
+  #right .mcontent p{
+	padding: 8px 0px;
+    width: 90%;
+    border-bottom: 1px dashed white;
+    text-align: center;
+  }
+#right .mcontent p:last-child {
+  border-bottom: none;
+}
+  .line2 {
+    border-left: 1px dotted #004aad;
+    width: 0;
+  }
 
 }
+
+
+
+
+
+
+
+
 
 /* yubin */
 
@@ -466,7 +561,14 @@ h2.board_h2{
 	text-align: center; 
 	border-collapse: collapse;
 }
-.tbl_list tr{
+.tbl_list thead tr{
+	border-left: none;
+	border-right: none;
+	border-bottom: 2px solid black;
+	height: 50px;
+}
+
+.tbl_list tbody tr{
 	border-left: none;
 	border-right: none;
 	border-bottom: 1px solid black;
@@ -514,7 +616,7 @@ h2.board_h2{
     width: 20px;
     height: 20px;
     border-radius: 50%;
-    margin: 5px auto;
+    margin: 0px auto;
 }
 
 .page-btn.disabled {
@@ -708,8 +810,10 @@ h2.board_h2{
   .search_btn{
   	width: 425px;
   }
-  
-  .tbl_list tr, td, th{
+  .tbl_list thead tr{
+	height: 3vw;
+  }
+  .tbl_list tbody tr{
 	height: 3vw;
   }
 }

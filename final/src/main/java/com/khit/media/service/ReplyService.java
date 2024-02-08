@@ -78,10 +78,24 @@ public class ReplyService {
 	}
 
 
-	public Page<ReplyDTO> findByReplyer3(String name, Pageable pageable) {
-		int page = pageable.getPageNumber() - 1;
+	public Page<ReplyDTO> findByReplyer2(String name, Pageable pageable) {
+		int page3 = pageable.getPageNumber() - 1;
 		int pageSize = 3;
-		pageable = PageRequest.of(page, pageSize, Sort.Direction.DESC, "id");
+		pageable = PageRequest.of(page3, pageSize, Sort.Direction.DESC, "id");
+		
+		Page<Reply> replyList = replyRepository.findByReplyer(name, pageable);
+		Page<ReplyDTO> replyDTOList = replyList.map(reply ->
+		new ReplyDTO(reply.getId(), reply.getBoardId(), 
+				reply.getReplyer(), reply.getRcontent(), 
+				reply.getCreatedDate(), reply.getUpdatedDate()));
+		return replyDTOList;
+	}
+
+
+	public Page<ReplyDTO> findByReplyer(String name, Pageable pageable) {
+		int page3 = pageable.getPageNumber() - 1;
+		int pageSize = 3;
+		pageable = PageRequest.of(page3, pageSize, Sort.Direction.DESC, "id");
 		
 		Page<Reply> replyList = replyRepository.findByReplyer(name, pageable);
 		Page<ReplyDTO> replyDTOList = replyList.map(reply ->

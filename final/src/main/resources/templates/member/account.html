@@ -2,37 +2,53 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>마이페이지</title>
 </head>
 <body>
 	<div th:replace="~{header}"></div>
 	
-	<p>추천한 글</p>
-	<table>
-		<tbody>
-			<tr th:each="vote : ${voteList}">
-				<th><a th:href="@{|/board/${vote.id}|}" th:text="${vote.boardTitle}"></a></th>
-			</tr>
-		</tbody>
-	</table>
-	
-	<p>내가 쓴 글</p>
-	<table>
-		<tbody>
-			<tr th:each="board : ${myBoardList}">
-				<th><a th:href="@{|/board/${board.id}|}" th:text="${board.boardTitle}"></a></th>
-			</tr>
-		</tbody>
-	</table>
-	
-	<p>내가 쓴 댓글</p>
-	<table>
-		<tbody>
-			<tr th:each="reply : ${myReplyList}">
-				<th><a th:href="@{|/board/${reply.BoardId}|}" th:text="${reply.rcontent}"></a></th>
-			</tr>		
-		</tbody>	
-	</table>
+<div class="ch">
+	<div id="account">
+      <div id="left">
+        <div id="mimage">
+        	<img src="https://i.pinimg.com/736x/ca/a6/fb/caa6fb484a4a71444d003c2ac8613659.jpg">
+        </div>
+        <h6 th:text="${name} + ' 님'"></h6>
+        <div class="mbutton" id="modify"><a th:href="@{/member/update}">설정</a></div>
+        <div class="mbutton" id="logout"><a th:href="@{/member/out}">회원탈퇴</a></div>
+      </div>
+      <div class="line2"></div>
+      <div id="right">
+
+        <h5>내 추천글</h5>
+        <div class="mcontent">
+          <p th:each="vote : ${voteList}">
+          	<a th:href="@{|/board/${vote.id}|}" th:text="${vote.boardTitle}"></a>
+          </p>
+          <p><a th:href="@{/board/votelist/}">+ more</a></p>
+        </div>
+		
+		
+        <h5>내 게시글</h5>
+        <div class="mcontent">
+          <p th:each="board : ${myBoardList}">
+          	<a th:href="@{|/board/${board.id}|}" th:text="${board.boardTitle}"></a>
+          </p>
+          <p><a th:href="@{/board/myboardlist/}">+ more</a></p>
+        </div>
+        
+
+        <h5>내 댓글</h5>
+        <div class="mcontent">
+          <p th:each="reply : ${myReplyList}">
+          	<a th:href="@{|/board/${reply.BoardId}|}" th:text="${reply.rcontent}"></a>
+          </p>
+          <p><a th:href="@{/board/myreplylist/}">+ more</a></p>
+        </div>
+		
+      </div>
+    </div>
+</div>
 	<div th:replace="~{footer}"></div>
 </body>
 </html>

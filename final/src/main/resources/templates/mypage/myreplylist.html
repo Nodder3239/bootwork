@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<head>
+<meta charset="UTF-8">
+<title>내 추천글</title>
+<script src="https://kit.fontawesome.com/69798321c6.js" ></script>
+<link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+	<div th:replace="~{header}"></div>
+<h2 class="board_h2">내 댓글</h2>
+	<div id="content">
+		<div class="board_content">
+		<table class="tbl_list">
+			<thead>
+				<tr>
+					<th scope="col">분류</th>
+					<th scope="col">댓글내용</th>
+					<th scope="col">댓글쓴이</th>
+					<th scope="col">작성일</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="reply : ${replyList}">
+	                <th>
+	                	댓글
+	                </th>
+				    <td class="td_title" style="width:40%;">
+					    <a th:href="@{|/board/${reply.boardId}|}">
+					    	<span th:text="${reply.rcontent}"></span>
+					    </a>
+					</td>
+
+	                <td th:text="${reply.replyer}"></td>
+	                <td th:utext="${reply.updatedDate != null ? #temporals.format(reply.updatedDate, 'yyyy-MM-dd hh:mm') : #temporals.format(reply.createdDate, 'yyyy-MM-dd hh:mm')}"></td>
+	            </tr>
+			</tbody>
+		</table>
+		<!-- 페이징처리 시작 -->
+			<div style="width: 50%; margin: 10px auto;">
+	              <ul class="pagination_btn">                 
+                      <li th:class="${nowPage eq 1} ? 'page-btn disabled' : 'page-btn'">
+                          <a class="page-box" th:href="${startPage eq 1}? '/board/myreplylist/?page=1' : @{/board/myreplylist/(page=${startPage-1})}">&lt;&lt;</a>
+                      </li>
+                      <li th:class="${nowPage eq 1} ? 'page-btn disabled' : 'page-btn'">
+                          <a class="page-box" th:href="${replyList.first}? '/board/myreplylist/?page=1' : @{/board/myreplylist/(page=${replyList.number})}">&lt;</a>
+                      </li>
+                      <li th:class="${nowPage eq page} ? 'page-btn active' : 'page-btn'" th:each="page : ${#numbers.sequence(startPage, endPage)}">
+                      <a class="page-box" th:href="@{/board/myreplylist/(page=${page})}">
+                          <span th:text="${page}"></span>
+                      </a>
+                  </li>
+                      <li th:class="${nowPage eq replyList.totalPages} ? 'page-btn disabled' : 'page-btn'">
+                          <a class="page-box" th:href="${replyList.last}? @{/board/myreplylist/(page=${endPage})} : @{/board/myreplylist/(page=${replyList.number+2})}">&gt;</a>
+                      </li>
+                      <li th:class="${nowPage eq replyList.totalPages} ? 'page-btn disabled' : 'page-btn'">
+                          <a class="page-box" th:href="${replyList.totalPages eq endPage}? @{/board/myreplylist/(page=${endPage})} : @{/board/myreplylist/(page=${endPage+1})}">&gt;&gt;</a>
+                      </li>
+                 </ul>
+	       </div>
+          <!-- 페이징처리 끝 -->
+		</div>
+	</div>
+<div th:replace="~{footer}"></div>
+</body>
+</html>

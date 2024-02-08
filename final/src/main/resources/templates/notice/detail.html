@@ -16,14 +16,14 @@
                <div style="font-size: 33px;">
                   <span th:text="${board.boardTitle}"></span>
                </div>
-                <div style="font-size: 15px" th:if="${board.updatedDate ne null}">
+                <div style="margin-left: 5px; font-size: 15px" th:if="${board.updatedDate ne null}">
                     작성일시: <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm:ss')}"></span>&nbsp;
                     수정일시: <span th:text="${#temporals.format(board.updatedDate, 'yyyy-MM-dd HH:mm:ss')}"></span>
                 </div>
-                <div style="font-size: 15px" th:if="${board.updatedDate eq null}">
+                <div style="margin-left: 5px; font-size: 15px" th:if="${board.updatedDate eq null}">
                     작성일시: <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm:ss')}"></span>    
                 </div>
-               <div style="display: flex; justify-content: space-between;">
+               <div style="display: flex; justify-content: space-between; margin: 5px">
                    <div th:if="${board.boardHits != null}">
                        조회수: <span th:text="${board.boardHits} + '회'"></span>
                    </div>
@@ -36,7 +36,7 @@
          <tr>
             <td style="border-bottom: 2px solid #000; height: 30px;">
                <div style="display: flex; justify-content: space-between;">
-                  <div>
+                  <div style="margin-left: 5px;">
                      <p style="font-size: 18px;">
                          작성자: <span th:text="${board.boardWriter}"></span>
                      </p>   
@@ -60,7 +60,7 @@
          </tr>
          <tr>
             <td style="border-bottom: 2px solid #000;">
-               <div class="text-left" style="height:400px;">
+               <div style="height:400px; padding: 5px;">
                        <span th:text="${board.boardContent}"></span>
                </div>
             </td>
