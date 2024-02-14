@@ -43,7 +43,8 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
 	public void updateLikeCount(Long id);
 
 	List<Board> findByBoardCategoryContaining(String cate);
-
+	
+	@Modifying
 	void deleteByBoardWriter(String memberName);
 	
 	@Modifying

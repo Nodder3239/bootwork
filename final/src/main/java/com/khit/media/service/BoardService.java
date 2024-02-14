@@ -326,7 +326,8 @@ public class BoardService {
 	        return null; // 또는 예외를 throw하여 처리할 수 있음
 	    }
 	}
-
+	
+	@Transactional
 	public void deleteByBoardWriter(String memberName) {
 		boardRepository.deleteByBoardWriter(memberName);
 		

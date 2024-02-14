@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.khit.media.config.SecurityUser;
+import com.khit.media.dto.MemberDTO;
+import com.khit.media.service.MemberService;
 
 import lombok.RequiredArgsConstructor;
 
@@ -14,11 +16,12 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Controller
 public class ChatController {
+	private final MemberService memberService;
 	
 	@GetMapping("/")
 	public String chat(Model model, @AuthenticationPrincipal SecurityUser principal) {
-		String name = principal.getMember().getName();
-        model.addAttribute("name", name);
+		MemberDTO memberDTO = memberService.findById(principal.getMember().getId());
+        model.addAttribute("member", memberDTO);
 		return "chat/chat";
 	}
 }

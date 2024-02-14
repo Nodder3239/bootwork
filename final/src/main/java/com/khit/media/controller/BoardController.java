@@ -18,8 +18,10 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.khit.media.config.SecurityUser;
 import com.khit.media.dto.BoardDTO;
+import com.khit.media.dto.MemberDTO;
 import com.khit.media.dto.ReplyDTO;
 import com.khit.media.service.BoardService;
+import com.khit.media.service.MemberService;
 import com.khit.media.service.ReplyService;
 import com.khit.media.service.ReportService;
 import com.khit.media.service.VoteService;
@@ -31,6 +33,7 @@ import lombok.RequiredArgsConstructor;
 @Controller
 public class BoardController {
 
+	private final MemberService memberService;
 	private final BoardService boardService;
 	private final ReplyService replyService;
 	private final VoteService voteService;
@@ -107,6 +110,9 @@ public class BoardController {
 		boardService.updateReplyCount(id);
 		//글 상세보기
 		BoardDTO boardDTO = boardService.findById(id);
+		
+		MemberDTO memberDTO = memberService.findByName(boardDTO.getBoardWriter());
+		model.addAttribute("writer", memberDTO);
 		//댓글 목록
 		List<ReplyDTO> replyList = replyService.findByBoardId(id);
 		model.addAttribute("board", boardDTO);

@@ -47,10 +47,11 @@
 			<tr>
 				<td style="border-bottom: 2px solid #000;">
 					<div style="display: flex; justify-content: space-between; margin: 10px 0;">
-						<div style="margin-left: 5px;" >
-							<p class="font-weight-light" style="font-size: 18px;">
-								 작성자: <span th:text="${board.boardWriter}"></span>
-							</p>	
+						<div style="margin-left: 5px; display: flex; align-items: center;" >
+							<img th:src="@{|/upload/${writer.filename}|}" width="25px" height="25px" style="float:left; border-radius: 50%; margin-right: 5px;">
+							<div class="font-weight-light" style="font-size: 18px;">
+								 <span th:text="${board.boardWriter}"></span>
+							</div>	
 						</div>	
 						<div>
 							<a th:href="@{|/vote/${board.id}|}">
@@ -81,14 +82,14 @@
 					<div style="margin: 5px 0px 20px 0px;">
 					<span th:if="${#authentication.principal.member.name == board.boardWriter}">
 						<a th:href="@{|/board/update/${board.id}|}">
-				            <button class="board_btn">수정</button>
+				            <button class="board_btn" style="margin: 5px;">수정</button>
 				        </a>
 				        <a th:href="@{|/board/delete/${board.id}|}" onclick="return confirm('정말로 삭제하시겠습니까?')">
-				           <button class="board_btn">삭제</button>
+				           <button class="board_btn" style="margin: 5px;">삭제</button>
 				        </a>
 					</span>
 					<a th:href="@{/board/(page=${page})}">
-				        <button class="board_btn">전체목록</button>
+				        <button class="board_btn" style="margin: 5px;">전체목록</button>
 				    </a>
 				    </div>
 				</td>
@@ -104,7 +105,7 @@
 	            <div class = "rcontent">
 	            	<p th:text=${reply.rcontent}></p>
 	            </div>
-	            <div class = "rdate">
+	            <div class = "rdate" >
 		            <p style="font-size: small; font-weight:bold">
 					    작성일시: [[${#temporals.format(reply.createdDate, 'yyyy-MM-dd HH:mm:ss')}]]
 					    <span th:if="${reply.updatedDate != null}">

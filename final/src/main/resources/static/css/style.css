@@ -1208,7 +1208,6 @@ footer{background: #353535;}
    background-color: #ddd;
    border: 1px solid #004AAD;
    border-radius: 10px;
-   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
    font-weight: bold;
 }
 
@@ -1272,7 +1271,10 @@ footer{background: #353535;}
    border: 1px solid #004AAD;
    border-radius: 10px;
    padding-top: 10px;
-   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.search_btn:hover{
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .search_btn2{
@@ -1283,7 +1285,10 @@ footer{background: #353535;}
    border: 1px solid #004AAD;
    border-radius: 10px;
    padding-top: 10px;
-   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.search_btn2:hover{
+	box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 .toggle_btn{
@@ -1338,6 +1343,13 @@ footer{background: #353535;}
 }
 
 /* 댓글 */
+.reply{
+	margin: 10px 0;
+}
+.rcontent{
+	margin: 5px 0;
+}
+
 .replyform{
 	width: 90%;
 	margin: 0 auto;
@@ -1351,6 +1363,11 @@ footer{background: #353535;}
 }
 .reply_reply{
 	margin-top: 10px;
+}
+
+.rdate{
+	display: flex; 
+	justify-content: space-between;
 }
 
 /* 글쓰기 */

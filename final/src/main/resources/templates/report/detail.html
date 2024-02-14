@@ -44,12 +44,13 @@
 			</tr>
 			<tr>
 				<td style="border-bottom: 2px solid #000; height: 30px;">
-					<div style="display: flex; justify-content: space-between;">
-						<div style="margin-left: 5px;">
-							<p style="font-size: 18px;">
-								 작성자: <span th:text="${board.boardWriter}"></span>
-							</p>	
-						</div>	
+					<div style="display: flex; justify-content: space-between; margin: 10px 0;">
+						<div style="margin-left: 5px; display: flex; align-items: center;" >
+							<img th:src="@{|/upload/${writer.filename}|}" width="25px" height="25px" style="float:left; border-radius: 50%; margin-right: 5px;">
+							<div class="font-weight-light" style="font-size: 18px;">
+								 <span th:text="${board.boardWriter}"></span>
+							</div>	
+					  </div> 	
 						<div>
 							<a th:href="@{|/vote/${board.id}|}">
 						    	<i class="fa-regular fa-thumbs-up"></i>
@@ -79,11 +80,11 @@
 					<div style="margin: 5px 0px 20px 0px;">
 					<span th:if="${#authentication.principal.member.name == board.boardWriter}">
 				        <a th:href="@{|/report/delete/${board.id}|}" onclick="return confirm('정말로 삭제하시겠습니까?')">
-				           <button class="board_btn">삭제</button>
+				           <button class="board_btn" style="margin: 5px;">삭제</button>
 				        </a>
 					</span>
 					<a th:href="@{/report/(page=${page})}">
-				        <button class="board_btn">목록</button>
+				        <button class="board_btn" style="margin: 5px;">목록</button>
 				    </a>
 				    </div>
 				</td>
@@ -91,7 +92,7 @@
 		</table>
 		<!-- 댓글 -->
 		<div class="replyform">
-	        <p class="rtitle">댓글</p>
+	        <p class="rtitle" th:if="${replyList.size() > 0}">댓글</p>
 	          <div class = "reply" th:each="reply : ${replyList}">
 	            <div class = "replyer">
 		            <p th:text=${reply.replyer}></p>
