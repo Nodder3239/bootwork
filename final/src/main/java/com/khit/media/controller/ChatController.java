@@ -17,8 +17,8 @@ public class ChatController {
 	
 	@GetMapping("/")
 	public String chat(Model model, @AuthenticationPrincipal SecurityUser principal) {
-		String id = principal.getMember().getName();
-        model.addAttribute("chatname", id);
+		String name = principal.getMember().getName();
+        model.addAttribute("name", name);
 		return "chat/chat";
 	}
 }

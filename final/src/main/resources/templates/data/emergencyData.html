@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>긴급 재난문자</title>
+<script th:src="@{https://code.jquery.com/jquery-3.7.1.min.js}"></script>
+</head>
+<body>
+	<div th:replace="~{header}"></div>
+	
+		<div id="content" >
+			<table id="result1" class="table" >
+				<thead>
+					<tr>
+						<th scope="col">일련번호</th>
+						<th scope="col">수신지역 코드</th>
+						<th scope="col">수신지역 이름</th>
+						<th scope="col">내용</th>
+						<th scope="col">생성일시</th>
+						<th scope="col">발신처</th>
+					</tr>
+				</thead>
+				
+				<tbody>
+					<!-- 데이터 출력 -->
+				</tbody>
+			</table>
+		</div>
+		
+	<div th:replace="~{footer}"></div>
+<script>
+/* jquery 환경 - 버튼 클릭 이벤트 */
+	$(document).ready(function(){
+		
+			//alert("test...");
+			
+			$.ajax({
+				//요청방식(type), url, data,dataType, success, error
+				type: "GET",
+				url: "https://apis.data.go.kr/1741000/DisasterMsg3/getDisasterMsg1List?serviceKey=pZIPx6rGWghV%2FnfyNbIb%2F%2BdtiOcNqfETtzb11gxLE1FYTMqF76zPptT2EFFcaFWMJOOPPUz2C1v9a8SUQ04c5g%3D%3D&pageNo=1&numOfRows=1&type=json",
+				dataType: "json",	//받는 데이터는 json 유형임을 명시 필수
+				success: function(data){
+					console.log(data);
+					
+					let itemArr = data.DisasterMsg[1].row;
+					
+					//테이블 작성
+					let value = ""; //태그 + data
+					for(let i=0; i<itemArr.length; i++){
+						let item = itemArr[i];	//각각의 인덱스에 객체 생성
+						value += "<tr>"
+								+ "<td>" + item.md101_sn + "</td>"
+	                            + "<td>" + item.location_id + "</td>"
+	                            + "<td>" + item.location_name + "</td>"
+	                            + "<td>" + item.msg + "</td>"
+	                            + "<td>" + item.create_date + "</td>"
+	                            + "<td>" + item.send_platform + "</td>"
+	                            + "</tr>";
+					};
+
+	                // 결과를 테이블에 삽입
+	                $("#result1 tbody").html(value);
+				},
+				error: function(error){
+					alert("에러 발생: " + error);
+				}
+			});
+		
+	});
+</script>
+</body>
+</html>

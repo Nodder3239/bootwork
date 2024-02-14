@@ -1,6 +1,13 @@
 /**
  * 
  */
+/*
+	61.광주광역시 동구
+	62.광주광역시 서구
+	63.광주광역시 남구
+	64.광주광역시 북구
+	65.광주광역시 광산구
+*/
 
  // 버튼을 클릭하면 네이버 지도 표시
 	$(document).ready(function(){
@@ -153,14 +160,14 @@
 	    });
 	    var contentString61 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="광주동구청" class="thumb" /><br />',
-	        '<h3>광주동구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 광주광역시 동구 서남로 1(서석동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 062-608-2114, <br/>',
-	        ' (야간,공휴일/당직실)  <i class="fa-solid fa-fax"></i> 062-608-2111 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 61466 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconGwangju.png" width="100" height="100" alt="광주동구청" class="thumb"/><br>',
+	        '<h2>광주동구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 광주광역시 동구 서남로 1(서석동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 062-608-2114, <br>',
+	        '(야간,공휴일/당직실):  <br><i class="fa-solid fa-fax"></i> 팩스: 062-608-2111 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 61466 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.donggu.kr/index.es?sid=a1" target="_blank">https://www.donggu.kr/index.es?sid=a1</a>',
 	        '</div>'
 	    ].join('');
@@ -175,14 +182,14 @@
 	    });
 	    var contentString62 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="광주서구청" class="thumb" /><br />',
-	        '<h3>광주서구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 광주광역시 서구 경열로 33(농성동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 062-360-7114 안전총괄과: 062-360-7495, <br/>',
-	        ' (야간,공휴일/당직실)  <i class="fa-solid fa-fax"></i> 062-360-7600 (안전총괄과): 062-360-7554 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 61928 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconGwangju.png" width="100" height="100" alt="광주서구청" class="thumb"/><br>',
+	        '<h2>광주서구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 광주광역시 서구 경열로 33(농성동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 062-360-7114, 안전총괄과: 062-360-7495, <br>',
+	        '(야간,공휴일/당직실):  <br><i class="fa-solid fa-fax"></i> 팩스: 062-360-7600, (안전총괄과): 062-360-7554 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 61928 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.seogu.gwangju.kr/kor/" target="_blank">https://www.seogu.gwangju.kr/kor/</a>',
 	        '</div>'
 	    ].join('');
@@ -197,14 +204,14 @@
 	    });
 	    var contentString63 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="광주남구청" class="thumb" /><br />',
-	        '<h3>광주남구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 광주광역시 남구 봉선로 1(봉선동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 062-651-9020, <br/>',
-	        ' (야간,공휴일/당직실)  <i class="fa-solid fa-fax"></i> 062-607-2805 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 61687 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconGwangju.png" width="100" height="100" alt="광주남구청" class="thumb"/><br>',
+	        '<h2>광주남구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 광주광역시 남구 봉선로 1(봉선동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 062-651-9020, <br>',
+	        '(야간,공휴일/당직실):  <br><i class="fa-solid fa-fax"></i> 팩스: 062-607-2805 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 61687 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.namgu.gwangju.kr/index.es?sid=a1" target="_blank">https://www.namgu.gwangju.kr/index.es?sid=a1</a>',
 	        '</div>'
 	    ].join('');
@@ -219,14 +226,14 @@
 	    });
 	    var contentString64 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="광주북구청" class="thumb" /><br />',
-	        '<h3>광주북구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 광주광역시 북구 우치로 77(용봉동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 062-410-8000 안전총괄과: 062-410-6726, <br/>',
-	        ' (야간,공휴일/당직실)  <i class="fa-solid fa-fax"></i> 062-510-1480 (안전총괄과): 062-510-1446 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 61187 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconGwangju.png" width="100" height="100" alt="광주북구청" class="thumb"/><br>',
+	        '<h2>광주북구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 광주광역시 북구 우치로 77(용봉동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 062-410-8000, 안전총괄과: 062-410-6726, <br>',
+	        '(야간,공휴일/당직실):  <br><i class="fa-solid fa-fax"></i> 팩스: 062-510-1480, (안전총괄과): 062-510-1446 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 61187 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://bukgu.gwangju.kr/" target="_blank">https://bukgu.gwangju.kr/</a>',
 	        '</div>'
 	    ].join('');
@@ -241,14 +248,14 @@
 	    });
 	    var contentString65 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="광주광산구청" class="thumb" /><br />',
-	        '<h3>광주광산구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 광주광역시 광산구 광산로29번길 15(송정동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 062-960-8114, <br/>',
-	        ' (야간,공휴일/당직실)  <i class="fa-solid fa-fax"></i> 062-960-8990 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 62430 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconGwangju.png" width="100" height="100" alt="광주광산구청" class="thumb"/><br>',
+	        '<h2>광주광산구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 광주광역시 광산구 광산로29번길 15(송정동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 062-960-8114, <br>',
+	        '(야간,공휴일/당직실):  <br><i class="fa-solid fa-fax"></i> 팩스: 062-960-8990 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 62430 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.gwangsan.go.kr/" target="_blank">https://www.gwangsan.go.kr/</a>',
 	        '</div>'
 	    ].join('');

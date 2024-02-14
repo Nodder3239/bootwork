@@ -17,7 +17,6 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 @RequestMapping("/data")
 @Controller
@@ -107,7 +106,7 @@ public class DataController {
     public String data3(Model model) {
         try {
             // JSON 데이터를 가져올 URL
-            URL url = new URL("https://www.safetydata.go.kr//openApi/%EA%B8%B0%EC%83%81%EC%B2%AD_%EC%A7%80%EC%A7%84%ED%86%B5%EB%B3%B4?serviceKey=Q741B4CFT0AYOQ27&returnType=json&pageNum=1&numRowsPerPage=10");
+            URL url = new URL("https://www.safetydata.go.kr//openApi/%EA%B8%B0%EC%83%81%EC%B2%AD_%EC%A7%80%EC%A7%84%ED%86%B5%EB%B3%B4?serviceKey=Q741B4CFT0AYOQ27&returnType=json&pageNum=1&numRowsPerPage=7");
 
             // HTTP 연결 설정
             HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -378,7 +377,7 @@ public class DataController {
  public String data7(Model model) {
      try {
          // JSON 데이터를 가져올 URL
-         URL url = new URL("https://apis.data.go.kr/B552584/ArpltnStatsSvc/getCtprvnMesureLIst?serviceKey=d8fHYrIFHEOMpYMh0Gv5butlqRpXqQKO3olZsCfxk1WlizFI%2Fndgt%2FAb1nARrYInaCKov50Fx2EjywdA43MPOA%3D%3D&returnType=json&numOfRows=100&pageNo=1&itemCode=PM10&dataGubun=HOUR&searchCondition=MONTH");
+         URL url = new URL("https://apis.data.go.kr/B552584/ArpltnStatsSvc/getCtprvnMesureLIst?serviceKey=d8fHYrIFHEOMpYMh0Gv5butlqRpXqQKO3olZsCfxk1WlizFI%2Fndgt%2FAb1nARrYInaCKov50Fx2EjywdA43MPOA%3D%3D&returnType=json&numOfRows=1&pageNo=1&itemCode=PM10&dataGubun=HOUR&searchCondition=MONTH");
 
          // HTTP 연결 설정
          HttpURLConnection con = (HttpURLConnection) url.openConnection();
@@ -403,7 +402,7 @@ public class DataController {
          if (responseBody == null || responseBody.isNull("body") || responseBody.getJSONObject("body").isNull("items")) {
              // 데이터가 없을 때의 처리 (예: 모델에 빈 리스트 추가)
              model.addAttribute("dataList", new ArrayList<>());
-             return "/data/data7";  // 렌더링할 뷰의 이름 반환
+             return "/data/data7"; // 렌더링할 뷰의 이름 반환
          }
 
          JSONArray items = responseBody.getJSONObject("body").getJSONArray("items");
@@ -415,27 +414,32 @@ public class DataController {
              JSONObject item = items.getJSONObject(i);
 
              Map<String, String> dataMap = new HashMap<>();
-             dataMap.put("daegu", item.getString("daegu"));
-             dataMap.put("chungnam", item.getString("chungnam"));
-             dataMap.put("incheon", item.getString("incheon"));
-             dataMap.put("daejeon", item.getString("daejeon"));
-             dataMap.put("gyeongbuk", item.getString("gyeongbuk"));
-             dataMap.put("sejong", item.getString("sejong"));
-             dataMap.put("gwangju", item.getString("gwangju"));
-             dataMap.put("jeonbuk", item.getString("jeonbuk"));
-             dataMap.put("gangwon", item.getString("gangwon"));
-             dataMap.put("ulsan", item.getString("ulsan"));
-             dataMap.put("jeonnam", item.getString("jeonnam"));
-             dataMap.put("seoul", item.getString("seoul"));
-             dataMap.put("busan", item.getString("busan"));
-             dataMap.put("jeju", item.getString("jeju"));
-             dataMap.put("chungbuk", item.getString("chungbuk"));
-             dataMap.put("gyeongnam", item.getString("gyeongnam"));
-             dataMap.put("dataTime", item.getString("dataTime"));
-             dataMap.put("dataGubun", item.getString("dataGubun"));
-             dataMap.put("gyeonggi", item.getString("gyeonggi"));
-             dataMap.put("itemCode", item.getString("itemCode"));
-             // ... (다른 필드들 추가)
+             // 데이터 항목 코드가 있는 경우에만 추가
+             if (!item.isNull("데이터항목코드")) {
+                 dataMap.put("데이터항목코드", item.getString("데이터항목코드"));
+             }
+             // 각 지역의 미세먼지 등급 계산하여 추가
+             dataMap.put("대구", calculateDustLevel(item.getInt("daegu")));
+             dataMap.put("충청남도", calculateDustLevel(item.getInt("chungnam")));
+             dataMap.put("인천", calculateDustLevel(item.getInt("incheon")));
+             dataMap.put("대전", calculateDustLevel(item.getInt("daejeon")));
+             dataMap.put("경상북도", calculateDustLevel(item.getInt("gyeongbuk")));
+             dataMap.put("세종", calculateDustLevel(item.getInt("sejong")));
+             dataMap.put("광주", calculateDustLevel(item.getInt("gwangju")));
+             dataMap.put("전라북도", calculateDustLevel(item.getInt("jeonbuk")));
+             dataMap.put("강원도", calculateDustLevel(item.getInt("gangwon")));
+             dataMap.put("울산", calculateDustLevel(item.getInt("ulsan")));
+             dataMap.put("전라남도", calculateDustLevel(item.getInt("jeonnam")));
+             dataMap.put("서울", calculateDustLevel(item.getInt("seoul")));
+             dataMap.put("부산", calculateDustLevel(item.getInt("busan")));
+             dataMap.put("제주", calculateDustLevel(item.getInt("jeju")));
+             dataMap.put("충청북도", calculateDustLevel(item.getInt("chungbuk")));
+             dataMap.put("경상남도", calculateDustLevel(item.getInt("gyeongnam")));
+             dataMap.put("데이터 시간", item.getString("dataTime"));
+             dataMap.put("데이터 구분", item.getString("dataGubun"));
+             dataMap.put("경기도", calculateDustLevel(item.getInt("gyeonggi")));
+             // ...
+
              dataList.add(dataMap);
          }
 
@@ -452,6 +456,19 @@ public class DataController {
 
      // 렌더링할 뷰의 이름 반환
      return "/data/data7";
+ }
+
+ // 미세먼지 등급을 계산하는 메서드
+ private String calculateDustLevel(int dustValue) {
+     if (dustValue <= 30) {
+         return "좋음";
+     } else if (dustValue <= 80) {
+         return "보통";
+     } else if (dustValue <= 150) {
+         return "나쁨";
+     } else {
+         return "매우나쁨";
+     }
  }
  @GetMapping("/data8")
  public String getData8() {

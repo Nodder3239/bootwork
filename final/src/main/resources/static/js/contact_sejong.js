@@ -1,6 +1,9 @@
 /**
  * 
  */
+/*
+	76.세종특별자치시
+*/
 
  // 버튼을 클릭하면 네이버 지도 표시
 	$(document).ready(function(){
@@ -149,14 +152,14 @@
 	    });
 	    var contentString76 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="세종특별자치시" class="thumb" /><br />',
-	        '<h3>세종특별자치시</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 세종특별자치시 한누리대로 2130(보람동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 044-120 자연재난: 300-3221~5, <br/>',
-	        ' (야간,공휴일/당직실)  <i class="fa-solid fa-fax"></i>(자연재난): 300-3219 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 30151 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconSejong.png" width="100" height="100" alt="세종특별자치시" class="thumb"/><br>',
+	        '<h2>세종특별자치시</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 세종특별자치시 한누리대로 2130(보람동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 044-120, 자연재난: 300-3221~5, <br>',
+	        '(야간,공휴일/당직실):  <br><i class="fa-solid fa-fax"></i> 팩스(자연재난): 300-3219 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 30151 | 공공,사회기관 &gt; 시청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.sejong.go.kr/index.jsp" target="_blank">https://www.sejong.go.kr/index.jsp</a>',
 	        '</div>'
 	    ].join('');

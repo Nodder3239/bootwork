@@ -2,7 +2,6 @@ package com.khit.media.controller;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -18,6 +17,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.khit.media.config.SecurityUser;
 import com.khit.media.dto.BoardDTO;
@@ -34,7 +36,9 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RequiredArgsConstructor
 @Controller
 public class MemberController {
@@ -43,7 +47,7 @@ public class MemberController {
 	private final BoardService boardService;
 	private final ReplyService replyService;
 	private final VoteService voteService;
-	private final ReportService reportService;
+	private final ReportService reportService;	
 	
     //로그인 페이지 요청 :  /login
 	@GetMapping("/login")
@@ -65,13 +69,15 @@ public class MemberController {
 	
 	@PostMapping("/member/join")
 	public String join(@Valid MemberDTO memberDTO,
-			BindingResult bindingResult) {
+			BindingResult bindingResult,
+			MultipartFile memberFile) throws Exception{
 		if(bindingResult.hasErrors()) {
+			log.info("has errors.....");
 			//에러가 있으면 회원 가입 페이지에 머무름
 			return "member/join";
 		}
 		
-		memberService.save(memberDTO);
+		memberService.save(memberDTO, memberFile);
 		return "redirect:/login";
 	}
 	
@@ -117,28 +123,33 @@ public class MemberController {
 	
 	//회원 수정 처리 - 상세보기로 이동
 	@PostMapping("/member/update")
-	public String update(@ModelAttribute MemberDTO memberDTO) {
-		memberService.update(memberDTO);
-		return "redirect:/member/" + memberDTO.getId();
+	public String update(@ModelAttribute MemberDTO memberDTO, MultipartFile memberFile) throws Exception {
+		memberService.update(memberDTO, memberFile);
+		return "redirect:/member/account";
 	}
 	
+	//회원 마이페이지
 	@GetMapping("/member/account")
 	public String account(
-	        @AuthenticationPrincipal SecurityUser principal,
+			@AuthenticationPrincipal SecurityUser principal,
 	        @PageableDefault(page=1) Pageable pageable,
 	        Model model) {
-	    Page<BoardDTO> voteList = boardService.findVoteListAll2(principal.getMember().getName(), pageable);
-	    Page<BoardDTO> myBoardList = boardService.findByWriter2(principal.getMember().getName(), pageable);
-	    Page<ReplyDTO> myReplyList = replyService.findByReplyer2(principal.getMember().getName(), pageable);
+		MemberDTO memberDTO = memberService.findById(principal.getMember().getId());
+		String name = memberDTO.getName();
+	    Page<BoardDTO> voteList = boardService.findVoteListAll2(name, pageable);
+	    Page<BoardDTO> myBoardList = boardService.findByWriter2(name, pageable);
+	    Page<ReplyDTO> myReplyList = replyService.findByReplyer2(name, pageable);
 	    
-	    model.addAttribute("name", principal.getMember().getName());
+	    model.addAttribute("member", memberDTO);
+	    model.addAttribute("name", name);
 	    model.addAttribute("voteList", voteList);
 	    model.addAttribute("myBoardList", myBoardList);
 	    model.addAttribute("myReplyList", myReplyList);
-	    
-	    return "member/account";
+		
+		return "member/account";
 	}
 	
+	//회원탈퇴
 	@GetMapping("/member/out")
 	public String signOut(
 			@AuthenticationPrincipal SecurityUser principal,
@@ -160,6 +171,14 @@ public class MemberController {
 		boardService.deleteByBoardWriter(name);
 		memberService.deleteById(principal.getMember().getId());
 		return "redirect:/";
+	}
+	
+	//이메일 중복 검사
+	@PostMapping("/member/check-email")
+	public @ResponseBody String checkEmail(
+			@RequestParam("memberEmail") String memberEmail) {
+		String resultText = memberService.checkEmail(memberEmail);
+		return resultText;
 	}
 	
 }

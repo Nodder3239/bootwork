@@ -157,6 +157,24 @@ public class BoardController {
 		model.addAttribute("nowPage", nowPage);
 		return "mypage/votelist";
 	}
+	
+	//글 상세보기
+	@GetMapping("/votelist/{id}")
+	public String getVoteList(@PageableDefault(page=1) Pageable pageable, @PathVariable Long id, Model model) {
+		//조회수
+		boardService.updateHits(id);
+		boardService.updateReplyCount(id);
+		//글 상세보기
+		BoardDTO boardDTO = boardService.findById(id);
+		//댓글 목록
+		List<ReplyDTO> replyList = replyService.findByBoardId(id);
+		model.addAttribute("board", boardDTO);
+		model.addAttribute("replyList", replyList);
+		model.addAttribute("page", pageable.getPageNumber());
+		return "mypage/votelistdetail";
+	}
+	
+	
 	@GetMapping("/myboardlist/")
 	public String myboardList(
 			@AuthenticationPrincipal SecurityUser principal,
@@ -195,5 +213,7 @@ public class BoardController {
 		model.addAttribute("nowPage", nowPage);
 		return "mypage/myreplylist";
 	}
+	
+
 	
 }

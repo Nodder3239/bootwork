@@ -6,50 +6,102 @@
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <script type="text/javascript" src="https://oapi.map.naver.com/openapi/v3/maps.js?ncpClientId=6xvfgyr9wc"></script>
 <script src="https://kit.fontawesome.com/b70f42fdf2.js" crossorigin="anonymous"></script>
-<link rel="stylesheet" th:href="@{/css/style.css}">
+<link rel="stylesheet" th:href="@{/css/styleKH.css}">
 </head>
 <body>
 <div th:replace="~{header}"></div>
-<h2 class="board_h2">비상연락처</h2>
+	<div id="pi-title">
+		<h3>비상연락망</h3>	
+	</div>
 	<div id="container_emer">
-        <section id="main">
+        <section id="contactMain">
+        	    
             <table id="emer_tbl">
                 <tbody>
                     <tr>
-                        <td class="region" data-js-file="/js/contact_seoul.js">서울 특별시</td>
-                        <td class="region" data-js-file="/js/contact_busan.js">부산 광역시</td>
-                        <td class="region" data-js-file="/js/contact_daegu.js">대구 광역시</td>
-                        <td class="region" data-js-file="/js/contact_incheon.js">인천 광역시</td>
-                        <td class="region" data-js-file="/js/contact_gwangju.js">광주 광역시</td>
-                        <td class="region" data-js-file="/js/contact_daejeon.js">대전 광역시</td>
+                        <td class="region" data-js-file="/js/contact_seoul.js">
+	                        <img th:src="@{/images/iconSeoul.png}" style= 'width: 30px; float:left;' alt="기본이미지">
+                        	<h4>서울 특별시</h4>
+                        </td>
+                        <td class="region" data-js-file="/js/contact_busan.js">
+                        	<img th:src="@{/images/iconBusan.png}" style= 'width: 30px; float:left;' alt="기본이미지">
+                        	<h4>부산 광역시</h4>
+                        </td>
+                        <td class="region" data-js-file="/js/contact_daegu.js">
+                        	<img th:src="@{/images/iconDaegu.png}" style= 'width: 30px; float:left;' alt="기본이미지">
+                        	<h4>대구 광역시</h4>
+                        </td>
+                        <td class="region" data-js-file="/js/contact_incheon.js">
+                        	<img th:src="@{/images/iconIncheon.png}" style= 'width: 30px; float:left;' alt="기본이미지">
+                        	<h4>인천 광역시</h4>
+                        </td>
+                        <td class="region" data-js-file="/js/contact_gwangju.js">
+                        	<img th:src="@{/images/iconGwangju.png}" style= 'width: 30px; float:left;' alt="기본이미지">
+                        	<h4>광주 광역시</h4>
+                        </td>
+                        <td class="region" data-js-file="/js/contact_daejeon.js">
+                        	<img th:src="@{/images/iconDaejeon.png}" style= 'width: 30px; float:left;' alt="기본이미지">
+                        	<h4>대전 광역시</h4>
+                        </td>
                     </tr>
                     <tr>
-                    	<td class="region" data-js-file="/js/contact_ulsan.js">울산 광역시</td>
-                        <td class="region" data-js-file="/js/contact_sejong.js">세종특별자치시</td>
-                        <td class="region" data-js-file="/js/contact_gyeonggi.js">경기도</td>
-                        <td class="region" data-js-file="/js/contact_gangwon.js">강원특별자치도</td>
-                        <td class="region" data-js-file="/js/contact_chungbuk.js">충청북도</td>
-                        <td class="region" data-js-file="/js/contact_chungnam.js">충청남도</td>
+                    	<td class="region" data-js-file="/js/contact_ulsan.js">
+                    	   	<img th:src="@{/images/iconUlsan.png}" style= 'width: 30px; float:left;' alt="기본이미지">
+                    		<h4>울산 광역시</h4>
+                    	</td>
+                        <td class="region" data-js-file="/js/contact_sejong.js">
+                            <img th:src="@{/images/iconSejong.png}" style= 'width: 30px; float:left;' alt="기본이미지">
+                        	<h4>세종특별자치시</h4>
+                        </td>
+                        <td class="region" data-js-file="/js/contact_gyeonggi.js">
+                           	<img th:src="@{/images/iconGyeonggi.png}" style= 'width: 30px; float:left;' alt="기본이미지">
+                        	<h4>경기도</h4>
+                        </td>
+                        <td class="region" data-js-file="/js/contact_gangwon.js">
+                        	<img th:src="@{/images/iconGangwon.png}" style= 'width: 30px; float:left;' alt="기본이미지">
+                        	<h4>강원특별자치도</h4>
+                        </td>
+                        <td class="region" data-js-file="/js/contact_chungbuk.js">
+                        	<img th:src="@{/images/iconChungbuk.png}" style= 'width: 30px; float:left;' alt="기본이미지">
+                        	<h4>충청북도</h4>
+                        </td>
+                        <td class="region" data-js-file="/js/contact_chungnam.js">
+                        	<img th:src="@{/images/iconChungnam.png}" style= 'width: 30px; float:left;' alt="기본이미지">
+                        	<h4>충청남도</h4>
+                        </td>
                     </tr>
                     <tr>
-                    	<td class="region" data-js-file="/js/contact_jeonbuk.js">전북특별자치도</td>
-                        <td class="region" data-js-file="/js/contact_jeonnam.js">전라남도</td>
-                        <td class="region" data-js-file="/js/contact_gyeongbuk.js">경상북도</td>
-                        <td class="region" data-js-file="/js/contact_gyeongnam.js">경상남도</td>
-                        <td class="region" data-js-file="/js/contact_jeju.js">제주특별자치도</td>
-                    </tr>
-                    <tr>
-                        
-                    </tr>
-                    <tr>
-                        
+                    	<td class="region" data-js-file="/js/contact_jeonbuk.js">
+                    		<img th:src="@{/images/iconJeonbuk.png}" style= 'width: 30px; float:left;' alt="기본이미지">
+                    		<h4>전북특별자치도</h4>
+                    	</td>
+                        <td class="region" data-js-file="/js/contact_jeonnam.js">
+                            <img th:src="@{/images/iconJeonnam.png}" style= 'width: 30px; float:left;' alt="기본이미지">
+                        	<h4>전라남도</h4>
+                        </td>
+                        <td class="region" data-js-file="/js/contact_gyeongbuk.js">
+                            <img th:src="@{/images/iconGyeongbuk.png}" style= 'width: 30px; float:left;' alt="기본이미지">
+                        	<h4>경상북도</h4>
+                        </td>
+                        <td class="region" data-js-file="/js/contact_gyeongnam.js">
+                            <img th:src="@{/images/iconGyeongnam.png}" style= 'width: 30px; float:left;' alt="기본이미지">
+                        	<h4>경상남도</h4>
+                        </td>
+                        <td class="region" data-js-file="/js/contact_jeju.js">
+                        	<img th:src="@{/images/iconJeju.png}" style= 'width: 30px; float:left;' alt="기본이미지">
+                        	<h4>제주특별자치도</h4>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </section>
     </div>
+   	
+   	<!-- 검색 기능을 넣을 구역 -->
+   	
     <div id="map"></div>
 <div th:replace="~{footer}"></div>
+<script src="/js/contactPopup.js"></script>
     
     <script>
 		

@@ -1,0 +1,1054 @@
+@charset "UTF-8";
+@import url('https://cdn-uicons.flaticon.com/2.1.0/uicons-regular-rounded/css/uicons-regular-rounded.css');
+
+/* 공통스타일 */
+* {margin: 0; padding: 0;  font-family: 'NanumSquareRound';}
+
+html, body{color: #353535; background: #e9e9e9;}
+ul li{list-style: none;}
+a {text-decoration: none; color: #353535; font-weight:900;}
+a:hover{text-decoration: none; color: #004aad; font-weight:900;}
+
+#pi-title{
+	width:100%;
+	height:91px;
+	background:#05347E;
+	display:flex;
+	justify-content: center;
+    align-items: center;
+}
+#pi-title h3{
+	color: #f3eeea;
+	font-weight:700;
+	font-size:30px;
+}
+
+
+
+/* =============================================
+                     header 
+================================================ */
+#planB-header{width:100%; max-width:1024px; margin:0 auto; background: #e9e9e9;
+/* 	콘텐츠 1024px 틀 - 마지막에 지울예정 */
+/* 	border:1px solid black; */
+}
+/* header - 로그인, 회원가입, 마이페이지 */
+.planB-sidemenu{
+	width:100%; 
+	display:flex; 
+	justify-content: flex-end;
+}
+.planB-sidemenu a{padding: 15px 20px; font-size:18px;}
+
+/* header - 로고 */
+.planB-menuWrap{
+	width:100%; 
+	display:flex; 
+	margin-bottom:10px;
+	}
+.main-img-logo{
+	width:290px; 
+	display:flex; 
+	align-items: center;
+	}
+.main-img-logo h2{padding:10px 0 0 10px; font-weight:900;}
+.main-img-logo h2:hover{color: #353535;}
+
+/* header - 메인 메뉴 + 챗봇 */
+nav {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	box-sizing: border-box;
+}
+
+/* common */
+nav ul {
+	position: relative;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+nav ul::after {
+	display: block;
+	clear: both;
+	content: '';
+}
+nav ul li {
+	position: relative;
+	float: left;
+	border: none;
+}
+nav ul li:not(:first-child) {border-left: none;}
+nav ul li:hover {background-color: rgba(255,255,255,.8);}
+nav ul li a {
+	display: inline-block;
+	padding: 1em 2.5em;
+	color: #353535;
+	text-align: center;
+	text-decoration: none;
+	white-space: nowrap;
+	font-size:19px;
+}
+nav ul ul {
+	position: absolute;
+	top: 100%;
+	left: 0px;
+}
+nav ul ul li {
+	float: none;
+	margin: 0;
+	border: none;
+}
+nav ul ul li:not(:first-child) {
+	border: none;
+	border-top: none;
+}
+nav ul ul ul {
+	position: absolute;
+	top: 0px;
+	left: 100%;
+/* 	 border-top-right-radius:30px;  */
+}
+
+.nav03 ul ul {
+	visibility: hidden;
+    opacity: 0;
+  	background-color: #fff;/* 흰색 배경으로 설정 */
+    transition: .2s ease-in-out, background-color 0s;
+    transform: translateY(-20px);
+    border-bottom: 3px solid #004aad; 
+/*     border-bottom-left-radius:30px; */
+/*     border-bottom-right-radius:30px; */
+}
+
+/* 메인 메뉴 항목 호버 시 */
+/* .nav03 ul li:hover { */
+/*     border-top-left-radius:30px;  */
+/*     border-top-right-radius:30px;  */
+/*     background-color: rgba(255, 255, 255, 0.5); 투명도 조정 */
+/* } */
+
+.nav03 ul li:hover > ul {
+	visibility: visible;
+    opacity: 1;
+    background-color: #fff; /* 흰색 배경 유지 */
+    transform: translateY(0);
+}
+/* 서브메뉴 호버 시에도 흰색 배경 유지 */
+.nav03 ul ul li:hover > ul {
+    background-color: #fff; /* 흰색 배경 유지 */
+}
+.menu-bot-img a {
+    display: inline-block;
+    color: #353535; /* FAQ안내봇 텍스트 색상 */
+    text-decoration: none;
+    font-size: 18px;
+}
+.menu-container {
+    display: flex;
+    justify-content: space-between; /* 메뉴 항목들과 FAQ 안내봇 사이의 공간을 균등하게 분배 */
+    align-items: center; /* 세로 축 중앙 정렬 */
+    width: 100%; /* 컨테이너 너비를 최대로 설정 */
+}
+.menu-bot-img i{padding-left: 40px;}
+.menu-bot-img a:hover{color:#004aad;}
+.menu-bot-img span{font-size:15px;}
+
+
+
+
+/*===============================================
+ 					footer 
+ 			bg : #353535 / font : #f3eeea
+=================================================*/
+#planB-footer{
+	width:100%; 
+	max-width:1024px; 
+	margin:0 auto; 
+	background: #353535;
+	/* 콘텐츠 1024px 틀 - 마지막에 지울예정 */
+/* 	border:1px solid black; */
+}
+#planB-footer a{color:#f3eeea;}
+#planB-footer a:hover{color:#fc80ac;}
+#planB-footer p{color:#f3eeea;}
+
+footer{background: #353535;}
+.footer-wrap{display:flex; justify-content: space-between;}
+
+/* footer - 공지사항, 자주묻는질문, 개인정보처리방침 */
+.footer-wrap-pages{display:flex; width:400px; padding:20px 0 10px 0; }
+.footer-wrap-pages a{padding-right:30px;}
+/* footer -  ADMIN */
+.footer-wrap-admin{display:flex; padding-top: 20px;}
+
+/* footer - 학원 주소 및 copyright(저작권) */
+.footer-loca-copy{display:flex; justify-content: space-between; padding: 10px 0 20px 0;}
+
+/*====================================================
+				index (main)
+=======================================================*/
+/*
+	main - body1 기상특보 한 줄 알림 
+*/
+
+#weather-caution1{
+	width:100%; 
+	height:46px; 
+	margin-top:20px; 
+	margin-bottom:30px;
+	background:#05347E;
+	overflow: hidden; /* 추가: 슬라이드 이동 시 넘치는 부분 숨김 */
+	}
+.slider_wrap{
+	max-width: 1024px;
+	width:100%;
+    margin: 0 auto;
+	height:46px;
+	overflow: hidden; 
+	
+}
+/* 텍스트가 보이는 영역 */
+.slider_text { 
+    width: 100%;
+    height: 46px;
+}
+/* 텍스트가 움직이는 영역 */
+.slider_inner{
+	position:relative;
+	width:100%;
+	}
+
+/* 각 텍스트들.. */
+.slider { 
+    width: auto; /* 너비를 자동으로 설정하여 텍스트 내용에 맞게 조정 */
+    height: 46px; /* `#weather-caution1`의 높이에 맞게 조정 */
+    display:flex;
+    align-items:center;
+} 
+.slider p{
+	color:#f3eeea; 
+	font-weight:700;
+	white-space: nowrap; /* 텍스트를 한 줄로.. */
+    overflow: hidden; /* 넘치는 텍스트 숨김 */
+    text-overflow: ellipsis; /* 넘치는 텍스트의 끝을 ...으로 표시  */
+}
+.slider p:hover{
+	white-space: normal; /* 텍스트를 여러 줄로 만들어 전부 보여줌 */
+    overflow: visible; /* 숨겨진 내용을 보여줌 */
+    text-overflow: clip; /* ... 제거 */
+    height: auto; /* 내용에 맞게 높이 조정 */
+	
+}
+.slider span{color:#00F2FF;}
+
+/* 
+	main - body2 날씨정보, 실시간 제보 게시판 
+*/
+#weather-realTimeReport{
+	width:100%; 
+	height:auto;
+	margin:0 auto;
+	margin-bottom: 30px; 
+	max-width:1024px;
+	display:flex;
+	justify-content: space-between;
+}
+/* 날씨 정보 */
+.weaterInfo-airPollution{
+	width:49%;
+	height: 270px;
+	background: #ffffff;
+	border: 1px solid #B0B0B0;
+}
+/* 날씨정보 - 내 위치, 발표 기준 시간 */
+.myLocation-time{
+	display:flex; 
+	align-items: center;
+	justify-content: space-between;
+	padding: 25px 20px 20px 20px
+	}
+.myLocation-time p{font-size:15px;}
+#referenceTime{font-size:13px; color:#9496A3; }
+
+/* 날씨정보 - 날씨정보와 미세먼지 타이틀 */
+.weather-title{
+	display:flex; 
+	justify-content: space-around;
+	margin-top: 15px;
+	}
+.weather-title p{font-size:20px; font-weight:900;}
+
+/* 날씨정보 콘텐츠 박스 */
+.weather-contentWrap{
+	display:flex; 
+	width:100%; 
+	margin-top: 5px;
+	}
+/* 날씨정보 - 하늘상태, 기온, 체감온도, 습도 */
+.content-temperature{
+	width:50%; 
+	margin-top:10px;
+	padding-top:10px;
+}
+.icon-temp{ 
+	font-weight:900; 
+	font-size:50px; 
+	text-align:center;
+	margin-bottom:20px;
+	}
+
+.windchill-humidity{display:flex; justify-content: space-evenly;}
+.windchill-humidity p{color:#9496A3; font-weight:700;}
+
+/* 날씨정보 - 미세먼지 농도 */
+.content-fineDust{
+	width:50%; 
+/* 	height:10vw;  */
+	margin-top:10px;
+	border-left: 1px solid #B0B0B0;
+	}
+/* 미세먼지 */
+.particulateMatter{
+	display:flex; 
+	justify-content: center; 
+	align-items: center;
+	margin: 10px 0 15px 0;
+	}
+.particulateMatter dd{ color:#00C73C}
+.particulateMatter dd:nth-of-type(2) {padding-top:16px;}
+ /* 초미세먼지 */
+.fine-particulateMatter{
+	display:flex; 
+	justify-content: center;
+	align-items: center;
+	}
+.fine-particulateMatter dd{color:#FDA60E;}
+.fine-particulateMatter dd:nth-of-type(2) {padding-top:16px;}
+
+/* 실시간 제보 게시판 */
+.realTimeReport-wrap{
+	width:49%;
+	height: 270px;
+	background: #ffffff;
+	border: 1px solid #B0B0B0;
+	}
+.report-text{
+	width: 86%;
+    margin: 0 auto;
+    text-align:center;
+}
+.report-title{
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 25px 20px 20px 20px;
+}
+.report-title p{font-size:20px; font-weight:900; margin:0 auto;}
+.icon-wrap{padding-right:10px;}
+.icon-wrap i:hover{color:#0094FF;}
+
+/*
+	main - Body3 : 긴급재난문자 , btn3(비상연락망, 재난유관기관, 기상특보)
+*/
+/* 긴급재난문자 */
+#emergency-circleBtn3-bg{
+	width:100%; 
+	height: 270px;
+	background:#DBE9F5;
+	}
+.emergency-circleBtn3-wrap{
+	 max-width: 1024px;
+    display: flex;
+    justify-content: center; 
+    margin: 0 auto; 
+    align-items: center; 
+    height: 100%; /* align-items를 정확히 작동시키기 위해 */
+} 
+.emergency-pinkBox{
+	width:40%;
+	height:200px;
+	border: 5px solid #FC80AC;
+	background:#ffffff;
+}
+.e-title{
+	font-size: 18px;
+    font-weight: 900;
+    margin:15px 0 0 20px;
+    }
+ .emergency-text{text-align:center; margin-top:10px;}   
+ /* btn3 - 비상연락망, 재난유관기관, 기상특보 */   
+ .useful-three-btn{ display:flex; width:60%; justify-content: flex-end; }
+ .useful-btn{
+ 	width:180px;
+ 	height:180px;
+ 	background:#FFFFFF;
+ 	border-radius: 100px;
+ 	display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    /* box-shadow(그림자) : 'X'px 'Y'px 'blur강도'px 'spread범위'px rgba(0,0,0,투명도) */
+    box-shadow: 0px 6px 4px 0px rgba(0, 0, 0, 0.25);
+    margin-left: 26px;
+ }  
+ .useful-btn img {
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+ .useful-btn p{
+    font-size: 17px; 
+    font-weight:900;
+    margin: 0; 
+}   
+.useful-btn a:hover{color:#0094FF;}
+/*
+	main - Body 4 : 지진 발생 시 행동요령 (재난발생 시 행동요령)
+*/
+#actionTips-disaster{
+	width:100%; 
+	height: 270px;
+	background:#4761A1;
+}
+.actionTips-earthQuake{
+	max-width:1024px; 
+	width:100%;
+    height: 100%; /* align-items를 정확히 작동시키기 위해 */
+    margin: 0 auto; 
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    }
+
+.earthQuake-behavior{
+	width:100%; 
+	display:flex;
+	justify-content: space-between;
+	margin-bottom: 15px;
+	}
+.earthQuake-behavior p{
+	font-size:20px;
+	font-weight:900;
+	color:#f3eeea;
+}
+.earthQuake-behavior a{
+	margin-top:10px;
+	font-size:15px;
+	color:#f3eeea;
+}
+.earthQuake-behavior a:hover{
+	color:#FC80AC;
+}
+/* 행동요령 img box */
+.specific-behavior{
+	width:100%;
+	border: 2px solid #B0B0B0;
+}
+.specific-behavior img {
+    width: 100%; /* 컨테이너의 너비에 맞춰 이미지 크기 조절 */
+    height: 100%; /* 컨테이너의 높이에 맞춰 이미지 크기 조절 */
+    object-fit: cover; /* 이미지의 비율을 유지하면서 컨테이너를 채움 */
+    display: block; /* 이미지 아래의 여백 제거 */
+}
+
+/*====================================================================
+			재난 유관 기관 - public-institution.html
+=====================================================================*/
+#pi-title{
+	width:100%;
+	height:91px;
+	background:#05347E;
+	display:flex;
+	justify-content: center;
+    align-items: center;
+}
+#pi-title h3{
+	color: #f3eeea;
+	font-weight:700;
+	font-size:30px;
+}
+#pi-container{
+	max-width:1024px;
+	width:100%;
+	margin: 0 auto;
+	display:flex;
+	flex-direction: column;
+}
+.pi-wrap{
+	line-height: 1.5;
+    white-space: normal;
+    margin-bottom: 40px;
+}
+.pi-wrap h4{
+	font-size:20px;
+	font-weight:900;
+	padding: 30px 0 10px 0;
+}
+.pi-img-btn{
+	padding: 0 2px;
+/* 	display:flex; */
+/* 	flex-wrap: wrap; */
+/* 	justify-content: center; */
+}
+.pi-img-btn li{
+	float: left;
+    position: relative;
+	width:256px;
+	height:85px;
+	border: 1px solid #b0b0b0;
+	background: #ffffff;
+	margin: -1px 0 0 -1px;
+    box-sizing: border-box;
+    z-index:1;
+}
+.pi-img-btn div{
+    white-space: normal;
+    text-align: center;
+    margin-top: 25px;
+    }
+
+.pi-img-btn li:hover{
+	z-index:2;
+	border: 1.5px solid #004aad;
+}
+.pi-btn1{
+	display:flex;
+	flex-direction: column;
+    align-items: center;
+}
+.pi-btn1 strong{
+	font-size: 13px;
+	font-family:'NanumSquareRound';
+	color: #777777;
+    width: 100%;
+    text-align: center;
+    background: #f7f7f7;
+    padding-top: 3px;
+    margin-top: 5px;
+}
+/*=====================================================================
+				자주묻는질문 faq / 개인정보 처리방침
+====================================================================*/
+  #question_container{
+  	max-width:1024px;
+	width:100%;
+	margin: 0 auto;
+	display:flex;
+	flex-direction: column;
+	margin-bottom: 60px;
+  }
+  .faq-wrap{
+      margin-top: 40px;
+      margin-left: 18%;
+  }
+  .pp-wrap {
+  	width: 70%;
+    height: 105px;
+    background: #ffffff;
+    border: 1px solid #b0b0b0;
+    margin-top: 40px;
+    margin-left: 12%;
+    padding: 30px 30px;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.5;
+  }
+  
+  
+  .faq-sections label{
+  	  font-size:20px;
+  	  font-weight:700;
+      text-decoration: none;
+      display: inline-block;
+      width: 80%;
+      border-bottom: 1px solid #353535;
+      padding-bottom:5px;
+      color: #353535;
+      margin-top:25px;
+  }
+  .pp-sections label{
+  	  font-size:20px;
+  	  font-weight:700;
+      text-decoration: none;
+      display: inline-block;
+      width: 80%;
+/*       border-bottom: 1px solid #353535; */
+      padding-bottom:5px;
+      color: #353535;
+      margin-top:25px;
+  }
+  .menubars { 
+    display: none; 
+    color: #353535;
+    background-color: rgba(255, 255, 255, 0.7);
+    width:77.5%;
+    padding: 10px;
+    margin-bottom:20px;
+  }
+  label:hover{
+  	color:#004aad;
+  	cursor:pointer;
+  }
+  
+  /* 체크되면 메뉴를 표시하기 */
+  #check-btn1:checked ~ .menubars,
+  #check-btn2:checked ~ .menubars,
+  #check-btn3:checked ~ .menubars,
+  #check-btn4:checked ~ .menubars,
+  #check-btn5:checked ~ .menubars,
+  #check-btn6:checked ~ .menubars,
+  #check-btn7:checked ~ .menubars,
+  #check-btn8:checked ~ .menubars,
+  #check-btn9:checked ~ .menubars { 
+    display: block; 
+   border-top: 1px solid #353535;
+    
+  }
+  
+  /* 체크박스는 화면에서 감추기 */
+  #check-btn1, #check-btn2, #check-btn3, 
+  #check-btn4, #check-btn5, #check-btn6, 
+  #check-btn7, #check-btn8, #check-btn9
+   { 
+    display: none; 
+  }
+  
+  .main-main {
+	width:1024px;
+    background-color: #d9d9d9;
+    margin: 0 auto;
+}
+/* 메뉴 */
+#state_sub{
+		background: #1b4fa2 url(/images/titBg.jpg) no-repeat 50% 50%;
+}
+#state_sub .stateWrap > strong {
+    display: block;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 44px;
+    font-weight: 200;
+    color: #fff;
+    line-height: 1.1em;
+}
+#state_sub .stateWrap ul {
+    text-align: center;
+}
+#state_sub .stateWrap ul li {
+    display: inline-block;
+    position: relative;
+    margin: 0 24px;
+    padding-bottom: 6px;
+}
+#state_sub .stateWrap ul li.active a strong {
+    color: #fff;
+    font-weight: 400;
+}
+#state_sub .stateWrap ul li a strong {
+    display: block;
+    font-size: 16px;
+    font-weight: 200;
+    color: rgba(255, 255, 255, 0.5);
+}
+/*산불페이지 */
+.leftArea{
+	float: left;
+}
+.leftArea img{
+	width: 400px;
+	height: 600px;
+	margin: 10px 0 0 10px;
+}
+.rightArea{
+	display:inline-block;
+	margin-left: 20px;
+}
+.rightArea h2{
+	margin-top: 20px;
+}
+
+.todayArea ul li{
+	list-style: none;
+	float: left;
+    width: 183px;
+    height: 110px;
+    padding: 24px 0 0;
+    margin-right: 10px;
+    text-align: center;
+    line-height: 1em;
+    background: #f1f1f1;
+    box-sizing: border-box;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+/* 표 전체 스타일 */
+.tableArea {
+    width: 590px;
+    height: 400px;
+    margin-top:20px;
+    overflow: auto; /* 내용이 넘칠 경우 스크롤 표시 */
+}
+/* 표 제목 스타일 */
+.tableArea table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+/* 각 셀 스타일 */
+.tableArea th, .tableArea td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+/* 각 열 스타일 */
+.tableArea th {
+    background-color: #f0f0f0;
+}
+/* 각 행 스타일 */
+.tableArea tr:hover {
+    background-color: #f5f5f5;
+}
+ .terms317 img {
+    width: 900px; /* 너비를 원하는 크기로 지정 */
+    height: auto; /* 높이는 자동으로 조절됩니다. */
+  }
+.terms317 p{
+	margin-left: 55px;
+	}	
+  .terms318 img {
+    width: 300px; /* 너비를 원하는 크기로 지정 */
+    height: auto; /* 높이는 자동으로 조절됩니다. */
+  }
+  .terms319 img {
+    width: 250px; /* 너비를 원하는 크기로 지정 */
+    height: auto; /* 높이는 자동으로 조절됩니다. */
+  }
+  .terms320 img {
+    width: 550px; /* 너비를 원하는 크기로 지정 */
+    height: auto; /* 높이는 자동으로 조절됩니다. */
+  }
+  .terms321 img {
+    width: 550px; /* 너비를 원하는 크기로 지정 */
+    height: auto; /* 높이는 자동으로 조절됩니다. */
+  }
+  .tabSlideWrap {
+    padding: 10px;
+  }
+  .swiper-container-horizontal {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+  }
+  .swiper-wrapper {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+  }
+  .swiper-slide {
+    margin-right: 20px;
+  }
+  .swiper-slide a {
+    text-decoration: none;
+    color: black;
+    padding: 10px;
+    display: block;
+  }
+  .swiper-slide a:hover {
+    background-color: #f0f0f0;
+  }
+ /* 산불끝 */
+
+
+
+
+/* 지진 */
+.top-top-top-left {
+	float: left;
+}
+.top-top-top-left img{
+	width: 400px;
+	height: 600px;
+	margin: 10px 0 0 10px;
+}
+.top-top-top-right{
+	display: inline-block;
+	margin-left:20px; 
+}
+.top-top-top-right-container-header{
+	margin-top: 20px;
+	margin-left: 20px;
+}
+/* 테이블 전체 스타일링 */
+.table-table-wlwls {
+    margin: 20px; /* 테이블 주변 여백 조정 */
+    border-collapse: collapse; /* 테이블 셀 테두리를 합침 */
+    width: 500px; /* 테이블의 너비를 부모 요소에 맞춤 */
+}
+
+/* 테이블 헤더와 데이터 행의 공통 스타일링 */
+.table-table-wlwls th,
+.table-table-wlwls td {
+    border: 1px solid #ddd; /* 테두리 스타일 지정 */
+    padding: 8px; /* 셀 내부 여백 지정 */
+    text-align: center; /* 셀 안의 텍스트를 가운데 정렬 */
+}
+
+/* 테이블 헤더 스타일링 */
+.table-table-wlwls th {
+    background-color: #f2f2f2; /* 헤더 배경색 지정 */
+    font-weight: bold; /* 헤더 텍스트 굵게 지정 */
+}
+
+/* 테이블 데이터 행의 홀수 번째 셀 스타일링 */
+.table-table-wlwls tr:nth-child(odd) td {
+    background-color: #f9f9f9; /* 홀수 번째 행 배경색 지정 */
+}
+
+/* 테이블 데이터 행의 짝수 번째 셀 스타일링 */
+.table-table-wlwls tr:nth-child(even) td {
+    background-color: #ffffff; /* 짝수 번째 행 배경색 지정 */
+}
+/* 테이블 데이터 행 스타일링 (짝수 행) */
+.table-table-wlwls tr:nth-child(even) {
+    background-color: #f9f9f9; /* 짝수 행 배경색 지정 */
+}
+
+/* 테이블 데이터 셀 스타일링 */
+.table-table-wlwls td {
+    padding: 8px; /* 셀 내부 여백 지정 */
+}
+
+.tableTypeF {
+    border: 1px solid #ddd;
+    border-bottom: 0;
+    width: 100%;
+}
+th {
+    display: table-cell;
+    vertical-align: inherit;
+    font-weight: bold;
+    text-align: -internal-center;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0 !important;
+}
+table {
+    display: table;
+    border-collapse: separate;
+    box-sizing: border-box;
+    text-indent: initial;
+    border-spacing: 2px;
+    border-color: gray;
+}
+.tableTypeF thead th {
+    font-weight: 500;
+    background: #f6f6f6;
+}
+.tableTypeF td, .tableTypeF th {
+    padding: 14px 5px;
+    text-align: center;
+    font-size: 16px;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+.tableTypeF tbody td {
+    color: #54585e;
+}
+/*팝업  */
+
+#layerArea.earthquakePop .earthquakePopWrap {
+    padding: 28px 20px 0;
+}
+#layerArea.earthquakePop .earthquakePopWrap .imgArea .imgWrap img {
+    max-width: 100%;
+    max-height: 100%;
+}
+img {
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+#layerArea.earthquakePop {
+    width: 618px;
+    height: 690px;
+}
+#layerArea {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1200px;
+    background: #fff;
+}
+.earthquakePop {
+    display: none;
+}
+.tableTypeF {
+    width: 1000px; 
+    margin: 0 auto;
+} 
+/* 산사태 */
+.top-top-tkstkxo{
+	height: 700px;
+}
+.top-top-tkstkxo-left{
+	float: left;
+}
+.top-top-tkstkxo-left img{
+	width: 400px;
+	height: 600px;
+	margin: 10px 0 0 10px;
+}
+.top-top-tkstkxo-right{
+	display:inline-block;
+	margin-left: 50px;
+	margin-top: 20px;
+}
+
+/* 테이블 전체 스타일 */
+.table6 {
+    width: 100%; /* 테이블의 너비를 100%로 설정합니다. */
+    border-collapse: collapse; /* 테이블 셀 테두리를 합칩니다. */
+    margin-top: 20px; /* 테이블 상단 여백을 조정합니다. */
+}
+
+/* 테이블 헤더 스타일 */
+.table6 th {
+    background-color: #f2f2f2; /* 헤더 배경색을 지정합니다. */
+    border: 1px solid #dddddd; /* 헤더 테두리를 설정합니다. */
+    padding: 8px; /* 헤더 셀 내부 여백을 조정합니다. */
+    text-align: left; /* 헤더 텍스트를 왼쪽 정렬합니다. */
+}
+
+/* 테이블 데이터 셀 스타일 */
+.table6 td {
+    border: 1px solid #dddddd; /* 데이터 셀 테두리를 설정합니다. */
+    padding: 8px; /* 데이터 셀 내부 여백을 조정합니다. */
+    text-align: left; /* 데이터 텍스트를 왼쪽 정렬합니다. */
+}
+
+/* 마우스를 올렸을 때 행 배경색 지정 */
+.table6 tr:hover {
+    background-color: #f2f2f2;
+}
+#ISSU_KIND_NM{
+	text-align: center;
+}
+
+ .term-container {
+      display: flex;
+      margin-top: 50px;
+    }
+    .term-sidebar {
+      flex: 0 0 30%;
+      background-color: #f0f0f0;
+      padding: 20px;
+    }
+    .term-content {
+      flex: 1;
+      padding: 20px;
+    }
+    .term-link {
+      display: block;
+      margin-bottom: 10px;
+      padding: 10px;
+      background-color: #ddd;
+      text-decoration: none;
+      color: #333;
+      transition: background-color 0.3s;
+    }
+    .term-link:hover {
+      background-color: #ccc;
+    }
+    .term-text {
+      display: none;
+      margin-top: 20px;
+    }
+    
+ /*미세먼지  */
+ #container.airPollution .mainInfo .mainInfoWrap .rightArea {
+    float: right;
+    width: 570px;
+}
+#container.airPollution .mainInfo .mainInfoWrap .rightArea .status {
+    margin-bottom: 47px;
+}
+.leftArea{
+	float: left;
+}
+.leftArea img{
+	width: 400px;
+	height: 600px;
+	margin: 10px 0 0 10px;
+}
+.rightArea .titArea {
+    position: relative;
+    margin-bottom: 13px;
+}
+#container.airPollution .mainInfo .mainInfoWrap .rightArea .status .alarmWrap {
+    position: relative;
+    height: 166px;
+}
+#container.airPollution .mainInfo .mainInfoWrap .rightArea .status .alarmWrap #alarm {
+    height: 162px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+}
+.status #alarm {
+    border-top: 3px solid #000;
+    border-bottom: 1px solid #000;
+}
+#container.airPollution .mainInfo .mainInfoWrap .rightArea .status .alarmWrap #alarm ul {
+    height: 162px;
+}
+.status #alarm ul {
+    padding: 30px 20px;
+    overflow: auto;
+    background: #f1f1f1;
+    box-sizing: border-box;
+}
+#container.airPollution .mainInfo .mainInfoWrap .rightArea .status .alarmWrap #alarm {
+    height: 162px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    z-index: 2;
+}
+.status #alarm {
+    border-top: 3px solid #000;
+    border-bottom: 1px solid #000;
+}
+#container.airPollution .mainInfo .mainInfoWrap .rightArea .status .alarmWrap #alarm ul li.none {
+    height: 100px !important;
+    line-height: 100px !important;
+}
+.status #alarm ul li.none {
+    line-height: 370px !important;
+    height: 370px !important;
+    letter-spacing: -0.5px !important;
+}
+.status #alarm ul li.none span {
+    display: inline-block;
+    line-height: 1em;
+    word-break: keep-all;
+}
+.status #alarm ul li.none span:before {
+    content: "";
+    display: inline-block;
+    margin-top: -2px;
+    margin-right: 4px;
+    vertical-align: middle;
+    width: 25px;
+    height: 25px;
+    background: url(/images/ico_common.png) no-repeat -50px -350px;
+}
+  

@@ -54,6 +54,12 @@ public class Member{
 	@Enumerated(EnumType.STRING)
 	private Role role;
 	
+	@Column
+	private String filename;
+	
+	@Column
+	private String filepath;
+	
 	
 	//dto(view에 온 입력값) -> entity(db에 저장)
 	//회원 가입(id(회원번호)가 자동생성되므로 명시하면 안됨)
@@ -67,6 +73,8 @@ public class Member{
 				.mnumber(memberDTO.getMnumber())
 				.memberArea(memberDTO.getMemberArea())
 				.role(memberDTO.getRole())
+				.filename(memberDTO.getFilename())
+				.filepath(memberDTO.getFilepath())
 				.build();
 		return member;
 	}
@@ -83,8 +91,11 @@ public class Member{
 				.mnumber(memberDTO.getMnumber())
 				.memberArea(memberDTO.getMemberArea())
 				.role(memberDTO.getRole())
+				.filename(memberDTO.getFilename())
+				.filepath(memberDTO.getFilepath())
 				.build();
 		return member;
 	}
+
 	
 }

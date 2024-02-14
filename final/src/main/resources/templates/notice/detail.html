@@ -7,30 +7,39 @@
 </head>
 <body>
       <div th:replace="~{header}"></div>
-   <h2 class="board_h2">공지사항 상세보기</h2>
+	<div id="pi-title">
+		<h3>참여와 신고</h3>	
+	</div>
+	<div class="semi_title">
+		<h2>공지사항 상세보기</h2>
+	</div>
    <div id="content">     
       <div class="board_content">
       <table class="tbl_detail">
          <tr>
-            <td style="border-bottom: 2px solid #000;">
-               <div style="font-size: 33px;">
-                  <span th:text="${board.boardTitle}"></span>
-               </div>
-                <div style="margin-left: 5px; font-size: 15px" th:if="${board.updatedDate ne null}">
-                    작성일시: <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm:ss')}"></span>&nbsp;
-                    수정일시: <span th:text="${#temporals.format(board.updatedDate, 'yyyy-MM-dd HH:mm:ss')}"></span>
-                </div>
-                <div style="margin-left: 5px; font-size: 15px" th:if="${board.updatedDate eq null}">
-                    작성일시: <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm:ss')}"></span>    
-                </div>
-               <div style="display: flex; justify-content: space-between; margin: 5px">
-                   <div th:if="${board.boardHits != null}">
-                       조회수: <span th:text="${board.boardHits} + '회'"></span>
-                   </div>
-                   <div th:if="${board.likeCount != null && board.likeCount != 0}">
-                       추천수: <span th:text="${board.likeCount} + '회'"></span>
-                   </div>
-               </div>
+            <td class="tbl_head">
+               <div>
+					<div style="font-size: 33px; margin-bottom: 20px; ">
+						<span th:text="${board.boardTitle}"></span>
+					</div>
+				</div>
+				<div>
+					<div class="vote_hit">
+						<div th:if="${board.likeCount != null && board.likeCount != 0}">
+					        추천수: <span th:text="${board.likeCount} + '회'"></span>
+					    </div>
+					    <div th:if="${board.boardHits != null}">
+					        조회수: <span th:text="${board.boardHits} + '회'"></span>
+					    </div>
+					</div>
+				    <div style="margin-left: 5px; font-size: 15px" th:if="${board.updatedDate ne null}">
+				        작성일시: <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm:ss')}"></span>&nbsp;
+				        수정일시: <span th:text="${#temporals.format(board.updatedDate, 'yyyy-MM-dd HH:mm:ss')}"></span>
+				    </div>
+				    <div style="margin-left: 5px; font-size: 15px" th:if="${board.updatedDate eq null}">
+				        작성일시: <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm:ss')}"></span>    
+				    </div>
+				</div>
             </td>
          </tr>
          <tr>
@@ -41,15 +50,15 @@
                          작성자: <span th:text="${board.boardWriter}"></span>
                      </p>   
                   </div>   
-                  <div style="font-weight:bold">
-                     <a th:href="@{|/noticevote/${board.id}|}">
-                         추천
-                      </a>
-                      |
-                      <a th:href="@{|/noticereport/${board.id}|}">
-                         신고
-                      </a>
-                   </div>
+                  <div>
+						<a th:href="@{|/vote/${board.id}|}">
+					    	<i class="fa-regular fa-thumbs-up"></i>
+					    </a>
+					    |
+					    <a th:href="@{|/boardreport/${board.id}|}" onclick="return confirm('정말로 신고하시겠습니까?')">
+	                       <i class="fi fi-rs-siren-on"></i>
+	                    </a>
+				    </div>
                </div>      
             </td>
          </tr>

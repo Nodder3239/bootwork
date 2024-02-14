@@ -1,6 +1,26 @@
 /**
  * 
  */
+/*
+	108.강원도 춘천시
+	109.강원도 원주시
+	110.강원도 강릉시
+	111.강원도 동해시
+	112.강원도 태백시
+	113.강원도 속초시
+	114.강원도 삼척시
+	115.강원도 홍천군
+	116.강원도 횡성군
+	117.강원도 영월군
+	118.강원도 평창군
+	119.강원도 정선군
+	120.강원도 철원군
+	121.강원도 화천군
+	122.강원도 양구군
+	123.강원도 인제군
+	124.강원도 고성군
+	125.강원도 양양군
+*/
 
  // 버튼을 클릭하면 네이버 지도 표시
 	$(document).ready(function(){
@@ -13,6 +33,19 @@
 	    var gangwon_gangneung_city_office = new naver.maps.LatLng(37.75200, 128.8760);
 	    var gangwon_donghae_city_office = new naver.maps.LatLng(37.52475, 129.1143);
 	    var gangwon_taebaek_city_office = new naver.maps.LatLng(37.16410, 128.9857);	//5
+	    var gangwon_sokcho_city_office;
+	    var gangwon_samcheok_city_office;
+	    var gangwon_hongcheon_county_office;
+	    var gangwon_hoengseong_county_office;		//10
+	    var gangwon_yeongwol_county_office;
+	    var gangwon_pyeongchang_county_office;
+	    var gangwon_jeongseon_county_office;
+	    var gangwon_cheorwon_county_office;
+	    var gangwon_hwacheon_county_office;		//15
+	    var gangwon_yanggu_county_office;
+	    var gangwon_inje_county_office;
+	    var gangwon_goseong_county_office;
+	    var gangwon_yangyang_county_office;
 	    
 	    // map 설정
 	    var map = new naver.maps.Map('map', {
@@ -153,14 +186,14 @@
 	    });
 	    var contentString108 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="강원춘천시청" class="thumb" /><br />',
-	        '<h3>강원춘천시청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 강원특별자치도 춘천시 시청길11(옥천동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 033-250-3114 재난안전담당관: 033-250-3250, <br/>',
-	        ' (야간,공휴일/당직실)  <i class="fa-solid fa-fax"></i>  <br />',
-	        '<i class="fa-solid fa-envelope"></i> 24347 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconGangwon.png" width="100" height="100" alt="강원춘천시청" class="thumb"/><br>',
+	        '<h2>강원춘천시청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 강원특별자치도 춘천시 시청길11(옥천동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 033-250-3114, 재난안전담당관: 033-250-3250, <br>',
+	        '(야간,공휴일/당직실):  <br><i class="fa-solid fa-fax"></i> 팩스:  <br>',
+	        '<i class="fa-solid fa-envelope"></i> 24347 | 공공,사회기관 &gt; 시청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.chuncheon.go.kr/cityhall/" target="_blank">https://www.chuncheon.go.kr/cityhall/</a>',
 	        '</div>'
 	    ].join('');
@@ -175,14 +208,14 @@
 	    });
 	    var contentString109 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="강원원주시청" class="thumb" /><br />',
-	        '<h3>강원원주시청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 강원특별자치도 원주시 시청로1(무실동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 033-742-2111 자연재난: 033-737-3261, <br/>',
-	        ' (야간,공휴일/당직실)  <i class="fa-solid fa-fax"></i> 033-737-3300 (자연재난): 033-737-4819 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 26384 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconGangwon.png" width="100" height="100" alt="강원원주시청" class="thumb"/><br>',
+	        '<h2>강원원주시청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 강원특별자치도 원주시 시청로1(무실동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 033-742-2111, 자연재난: 033-737-3261, <br>',
+	        '(야간,공휴일/당직실):  <br><i class="fa-solid fa-fax"></i> 팩스: 033-737-3300, (자연재난): 033-737-4819 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 26384 | 공공,사회기관 &gt; 시청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.wonju.go.kr/www/index.do" target="_blank">https://www.wonju.go.kr/www/index.do</a>',
 	        '</div>'
 	    ].join('');
@@ -197,14 +230,14 @@
 	    });
 	    var contentString110 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="강원강릉시청" class="thumb" /><br />',
-	        '<h3>강원강릉시청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 강원특별자치도 강릉시 강릉대로 33(홍제동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 033-660-2018 재난안전: 033-640-5233, <br/>',
-	        ' (야간,공휴일/당직실)  <i class="fa-solid fa-fax"></i>  <br />',
-	        '<i class="fa-solid fa-envelope"></i> 25522 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconGangwon.png" width="100" height="100" alt="강원강릉시청" class="thumb"/><br>',
+	        '<h2>강원강릉시청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 강원특별자치도 강릉시 강릉대로 33(홍제동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 033-660-2018, 재난안전: 033-640-5233, <br>',
+	        '(야간,공휴일/당직실):  <br><i class="fa-solid fa-fax"></i> 팩스: <br>',
+	        '<i class="fa-solid fa-envelope"></i> 25522 | 공공,사회기관 &gt; 시청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.gn.go.kr/www/index.do" target="_blank">https://www.gn.go.kr/www/index.do</a>',
 	        '</div>'
 	    ].join('');
@@ -219,14 +252,14 @@
 	    });
 	    var contentString111 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="강원동해시청" class="thumb" /><br />',
-	        '<h3>강원동해시청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 강원특별자치도 동해시 천곡로 77(천곡동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 033-530-2114, <br/>',
-	        ' (야간,공휴일/당직실)  <i class="fa-solid fa-fax"></i> 033-533-9511 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 25755 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconGangwon.png" width="100" height="100" alt="강원동해시청" class="thumb"/><br>',
+	        '<h2>강원동해시청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 강원특별자치도 동해시 천곡로 77(천곡동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 033-530-2114, <br>',
+	        '(야간,공휴일/당직실):  <br><i class="fa-solid fa-fax"></i> 팩스: 033-533-9511 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 25755 | 공공,사회기관 &gt; 시청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.dh.go.kr/www/index.do" target="_blank">https://www.dh.go.kr/www/index.do</a>',
 	        '</div>'
 	    ].join('');
@@ -241,14 +274,14 @@
 	    });
 	    var contentString112 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="강원태백시청" class="thumb" /><br />',
-	        '<h3>강원태백시청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 강원특별자치도 태백시 태붐로 21(황지동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 033-552-1360 안전과: 033-550-3021, <br/>',
-	        ' (야간,공휴일/당직실)  <i class="fa-solid fa-fax"></i> 033-550-2951 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 26023 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconGangwon.png" width="100" height="100" alt="강원태백시청" class="thumb"/><br>',
+	        '<h2>강원태백시청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 강원특별자치도 태백시 태붐로 21(황지동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 033-552-1360, 안전과: 033-550-3021, <br>',
+	        '(야간,공휴일/당직실):  <br><i class="fa-solid fa-fax"></i> 팩스: 033-550-2951 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 26023 | 공공,사회기관 &gt; 시청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.taebaek.go.kr/www/index.do" target="_blank">https://www.taebaek.go.kr/www/index.do</a>',
 	        '</div>'
 	    ].join('');

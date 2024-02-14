@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>safeBehaviorNum1</title>
+<script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+<script src="https://kit.fontawesome.com/b70f42fdf2.js" crossorigin="anonymous"></script>
+<link rel="stylesheet" th:href="@{/css/styleKH.css}">
+
+</head>
+<body>
+	<div th:replace="~{header}"></div>
+   	<div id="pi-title">
+		<h3>지진</h3>	
+	</div>
+	<div id="safeBehavior_container">
+		<section>
+			<div id="safeBehavior_container1">
+				<div id="safeBehavior_topVideo">
+					<!-- <video width="100%" height="100%" autoplay muted loop controls poster="@{/images/planB-logo.png}">
+         				<source th:src="@{/medias/safeBehaviorNum1.mp4}" type="video/mp4">
+     				</video> -->
+				</div>
+				<div id="safeBehavior_topContent">
+					<div id="safeBehavior_topTitle">
+						<h3>우리 동네 지진대피소는 어디인가요?</h3>
+					</div>
+					<div id="safeBehavior_text">
+						<h4> &nbsp;지진대피소는 국가공간정보(<a href="http://www.nsdi.go.kr/" target="_blank" style="color: blue;">http://www.nsdi.go.kr/</a>) 
+						및 공공데이터포털(<a href="https://www.data.go.kr/" target="_blank" style="color: blue;">https://www.data.go.kr/</a>)
+						에서 확인할 수 있으며, <b>'생활안전지도' 및 '안전디딤돌 앱'</b>에서도 확인할 수 있습니다. 지진이 발생했을 때 
+						지진대피소를 확인 할 수 없다면 주변의 넓은 공원이나 운동장으로 대피하여야 하니 주변의 공원과 운동장을 
+						미리 파악해 두시기 바랍니다.
+						</h4>
+					</div>
+				</div>
+				<div id="safeBehavior_categoryTitle">
+					<h3>지진 발생시 이렇게 행동해주세요!</h3>
+				</div>
+				<div>
+					<table id="safeBehavior_category">
+						<tbody>
+							<tr>
+								<th id="safeBehavior_category1" data-content-id="safeBehavior_content1">평상 시 대비</th>
+	                            <th id="safeBehavior_category2" data-content-id="safeBehavior_content2">지진 발생 시 행동요령</th>
+	                            <th id="safeBehavior_category3" data-content-id="safeBehavior_content3">지진 대피 시 행동요령</th>
+	                            <th id="safeBehavior_category4" data-content-id="safeBehavior_content4">지진 대피 후 행동요령</th>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<div id="safeBehavior_contents">
+	                <div id="safeBehavior_content1" class="active">
+	                    <div id="safeBehavior_mainImage1">
+	                        <img th:src="@{/images/safeBehaviorNum1_1_600800.png}" width="100%" height="100%" alt="이미지를 추가해주세요.">
+	                    </div>
+	                    <div id="safeBehavior_mainContent1">
+	                    	<div id="safeBehavior_mainTitle1">
+	                    		<h3>이렇게 대비해주세요!</h3>
+	                    	</div>
+	                    	<div id="safeBehavior_mainText1">
+		                    	<p>
+		                    		<span class="font">1. 집 안에서의 안전을 확보합니다.<br></span>
+									&nbsp;◆ <b>탁자 아래</b>와 같이 집 안에서 대피할 수 있는 안전한 대피 공간을 미리 파악해 둡니다.<br>
+									&nbsp;◆ 유리창이나 넘어지기 쉬운 가구 주변 등 <b>위험한 위치를 확인</b>해 두고 지진 발생 시 가까이 가지 않도록 합니다.<br>
+									&nbsp;◆ 깨진 유리 등에 다치지 않도록 두꺼운 <b>실내화를 준비해 둡니다.</b><br>
+									&nbsp;◆ 화재를 일으킬 수 있는 난로나 <b>위험물은 주의</b>하여 관리합니다.<br><br>
+									<span class="font">2. 집 안에서 <b>떨어지기 쉬운 물건을 고정</b>합니다.<br></span>
+									&nbsp;◆ 가구나 가전제품이 흔들릴 때 넘어지지 않도록 고정해 둡니다.<br>
+									&nbsp;◆ 텔레비전, 꽃병 등 떨어질 수 있는 물건은 높은 곳에 두지 않도록 합니다.<br>
+									&nbsp;◆ 그릇장 안의 물건들이 쏟아지지 않도록 문을 고정해 둡니다.<br>
+									&nbsp;◆ 창문 등의 유리 부분은 <b>필름</b>을 붙여 유리가 파손되지 않도록 합니다.<br><br>
+									<span class="font">3. 집을 안전하게 관리합니다.<br></span>
+									&nbsp;◆ <b>가스 및 전기를 미리 점검</b>합니다.<br>
+									&nbsp;◆ 건물이나 담장은 수시로 점검하고, 위험한 부분은 안전하게 수리합니다.<br>
+									&nbsp;◆ 건물의 균열을 발견하면 전문가에게 문의하여 보수하고 보강합니다.<br><br>
+									<span class="font">4. <b>평상 시 가족회의</b>를 통하여 위급한 상황에 대비합니다.<br></span>
+									&nbsp;◆ 가스 및 전기를 차단하는 방법을 알아 둡니다.<br>
+									&nbsp;◆ 머물고 있는 곳 주위의 넓은 공간 등 <b>대피할 수 있는 장소</b>를 알아둡니다.<br>
+									&nbsp;◆ 비상시 가족과 만날 곳과 <b>연락할 방법</b>을 정해 둡니다.<br>
+									&nbsp;◆ 응급처치하는 방법을 반복적으로 훈련하여 익혀 둡니다.<br><br>
+									<span class="font">5. 평소 비상용품을 잘 준비해 둡니다.<br></span>
+									&nbsp;◆ 지진에 대비하여 <b>비상용품을 준비</b>해 두고, 보관 장소와 사용방법을 알아 둡니다.<br>
+									&nbsp;◆ 지진 발생 시 화재가 발생할 수 있으니 <b>소화기를 준비</b>해 두고, 사용방법을 알아 둡니다.<br><br>
+		                    		<span class="font">6. 지진 정보를 얻을 수 있는 방법을 알아 둡니다.<br></span>
+		                    		&nbsp;◆ 지진 정보를 얻을 수 있는 <b>정부 기관의 연락처</b>를 알아 둡니다.<br>
+		                    		&nbsp;◆ 정부에서 제공하는 스마트폰 <b>재난정보 어플리케이션<안전디딤돌></b>을 설치해 둡니다.<br><br>
+		                    	<p>
+	                    	</div>
+	                    </div>
+	                </div>
+	                <div id="safeBehavior_content2">
+	                    <div id="safeBehavior_mainImage2">
+	                        <img th:src="@{/images/safeBehaviorNum1_2_600800.png}" width="100%" height="100%" alt="이미지를 추가해주세요.">
+	                    </div>
+	                    <div id="safeBehavior_mainContent2">
+	                    	<div id="safeBehavior_mainTitle2">
+	                    		<h3>이렇게 행동합니다.</h3>
+	                    	</div>
+	                    	<div id="safeBehavior_mainText2">
+		                    	<p>
+		                    		<span class="font">1. <b>튼튼한 탁자 아래</b>에 들어가 몸을 보호합니다.<br></span>
+		                    		&nbsp;◆ 지진으로 크게 흔들리는 시간은 길어야 1~2분 정도입니다.<br>
+		                    		&nbsp;◆ 중심이 낮고 튼튼한 탁자의 아래로 들어가 <b>탁자 다리를 꼭 잡고 몸을 보호합니다.</b><br>
+		                    		&nbsp;◆ 탁자 아래와 같은 피할 곳이 없을 때에는 방석 등으로 머리를 보호합니다.<br><br>
+		                    		<span class="font">2. <b>가스와 전깃불을 차단</b>하고 문을 열어 출구를 확보합니다.<br></span>
+		                    		&nbsp;◆ 흔들림이 멈춘 후 당황하지 말고 화재에 대비하여 <b>가스와 전깃불을 끕니다.</b><br>
+		                    		&nbsp;◆ <b>문이나 창문을 열어</b> 언제든 대피할 수 있도록 출구를 확보합니다.<br>
+		                    		&nbsp;◆ 흔들림이 멈추면, 출구를 통해 밖으로 나갑니다.<br><br>
+		                    		<span class="font">3. 집에서 나갈 때는 <b>발을 보호할 수 있는 신발</b>을 신고 이동합니다.<br></span>
+		                    		&nbsp;◆ 지진이 발생하면 유리 조각이나 떨어져 있는 물체 때문에 발을 다칠 수 있으니, 
+		                    		발을 보호할 수 있는 신발을 신고 이동합니다.<br><br>
+		                    		<span class="font">4. <b>계단을 이용</b>하여 밖으로 대피합니다.<br></span>
+		                    		&nbsp;◆ 지진이 나면 엘리베이터를 타지 말고, 계단을 이용하여 건물 밖으로 대피합니다.<br>
+		                    		&nbsp;◆ 밖으로 나갈 때에는 떨어지는 유리, 간판, 기와 등에 주의하며, <b>소지품으로 몸을 보호하면서 
+		                    		침착하게</b> 대피합니다.<br><br>
+		                    		<span class="font">5. 건물 담장과 <b>떨어져 이동</b>합니다.<br></span>
+		                    		&nbsp;◆ 건물 밖으로 나오면 담장, 유리창 등이 파손되어 다칠 수 있으니, 건물과 담장에서 최대한 멀리 
+		                    		떨어져 가방이나 손으로 머리를 보호하면서 대피합니다.<br><br>
+		                    		<span class="font">6. <b>넓은 공간</b>으로 대피합니다.<br></span>
+		                    		&nbsp;◆ <b>떨어지는 물건에 주의</b>하며 신속하게 운동장이나 공원 등 넓은 공간으로 대피합니다.<br>
+		                    		&nbsp;◆ 이동할 때에는 차량을 이용하지 않고 <b>걸어서 대피합니다.</b><br><br>
+		                    		<span class="font">7. 올바른 정보에 따라 행동합니다.<br></span>
+		                    		&nbsp;◆ 대피 장소에서는 안내에 따라 <b>질서를 지킵니다.</b><br>
+		                    		&nbsp;◆ 지진 발생 직후에는 근거 없는 소문이나 유언비어가 유포될 수 있으니, <b>라디오나 공공 기관의 안내 방송</b> 등이 
+		                    		제공하는 정보에 따라 행동합니다.<br><br>
+		                    	<p>
+	                    	</div>
+	                    </div>
+	                </div>
+	                <div id="safeBehavior_content3">
+	                    <div id="safeBehavior_mainImage3">
+	                        <img th:src="@{/images/safeBehaviorNum1_1_600800.png}" width="100%" height="100%" alt="이미지를 추가해주세요.">
+	                    </div>
+	                    <div id="safeBehavior_mainContent3">
+	                    	<div id="safeBehavior_mainTitle3">
+	                    		<h3>이렇게 대피합니다.</h3>
+	                    	</div>
+	                    	<div id="safeBehavior_mainText3">
+		                    	<p>
+		                    		<span class="font">1. 사무실에 있을 때에는 <b>책상 아래</b>로 들어가서 몸을 보호합니다.<br></span>
+		                    		&nbsp;◆ 사무실 주변은 컴퓨터 본체, 모니터 등 무거운 물건들이 많아 다칠 위험이 크니 안전한 곳에서 몸을 보호합니다.<br><br>
+		                    		<span class="font">2. 학교에 있을 때에는 <b>책상 아래</b>로 들어가서 몸을 보호합니다.<br></span>
+		                    		&nbsp;◆ 책상 아래로 들어가 몸을 웅크리고 책상다리를 꼭 잡고 몸을 보호합니다.<br>
+		                    		&nbsp;◆ 흔들림이 멈추면 선생님의 안내에 따라 <b>질서를 지키면서 운동장으로 대피</b>합니다.<br>
+		                    		&nbsp;◆ 복도에서는 창문 유리가 깨질 우려가 있으니 <b>창문과 떨어져 이동</b>합니다.<br><br>
+		                    		<span class="font">3. 백화점이나 마트에 있을 때에는 <b>장바구니로 머리를 보호</b>합니다.<br></span>
+		                    		&nbsp;◆ 진열장에서 떨어지는 물건으로 부터 몸을 보호합니다.<br>
+		                    		&nbsp;◆ <b>계단이나 기둥 근처로 피하고,</b> 흔들림이 멈추면 안내에 따라 밖으로 대피합니다.<br><br>
+		                    		<span class="font">4. 극장이나 경기장에 있을 때에는 <b>우선 자리에서 몸을 보호</b>합니다.<br></span>
+		                    		&nbsp;◆ 흔들림이 멈출 때까지 가방 등 소지품으로 몸을 보호하며 잠시 동안 자리에 머물러 있습니다.<br>
+		                    		&nbsp;◆ 사람이 많이 있는 곳에서는 한 곳으로 갑자기 몰리게 되면 사고의 우려가 있으니, 안내에 따라 대피합니다.<br><br>
+		                    		<span class="font">5. 엘리베이터를 타고 있을 때에는 <b>즉시 내립니다.</b><br></span>
+		                    		&nbsp;◆ 지진이 발생하면 엘리베이터를 타지 말아야 합니다.<br>
+		                    		&nbsp;◆ 엘리베이터를 타고 있다면 모든 층의 버튼을 눌러 <b>가장 먼저 열리는 층에서 신속하게 내린 후,</b> 계단을 이용하여 대피합니다.<br>
+		                    		&nbsp;◆ 만약 엘리베이터 안에 갇혔을 때는 <b>인터폰이나 휴대전화를 이용</b>하여 구조를 요청합니다.<br><br>
+		                    		<span class="font">6. 자동차를 타고 있을 때에는 서서히 차를 멈춥니다.<br><br></span>
+		                    		<span class="font">7. 전철을 타고 있을 때에는 손잡이를 꼭 잡습니다.<br><br></span>
+		                    		<span class="font">8. 산이나 바다에 있을 때에는 안전한 곳으로 대피합니다.<br><br></span>
+		                    	<p>
+	                    	</div>
+	                    </div>
+	                </div>
+	                <div id="safeBehavior_content4">
+	                    <div id="safeBehavior_mainImage4">
+	                        <img th:src="@{/images/safeBehaviorNum1_2_600800.png}" width="100%" height="100%" alt="이미지를 추가해주세요.">
+	                    </div>
+						<div id="safeBehavior_mainContent4">
+							<div id="safeBehavior_mainTitle4">
+	                    		<h3>이렇게 행동합니다.</h3>
+	                    	</div>
+	                    	<div id="safeBehavior_mainText4">
+		                    	<p>
+		                    		<span class="font">1. 부상자를 살펴보고 <b>즉시 구조 요청</b>을 합니다.<br></span>
+		                    		&nbsp;◆ 흔들림이 멈춘 후 주변에 부상자가 있으면 이웃과 서로 협력하여 응급처치하고 
+		                    		119에 신고합니다.<br><br>
+		                    		<span class="font">2. <b>주변 피해 상황</b>에 따라 귀가 여부를 결정합니다.<br></span>
+		                    		&nbsp;◆ 지진이 발생하면 통신기기 사용이 폭주하여 일시적인 장애가 발생할 수 있으니 
+		                    		당황하지 마시고, 라디오 및 주변에 있는 <b>공공 기관이 제공하는 정보</b>에 따라 행동합니다.<br><br>
+		                    		<span class="font">3. 가정이나 사무실로 돌아간 후에는 안전에 유의하여 주변을 확인합니다.<br></span>
+		                    		&nbsp;◆ 가정이나 사무실의 피해 상황을 확인하고, 안전이 의심된다면 전문가의 확인을 받도록 합니다.<br>
+		                    		&nbsp;◆ 옷장이나 사무실 보관함 등의 내용물이 쏟아져 내려 부상을 입을 수도 있으므로 문을 열 때 주의합니다.<br><br>
+		                    		<span class="font">4. 올바른 정보를 항상 확인합니다.<br></span>
+		                    		&nbsp;◆ 여진이 발생할 수 있으므로, 지역 방송 등이 제공하는 정보를 확인하고, 대피해야 할 경우에는 <b>지진 국민행동요령</b>에 따릅니다.<br><br>
+		                    	<p>
+	                    	</div>
+						</div>
+	                </div>
+	            </div>
+            </div>
+		</section>
+		<div id="safeBehavior_contactPopup" onclick="safeBehavior_openPopup()">
+			<h4>위기상황, 긴급상황 시 국가＊유관기관 연락처(클릭하세요)</h4>
+	    </div>
+	    
+	    <!-- 팝업 -->
+	    <div class="popup" id="safeBehaviorPopup">
+	    	<h3>위기상황, 긴급상황 시 전화 및 유관기관 연락처</h3>
+	    	<table id="safeBehaviorPopup_tbl">
+	    		<tbody>
+		    		<tr id="safeBehaviorPopup_tr1">
+		    			<th><h4>위기상황, 긴급상황 시 신고전화</h4></th>
+		    			<th><h4>행정안전부 홈페이지</h4></th>
+		    			<th><h4>유관기관 연락처</h4></th>
+		    		</tr>
+		    		<tr id="safeBehaviorPopup_tr2">
+		    			<td><h4>재난신고 119, <br>
+		    				범죄신고 112, <br>
+		    				민원 상담 110, <br>
+		    				행정안전부 중앙재난안전상황실 044)205-1542~3<br></h4>
+		    			</td>
+		    			<td>
+		    				<h4>
+		    				행정안전부 홈페이지 <a href="http://www.mois.go.kr" target="_blank" style="color: blue;">http://www.mois.go.kr</a><br>
+		    				행정안전부 국민재난안전포털 <a href="http://www.safekorea.go.kr" target="_blank" style="color: blue;">http://www.safekorea.go.kr</a><br>
+		    				스마트폰 어플리케이션 <안전디딤돌><br>
+		    				</h4>
+		    			</td>
+		    			<td>
+		    				<h4>
+		    				교육부 044)203-6355, <a href="http://www.moe.go.kr" target="_blank" style="color: blue;">http://www.moe.go.kr</a><br>
+		    				농림축산식품부 044)201-1474, <a href="https://www.mafra.go.kr" target="_blank" style="color: blue;">https://www.mafra.go.kr</a><br>
+		    				국토교통부 044)201-3918, <a href="http://www.molit.go.kr" target="_blank" style="color: blue;">http://www.molit.go.kr</a><br>
+		    				해양수산부 044)200-5617, <a href="http://www.mof.go.kr" target="_blank" style="color: blue;">http://www.mof.go.kr</a><br>
+		    				경찰청 02)3150-2362, <a href="http://www.police.go.kr" target="_blank" style="color: blue;">http://www.police.go.kr</a><br>
+		    				소방청 044)205-1119, <a href="http://www.nfa.go.kr" target="_blank" style="color: blue;">http://www.nfa.go.kr</a><br>
+		    				기상청 02)2181-0503, <a href="http://www.kma.go.kr" target="_blank" style="color: blue;">http://www.kma.go.kr</a><br>
+		    				해양경찰청 032)835-2445, <a href="http://www.kcg.go.kr" target="_blank" style="color: blue;">http://www.kcg.go.kr</a><br>
+		    				</h4>
+		    			</td>
+		    		</tr>
+	    		</tbody>
+	    	</table>
+	    	<button onclick="safeBehavior_closePopup()" class="closePopupBtn">닫기</button>
+	    </div>	<!-- 팝업 끝 -->
+	</div>
+	<div th:replace="~{footer}"></div>
+	<script src="/js/contactPopup.js"></script>
+	
+	<script>
+	$(document).ready(function(){
+        //초기 설정
+        $('#safeBehavior_category1').css({
+            'background': 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,74,173,1) 35%, rgba(0,212,255,1) 100%)',
+            'color': '#f3eeea',
+            'cursor': 'pointer'
+        });
+
+        $('#safeBehavior_category th').click(function(event){
+        	event.preventDefault(); // 기본 동작 막기
+        	
+        	// 모든 카테고리에 대한 스타일 초기화
+            $('#safeBehavior_category th').css({
+                'background': '',
+                'color': '',
+                'cursor': 'pointer'
+            });
+
+            // 클릭한 카테고리에 대한 스타일 변경
+            $(this).css({
+                'background': 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,74,173,1) 35%, rgba(0,212,255,1) 100%)',
+                'color': '#f3eeea',
+                'cursor': 'pointer'
+            });
+
+            // 선택된 카테고리에 해당하는 내용 표시
+            var contentId = $(this).data('content-id');
+            $('#safeBehavior_contents > div').hide();
+            $('#' + contentId).show();
+
+            
+         	// 행동요령 카테고리1을 선택했을 때 이미지 초기화
+            if (contentId === 'safeBehavior_content1') {
+                changeImage('reset', 'safeBehavior_content1');
+            } else if (contentId === 'safeBehavior_content2') {
+                changeImage('reset', 'safeBehavior_content2');
+            } else if (contentId === 'safeBehavior_content3') {
+                changeImage('reset', 'safeBehavior_content3');
+            } else if (contentId === 'safeBehavior_content4') {
+                changeImage('reset', 'safeBehavior_content4');
+            }
+         
+        });
+        
+    });
+
+    </script>
+</body>
+</html>
+

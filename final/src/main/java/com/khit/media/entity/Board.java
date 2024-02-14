@@ -93,6 +93,7 @@ public class Board extends BaseEntity{
 		return board;
 	}
 	
+	/*
 	public static Board toUpdateNoFileBoardEntity(BoardDTO boardDTO) {
 		Board board = Board.builder()
 				.id(boardDTO.getId())
@@ -107,4 +108,5 @@ public class Board extends BaseEntity{
 				.build();
 		return board;
 	}
+	*/
 }

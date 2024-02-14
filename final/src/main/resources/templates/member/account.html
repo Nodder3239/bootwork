@@ -1,21 +1,23 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
 <meta charset="UTF-8">
 <title>마이페이지</title>
 </head>
 <body>
 	<div th:replace="~{header}"></div>
-	
 <div class="ch">
+<div id="bigbig">
+<h2>Account</h2>
 	<div id="account">
       <div id="left">
         <div id="mimage">
-        	<img src="https://i.pinimg.com/736x/ca/a6/fb/caa6fb484a4a71444d003c2ac8613659.jpg">
+			 <img th:src="@{|/upload/${member.filename}|}" alt="프로필사진">
         </div>
         <h6 th:text="${name} + ' 님'"></h6>
-        <div class="mbutton" id="modify"><a th:href="@{/member/update}">설정</a></div>
-        <div class="mbutton" id="logout"><a th:href="@{/member/out}">회원탈퇴</a></div>
+        <div class="mbutton" id="update"><a th:href="@{/member/update}">설정</a></div>
+        <div class="mbutton" id="logout"><a th:href="@{/member/out}" onclick="return confirm('정말로 탈퇴하시겠습니까?')" class="mbutton_a">회원탈퇴</a></div>
       </div>
       <div class="line2"></div>
       <div id="right">
@@ -47,6 +49,7 @@
         </div>
 		
       </div>
+    </div>
     </div>
 </div>
 	<div th:replace="~{footer}"></div>

@@ -2,32 +2,37 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
+<meta name="_csrf_header" th:content="${_csrf.headerName}">
+<meta name="_csrf" th:content="${_csrf.token}">
 <title>회원가입...</title>
 <link rel="stylesheet" th:href="@{/css/style.css}">
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 </head>
 <body>
-
+<div class="ch">
     <div th:replace="~{header}"></div>
-   <div class="ch">
 	<div id="container">
 	  <section id="join">
 		<h2>회원 가입</h2>
-		<form th:action="@{/member/join}" method="post" 
-			class="joinform" th:object="${memberDTO}">
+		<form th:action="@{/member/join}" method="post"  
+		enctype="multipart/form-data" name="users"
+			class="joinform" th:object="${memberDTO}" onsubmit="return checkUser();">
 		  <fieldset>
 		  	<ul>
+		  		
+		  		
 		  		<li>
 		  			<label for="memberId">아이디</label>
 		  			<input type="text" th:field="*{memberId}" id="memberId"
-		  			       onblur="checkMemberId()"
 										placeholder="영문, 숫자 포함 5자리이상 입력">
 		  			<p th:if="${#fields.hasErrors('memberId')}" 
 		  			   th:errors="*{memberId}" class="error"></p>
 		  		</li>
+		  		
 		  		<li>
-		  			<p id="check-result"></p>
-		  		</li>
+				    <label for="memberFile">사진</label>
+				    <input type="file" name="memberFile">
+				</li>
 		  		<li>
 				    <label for="password">비밀번호</label>
 				    <input type="password" th:field="*{password}" id="password"
@@ -47,9 +52,13 @@
 		  		</li>
 		  		<li>
 		  			<label for="memberEmail">이메일</label>
-		  			<input type="text" th:field="*{memberEmail}" id="memberEmail">
+		  			<input type="text" th:field="*{memberEmail}" name="memberEmail" id="memberEmail"
+		  						onblur="checkEmail()">
 		  			<p th:if="${#fields.hasErrors('memberEmail')}" 
 		  			   th:errors="*{memberEmail}" class="error"></p>
+		  		</li>
+		  		<li>
+		  			<p id="check-result"></p>
 		  		</li>
 		  		<li>
 		  			<label for="memberAge">생년월일</label>
@@ -68,15 +77,23 @@
 		  			<label for="memberArea">지역</label>
 			  			 <select th:field="*{memberArea}" id="memberArea">
 						    <option value="">---------------선택---------------</option>
-						    <option value="option1">서울.인천.경기</option>
-						    <option value="option3">부산.울산.경남</option>
-						    <option value="option3">대구.경북</option>
-						    <option value="option3">광주.전남</option>
-						    <option value="option3">전북</option>
-						    <option value="option3">대전.세종.충남</option>
-						    <option value="option3">충북</option>
-						    <option value="option3">강원</option>
-						    <option value="option3">제주</option>
+						    <option value="서울특별시">서울특별시</option>
+						    <option value="부산광역시">부산광역시</option>
+						    <option value="대구광역시">대구광역시</option>
+						    <option value="인천광역시">인천광역시</option>
+						    <option value="광주광역시">광주광역시</option>
+						    <option value="대전광역시">대전광역시</option>
+						    <option value="울산광역시">울산광역시</option>
+						    <option value="세종특별자치시">세종특별자치시</option>
+						    <option value="경기도">경기도</option>
+						    <option value="강원특별자치도">강원특별자치도</option>
+						    <option value="충청북도">충청북도</option>
+						    <option value="충청남도">충청남도</option>
+						    <option value="전북특별자치도">전북특별자치도</option>
+						    <option value="전라남도">전라남도</option>
+						    <option value="경상북도">경상북도</option>
+						    <option value="경상남도">경상남도</option>
+						    <option value="제주특별자치도">제주특별자치도</option>
 						</select>
 					<p th:if="${#fields.hasErrors('memberArea')}" th:errors="*{memberArea}" class="error"></p>
 		  		</li>
@@ -111,35 +128,69 @@
 		</form>
 	  </section>
 	</div>
-	<div th:replace="~{footer}"></div>
-<script>
 
-	const checkEmail = () => {
-		//alert("test...");
-		let inputEmail = document.getElementById("memberEmail").value;
-		let checkResult = document.getElementById("check-result");
-		//console.log("입력된 이메일: ", inputEmail);
-		
-		$.ajax({
-			type: "POST",
-			url: "/member/check-email",
-			data: { memberEmail: inputEmail },  //파라미터: memberEmail
-			success: function(res){  //res - 결과 문자열이 반환됨
-				console.log("성공: ", res);
-				if(res == "OK"){
-					checkResult.innerHTML = "사용가능한 이메일입니다.";
-					checkResult.style.color = "green";
-				}else{ //res == "NO"
-					checkResult.innerHTML = "이미 가입된 이메일입니다.";
-					checkResult.style.color = "#b00";
-				}
-			},
-			error: function(err){
-				console.log("실패: ", err);
-			}
-		});
-	};
-</script>
 </div>
 </body>
+<script>
+
+const checkEmail = () => {
+	//alert("test...");
+	let inputEmail = document.getElementById("memberEmail").value;
+	let checkResult = document.getElementById("check-result");
+	//console.log("입력된 이메일: ", inputEmail);
+	let header = $("meta[name='_csrf_header']").attr('content');
+		let token = $("meta[name='_csrf']").attr('content');
+	
+	$.ajax({
+		type: "POST",
+		beforeSend: function(xhr){
+	        xhr.setRequestHeader(header, token);
+	    },
+		url: "/member/check-email",
+		data: { memberEmail: inputEmail },  //파라미터: memberEmail
+		success: function(res){  //res - 결과 문자열이 반환됨
+			console.log("성공: ", res);
+			if(res == "OK"){
+				checkResult.innerHTML = "사용가능한 이메일입니다.";
+				checkResult.style.color = "green";
+			}else{ //res == "NO"
+				checkResult.innerHTML = "이미 가입된 이메일입니다.";
+				checkResult.style.color = "#b00";
+			}
+		},
+		error: function(err){
+			console.log("실패: ", err);
+		}
+	});
+};
+/*
+function checkUser(){
+    
+    let form = document.forms["users"];
+    let id = form["memberId"].value;
+    let pw1 = form["password"].value;
+    let pw2 = form["password2"].value;
+    let name = form["name"].value;
+	
+    // 정규 표현식
+    let regexPw1 = /^(?=.*\d)(?=.*[a-zA-Z])(?=.*[~!@#$%^&*()_+|]).{8,}$/; // 숫자, 영문자, 특수문자 포함 8자 이상
+    let regexName = /^[가-힣]+$/;  // 한글만
+    
+    if (id.length < 5) { // 아이디는 최소 5자리 이상
+        alert("아이디는 5자 이상 입력해주세요.");
+        return false;
+    } else if (pw1.length < 8 || !regexPw1.test(pw1)) {
+        alert("비밀번호는 영문자, 숫자, 특수문자를 모두 포함하여 8자 이상 입력해주세요.");
+        return false;
+    } else if (pw1 !== pw2) {
+        alert("비밀번호가 일치하지 않습니다.");
+        return false;
+    } else if (name.length < 3) {
+        alert("이름은 3글자이상 입력해주세요.");
+        return false;
+    } else {
+        form.submit();  // 오류가 없으면 폼을 메인 컨트롤러로 전송
+    }
+}*/
+</script>
 </html>

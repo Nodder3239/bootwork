@@ -1,6 +1,18 @@
 /**
  * 
  */
+/*
+	51.인천광역시 중구
+	52.인천광역시 동구
+	53.인천광역시 미추홀구
+	54.인천광역시 연수구
+	55.인천광역시 남동구
+	56.인천광역시 부평구
+	57.인천광역시 계양구
+	58.인천광역시 서구
+	59.인천광역시 강화군
+	60.인천광역시 옹진군
+*/
 
  // 버튼을 클릭하면 네이버 지도 표시
 	$(document).ready(function(){
@@ -16,8 +28,8 @@
 	    var incheon_bupyeong_gu_office = new naver.maps.LatLng(37.50705, 126.7219);
 	    var incheon_gyeyang_gu_office = new naver.maps.LatLng(37.53737, 126.7377);
 	    var incheon_seo_gu_office = new naver.maps.LatLng(37.54529, 126.6760);
-	    var incheon_ganghwa_gun_office = new naver.maps.LatLng(37.74650, 126.4881);
-	    var incheon_ongjin_gun_office = new naver.maps.LatLng(37.44658, 126.6368);	//10
+	    var incheon_ganghwa_county_office = new naver.maps.LatLng(37.74650, 126.4881);
+	    var incheon_ongjin_county_office = new naver.maps.LatLng(37.44658, 126.6368);	//10
 	    
 	    // map 설정
 	    var map = new naver.maps.Map('map', {
@@ -158,14 +170,14 @@
 	    });
 	    var contentString51 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="인천중구구청" class="thumb" /><br />',
-	        '<h3>인천중구구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 인천광역시 중구 신포로27번길 80(관동1가)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 032-120, 032-760-7114(미추홀 콜센터), <br/>',
-	        ' (야간,공휴일/당직실)  <i class="fa-solid fa-fax"></i> 032-760-7111 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 22315 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconIncheon.png" width="100" height="100" alt="인천중구구청" class="thumb"/><br>',
+	        '<h2>인천중구구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 인천광역시 중구 신포로27번길 80(관동1가)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 032-120, 032-760-7114(미추홀 콜센터), <br>',
+	        '(야간,공휴일/당직실):  <br><i class="fa-solid fa-fax"></i> 팩스: 032-760-7111 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 22315 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.icjg.go.kr/index" target="_blank">https://www.icjg.go.kr/index</a>',
 	        '</div>'
 	    ].join('');
@@ -180,14 +192,14 @@
 	    });
 	    var contentString52 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="인천동구구청" class="thumb" /><br />',
-	        '<h3>인천동구구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 인천광역시 동구 금곡로 67(송림동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 032-120, 032-770-6114(미추홀 콜센터) 안전관리과: 032-770-6560, <br/>',
-	        ' (야간,공휴일/당직실)  <i class="fa-solid fa-fax"></i> (안전관리과)032-770-6569 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 22556 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconIncheon.png" width="100" height="100" alt="인천동구청" class="thumb"/><br>',
+	        '<h2>인천동구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 인천광역시 동구 금곡로 67(송림동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 032-120, 032-770-6114(미추홀 콜센터), 안전관리과: 032-770-6560, <br>',
+	        '(야간,공휴일/당직실):  <br><i class="fa-solid fa-fax"></i> 팩스(안전관리과): 032-770-6569 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 22556 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.icdonggu.go.kr/" target="_blank">https://www.icdonggu.go.kr/</a>',
 	        '</div>'
 	    ].join('');
@@ -202,14 +214,14 @@
 	    });
 	    var contentString53 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="인천미추홀구청" class="thumb" /><br />',
-	        '<h3>인천미추홀구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 인천광역시 미추홀구 독정이로 95<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 032-887-1011, <br/>',
-	        ' 032-880-4222(야간,공휴일/당직실)  <i class="fa-solid fa-fax"></i> <br />',
-	        '<i class="fa-solid fa-envelope"></i> 22169 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconIncheon.png" width="100" height="100" alt="인천미추홀구청" class="thumb"/><br>',
+	        '<h2>인천미추홀구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 인천광역시 미추홀구 독정이로 95<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 032-887-1011, <br>',
+	        '(야간,공휴일/당직실): 032-880-4222 <br><i class="fa-solid fa-fax"></i> 팩스: <br>',
+	        '<i class="fa-solid fa-envelope"></i> 22169 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.michuhol.go.kr/main/main.do" target="_blank">https://www.michuhol.go.kr/main/main.do</a>',
 	        '</div>'
 	    ].join('');
@@ -224,14 +236,14 @@
 	    });
 	    var contentString54 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="인천연수구청" class="thumb" /><br />',
-	        '<h3>인천연수구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 인천광역시 연수구 원인재로 115(동춘동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 032-749-7114(미추홀 콜센터), <br/>',
-	        ' 032-749-7110(야간,공휴일/당직실)  <i class="fa-solid fa-fax"></i>(안전관리과) 032-749-8849 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 21967 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconIncheon.png" width="100" height="100" alt="인천연수구청" class="thumb"/><br>',
+	        '<h2>인천연수구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 인천광역시 연수구 원인재로 115(동춘동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 032-749-7114(미추홀 콜센터), <br>',
+	        '(야간,공휴일/당직실): 032-749-7110 <br><i class="fa-solid fa-fax"></i> 팩스(안전관리과): 032-749-8849 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 21967 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.yeonsu.go.kr/main/" target="_blank">https://www.yeonsu.go.kr/main/</a>',
 	        '</div>'
 	    ].join('');
@@ -246,14 +258,14 @@
 	    });
 	    var contentString55 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="인천남동구청" class="thumb" /><br />',
-	        '<h3>인천남동구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 인천광역시 남동구 소래로 633(만수동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 032-466-3811(미추홀 콜센터), <br/>',
-	        ' 032-453-2222(야간,공휴일/당직실)  <i class="fa-solid fa-fax"></i>(안전총괄과) 032-453-2319 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 21589 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconIncheon.png" width="100" height="100" alt="인천남동구청" class="thumb"/><br>',
+	        '<h2>인천남동구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 인천광역시 남동구 소래로 633(만수동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 032-466-3811(미추홀 콜센터), <br>',
+	        '(야간,공휴일/당직실): 032-453-2222 <br><i class="fa-solid fa-fax"></i> 팩스(안전총괄과): 032-453-2319 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 21589 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.namdong.go.kr/" target="_blank">https://www.namdong.go.kr/</a>',
 	        '</div>'
 	    ].join('');
@@ -268,14 +280,14 @@
 	    });
 	    var contentString56 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="인천부평구청" class="thumb" /><br />',
-	        '<h3>인천부평구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 인천광역시 부평구 부평대로 168<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 032-504-2114 재난관리팀: 032-509-6360, <br/>',
-	        ' 032-509-6222(야간,공휴일/당직실)  <i class="fa-solid fa-fax"></i>(안전총괄과) 032-509-5009 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 21354 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconIncheon.png" width="100" height="100" alt="인천부평구청" class="thumb"/><br>',
+	        '<h2>인천부평구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 인천광역시 부평구 부평대로 168<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 032-504-2114, 재난관리팀: 032-509-6360, <br>',
+	        '(야간,공휴일/당직실): 032-509-6222 <br><i class="fa-solid fa-fax"></i> 팩스(안전총괄과): 032-509-5009 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 21354 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.icbp.go.kr/main/" target="_blank">https://www.icbp.go.kr/main/</a>',
 	        '</div>'
 	    ].join('');
@@ -290,14 +302,14 @@
 	    });
 	    var contentString57 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="인천계양구청" class="thumb" /><br />',
-	        '<h3>인천계양구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 인천광역시 계양구 계산새로 88(계산동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 032-551-5701 재난관리: 032-450-5911, <br/>',
-	        ' (야간,공휴일/당직실)  <i class="fa-solid fa-fax"></i>(안전관리과) 032-545-6363 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 21067 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconIncheon.png" width="100" height="100" alt="인천계양구청" class="thumb"/><br>',
+	        '<h2>인천계양구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 인천광역시 계양구 계산새로 88(계산동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 032-551-5701, 재난관리: 032-450-5911, <br>',
+	        '(야간,공휴일/당직실):  <br><i class="fa-solid fa-fax"></i> 팩스(안전관리과): 032-545-6363 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 21067 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.gyeyang.go.kr/open_content/main/" target="_blank">https://www.gyeyang.go.kr/open_content/main/</a>',
 	        '</div>'
 	    ].join('');
@@ -312,14 +324,14 @@
 	    });
 	    var contentString58 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="인천서구청" class="thumb" /><br />',
-	        '<h3>인천서구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 인천광역시 서구 서곶로 307(심곡동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 032-562-5301 자연재난팀: 032-560-4700, <br/>',
-	        ' (야간,공휴일/당직실)  <i class="fa-solid fa-fax"></i> 032-560-2777 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 22726 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconIncheon.png" width="100" height="100" alt="인천서구청" class="thumb"/><br>',
+	        '<h2>인천서구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 인천광역시 서구 서곶로 307(심곡동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 032-562-5301, 자연재난팀: 032-560-4700, <br>',
+	        '(야간,공휴일/당직실):  <br><i class="fa-solid fa-fax"></i> 팩스: 032-560-2777 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 22726 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.seo.incheon.kr/open_content/main/" target="_blank">https://www.seo.incheon.kr/open_content/main/</a>',
 	        '</div>'
 	    ].join('');
@@ -330,18 +342,18 @@
 	    // 59번째 마커와 정보창
 	    var marker59 = new naver.maps.Marker({
 	        map: map,
-	        position: incheon_ganghwa_gun_office
+	        position: incheon_ganghwa_county_office
 	    });
 	    var contentString59 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="인천강화군청" class="thumb" /><br />',
-	        '<h3>인천강화군청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 인천광역시 강화군 강화읍 강화대로 394<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 032-930-3114 재난관리: 032-930-3009, <br/>',
-	        ' (야간,공휴일/당직실)  <i class="fa-solid fa-fax"></i> 032-930-3660 (안전총괄과)032-930-3837 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 23031 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconIncheon.png" width="100" height="100" alt="인천강화군청" class="thumb"/><br>',
+	        '<h2>인천강화군청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 인천광역시 강화군 강화읍 강화대로 394<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 032-930-3114, 재난관리: 032-930-3009, <br>',
+	        '(야간,공휴일/당직실):  <br><i class="fa-solid fa-fax"></i> 팩스: 032-930-3660, (안전총괄과): 032-930-3837 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 23031 | 공공,사회기관 &gt; 군청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.ganghwa.go.kr/open_content/main/" target="_blank">https://www.ganghwa.go.kr/open_content/main/</a>',
 	        '</div>'
 	    ].join('');
@@ -352,18 +364,18 @@
 	    // 60번째 마커와 정보창
 	    var marker60 = new naver.maps.Marker({
 	        map: map,
-	        position: incheon_ongjin_gun_office
+	        position: incheon_ongjin_county_office
 	    });
 	    var contentString60 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="인천옹진군청" class="thumb" /><br />',
-	        '<h3>인천옹진군청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 인천광역시 미추홀구 매소홀로 120(용현동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 032-899-2114 자연재난: 032-899-2490, <br/>',
-	        ' (야간,공휴일/당직실)  <i class="fa-solid fa-fax"></i> 032-899-3399,3339 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 22193 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconIncheon.png" width="100" height="100" alt="인천옹진군청" class="thumb"/><br>',
+	        '<h2>인천옹진군청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 인천광역시 미추홀구 매소홀로 120(용현동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 032-899-2114, 자연재난: 032-899-2490, <br>',
+	        '(야간,공휴일/당직실):  <br><i class="fa-solid fa-fax"></i> 팩스: 032-899-3399,3339 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 22193 | 공공,사회기관 &gt; 군청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.ongjin.go.kr/open_content/main/" target="_blank">https://www.ongjin.go.kr/open_content/main/</a>',
 	        '</div>'
 	    ].join('');

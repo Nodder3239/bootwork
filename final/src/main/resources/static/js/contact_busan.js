@@ -1,6 +1,24 @@
 /**
  * 
  */
+/*
+	26.부산광역시 중구
+	27.부산광역시 서구
+	28.부산광역시 동구
+	29.부산광역시 영도구
+	30.부산광역시 부산진구
+	31.부산광역시 동래구
+	32.부산광역시 남구
+	33.부산광역시 북구
+	34.부산광역시 해운대구
+	35.부산광역시 사하구
+	36.부산광역시 금정구
+	37.부산광역시 강서구
+	38.부산광역시 연제구
+	39.부산광역시 수영구
+	40.부산광역시 사상구
+	41.부산광역시 기장군
+*/
 
  // 버튼을 클릭하면 네이버 지도 표시
 	$(document).ready(function(){
@@ -23,7 +41,7 @@
 	    var busan_yeonje_gu_office = new naver.maps.LatLng(35.17622, 129.0796);
 	    var busan_suyeong_gu_office = new naver.maps.LatLng(35.14556, 129.1132);
 	    var busan_sasang_gu_office = new naver.maps.LatLng(35.15261, 128.9912);	//15
-	    var busan_gijang_gun_office = new naver.maps.LatLng(35.24431, 129.2226);
+	    var busan_gijang_county_office = new naver.maps.LatLng(35.24431, 129.2226);
 	    
 	    // map 설정
 	    var map = new naver.maps.Map('map', {
@@ -164,14 +182,14 @@
 	    });
 	    var contentString26 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="부산중구청" class="thumb" /><br />',
-	        '<h3>부산중구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 부산광역시 중구 중구로 120<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-600-4000, <br/>',
-	        '051-600-4222~4(야간,공휴일/당직실) 전화+문자상담: 051-120 <i class="fa-solid fa-fax"></i> 051-600-4444 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 48926 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconBusan.png" width="100" height="100" alt="부산중구청" class="thumb"/><br>',
+	        '<h2>부산중구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 부산광역시 중구 중구로 120<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-600-4000, <br>',
+	        '(야간,공휴일/당직실): 051-600-4222~4, 전화+문자상담: 051-120 <br><i class="fa-solid fa-fax"></i> 팩스: 051-600-4444 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 48926 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.bsjunggu.go.kr/index.junggu" target="_blank">https://www.bsjunggu.go.kr/index.junggu</a>',
 	        '</div>'
 	    ].join('');
@@ -186,14 +204,14 @@
 	    });
 	    var contentString27 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="부산서구청" class="thumb" /><br />',
-	        '<h3>부산서구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 부산광역시 서구 구덕로 120(토성동 4가)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-240-4000, <br/>',
-	        ' (야간,공휴일/당직실) 전화+문자상담: 051-120 <i class="fa-solid fa-fax"></i> 051-240-4444 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 49247 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconBusan.png" width="100" height="100" alt="부산서구청" class="thumb"/><br>',
+	        '<h2>부산서구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 부산광역시 서구 구덕로 120(토성동 4가)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-240-4000, <br>',
+	        '(야간,공휴일/당직실): , 전화+문자상담: 051-120 <br><i class="fa-solid fa-fax"></i> 팩스: 051-240-4444 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 49247 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.bsseogu.go.kr/index.bsseogu?contentsSid=1" target="_blank">https://www.bsseogu.go.kr/index.bsseogu?contentsSid=1</a>',
 	        '</div>'
 	    ].join('');
@@ -208,14 +226,14 @@
 	    });
 	    var contentString28 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="부산동구청" class="thumb" /><br />',
-	        '<h3>부산동구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 부산광역시 동구 구청로 1(수정동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-440-4000, <br/>',
-	        ' (야간,공휴일/당직실) 전화+문자상담: 051-120 <i class="fa-solid fa-fax"></i> 051-440-4444 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 48781 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconBusan.png" width="100" height="100" alt="부산동구청" class="thumb"/><br>',
+	        '<h2>부산동구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 부산광역시 동구 구청로 1(수정동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-440-4000, <br>',
+	        '(야간,공휴일/당직실): , 전화+문자상담: 051-120 <br><i class="fa-solid fa-fax"></i> 팩스: 051-440-4444 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 48781 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.bsdonggu.go.kr/index.donggu" target="_blank">https://www.bsdonggu.go.kr/index.donggu</a>',
 	        '</div>'
 	    ].join('');
@@ -230,14 +248,14 @@
 	    });
 	    var contentString29 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="영도구청" class="thumb" /><br />',
-	        '<h3>영도구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 부산광역시 영도구 태종로 423(청학동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-419-4000, <br/>',
-	        '051-419-4221~4(야간,공휴일/당직실) 전화+문자상담: 051-120 <i class="fa-solid fa-fax"></i> 051-419-4444 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 49011 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconBusan.png" width="100" height="100" alt="영도구청" class="thumb"/><br>',
+	        '<h2>영도구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 부산광역시 영도구 태종로 423(청학동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-419-4000, <br>',
+	        '(야간,공휴일/당직실): 051-419-4221~4, 전화+문자상담: 051-120 <br><i class="fa-solid fa-fax"></i> 팩스: 051-419-4444 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 49011 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.yeongdo.go.kr/main.web" target="_blank">https://www.yeongdo.go.kr/main.web</a>',
 	        '</div>'
 	    ].join('');
@@ -252,14 +270,14 @@
 	    });
 	    var contentString30 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="부산진구청" class="thumb" /><br />',
-	        '<h3>부산진구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 부산광역시 부산진구 시민공원로 30(부암동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-605-4000, <br/>',
-	        '051-605-4222(야간,공휴일/당직실) 전화+문자상담: 051-120 <i class="fa-solid fa-fax"></i> 051-605-4444 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 47193 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconBusan.png" width="100" height="100" alt="부산진구청" class="thumb"/><br>',
+	        '<h2>부산진구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 부산광역시 부산진구 시민공원로 30(부암동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-605-4000, <br>',
+	        '(야간,공휴일/당직실): 051-605-4222, 전화+문자상담: 051-120 <br><i class="fa-solid fa-fax"></i> 팩스: 051-605-4444 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 47193 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.busanjin.go.kr/index.busanjin" target="_blank">https://www.busanjin.go.kr/index.busanjin</a>',
 	        '</div>'
 	    ].join('');
@@ -274,14 +292,14 @@
 	    });
 	    var contentString31 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="동래구청" class="thumb" /><br />',
-	        '<h3>동래구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 부산광역시 동래구 온천천로 359번길 70(낙민동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-550-4000, <br/>',
-	        '(야간,공휴일/당직실) 전화+문자상담: 051-120 <i class="fa-solid fa-fax"></i> 051-550-4444 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 47193 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconBusan.png" width="100" height="100" alt="동래구청" class="thumb"/><br>',
+	        '<h2>동래구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 부산광역시 동래구 온천천로 359번길 70(낙민동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-550-4000, <br>',
+	        '(야간,공휴일/당직실): , 전화+문자상담: 051-120 <br><i class="fa-solid fa-fax"></i> 팩스: 051-550-4444 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 47193 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.dongnae.go.kr/index.dongnae" target="_blank">https://www.dongnae.go.kr/index.dongnae</a>',
 	        '</div>'
 	    ].join('');
@@ -296,14 +314,14 @@
 	    });
 	    var contentString32 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="부산남구청" class="thumb" /><br />',
-	        '<h3>부산남구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 부산광역시 남구 못골로 19(대연동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-607-4000, <br/>',
-	        '(야간,공휴일/당직실) 전화+문자상담: 051-120 <i class="fa-solid fa-fax"></i> 051-607-4444 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 48452 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconBusan.png" width="100" height="100" alt="부산남구청" class="thumb"/><br>',
+	        '<h2>부산남구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 부산광역시 남구 못골로 19(대연동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-607-4000, <br>',
+	        '(야간,공휴일/당직실): , 전화+문자상담: 051-120 <br><i class="fa-solid fa-fax"></i> 팩스: 051-607-4444 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 48452 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.bsnamgu.go.kr/index.namgu" target="_blank">https://www.bsnamgu.go.kr/index.namgu</a>',
 	        '</div>'
 	    ].join('');
@@ -318,14 +336,14 @@
 	    });
 	    var contentString33 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="부산북구청" class="thumb" /><br />',
-	        '<h3>부산북구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 부산광역시 북구 낙동대로 1570번길 33(구포동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-309-4000, <br/>',
-	        '051-309-4661(야간,공휴일/당직실) 전화+문자상담: 051-120 <i class="fa-solid fa-fax"></i> 051-309-4444 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 46504 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconBusan.png" width="100" height="100" alt="부산북구청" class="thumb"/><br>',
+	        '<h2>부산북구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 부산광역시 북구 낙동대로 1570번길 33(구포동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-309-4000, <br>',
+	        '(야간,공휴일/당직실): 051-309-4661, 전화+문자상담: 051-120 <br><i class="fa-solid fa-fax"></i> 팩스: 051-309-4444 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 46504 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.bsbukgu.go.kr/index.bsbukgu" target="_blank">https://www.bsbukgu.go.kr/index.bsbukgu</a>',
 	        '</div>'
 	    ].join('');
@@ -340,14 +358,14 @@
 	    });
 	    var contentString34 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="해운대구청" class="thumb" /><br />',
-	        '<h3>해운대구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 부산광역시 해운대구 중동2로 11(중동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-749-4000, <br/>',
-	        '051-749-4222(야간,공휴일/당직실) 전화+문자상담: 051-120 <i class="fa-solid fa-fax"></i> 051-749-4444 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 48095 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconBusan.png" width="100" height="100" alt="해운대구청" class="thumb"/><br>',
+	        '<h2>해운대구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 부산광역시 해운대구 중동2로 11(중동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-749-4000, <br>',
+	        '(야간,공휴일/당직실): 051-749-4222, 전화+문자상담: 051-120 <br><i class="fa-solid fa-fax"></i> 팩스: 051-749-4444 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 48095 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.haeundae.go.kr/index.do" target="_blank">https://www.haeundae.go.kr/index.do</a>',
 	        '</div>'
 	    ].join('');
@@ -362,14 +380,14 @@
 	    });
 	    var contentString35 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="부산사하구청" class="thumb" /><br />',
-	        '<h3>부산사하구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 부산광역시 사하구 낙동대로 398번길 12(당리동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-220-4000, <br/>',
-	        '051-220-4222~4(야간,공휴일/당직실) 전화+문자상담: 051-120 <i class="fa-solid fa-fax"></i> 051-220-4269 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 49328 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconBusan.png" width="100" height="100" alt="부산사하구청" class="thumb"/><br>',
+	        '<h2>부산사하구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 부산광역시 사하구 낙동대로 398번길 12(당리동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-220-4000, <br>',
+	        '(야간,공휴일/당직실): 051-220-4222~4, 전화+문자상담: 051-120 <br><i class="fa-solid fa-fax"></i> 팩스: 051-220-4269 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 49328 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.saha.go.kr/main.do" target="_blank">https://www.saha.go.kr/main.do</a>',
 	        '</div>'
 	    ].join('');
@@ -384,14 +402,14 @@
 	    });
 	    var contentString36 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="부산금정구청" class="thumb" /><br />',
-	        '<h3>부산금정구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 부산광역시 금정구 중앙대로 1777(부곡동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-519-4000, <br/>',
-	        ' (야간,공휴일/당직실) 전화+문자상담: 051-120 <i class="fa-solid fa-fax"></i> 051-519-4444 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 46274 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconBusan.png" width="100" height="100" alt="부산금정구청" class="thumb"/><br>',
+	        '<h2>부산금정구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 부산광역시 금정구 중앙대로 1777(부곡동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-519-4000, <br>',
+	        '(야간,공휴일/당직실): , 전화+문자상담: 051-120 <br><i class="fa-solid fa-fax"></i> 팩스: 051-519-4444 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 46274 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.geumjeong.go.kr/index.geumj" target="_blank">https://www.geumjeong.go.kr/index.geumj</a>',
 	        '</div>'
 	    ].join('');
@@ -406,14 +424,14 @@
 	    });
 	    var contentString37 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="부산강서구청" class="thumb" /><br />',
-	        '<h3>부산강서구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 부산광역시 강서구 낙동북로 477(대저1동 2300)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-970-4000, <br/>',
-	        ' (야간,공휴일/당직실) 전화+문자상담: 051-120 <i class="fa-solid fa-fax"></i> 051-970-4444 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 46702 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconBusan.png" width="100" height="100" alt="부산강서구청" class="thumb"/><br>',
+	        '<h2>부산강서구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 부산광역시 강서구 낙동북로 477(대저1동 2300)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-970-4000, <br>',
+	        '(야간,공휴일/당직실): , 전화+문자상담: 051-120 <br><i class="fa-solid fa-fax"></i> 팩스: 051-970-4444 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 46702 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.bsgangseo.go.kr/main.do" target="_blank">https://www.bsgangseo.go.kr/main.do</a>',
 	        '</div>'
 	    ].join('');
@@ -428,14 +446,14 @@
 	    });
 	    var contentString38 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="부산연제구청" class="thumb" /><br />',
-	        '<h3>부산연제구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 부산광역시 연제구 연제로 2(연산동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-665-4000, <br/>',
-	        ' (야간,공휴일/당직실) 전화+문자상담: 051-120 <i class="fa-solid fa-fax"></i> 051-665-4444 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 47605 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconBusan.png" width="100" height="100" alt="부산연제구청" class="thumb"/><br>',
+	        '<h2>부산연제구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 부산광역시 연제구 연제로 2(연산동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-665-4000, <br>',
+	        '(야간,공휴일/당직실): , 전화+문자상담: 051-120 <br><i class="fa-solid fa-fax"></i> 팩스: 051-665-4444 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 47605 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.yeonje.go.kr/main.do" target="_blank">https://www.yeonje.go.kr/main.do</a>',
 	        '</div>'
 	    ].join('');
@@ -450,14 +468,14 @@
 	    });
 	    var contentString39 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="부산수영구청" class="thumb" /><br />',
-	        '<h3>부산수영구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 부산광역시 수영구 남천동로 100(남천동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-640-4000, <br/>',
-	        '051-610-4221(야간,공휴일/당직실) 전화+문자상담: 051-120 <i class="fa-solid fa-fax"></i> 051-610-4444 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 48305 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconBusan.png" width="100" height="100" alt="부산수영구청" class="thumb"/><br>',
+	        '<h2>부산수영구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 부산광역시 수영구 남천동로 100(남천동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-640-4000, <br>',
+	        '(야간,공휴일/당직실): 051-610-4221, 전화+문자상담: 051-120 <br><i class="fa-solid fa-fax"></i> 팩스: 051-610-4444 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 48305 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.suyeong.go.kr/index.suyeong" target="_blank">https://www.suyeong.go.kr/index.suyeong</a>',
 	        '</div>'
 	    ].join('');
@@ -472,14 +490,14 @@
 	    });
 	    var contentString40 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="부산사상구청" class="thumb" /><br />',
-	        '<h3>부산사상구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 부산광역시 사상구 학감대로 242(감전동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-310-4000, <br/>',
-	        ' (야간,공휴일/당직실) 전화+문자상담: 051-120 <i class="fa-solid fa-fax"></i> 051-310-4269 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 46985 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconBusan.png" width="100" height="100" alt="부산사상구청" class="thumb"/><br>',
+	        '<h2>부산사상구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 부산광역시 사상구 학감대로 242(감전동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-310-4000, <br>',
+	        '(야간,공휴일/당직실): , 전화+문자상담: 051-120 <br><i class="fa-solid fa-fax"></i> 팩스: 051-310-4269 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 46985 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.sasang.go.kr/index.sasang" target="_blank">https://www.sasang.go.kr/index.sasang</a>',
 	        '</div>'
 	    ].join('');
@@ -490,18 +508,18 @@
 	    // 41번째 마커와 정보창
 	    var marker41 = new naver.maps.Marker({
 	        map: map,
-	        position: busan_gijang_gun_office
+	        position: busan_gijang_county_office
 	    });
 	    var contentString41 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="부산기장군청" class="thumb" /><br />',
-	        '<h3>부산기장군청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 부산광역시 기장군 기장읍 기장대로 560<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-709-4000, <br/>',
-	        '051-709-4222(야간,공휴일/당직실) 전화+문자상담: 051-120 <i class="fa-solid fa-fax"></i> 051-709-4286 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 46077 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconBusan.png" width="100" height="100" alt="부산기장군청" class="thumb"/><br>',
+	        '<h2>부산기장군청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 부산광역시 기장군 기장읍 기장대로 560<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 051-709-4000, <br>',
+	        '(야간,공휴일/당직실): 051-709-4222, 전화+문자상담: 051-120 <br><i class="fa-solid fa-fax"></i> 팩스: 051-709-4286 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 46077 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.gijang.go.kr/index.gijang?contentsSid=1219" target="_blank">https://www.gijang.go.kr/index.gijang?contentsSid=1219</a>',
 	        '</div>'
 	    ].join('');

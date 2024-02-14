@@ -1,18 +1,213 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-		xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
 <title>안전한 대한민국, PLAN B</title>
 <!-- 파비콘 추가 -->
 <link rel="stylesheet" href="/css/style.css">
-</head>
+<script src="https://kit.fontawesome.com/6673aed616.js" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
+</head>
+<!-- Main page -->
 <body>
-	<div th:replace="~{header}"></div>
-	
-	<div th:replace="~{footer}"></div>
-</body>
+<div th:replace="~{header}"></div>
+<!------------------- Body1 : 기상특보 한 줄 알림 ----------------------------->
+	<section id="weather-caution1"> <!-- main -->
+		<div class="slider_wrap">
+			<div class="slider_text">
+				<div class="slider_inner">
+					<div class="slider"><p><span>[ 초미세먼지 주의보 ]&nbsp;</span> 인천(영종,영흥권역)</p></div>
+					<div class="slider"><p><span>[ 풍랑 주의보 ]&nbsp;</span> 동해 먼바다 ( 남부 북쪽 바깥 먼바다 , 중부 바깥 먼바다 ), 서해 먼바다( 남부 북쪽 바깥 먼바다 , 남부 남쪽 안쪽 먼바다 , 남부 남쪽 바깥 먼바다 )</p></div>
+					<div class="slider"><p><span>[ 강풍 주의보 ]&nbsp;</span> 강원 ( 북부산지 , 중부산지 , 남부산지 ), 경북( 울릉도·독도 , 북동산지 ), 전남( 흑산도·홍도 )</p></div>
+					<div class="slider"><p><span>[ 지진 ]&nbsp;</span> 2024.02.08 03:15:44 북한 함경북도 길주 북쪽 57km 지역 규모 2.3 지진 발생</p></div>
+				</div>			
+			</div>
+		</div>
+<!-- 		<div class="caution-content"> -->
+<!-- 			<p><span>[ 초미세먼지 주의보 ]&nbsp;</span> 경기(중부권), 세종(세종권역), 충남(북부권역)</p> -->
+<!-- 		</div> -->
+	</section>
+<!---------------  Body2 : 날씨정보, 실시간 제보 게시판 ------------------------->
+	<section id="weather-realTimeReport">
+		<!-- 날씨정보(+미세먼지) -->
+		<article class="weaterInfo-airPollution">
+			<div class="myLocation-time">
+				<p>서울특별시 영등포구 당산제2동</p>
+				<p style="color:#5268CF">
+					<i class="fa-solid fa-crosshairs" style="color:#0094FF"></i>&nbsp;내 위치
+				</p>
+				<p id="referenceTime">02월 08일(목) 오후 3시 기준</p>
+			</div>			
+			<div class="weather-title">
+				<p>날씨정보</p>
+				<p>미세먼지</p>			
+			</div>
+			<div class="weather-contentWrap">
+				<!-- 기온 -->
+				<div class="content-temperature"> 
+					<p class="icon-temp">
+						<i class="fi fi-rr-brightness" style="color:#FFC700;"></i> 7ºC
+					</p>
+					<div class="windchill-humidity">
+						<p>체감온도 4.3º</p>
+						<p>습도 52%</p>					
+					</div>
+				</div>
+				<!-- 미세먼지 -->
+				<div class="content-fineDust"> 
+					<dl class="particulateMatter">
+						<dt style="font-size:17px; padding-right:10px;">미세먼지</dt>
+						<dd style="font-weight:900; font-size:45px;">79</dd>
+						<dd style="font-weight:700; font-size:20px;">&nbsp;보통</dd>
+					</dl>
+					<dl class="fine-particulateMatter">
+						<dt style="font-size:17px; padding-right:10px;">초미세먼지</dt>
+						<dd style="font-weight:900; font-size:45px;">62</dd>					
+						<dd style="font-weight:700; font-size:20px;">&nbsp;나쁨</dd>					
+					</dl>
+				</div>
+			</div>
+		</article>
+		<!-- 실시간 제보 게시판 -->		
+		<article class="realTimeReport-wrap">
+			<div class="report-title">
+				<p>실시간 제보</p>
+				<a th:href="@{/board/notice}"class="icon-wrap"><i class="fi fi-rr-arrow-circle-right"></i></a>
+			</div>
+			<!-- <p class="report-text">body2_right box - 실시간 제보(member) 게시판 불러오기</p> -->
+			<div>
+				<table class="table" id="tbl_list">
+					<thead>
+						<tr>
+							<th scope="col">글분류</th>
+							<th scope="col">글제목</th>
+							<th scope="col">글쓴이</th>
+							<th scope="col">작성일</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="board : ${boardList}">
+			                <th>
+			                	<span th:if="${board.boardCategory eq 'notice'}"><a th:href="@{/noticeboard/}">공지사항</a></span>
+			                	<span th:if="${board.boardCategory eq 'qna'}"><a th:href="@{/qnaboard/}">QnA</a></span>
+			                	<span th:if="${board.boardCategory eq 'info1'}"><a th:href="@{/infoboard/?cate=info1}">서울</a></span>
+			                	<span th:if="${board.boardCategory eq 'info2'}"><a th:href="@{/infoboard/?cate=info2}">인천/경기</a></span>
+			                	<span th:if="${board.boardCategory eq 'info3'}"><a th:href="@{/infoboard/?cate=info3}">강원</a></span>
+			                	<span th:if="${board.boardCategory eq 'info4'}"><a th:href="@{/infoboard/?cate=info4}">대전/충청</a></span>
+			                	<span th:if="${board.boardCategory eq 'info5'}"><a th:href="@{/infoboard/?cate=info5}">광주/전라</a></span>
+			                	<span th:if="${board.boardCategory eq 'info6'}"><a th:href="@{/infoboard/?cate=info6}">부산/경상</a></span>
+			                </th>
+						    <td class="td_title" style="width:200px;">
+							    <a th:href="@{|/board/${board.id}|(page=${boardList.number+1})}">
+							    	<span th:text="${board.boardTitle}"></span>
+							    	<span style="font-size:small;" th:if="${board.replyCount != 0}" th:text="'[ ' + ${board.replyCount} + ' ]'"></span>
+							    </a>
+							</td>
 		
-	
+			                <td th:text="${board.boardWriter}"></td>
+			                <td th:utext="${board.updatedDate != null ? #temporals.format(board.updatedDate, 'yyyy-MM-dd hh:mm') : #temporals.format(board.createdDate, 'yyyy-MM-dd hh:mm')}"></td>
+			            </tr>
+					</tbody>
+				</table>
+			</div>
+		</article>
+	</section>	
+<!-------- Body3 : 긴급재난문자 , btn3(비상연락망, 재난유관기관, 기상특보) ------------>
+	<section id="emergency-circleBtn3-bg">
+		<article class="emergency-circleBtn3-wrap">
+			<!-- 긴급재난문자(재난문자 api) -->
+			<div class="emergency-pinkBox">
+				<p class="e-title">긴급 재난문자</p>
+				
+				<div class="emergency-text" id="content">
+					<table id="result1" class="table" >
+						<tbody>
+							<!-- 데이터 출력 -->
+						</tbody>
+					</table>
+				</div>
+			</div>		
+			<!-- btn3 - 비상연락망, 재난유관기관, 기상특보 -->
+			<div class="useful-three-btn">
+				<!-- btn1 : 비상연락망 -->
+				<div class="useful-btn">
+					<a th:href="@{/contact/emer_contact}">
+						<img th:alt="sos" src="/images/sos.png">
+						<p>비상연락망</p>	
+					</a>		
+				</div>
+				<!-- btn2 : 재난유관기관 -->
+				<div class="useful-btn">
+					<a th:href="@{/pages/public-institution}">
+						<img th:alt="public_institution" src="/images/public-institutions.png" style="width:100px; height:100px;">
+						<p>재난 유관기관</p>
+					</a>
+				</div>
+				<!-- btn3 : 기상특보 - KBS재난포털 기상특보 연결 -->
+				<div class="useful-btn">
+					<a href="https://d.kbs.co.kr/special/special" target="_blank">
+						<img th:alt="special_weather" src="/images/weather.png">
+						<p>기상특보</p>
+					</a>
+				</div>
+			</div>
+		</article>
+	</section>	
+<!---------------------- Body4 : 지진 발생 시 행동요령 ------------------------>	
+	<section id="actionTips-disaster">
+		<div class="actionTips-earthQuake">
+			<!-- title + 더보기 -->
+			<div class="earthQuake-behavior">
+				<p>지진 발생 시 이렇게 행동하세요 !</p>
+				<a th:href="@{/board/preparation}">
+				 	더보기&nbsp;<i class="fi fi-rr-arrow-circle-right" style="font-size:12px;"></i>
+				</a>
+			</div>
+			<!-- 행동요령 img -->
+			<div class="specific-behavior">
+				<img th:alt="tips_container" src="/images/tips-container.jpg">
+			</div>
+		</div>
+	</section>
+<div th:replace="~{footer}"></div>
+<script>
+/* jquery 환경 - 버튼 클릭 이벤트 */
+	$(document).ready(function(){
+// 			alert("test...");
+			
+			$.ajax({
+				//요청방식(type), url, data,dataType, success, error
+				type: "GET",
+				url: "https://apis.data.go.kr/1741000/DisasterMsg3/getDisasterMsg1List?serviceKey=3e6KfjqGd%2BSHh5QtxpCL6hAh8NyMv%2Bzbbz4btxYu3dmUvLkrW6msC23slFSCHRrGmyHzajC8cTa1OcvCICFebQ%3D%3D&pageNo=1&numOfRows=2&type=json",
+				dataType: "JSON",	//받는 데이터는 json 유형임을 명시 필수
+				success: function(data){
+					console.log(data);
+					
+					let itemArr = data.DisasterMsg[1].row;
+					
+					//테이블 작성
+					let value = ""; //태그 + data
+					for(let i=0; i<itemArr.length; i++){
+						let item = itemArr[i];	//각각의 인덱스에 객체 생성
+						value += "<tr class='ds-trclass'>"
+	                            + "<td class='ds-location-name'>" + item.location_name + "</td>" // 수신지역이름
+	                            + "<td class='ds-item-msg'>" + item.msg + "&nbsp;&nbsp;" + "<strong>" +item.create_date + "</strong>" + "</td>"
+	                            + "</tr>";
+					};
+
+	                // 결과를 테이블에 삽입
+	                $("#result1 tbody").html(value);
+				},
+				error: function(error){
+					alert("에러 발생: " + error);
+				}
+			});
+		
+	});
+</script>
+
+<script src="/js/text-slide.js"></script>
+</body>
+
 </html>

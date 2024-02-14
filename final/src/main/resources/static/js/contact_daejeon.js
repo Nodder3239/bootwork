@@ -1,6 +1,13 @@
 /**
  * 
  */
+/*
+	66.대전광역시 동구
+	67.대전광역시 중구
+	68.대전광역시 서구
+	69.대전광역시 유성구
+	70.대전광역시 대덕구
+*/
 
  // 버튼을 클릭하면 네이버 지도 표시
 	$(document).ready(function(){
@@ -153,14 +160,14 @@
 	    });
 	    var contentString66 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="대전동구청" class="thumb" /><br />',
-	        '<h3>대전동구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 대전광역시 동구 동구청로 147(가오동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 042-251-4114, <br/>',
-	        ' 042-251-4222(야간,공휴일/당직실)  <i class="fa-solid fa-fax"></i>(안전총괄과) 042-224-6169 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 34691 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconDaejeon.png" width="100" height="100" alt="대전동구청" class="thumb"/><br>',
+	        '<h2>대전동구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 대전광역시 동구 동구청로 147(가오동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 042-251-4114, <br>',
+	        '(야간,공휴일/당직실): 042-251-4222 <br><i class="fa-solid fa-fax"></i> 팩스(안전총괄과): 042-224-6169 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 34691 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.donggu.go.kr/dg/kor" target="_blank">https://www.donggu.go.kr/dg/kor</a>',
 	        '</div>'
 	    ].join('');
@@ -175,14 +182,14 @@
 	    });
 	    var contentString67 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="대전중구청" class="thumb" /><br />',
-	        '<h3>대전중구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 대전광역시 중구 중앙로 100(대흥동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 042-606-6114, <br/>',
-	        ' (야간,공휴일/당직실)  <i class="fa-solid fa-fax"></i> 042-606-7999 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 34939 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconDaejeon.png" width="100" height="100" alt="대전중구청" class="thumb"/><br>',
+	        '<h2>대전중구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 대전광역시 중구 중앙로 100(대흥동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 042-606-6114, <br>',
+	        '(야간,공휴일/당직실):  <br><i class="fa-solid fa-fax"></i> 팩스: 042-606-7999 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 34939 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.djjunggu.go.kr/kr/index.do" target="_blank">https://www.djjunggu.go.kr/kr/index.do</a>',
 	        '</div>'
 	    ].join('');
@@ -197,14 +204,14 @@
 	    });
 	    var contentString68 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="대전서구청" class="thumb" /><br />',
-	        '<h3>대전서구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 대전광역시 서구 둔산서로 100(둔산동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 042-288-2114 자연재난: 042-288-2531, <br/>',
-	        ' (야간,공휴일/당직실)  <i class="fa-solid fa-fax"></i> 042-288-5900 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 35238 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconDaejeon.png" width="100" height="100" alt="대전서구청" class="thumb"/><br>',
+	        '<h2>대전서구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 대전광역시 서구 둔산서로 100(둔산동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 042-288-2114, 자연재난: 042-288-2531, <br>',
+	        '(야간,공휴일/당직실):  <br><i class="fa-solid fa-fax"></i> 팩스: 042-288-5900 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 35238 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.seogu.go.kr/kor.do" target="_blank">https://www.seogu.go.kr/kor.do</a>',
 	        '</div>'
 	    ].join('');
@@ -219,14 +226,14 @@
 	    });
 	    var contentString69 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="대전유성구청" class="thumb" /><br />',
-	        '<h3>대전유성구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 대전광역시 유성구 대학로 211<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 042-611-2114, <br/>',
-	        ' (야간,공휴일/당직실)  <i class="fa-solid fa-fax"></i> 042-611-2569 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 34139 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconDaejeon.png" width="100" height="100" alt="대전유성구청" class="thumb"/><br>',
+	        '<h2>대전유성구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 대전광역시 유성구 대학로 211<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 042-611-2114, <br>',
+	        '(야간,공휴일/당직실):  <br><i class="fa-solid fa-fax"></i> 팩스: 042-611-2569 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 34139 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.yuseong.go.kr/kor/" target="_blank">https://www.yuseong.go.kr/kor/</a>',
 	        '</div>'
 	    ].join('');
@@ -241,14 +248,14 @@
 	    });
 	    var contentString70 = [
 	        '<div class="emer_office">',
-	        '<img src="../img/icon/jongno_gu_office.jpg" width="50" height="50" alt="대전대덕구청" class="thumb" /><br />',
-	        '<h3>대전대덕구청</h3>',
-	        '<p><i class="fa-solid fa-location-dot"></i> 대전광역시 대덕구 대전로 1033번길 20(오정동)<br />',
-	        '<i class="fa-solid fa-phone"></i> 대표전화: 042-608-6114, <br/>',
-	        ' (야간,공휴일/당직실)  <i class="fa-solid fa-fax"></i> 042-608-3939 <br />',
-	        '<i class="fa-solid fa-envelope"></i> 34443 | 공공,사회기관 &gt; 구청<br />',
-	        '</p>',
-	        '<h3>공식 홈페이지</h3>',
+	        '<img src="/images/iconDaejeon.png" width="100" height="100" alt="대전대덕구청" class="thumb"/><br>',
+	        '<h2>대전대덕구청</h2><br>',
+	        '<h4><i class="fa-solid fa-location-dot"></i> 대전광역시 대덕구 대전로 1033번길 20(오정동)<br>',
+	        '<i class="fa-solid fa-phone"></i> 대표전화: 042-608-6114, <br>',
+	        '(야간,공휴일/당직실):  <br><i class="fa-solid fa-fax"></i> 팩스: 042-608-3939 <br>',
+	        '<i class="fa-solid fa-envelope"></i> 34443 | 공공,사회기관 &gt; 구청<br><br>',
+	        '</h4>',
+	        '<h2>공식 홈페이지</h2>',
 	        '<a href="https://www.daedeok.go.kr/dpt/DPT.do" target="_blank">https://www.daedeok.go.kr/dpt/DPT.do</a>',
 	        '</div>'
 	    ].join('');

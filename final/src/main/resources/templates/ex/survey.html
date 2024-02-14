@@ -5,45 +5,93 @@
     <title>설문조사</title>
 </head>
 <body>
-[안전실천 체크리스트]
-(시설안전)
-나는 에스컬레이터를 이용할 때 역방향 진입을 하지 않는다.
-나는 엘리베이터의 문에 기대지 않는다.
-나는 공연장, 영화관 등을 이용할 때 피난계단,유도등 등의 위치를 확인한다.
-나는 공연장, 영화관 등을 이용할 때 비상구의 위치를 확인한다.
-나는 엘리베이터에 갇히면 비상벨을 누르고 구조를 기다린다.
-(화재안전)
-나는 아래층에서 불이 나면 옥상을 올라가서 구조 요청을 할 수 있다.
-나는 소화기를 사용하여 불을 끌 수 있다.
-나는 화재가 발생하면 완강기를 이용하여 대피할 수 있다.
-나는 화재에 대비하여 집에 소화기를 준비한다.
-나는 산불의 원인을 알고 있다.
-나는 화재용 긴급대피마스크(방독면) 사용법을 알고 있다.
-(전기가스안전)
-나는 전기콘센트에 여러 개의 플러그를 사용하지 않는다.
-나는 사용하지 않는 전기플러그는 뽑아 놓는다.
-나는 가스레인지를 사용할 때 기름 등은 가까이두지 않는다.
-나는 평소에 가전제품의 먼지를 제거한다.
-나는 다 사용한 부탄가스요기는 구멍을 내서 분리배출한다.
-나는 가스를 사용하기 전에 창문을 열어 실내 공기를 환기시킨다.
-나는 가스레인지를 사용한 후 점화 콕(스위치) 중간밸브를 잠근다.
-(작업안전)
-나는 높은 곳에 쉽게 꺠지거나 무거운 물건을 두지 않는다.
-나는 종이에도 베일 수 있다는 것을 알고 조심한다.
-나는 기계 장비를 사용할 때 설명서를 숙지한 후 사용한다.
-나는 작업환경에 맞는 보호장구를 착용한다.
-나는 공구를 사용한 후 정리정돈을 잘 한다.
-나는 바퀴 달린 의자를 이용하여 높은 곳에 있는 물건을 내리지 않는다.
-나는 주방이나 욕실에는 콘센트 덮개를 사용한다.
-(여가활동안전)
-나는 지정된 구역에서만 물놀이를 한다.
-나는 음식을 먹고 바로 물놀이를 하지 않는다.
-나는 물에 들어갈 때 심장에서 먼 쪽부터 물을 적신다.
-나는 여가활동을 할 때 무리하지 않고 충분한 휴식을 취한다.
-나는 산에 갈 때 가족 등 주변 사람에게 행선지를 알린다.
-나는 등산할 때 안전한 하산을 위한 시간 계획을 세울 수 있다.
-
-
-
+<div>
+<form th:action="@{/survey}" method="post" class="surveyform" th:object="${surveyDTO}">
+<div>
+	<div id="pi-title">
+		<h3>안전실천 체크리스트</h3>	
+	</div>
+[안전실천 체크리스트]<br>
+(재난공통)<br>
+나는 재난 대비에 필요한 비상식품이나 구급약품의 사용기한을 확인한다.<br>
+그렇지 않다<input type="range" name="volume01" min="1" max="5">매우 그렇다<br>
+나는 재난이 발생하면 가족과 만날 장소를 정해두고 있다.<br>
+그렇지 않다<input type="range" name="volume02" min="1" max="5">매우 그렇다<br>
+나는 기상예보 및 태풍, 홍수 등 재난에 주의를 기울인다.<br>
+그렇지 않다<input type="range" name="volume03" min="1" max="5">매우 그렇다<br>
+나는 재난 정보를 알려주는 문자가 오면 주의 깊게 본다.<br>
+그렇지 않다<input type="range" name="volume04" min="1" max="5">매우 그렇다<br>
+나는 재난상황을 알기 위해 TV나 라디오 등에 주의를 기울인다.<br>
+그렇지 않다<input type="range" name="volume05" min="1" max="5">매우 그렇다<br>
+나는 생존배낭에 들어가는 생존물품을 알고 있다.<br>
+그렇지 않다<input type="range" name="volume06" min="1" max="5">매우 그렇다<br>
+(화재안전)<br>
+나는 아래층에서 불이 나면 옥상을 올라가서 구조 요청을 할 수 있다.<br>
+그렇지 않다<input type="range" name="volume11" min="1" max="5">매우 그렇다<br>
+나는 소화기를 사용하여 불을 끌 수 있다.<br>
+그렇지 않다<input type="range" name="volume12" min="1" max="5">매우 그렇다<br>
+나는 화재가 발생하면 완강기를 이용하여 대피할 수 있다.<br>
+그렇지 않다<input type="range" name="volume13" min="1" max="5">매우 그렇다<br>
+나는 화재에 대비하여 집에 소화기를 준비한다.<br>
+그렇지 않다<input type="range" name="volume14" min="1" max="5">매우 그렇다<br>
+나는 산불의 원인을 알고 있다.<br>
+그렇지 않다<input type="range" name="volume15" min="1" max="5">매우 그렇다<br>
+나는 화재용 긴급대피마스크(방독면) 사용법을 알고 있다.<br>
+그렇지 않다<input type="range" name="volume16" min="1" max="5">매우 그렇다<br>
+(기후성재난)<br>
+나는 태풍이 발생하면 창문에 가까이 가지 않는다.<br>
+그렇지 않다<input type="range" name="volume21" min="1" max="5">매우 그렇다<br>
+나는 태풍이나 홍수가 발생하면 외출을 자제한다.<br>
+그렇지 않다<input type="range" name="volume22" min="1" max="5">매우 그렇다<br>
+나는 폭염이 발생했을 때 더운 시간대에는 야외활동을 하지 않는다.<br>
+그렇지 않다<input type="range" name="volume23" min="1" max="5">매우 그렇다<br>
+나는 빙판길을 걸을 때 주머니에 손을 넣지 않는다.<br>
+그렇지 않다<input type="range" name="volume24" min="1" max="5">매우 그렇다<br>
+나는 집중호우가 발생하면 상습 침수지역은 피하고 안전한 길로 간다.<br>
+그렇지 않다<input type="range" name="volume25" min="1" max="5">매우 그렇다<br>
+나는 폭염이 발생하면 물을 자주 마신다.<br>
+그렇지 않다<input type="range" name="volume26" min="1" max="5">매우 그렇다<br>
+나는 비가 많이 오면 비탈면이나 산사태가 일어날 수 있는 곳으로 가지 않는다.<br>
+그렇지 않다<input type="range" name="volume27" min="1" max="5">매우 그렇다<br>
+나는 태풍이나 홍수가 발생하면 전신주, 가로등, 신호등에 가까이 가지 않는다.<br>
+그렇지 않다<input type="range" name="volume28" min="1" max="5">매우 그렇다<br>
+(지질성재난)<br>
+나는 실내에서 흔들림을 느끼면 탁자 아래에 들어가 몸을 보호한다.<br>
+그렇지 않다<input type="range" name="volume31" min="1" max="5">매우 그렇다<br>
+나는 산사태가 발생하는 원인을 설명할 수 있다.<br>
+그렇지 않다<input type="range" name="volume32" min="1" max="5">매우 그렇다<br>
+나는 산사태가 발생하면 전기, 가스 등을 차단하고 안전하게 대피할 수 있다.<br>
+그렇지 않다<input type="range" name="volume33" min="1" max="5">매우 그렇다<br>
+나는 자동차 주행 중 지진이 발생하면 우측 가장자리에 차를 세우고 열쇠를 두고 내린다.<br>
+그렇지 않다<input type="range" name="volume34" min="1" max="5">매우 그렇다<br>
+나는 지진에 대비하여 떨어질 수 있는 물건들은 정리한다.<br>
+그렇지 않다<input type="range" name="volume35" min="1" max="5">매우 그렇다<br>
+나는 지진이 발생하는 원인을 설명할 수 있다.<br>
+그렇지 않다<input type="range" name="volume36" min="1" max="5">매우 그렇다<br>
+나는 지진의 세기를 나타내는 규모와 진도의 차이를 알고 있다.<br>
+그렇지 않다<input type="range" name="volume37" min="1" max="5">매우 그렇다<br>
+(환경화생방재난)<br>
+나는 유해화학물질이 유출되면 피부가 노출되지 않도록 한다.<br>
+그렇지 않다<input type="range" name="volume41" min="1" max="5">매우 그렇다<br>
+나는 방사성 물질 유출 사고가 발생하면 공식안내와 비상요원의 지시에 따라 행동한다.<br>
+그렇지 않다<input type="range" name="volume42" min="1" max="5">매우 그렇다<br>
+나는 방사성물질이 누출되면 창문을 닫고 밖으로 나가지 않는다.<br>
+그렇지 않다<input type="range" name="volume43" min="1" max="5">매우 그렇다<br>
+나는 화학물질이 피부에 닿았을 때 비누로 얼굴과 손 등을 깨끗이 씻는다.<br>
+그렇지 않다<input type="range" name="volume44" min="1" max="5">매우 그렇다<br>
+나는 미세먼지가 많은 날 창문을 열지 않는다.<br>
+그렇지 않다<input type="range" name="volume45" min="1" max="5">매우 그렇다<br>
+나는 수돗물에서 냄새가 나거나 색깔이 평소와 다르면 사용하지 않는다.<br>
+그렇지 않다<input type="range" name="volume46" min="1" max="5">매우 그렇다<br>
+나는 쓰레기를 분리하여 배출하는 방법을 잘 지킨다.<br>
+그렇지 않다<input type="range" name="volume47" min="1" max="5">매우 그렇다<br>
+나는 미세먼지가 많은 날에는 외출은 피하고 활동량을 줄인다.<br>
+그렇지 않다<input type="range" name="volume48" min="1" max="5">매우 그렇다<br>
+나는 미세먼지가 많은 날에는 외출 후에 온몸을 씻고 양치질을 한다.<br>
+그렇지 않다<input type="range" name="volume49" min="1" max="5">매우 그렇다<br>
+<input type="submit" value="전송">
+</div>
+</form>
+</div>
 </body>
 </html>

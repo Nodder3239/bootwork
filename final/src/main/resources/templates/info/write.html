@@ -7,8 +7,13 @@
 </head>
 <body>
 <div th:replace="~{header}"></div>
-   <h2 class="board_h2">제보게시판 글쓰기</h2>
-   <div id="content">
+	<div id="pi-title">
+		<h3>참여와 신고</h3>	
+	</div>
+	<div class="semi_title">
+		<h2>제보게시판 글 작성</h2>
+	</div>
+	  <div id="content">
       <div class="board_content">
 	      <div class="write_content">
 	      <form th:action="@{/infoboard/write}" method="post" th:object="${boardDTO}" enctype="multipart/form-data">

@@ -1,71 +1,214 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
     <title>Data 3</title>
-    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" th:href="@{/css/style2.css}">
+	<script th:src="@{/js/wlwls.js}"></script>  
 </head>
 <body>
-	<div th:replace="~{header}"></div>
-	<h2 class="board_h2">지진</h2>
+<div th:replace="~{header}"></div> 
+	<div id="pi-title">
+		<h3>지진</h3>	
+	</div>
 	<div class="main-main">
-	<div id="state_sub" class="bg_4">
-    <div class="stateWrap">
-                
-        <ul>
-                <li class="active"><a th:href="@{/data/data3}"><strong>지진</strong></a></li>
-                <li class=""><a href=""><strong>산사태</strong></a></li>
-                <li class=""><a href=""><strong>대기오염</strong></a></li>
-                <li class=""><a href=""><strong>붕괴</strong></a></li>
-                <li class=""><a th:href="@{/data/data2}"><strong>산불</strong></a></li>
-        </ul>
+
+	
+	
+	<div class="top-top-top">
+	<div class="top-top-top-left">
+	<img alt="" src="/images/지진.png">
+	</div>
+	<div class="top-top-top-right">
+		<div class="top-top-top-right-container">
+			<div class="top-top-top-right-container-header">
+				<h2>최근 지진 발생 내역</h2>
+			</div>
+		</div>
+	
+		<div class="table-table-wlwls">
+	    <!--   테이블 시작 -->
+	    <table id="result1" class="table" style="font-size:14px;">
+	        <thead>
+	          <!--   테이블 헤더 정의 -->
+	            <tr>
+	                <!-- 각 열의 제목 지정 -->
+	                <th scope="col">위치</th>
+	                <th scope="col">상세정보</th>
+	                <th scope="col">진원 시각</th>
+	                <th scope="col">계기진도</th>
+	                <th scope="col">규모</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <!-- 데이터 리스트를 반복하여 각 항목을 출력 -->
+	            <tr th:each="item : ${dataList}">
+	           <!--      각 열에 해당하는 데이터 출력 -->
+	                <td th:text="${item.LOC_LOC}"></td>
+	                <td><a th:href="${item.INTENSITY_PAGEURI}">#</a></td>
+	                <td th:text="${item.DT_STFC}"></td>
+	                <td th:text="${item.INTENSITY_DESC}"></td>
+	                <td th:text="${item.SECT_SCLE}"></td>
+	            </tr>
+	        </tbody>
+	    </table> 
+	    <!-- 테이블 종료 -->
+	    </div>
+	    </div>
+    </div>
+    
+    <table class="tableTypeF">
+                    <caption>국내지진 규모별 순위</caption>
+                    <colgroup>
+                        <col width="100px">
+                        <col width="210px">
+                        <col width="120px">
+                        <col width="120px">
+                        <col width="120px">
+                        <col width="*">
+                        <col width="100px">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>순위</th>
+                            <th>발행시각</th>
+                            <th>규모</th>
+                            <th>위도</th>
+                            <th>경도</th>
+                            <th>위치</th>
+                            <th>지도보기</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>2016. 09. 12. 20:32:00</td>
+                            <td>5.8</td>
+                            <td>35.76</td>
+                            <td>129.19</td>
+                            <td>경북 경주시 남남서쪽 8.7km 지역</td>
+                            <td><a href="javascript:;" class="btnMap" onclick="mapPopopen(1278);"><span class="hide">지도팝업 보기</span></a></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>2017. 11. 15. 14:29:00</td>
+                            <td>5.4</td>
+                            <td>36.12</td>
+                            <td>129.36</td>
+                            <td>경북 포항시 북구 북쪽 9km 지역</td>
+                            <td><a href="javascript:;" class="btnMap" onclick="mapPopopen(1675);"><span class="hide">지도팝업 보기</span></a></td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>1980. 01. 08. 08:44:00</td>
+                            <td>5.3</td>
+                            <td>40.2</td>
+                            <td>125</td>
+                            <td>북한 평안북도 삭주 남남서쪽 20km 지역</td>
+                            <td><a href="javascript:;" class="btnMap" onclick="mapPopopen(29);"><span class="hide">지도팝업 보기</span></a></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>2004. 05. 29. 19:14:00</td>
+                            <td>5.2</td>
+                            <td>36.8</td>
+                            <td>130.2</td>
+                            <td>경북 울진군 동남동쪽 74km 해역</td>
+                            <td><a href="javascript:;" class="btnMap" onclick="mapPopopen(619);"><span class="hide">지도팝업 보기</span></a></td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>1978. 09. 16. 02:07:00</td>
+                            <td>5.2</td>
+                            <td>36.6</td>
+                            <td>127.9</td>
+                            <td>경북 상주시 북서쪽 32km 지역</td>
+                            <td><a href="javascript:;" class="btnMap" onclick="mapPopopen(2);"><span class="hide">지도팝업 보기</span></a></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>2016. 09. 12. 19:44:00</td>
+                            <td>5.1</td>
+                            <td>35.77</td>
+                            <td>129.19</td>
+                            <td>경북 경주시 남남서쪽 8.2km 지역</td>
+                            <td><a href="javascript:;" class="btnMap" onclick="mapPopopen(1263);"><span class="hide">지도팝업 보기</span></a></td>
+                        </tr>
+                        <tr>
+                            <td>6</td>
+                            <td>2014. 04. 01. 04:48:00</td>
+                            <td>5.1</td>
+                            <td>36.95</td>
+                            <td>124.5</td>
+                            <td>충남 태안군 서격렬비도 서북서쪽 100km 해역</td>
+                            <td><a href="javascript:;" class="btnMap" onclick="mapPopopen(1128);"><span class="hide">지도팝업 보기</span></a></td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>2016. 07. 05. 20:33:00</td>
+                            <td>5.0</td>
+                            <td>35.51</td>
+                            <td>129.99</td>
+                            <td>울산 동구 동쪽 52km 해역</td>
+                            <td><a href="javascript:;" class="btnMap"><span class="hide">지도팝업 보기</span></a></td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>2003. 03. 30. 20:10:00</td>
+                            <td>5.0</td>
+                            <td>37.8</td>
+                            <td>123.7</td>
+                            <td>인천 백령도 서남서쪽 88km 해역</td>
+                            <td><a href="javascript:;" class="btnMap" onclick="mapPopopen(576);"><span class="hide">지도팝업 보기</span></a></td>
+                        </tr>
+                        <tr>
+                            <td>8</td>
+                            <td>1978. 10. 07. 18:19:00</td>
+                            <td>5.0</td>
+                            <td>36.6</td>
+                            <td>126.7</td>
+                            <td>충남 홍성군 동쪽 3km 지역</td>
+                            <td><a href="javascript:;" class="btnMap" onclick="mapPopopen(3);"><span class="hide">지도팝업 보기</span></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+               <div id="blockArea">
+    	<div id="layerArea" class="earthquakePop"style="visibility: visible; margin-top: -345px; margin-left: -309px;">
+        <div class="earthquakePopWrap">
+            <strong>지도보기</strong>
+            <div class="imgArea">
+                <div class="imgWrap">
+                    <img src="https://uploadd.kbs.co.kr/earthquake/kma/1278.png">
+                </div>
+            </div>
+        </div>
+        <a href="javascript:;" onclick="closePopup();"><span class="hide">close</span></a>
     </div>
 </div>
-	<div >
-	
-	
-	</div>
-	
-	</div>
-	
-	
-	
-	
-	
-    <!--   테이블 시작 -->
-    <table id="result1" class="table" style="font-size:14px;">
-        <thead>
-          <!--   테이블 헤더 정의 -->
-            <tr>
-                <!-- 각 열의 제목 지정 -->
-                <th scope="col">위치</th>
-                <th scope="col">위도</th>
-                <th scope="col">상세정보</th>
-                <th scope="col">진원 시각</th>
-                <th scope="col">발표 시작</th>
-                <th scope="col">입수일시</th>
-                <th scope="col">경도</th>
-                <th scope="col">계기진도</th>
-                <th scope="col">규모</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- 데이터 리스트를 반복하여 각 항목을 출력 -->
-            <tr th:each="item : ${dataList}">
-           <!--      각 열에 해당하는 데이터 출력 -->
-                <td th:text="${item.LOC_LOC}"></td>
-                <td th:text="${item.CORD_LAT}"></td>
-                <td><a th:href="${item.INTENSITY_PAGEURI}">#</a></td>
-                <td th:text="${item.DT_STFC}"></td>
-                <td th:text="${item.DT_TM_FC}"></td>
-                <td th:text="${item.DT_REGT}"></td>
-                <td th:text="${item.CORD_LON}"></td>
-                <td th:text="${item.INTENSITY_DESC}"></td>
-                <td th:text="${item.SECT_SCLE}"></td>
-            </tr>
-        </tbody>
-    </table> 
-    <!-- 테이블 종료 -->
-    <div th:replace="~{footer}"></div>
+    </div>
+    
+      
+ <script type="text/javascript">
+    // 페이지가 로드될 때 팝업을 감추기 위한 함수
+    window.onload = function() {
+        var popup = document.querySelector('.earthquakePop');
+        popup.style.display = 'none';
+    };
+
+    // 팝업을 띄우는 함수
+    function mapPopopen() {
+        var popup = document.querySelector('.earthquakePop');
+        popup.style.display = 'block';
+    }
+
+    // 팝업을 닫는 함수
+    function closePopup() {
+        var popup = document.querySelector('.earthquakePop');
+        popup.style.display = 'none';
+    }
+</script>
+
+
 </body>
 </html>

@@ -146,6 +146,23 @@ public class ReportController {
 		return "redirect:/qnaboard/" + boardId;
 	}
 	
+	@GetMapping("/reportreport/{boardId}")
+	public String boardReport(@PathVariable Long boardId,
+			@AuthenticationPrincipal SecurityUser principal) {
+		List<ReportDTO> findReport = reportService.findByBoardIdAndReporter(boardId, principal.getMember().getName());
+		if(findReport.isEmpty()) {
+			ReportDTO report = new ReportDTO();
+			report.setBoardId(boardId);
+			report.setReporter(principal.getMember().getName());
+			reportService.save(report);
+		}else {
+			reportService.deleteByBoardIdAndReporter(boardId, principal.getMember().getName());
+		}
+		boardService.updateHits2(boardId);
+		boardService.updateReportCount(boardId);
+		return "redirect:/report/" + boardId;
+	}
+	
 	@GetMapping("/report/delete/{id}")
 	public String deleteReport(@PathVariable Long id) {
 		boardService.delete(id);

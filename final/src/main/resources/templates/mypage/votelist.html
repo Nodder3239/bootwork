@@ -9,7 +9,12 @@
 </head>
 <body>
 	<div th:replace="~{header}"></div>
-<h2 class="board_h2">내 추천글</h2>
+	<div id="pi-title">
+		<h3>마이페이지</h3>	
+	</div>
+	<div class="semi_title">
+		<h2>내 추천글 목록</h2>
+	</div>
 	<div id="content">
 		<div class="board_content">
 		<table class="tbl_list">
@@ -37,7 +42,7 @@
 	                	<span th:if="${board.boardCategory eq 'info7'}"><a th:href="@{/infoboard/?cate=info7}">제주</a></span>
 	                </th>
 				    <td class="td_title" style="width:40%;">
-					    <a th:href="@{|/board/${board.id}|(page=${boardList.number+1})}">
+					    <a th:href="@{|/board/votelist/${board.id}|(page=${boardList.number+1})}">
 					    	<span th:text="${board.boardTitle}"></span>
 					    	<span class="reply_count" th:if="${board.replyCount != 0}" th:text="'[ ' + ${board.replyCount} + ' ]'"></span>
 					    </a>

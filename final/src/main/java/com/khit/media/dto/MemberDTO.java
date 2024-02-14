@@ -1,7 +1,5 @@
 package com.khit.media.dto;
 
-import java.sql.Timestamp;
-import java.time.LocalDateTime;
 
 import com.khit.media.entity.Member;
 import com.khit.media.entity.Role;
@@ -48,6 +46,9 @@ public class MemberDTO {
 	
 	private Role role;
 	
+	private String filename;
+	private String filepath;
+	
 	//entity(model<db>에 저장됨) -> dto(view로 보기)로 변환
 	//목록보기, 상세보기
 	public static MemberDTO toSaveDTO(Member member) {
@@ -61,9 +62,12 @@ public class MemberDTO {
 				.mnumber(member.getMnumber())
 				.memberArea(member.getMemberArea())				
 				.role(member.getRole())
+				.filename(member.getFilename())
+				.filepath(member.getFilepath())
 				.build();
 		
 		return memberDTO;
 	}
+
 
 }

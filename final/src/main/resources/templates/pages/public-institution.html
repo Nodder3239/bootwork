@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>재난 유관기관</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div th:replace="~{header}"></div>
+<!--------------------- Body1 : 재난 유관기관 타이틀 ----------------------->
+	<div id="pi-title">
+		<h3>재난 유관기관</h3>	
+	</div>
+<!----------------- Body2 : 재난 관련 기관 / 재난 관련 정보 ------------------>
+	<section id="pi-container">
+		<!-- 재난관련기관 -->
+		<div class="pi-wrap">
+			<h4>● 재난 관련 기관</h4>
+			<ul class=pi-img-btn>
+				<li>
+					<a href="https://www.khoa.go.kr/swtc/main.do" target="_blank">
+						<div>
+							<img th:alt="국립해양조사원" src="/images/public-logo1.png">
+						</div>						
+					</a>
+				</li>
+				<li>
+					<a href="https://www.weather.go.kr/w/index.do#close" target="_blank">
+						<div>
+							<img th:alt="기상청" src="/images/public-logo2.png">
+						</div>						
+					</a>
+				</li>
+				<li>
+					<a href="https://sansatai.forest.go.kr/gis/main.do#mhms0" target="_blank">
+						<div>
+							<img th:alt="산림청" src="/images/public-logo3.png">
+						</div>						
+					</a>
+				</li>
+				<li>
+					<a href="https://www.nfa.go.kr/nfa/" target="_blank">
+						<div style="margin-top:30px;">
+							<img th:alt="소방청" src="/images/public-logo4.png">
+						</div>						
+					</a>
+				</li>
+				<li>
+					<a href="https://www.kdca.go.kr/" target="_blank">
+						<div>
+							<img th:alt="질병관리청" src="/images/public-logo5.png">
+						</div>						
+					</a>
+				</li>
+				<li>
+					<a href="https://www.hrfco.go.kr/main.do" target="_blank">
+						<div style="margin-top:22px;">
+							<img th:alt="한강홍수통제소" src="/images/public-logo6.png">
+						</div>						
+					</a>
+				</li>
+				<li>
+					<a href="https://www.kgs.or.kr/kgsmain/index.do" target="_blank">
+						<div style="margin-top:32px;">
+							<img th:alt="한국가스안전공사" src="/images/public-logo7.png">
+						</div>						
+					</a>
+				</li>
+				<li>
+					<a href="https://www.airport.co.kr/www/index.do" target="_blank">
+						<div style="margin-top:31px;">
+							<img th:alt="한국공항공사" src="/images/public-logo8.png">
+						</div>						
+					</a>
+				</li>
+				<li>
+					<a href="https://www.ex.co.kr/" target="_blank">
+						<div style="margin-top:33px;">
+							<img th:alt="한국도로공사" src="/images/public-logo9.png">
+						</div>						
+					</a>
+				</li>
+				<li>
+					<a href="http://amo.kma.go.kr/new/html/main/main.jsp" target="_blank">
+						<div style="margin-top:16px;">
+							<img th:alt="항공기상청" src="/images/public-logo10.png">
+						</div>						
+					</a>
+				</li>
+				<li>
+					<a href="https://www.mois.go.kr/frt/a01/frtMain.do" target="_blank">
+						<div>
+							<img th:alt="행정안전부" src="/images/public-logo11.png">
+						</div>						
+					</a>
+				</li>
+				<li>
+					<a href="https://www.airkorea.or.kr/index" target="_blank">
+						<div style="margin-top:20px;">
+							<img th:alt="에어코리아" src="/images/public-logo12.png">
+						</div>						
+					</a>
+				</li>
+				<li>
+					<a href="https://info.korail.com/info/index.do" target="_blank">
+						<div style="margin-top:27px;">
+							<img th:alt="코레일" src="/images/public-logo13.png">
+						</div>						
+					</a>
+				</li>
+			</ul>
+		</div>
+		
+		<!-- 재난관련정보 -->
+		<div class="pi-wrap">
+			<h4 style="padding:0 0 10px 0;">● 재난 관련 정보</h4>
+			<ul class=pi-img-btn>
+				<li>
+					<a href="https://www.safekorea.go.kr/idsiSFK/neo/main/main.html" target="_blank">
+						<div style="margin-top:15px;">
+							<img th:alt="국민재난안전포털" src="/images/disaster-logo1.png">
+						</div>						
+					</a>
+				</li>
+				<li>
+					<a href="http://forestfire.nifos.go.kr/main.action" target="_blank">
+						<div style="margin-top:27px;">
+							<img th:alt="국가산불위험예보시스템" src="/images/disaster-logo2.png">
+						</div>						
+					</a>
+				</li>
+				<li>
+					<a href="https://www.nfds.go.kr/" target="_blank">
+						<div style="margin-top:18px;">
+							<img th:alt="국가화재정보시스템" src="/images/disaster-logo3.png">
+						</div>						
+					</a>
+				</li>
+				<li>
+					<a href="https://iernet.kins.re.kr/" target="_blank">
+						<div style="margin-top:18px;">
+							<img th:alt="국가환경방사능자동감시망" src="/images/disaster-logo4.png">
+						</div>						
+					</a>
+				</li>
+				<li>
+					<a href="https://www.weather.go.kr/w/theme/daily-life/regional-composite-index.do" target="_blank" class="pi-btn1">
+						<div style="margin-top:15px;">
+							<img th:alt="생활기상지수" src="/images/disaster-logo5.png">
+						</div>	
+						<strong>생활기상지수</strong>					
+					</a>
+				</li>
+				<li>
+					<a href="https://www.weather.go.kr/w/theme/world-weather.do#C01/107/2102" target="_blank" class="pi-btn1">
+						<div style="margin-top:15px;">
+							<img th:alt="세계날씨" src="/images/disaster-logo5.png">
+						</div>	
+						<strong>세계날씨</strong>					
+					</a>
+				</li>
+				<li>
+					<a href="https://www.kpx.or.kr/" target="_blank">
+						<div>
+							<img th:alt="전력거래소" src="/images/disaster-logo6.png">
+						</div>						
+					</a>
+				</li>
+			</ul>
+		</div>
+	</section>
+<div th:replace="~{footer}"></div>
+</body>
+</html>
