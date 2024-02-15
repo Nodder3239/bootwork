@@ -1,126 +1,35 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>재난 홈페이지</title>
-    <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f5f5f5;
-        }
-
-        header {
-            background-color: #3498db;
-            padding: 20px;
-            color: white;
-            text-align: center;
-            font-size: 24px;
-        }
-
-        .container {
-            margin: 20px;
-        }
-
-        .search-container {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 20px;
-        }
-
-        .search-input {
-            width: 70%;
-            padding: 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            font-size: 14px;
-        }
-
-        .search-button {
-            width: 20%;
-            padding: 10px;
-            background-color: #2c3e50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-            background-color: white;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            padding: 15px;
-            text-align: left;
-        }
-
-        th {
-            background-color: #2c3e50;
-            color: white;
-        }
-
-        tbody tr:hover {
-            background-color: #f5f5f5;
-        }
-
-        .pagination {
-            list-style: none;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-top: 20px;
-        }
-
-        .pagination a {
-            text-decoration: none;
-            padding: 10px;
-            margin: 5px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            color: #333;
-            font-size: 14px;
-        }
-
-        .pagination a.active {
-            background-color: #3498db;
-            color: white;
-        }
-    </style>
+    <script th:src="@{https://code.jquery.com/jquery-3.7.1.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/style2.css}">
 </head>
 <body>
-<div th:replace="~{header}"></div>
-
-<div class="container">
-    <a th:href="@{/}"><button type="button" id="btn1" class="btn btn-outline-secondary">처음으로</button></a>
-
-    <!-- 검색 폼 추가 -->
-    <form th:action="@{/data6}" method="get" class="search-container">
-        <input type="text" name="search" class="search-input" placeholder="검색어를 입력하세요">
-        <button type="submit" class="search-button">검색</button>
-    </form>
-
-    <!-- 테이블 시작 -->
-    <table id="result1" class="table">
+	<div th:replace="~{header}"></div> 
+	<div class="main-main">
+<div id="pi-title">
+	<h3>산사태</h3>	
+</div>	
+	<div class="top-top-tkstkxo">
+		<div class="top-top-tkstkxo-left">
+			<img alt="" src="/images/산사태.png">
+		
+		</div>
+		<div class="top-top-tkstkxo-right">
+		<h2>산사태 예보 발령상황</h2>
+		 <!-- 테이블 시작 -->
+    	<table id="result1" class="table6">
         <thead>
         <!-- 테이블 헤더 정의 -->
         <tr>
             <!-- 각 열의 제목 지정 -->
             <th scope="col">발생예보발령기관명</th>
             <th scope="col">예보발령일시</th>
-            <th scope="col">예보발령종류코드</th>
-            <th scope="col">예보발령종류코드명</th>
-            <th scope="col">예보발령상태</th>
-            <th scope="col">예측분석일시</th>
-            <th scope="col">예보해제일시</th>
+            <th scope="col">예보발령종류</th>
         </tr>
         </thead>
         <tbody>
@@ -129,42 +38,370 @@
             <!-- 각 열에 해당하는 데이터 출력 -->
             <td th:text="${item.OCRN_FRCST_ISSU_INSTT_NM}"></td>
             <td th:text="${item.FRST_FRCST_ISSU_DT}"></td>
-            <td th:text="${item.FRCST_ISSU_KIND_CD}"></td>
-            <td th:text="${item.FRCST_ISSU_KIND_NM}"></td>
-            <td th:text="${item.FRCST_ISSU_STTS}"></td>
-            <td th:text="${item.PRCTN_INFO_ANLSS_DT}"></td>
-            <td th:text="${item.LAST_FRCST_RMV_DT}"></td>
+            <td th:text="${item.FRCST_ISSU_KIND_NM}" ></td>
         </tr>
         </tbody>
     </table>
     <!-- 테이블 종료 -->
+		</div>
+	</div>
+		<div class="terms">
+			<div class="termsWrap">
+				<h2>재난 용어 및 관련 정보 – 산사태</h2>
+				<div class="tabSlideWrap" style="padding: 0px;">
+					<div class="tabSlide swiper-container-horizontal"
+						style="position: relative;">
+						<ul class="swiper-wrapper">
 
-    <!-- 페이지 링크 시작 -->
-    <div class="pagination">
-        <ul>
-            <!-- 전체 페이지 수가 1보다 큰 경우에만 페이지 링크를 생성 -->
-            <li th:if="${totalPages > 1}">
-                <!-- 이전 페이지 링크 -->
-                <a th:href="@{'/data6?pageNum=' + (pageNum - 1)}" th:if="${pageNum > 1}" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                </a>
 
-                <!-- 페이지 번호 링크 -->
-                <a th:each="page : ${#numbers.sequence(1, totalPages)}" th:href="@{'/data6?pageNum=' + page}"
-                   th:class="${page == pageNum} ? 'active' : ''">
-                    <span th:text="${page}"></span>
-                </a>
+							<li class="swiper-slide on swiper-slide-active"
+								style="margin-right: 10px;"><a href="javascript:;"
+								onclick="terms('terms87',this);">산사태의 정의와 특성</a></li>
 
-                <!-- 다음 페이지 링크 -->
-                <a th:href="@{'/data6?pageNum=' + (pageNum + 1)}" th:if="${pageNum < totalPages}" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                </a>
-            </li>
-        </ul>
-    </div>
-    <!-- 페이지 링크 종료 -->
 
-</div>
-<div th:replace="~{footer}"></div>
+							<li class="swiper-slide swiper-slide-next"
+								style="margin-right: 10px;"><a href="javascript:;"
+								onclick="terms('terms88',this);">산사태주의보·경보</a></li>
+
+
+							<li class="swiper-slide" style="margin-right: 10px;"><a
+								href="javascript:;" onclick="terms('terms89',this);">연도별 산사태
+									피해</a></li>
+
+
+						</ul>
+					</div>
+					<!-- Add Arrows -->
+					<div class="swiper-button-next swiper-button-disabled"
+						style="display: none;">다음</div>
+					<div class="swiper-button-prev swiper-button-disabled"
+						style="display: none;">이전</div>
+				</div>
+				<div class="termsText">
+
+
+					<div class="terms87" style="">
+						<p>
+							<span style="font-size: 11pt;">​·&nbsp;</span><span
+								style="font-size: 11pt;">폭우나 지진</span><span lang="EN-US"
+								style="font-family: 함초롬바탕; letter-spacing: 0pt; font-size: 11pt;">,&nbsp;</span><span
+								style="font-size: 11pt;">화산 등으로 산 중턱의 바윗돌이나 흙이 갑자기 무너져
+								내리는 현상</span>
+						</p>
+						<p class="0" style="margin-left: 20.6pt; text-indent: -20.6pt;">
+							<span style="font-size: 11pt;">· 비교적 산지의 경사가 급하고</span><span
+								lang="EN-US"
+								style="font-family: 함초롬바탕; letter-spacing: 0pt; font-size: 11pt;">,&nbsp;</span><span
+								style="font-size: 11pt;">비탈면의 흙이 쌓인 층의 바닥에 암반이 깔려 있는 곳에서
+								큰 규모로 발생하는 경우가 많음</span>
+						</p>
+						<p>
+							<span style="text-indent: -20.6pt; font-size: 11pt;">· 산지
+								또는 계곡에서 흙과 돌</span><span lang="EN-US"
+								style="text-indent: -20.6pt; font-family: 함초롬바탕; letter-spacing: 0pt; font-size: 11pt;">,&nbsp;</span><span
+								style="text-indent: -20.6pt; font-size: 11pt;">나무 등이 물과
+								섞여 빠른 속도로 유출되는 것은 토석류라고 부름</span><span style="font-size: 11pt;"></span>&nbsp;&nbsp;
+						</p>
+					</div>
+
+
+					<div class="terms88" style="display: none;">
+						<p>
+							<span style="text-indent: -92.3pt; font-size: 11pt;">·
+								산사태주의보&nbsp;</span><span lang="EN-US"
+								style="text-indent: -92.3pt; font-family: 함초롬바탕; letter-spacing: 0pt; font-size: 11pt;">:&nbsp;</span><span
+								style="text-indent: -92.3pt; font-size: 11pt;">해당 지역에 내린
+								강우량 분석으로 토양에 함유된 물의 상대적인 양인 토양함수지수가 권역별 기준치의&nbsp;</span><span
+								lang="EN-US"
+								style="text-indent: -92.3pt; font-family: 함초롬바탕; letter-spacing: 0pt; font-size: 11pt;">80%</span><span
+								style="text-indent: -92.3pt; font-size: 11pt;">에 도달했을 경우
+								발령</span>
+						</p>
+						<p>
+							<span style="font-size: 11pt;">· 산사태경보&nbsp;</span><span
+								lang="EN-US"
+								style="font-family: 함초롬바탕; letter-spacing: 0pt; font-size: 11pt;">:&nbsp;</span><span
+								style="font-size: 11pt;">토양함수지수가 권역별 기준치의&nbsp;</span><span
+								lang="EN-US"
+								style="font-family: 함초롬바탕; letter-spacing: 0pt; font-size: 11pt;">100%</span><span
+								style="font-size: 11pt;">에 도달했을 경우 발령</span>&nbsp;&nbsp;
+						</p>
+					</div>
+
+
+					<div class="terms89" style="display: none;">
+						<div class="terms22" style="">
+							<table border="0" cellpadding="0" cellspacing="0"
+								style="border: 1px solid #cccccc; border-left: 0; border-bottom: 0;"
+								class="__se_tbl">
+								<tbody>
+									<tr>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 130px; height: 30px; background-color: rgb(235, 235, 235);"
+											class="" colspan="1" rowspan="2"><p
+												style="text-align: center; line-height: 2;">
+												<b><span style="font-size: 11pt;">&nbsp;연도</span></b>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 600px; height: 15px; background-color: rgb(235, 235, 235);"
+											class="" colspan="3" rowspan="1"><p
+												style="text-align: center; line-height: 2;">
+												<b><span style="font-size: 11pt;">&nbsp;산사태 피해</span></b>
+											</p></td>
+
+
+									</tr>
+									<tr>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 200px; height: 15px; background-color: rgb(235, 235, 235);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<b><span style="font-size: 11pt;">&nbsp;피해 면적(ha)</span></b>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 200px; height: 15px; background-color: rgb(235, 235, 235);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<b><span style="font-size: 11pt;">&nbsp;복구비(백만 원)</span></b>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 200px; height: 15px; background-color: rgb(235, 235, 235);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<b><span style="font-size: 11pt;">&nbsp;사망(명)</span></b>
+											</p></td>
+									</tr>
+									<tr>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 141px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;2011년</span>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 201px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;824</span>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 181px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;147,650&nbsp;</span>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 191px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;43&nbsp;</span>
+											</p></td>
+									</tr>
+									<tr>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 141px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;2012년</span>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 201px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;491</span>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 181px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;97,274&nbsp;</span>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 191px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;1&nbsp;</span>
+											</p></td>
+									</tr>
+									<tr>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 141px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;2013년</span>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 201px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;312</span>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 181px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;60,365&nbsp;</span>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 191px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;3&nbsp;</span>
+											</p></td>
+									</tr>
+									<tr>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 141px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;2014년</span>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 201px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;70</span>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 181px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;14,467&nbsp;</span>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 191px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;0&nbsp;</span>
+											</p></td>
+									</tr>
+									<tr>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 141px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;2015년</span>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 201px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;0&nbsp;</span>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 181px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;0&nbsp;</span>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 191px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;0&nbsp;</span>
+											</p></td>
+									</tr>
+									<tr>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 141px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;2016년</span>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 201px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;54</span>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 181px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;16,866&nbsp;</span>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 191px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;0&nbsp;</span>
+											</p></td>
+									</tr>
+									<tr>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 141px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;2017년</span>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 201px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;94&nbsp;</span>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 181px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;21,488&nbsp;</span>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 191px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;2&nbsp;</span>
+											</p></td>
+									</tr>
+									<tr>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 141px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;2018년</span>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 201px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;56</span>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 181px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;22,842&nbsp;</span>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 191px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;0&nbsp;</span>
+											</p></td>
+									</tr>
+									<tr>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 141px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;2019년</span>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 201px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;156</span>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 181px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;">
+												<span style="font-size: 11pt;">&nbsp;53,428&nbsp;</span>
+											</p></td>
+										<td
+											style="border-width: 0px 0px 1px 1px; border-bottom-style: solid; border-left-style: solid; border-bottom-color: rgb(204, 204, 204); border-left-color: rgb(204, 204, 204); border-image: initial; border-top-style: initial; border-top-color: initial; border-right-style: initial; border-right-color: initial; width: 191px; height: 18px; background-color: rgb(255, 255, 255);"
+											class=""><p style="text-align: center; line-height: 2;"
+												align="center">
+												<span style="font-size: 11pt;">&nbsp;3&nbsp;</span>
+											</p></td>
+									</tr>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+
+				</div>
+			</div>
+		</div>
+	</div>
+<div th:replace="~{footer}"></div> 
+	<script>
+    function terms(id, element) {
+        // 모든 용어에 대한 활성화 클래스 제거
+        var terms = document.querySelectorAll('.termsText > div');
+        for (var i = 0; i < terms.length; i++) {
+            terms[i].style.display = 'none';
+        }
+
+        // 클릭한 용어의 정보를 표시
+        var selectedTerm = document.querySelector('.' + id);
+        if (selectedTerm) {
+            selectedTerm.style.display = '';
+        }
+
+        // 모든 탭에 대한 활성화 클래스 제거
+        var tabs = document.querySelectorAll('.swiper-slide');
+        for (var j = 0; j < tabs.length; j++) {
+            tabs[j].classList.remove('swiper-slide-active');
+        }
+
+        // 클릭한 탭에 활성화 클래스 추가
+        element.parentNode.classList.add('swiper-slide-active');
+    }
+</script>
 </body>
 </html>

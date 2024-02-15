@@ -36,45 +36,45 @@ public class MainController {
 //	header 메뉴 불러오기 - 재난예방대비, 재난 현황, 참여와 신고
 	@GetMapping("/board/preparation")
 	public String preparationPage() {
-		return "/board/preparation";
+		return "board/preparation";
 	}
 	@GetMapping("/board/condition")
 	public String conditionPage() {
-		return "/board/condition";
+		return "board/condition";
 	}
 	// chatbot서비스 
 	@GetMapping("/chatbot")
 	public String chatService() {
-		return "/chatbot";
+		return "chatbot";
 	}
 
 // footer 메뉴 (공지사항, FAQ, 개인정보처리방침)
 
 	@GetMapping("/pages/faq")
 	public String faqPage() {
-		return "/pages/faq";
+		return "pages/faq";
 	}
 	@GetMapping("/pages/privacyPolicy")
 	public String ppPage() {
-		return "/pages/privacyPolicy";
+		return "pages/privacyPolicy";
 	}
 
 // pages폴더의 html불러오기
 	
 	@GetMapping("/pages/public-institution")
 	public String publicPages() {
-		return "/pages/public-institution";
+		return "pages/public-institution";
 	}
 	
 	
 	
 	/* 체크리스트 */
-	@GetMapping("/survey")
+	@GetMapping("/ex/survey")
 	public String survey() {
 		return "ex/survey";
 	}
 	
-	@PostMapping("/survey")
+	@PostMapping("/ex/survey")
 	public String surveyAdd(
 			@RequestParam("volume01") int v01,
 	        @RequestParam("volume02") int v02,
@@ -118,17 +118,28 @@ public class MainController {
 		int result2 = v21 + v22 + v23 + v24 + v25 + v26 + v27 + v28;
 		int result3 = v31 + v32 + v33 + v34 + v35 + v36 + v37;
 		int result4 = v41 + v42 + v43 + v44 + v45 + v46 + v47 + v48 + v49;
-		int result = result0 + result1 + result2 + result3 + result4;
+		double result = (double)(result0 + result1 + result2 + result3 + result4) / 180 * 100;
+		double roundedResult = Math.round(result * 100.0) / 100.0;
 		session.setAttribute("result0", result0);
 		session.setAttribute("result1", result1);
 		session.setAttribute("result2", result2);
 		session.setAttribute("result3", result3);
 		session.setAttribute("result4", result4);
-		session.setAttribute("result", result);
+		session.setAttribute("result", roundedResult);
 			
+		return "redirect:/ex/surveyResult";
+	}
+	
+	@GetMapping("/ex/surveyResult")
+	public String surveyResult() {
 		return "ex/surveyResult";
 	}
 	
+	@GetMapping("/ex/return")
+	public String returnIndex(HttpSession session) {
+		session.invalidate();
+		return "redirect:/";
+	}
 	
 	@GetMapping("/ex/game")
 	public String ex() {

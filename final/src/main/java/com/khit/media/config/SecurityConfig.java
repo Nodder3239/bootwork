@@ -29,7 +29,7 @@ public class SecurityConfig {
 		http
 		  .authorizeHttpRequests(authorize -> authorize
 				  .requestMatchers("/", "/css/**", "/images/**", "/js/**", "/error", "/ex/**",
-						  "/board/", "/infoboard/", "/noticeboard/", "/qnaboard/", "/board/", "/pages/**").permitAll()
+						  "/board/", "/infoboard/", "/noticeboard/", "/qnaboard/", "/board/", "/pages/**", "/ex/**").permitAll()
 				  .requestMatchers("/infoboard/**", "/qnaboard/**", "/noticeboard/**", "/board/**",  
 						  "/noticereply/**", "/inforeply/**", "/qnareply/**", "/member/account",
 						  "/noticevote/**", "/infovote/**", "/qnavote/**", "/reply/**", "/vote/**").authenticated()

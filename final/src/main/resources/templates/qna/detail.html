@@ -97,12 +97,12 @@
       <div class="replyform">
            <p class="rtitle">댓글</p>
              <div class = "reply_reply" th:each="reply : ${replyList}">
-               <div class = "rcontent">
-                  <span th:text=${reply.rcontent}></span>
-               </div>
                <div class = "replyer">
-                  <span th:text=${reply.replyer}></span>
-               </div>
+		            <p th:text=${reply.replyer}></p>
+	            </div>
+	            <div class = "rcontent">
+	            	<p th:text=${reply.rcontent}></p>
+	            </div>
                <div class = "rdate">
                   <span style="font-size: small;">
                    작성일시: [[${#temporals.format(reply.createdDate, 'yyyy-MM-dd HH:mm:ss')}]]

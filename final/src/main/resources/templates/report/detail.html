@@ -51,14 +51,8 @@
 								 <span th:text="${board.boardWriter}"></span>
 							</div>	
 					  </div> 	
-						<div>
-							<a th:href="@{|/vote/${board.id}|}">
-						    	<i class="fa-regular fa-thumbs-up"></i>
-						    </a>
-						    |
-						    <a th:href="@{|/boardreport/${board.id}|}" onclick="return confirm('정말로 신고하시겠습니까?')">
-		                       <i class="fi fi-rs-siren-on"></i>
-		                    </a>
+						<div th:if="${board.reportCount != null}" style="line-height: 1.5;">
+							신고수: <span th:text="${board.reportCount} + '회'"></span>
 					    </div>
 					</div>		
 				</td>

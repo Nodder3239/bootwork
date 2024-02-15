@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>안전한 대한민국, PLAN B</title>
 <!-- 파비콘 추가 -->
-<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/css/Mainstyle.css">
 <script src="https://kit.fontawesome.com/6673aed616.js" crossorigin="anonymous"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
@@ -32,26 +32,23 @@
 	<section id="weather-realTimeReport">
 		<!-- 날씨정보(+미세먼지) -->
 		<article class="weaterInfo-airPollution">
-			<div class="myLocation-time">
-				<p>서울특별시 영등포구 당산제2동</p>
-				<p style="color:#5268CF">
-					<i class="fa-solid fa-crosshairs" style="color:#0094FF"></i>&nbsp;내 위치
-				</p>
-				<p id="referenceTime">02월 08일(목) 오후 3시 기준</p>
-			</div>			
-			<div class="weather-title">
-				<p>날씨정보</p>
-				<p>미세먼지</p>			
-			</div>
 			<div class="weather-contentWrap">
+				
 				<!-- 기온 -->
-				<div class="content-temperature"> 
-					<p class="icon-temp">
-						<i class="fi fi-rr-brightness" style="color:#FFC700;"></i> 7ºC
-					</p>
-					<div class="windchill-humidity">
-						<p>체감온도 4.3º</p>
-						<p>습도 52%</p>					
+				<div class="today-weather-wrap">
+					<h3 class="today-title">오늘 날씨</h3>
+					
+					<div class="now-temperatures">
+					    <p class="SeoulIcon"></p>
+					    <p class="SeoulNowtemp"></p>
+					</div>
+					<div class="high-temperatures">
+						<h3 class="row-high-temp">최고기온 </h3>
+					    <p class="SeoulHightemp"> </p>
+					</div>
+					<div class="row-temperatures">
+						<h3 class="row-high-temp">최저기온</h3>
+					    <div class="SeoulLowtemp"></div>
 					</div>
 				</div>
 				<!-- 미세먼지 -->
@@ -73,7 +70,7 @@
 		<article class="realTimeReport-wrap">
 			<div class="report-title">
 				<p>실시간 제보</p>
-				<a th:href="@{/board/notice}"class="icon-wrap"><i class="fi fi-rr-arrow-circle-right"></i></a>
+				<a th:href="@{/board/}"class="icon-wrap"><i class="fi fi-rr-arrow-circle-right"></i></a>
 			</div>
 			<!-- <p class="report-text">body2_right box - 실시간 제보(member) 게시판 불러오기</p> -->
 			<div>
@@ -172,42 +169,58 @@
 	</section>
 <div th:replace="~{footer}"></div>
 <script>
-/* jquery 환경 - 버튼 클릭 이벤트 */
-	$(document).ready(function(){
-// 			alert("test...");
-			
-			$.ajax({
-				//요청방식(type), url, data,dataType, success, error
-				type: "GET",
-				url: "https://apis.data.go.kr/1741000/DisasterMsg3/getDisasterMsg1List?serviceKey=3e6KfjqGd%2BSHh5QtxpCL6hAh8NyMv%2Bzbbz4btxYu3dmUvLkrW6msC23slFSCHRrGmyHzajC8cTa1OcvCICFebQ%3D%3D&pageNo=1&numOfRows=2&type=json",
-				dataType: "JSON",	//받는 데이터는 json 유형임을 명시 필수
-				success: function(data){
-					console.log(data);
-					
-					let itemArr = data.DisasterMsg[1].row;
-					
-					//테이블 작성
-					let value = ""; //태그 + data
-					for(let i=0; i<itemArr.length; i++){
-						let item = itemArr[i];	//각각의 인덱스에 객체 생성
-						value += "<tr class='ds-trclass'>"
-	                            + "<td class='ds-location-name'>" + item.location_name + "</td>" // 수신지역이름
-	                            + "<td class='ds-item-msg'>" + item.msg + "&nbsp;&nbsp;" + "<strong>" +item.create_date + "</strong>" + "</td>"
-	                            + "</tr>";
-					};
-
-	                // 결과를 테이블에 삽입
-	                $("#result1 tbody").html(value);
-				},
-				error: function(error){
-					alert("에러 발생: " + error);
-				}
-			});
-		
+//오늘 날짜출력
+	$(document).ready(function () {
+	
+	    function convertTime() {
+	        var now = new Date();
+	
+	
+	        var month = now.getMonth() + 1;
+	        var date = now.getDate();
+	
+	        return '(' + month + '/' + date + ')';
+	    }
+	
+	    var currentTime = convertTime();
+	    $('.nowtime').append(currentTime);
 	});
+	
+	
+	//제이쿼리사용
+	$.getJSON('https://api.openweathermap.org/data/2.5/weather?q=seoul&appid=a8501159eb9e48f3bb16a140c20e9c6f&units=metric', function(WeatherResult) {
+		// 기온 출력을 위해 Math.round()를 사용하여 온도 값을 정수로 반올림
+		var nowTemp = Math.round(WeatherResult.main.temp);
+		var lowTemp = Math.round(WeatherResult.main.temp_min);
+		var highTemp = Math.round(WeatherResult.main.temp_max);
+	
+		$('.SeoulNowtemp').html(nowTemp + '&nbsp;' + '<small>°C</small>');
+		$('.SeoulLowtemp').html(lowTemp + '&nbsp;' + '°C');
+		$('.SeoulHightemp').html(highTemp + '&nbsp;' + '°C');
+		
+	// 날씨 아이콘 출력
+		var weathericonUrl =
+		'<img class="weather-icons" src= "http://openweathermap.org/img/wn/' + WeatherResult.weather[0].icon + '.png" alt="' 
+				+ WeatherResult.weather[0].description + '"/>'
+		
+		$('.SeoulIcon').html(weathericonUrl);
+	
+	// 기온에 따른 이미지 표시
+	var temperature = WeatherResult.main.temp;
+	if (temperature <= 10) {
+		// 추운 날씨 이미지
+		$('.weatherExpression').html('<img src="#" alt="Cold">');
+		} else if (temperature >= 20) {
+		// 따듯한 날씨 이미지
+		$('.weatherExpression').html('<img src="#" alt="Warm">');
+		} else {
+		// 온화한 날씨 이미지 또는 표시하지 않음
+		$('.weatherExpression').html('<img src="#" alt="Cold">');
+		}
+		});
 </script>
-
 <script src="/js/text-slide.js"></script>
+<script src="/js/emergency-text.js"></script>
 </body>
 
 </html>

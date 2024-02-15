@@ -6,18 +6,202 @@
     <title>산불 정보</title>
     <script th:src="@{https://code.jquery.com/jquery-3.7.1.min.js}"></script>
     <link rel="stylesheet" th:href="@{/css/style2.css}">
-   
+   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e90c88e0109b424493e107d4a511deb0"></script>
+   <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e90c88e0109b424493e107d4a511deb0&libraries=LIBRARY"></script>
+ <script type="text/javascript" src="/js/efusioni.js"></script>
+ <script type="text/javascript" src="/js/imagesloaded.pkgd.js"></script>
+ <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
+ <script type="text/javascript" src="/js/jwplayer.js"></script>
+ <script type="text/javascript" src="/js/proj4.js"></script>
+ <script type="text/javascript" src="/js/slick.js"></script>
+ <script type="text/javascript" src="/js/swiper.min.js"></script>
+ <script type="text/javascript" src="/js/ui.js"></script>
+ 
 </head>
 <body>
  	
  	<div th:replace="~{header}"></div> 
-	<div id="pi-title">
+ 	<div id="pi-title">
 		<h3>산불</h3>	
 	</div>
 	<div class="main-main">
 		<div class="Area">
 			<div class="leftArea">
-				<img alt="" src="/images/산불.png">
+				<!-- <img alt="" src="/images/산불.png"> -->
+				<div id="map"
+					style="width: 400px; height: 600px; position: relative; overflow: hidden; background: url(&quot;https://t1.daumcdn.net/mapjsapi/images/bg_tile.png&quot;);">
+
+					<!--지도에 들어가는 강수량 아이콘-->
+					<!--
+                                    <img src="/static/images/common/ico_fire1.png" alt="진화완료">
+                                    <img src="/static/images/common/ico_fire2.png" alt="진화중">
+                                    <img src="/static/images/common/ico_fire3.png" alt="진화중(상황정보)">
+                                    -->
+					<div
+						style="position: absolute; left: 0px; top: 0px; width: 100%; height: 100%; touch-action: none; cursor: url(&quot;https://t1.daumcdn.net/mapjsapi/images/cursor/openhand.cur.ico&quot;) 7 5, url(&quot;https://t1.daumcdn.net/mapjsapi/images/cursor/openhand.cur.ico&quot;), default;">
+						<div style="position: absolute;">
+							<div style="position: absolute; z-index: 0; left: 0px; top: 0px;">
+								<img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/12/1/1.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -441px; top: 741px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 512px; height: 512px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/12/1/2.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 71px; top: 741px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 512px; height: 512px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/12/1/3.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 583px; top: 741px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 512px; height: 512px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/12/1/4.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 1095px; top: 741px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 512px; height: 512px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/12/2/1.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -441px; top: 229px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 512px; height: 512px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/12/2/2.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 71px; top: 229px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 512px; height: 512px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/12/2/3.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 583px; top: 229px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 512px; height: 512px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/12/2/4.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 1095px; top: 229px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 512px; height: 512px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/12/3/1.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -441px; top: -283px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 512px; height: 512px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/12/3/2.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 71px; top: -283px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 512px; height: 512px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/12/3/3.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 583px; top: -283px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 512px; height: 512px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/12/3/4.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 1095px; top: -283px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 512px; height: 512px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/12/4/1.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -441px; top: -795px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 512px; height: 512px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/12/4/2.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 71px; top: -795px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 512px; height: 512px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/12/4/3.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 583px; top: -795px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 512px; height: 512px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/12/4/4.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 1095px; top: -795px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 512px; height: 512px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/12/5/1.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -441px; top: -1307px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 512px; height: 512px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/12/5/2.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 71px; top: -1307px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 512px; height: 512px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/12/5/3.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 583px; top: -1307px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 512px; height: 512px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/12/5/4.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 1095px; top: -1307px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 512px; height: 512px;">
+							</div>
+							<div style="position: absolute; z-index: 1; left: 0px; top: 0px;">
+								<img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/11/3/3.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -186px; top: 741px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/11/3/4.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 70px; top: 741px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/11/3/5.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 326px; top: 741px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/11/3/6.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 582px; top: 741px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/11/4/3.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -186px; top: 485px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/11/4/4.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 70px; top: 485px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/11/4/5.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 326px; top: 485px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/11/4/6.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 582px; top: 485px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/11/5/3.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -186px; top: 229px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/11/5/4.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 70px; top: 229px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/11/5/5.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 326px; top: 229px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/11/5/6.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 582px; top: 229px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/11/6/3.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -186px; top: -27px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/11/6/4.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 70px; top: -27px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/11/6/5.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 326px; top: -27px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/11/6/6.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 582px; top: -27px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/11/7/3.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: -186px; top: -283px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/11/7/4.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 70px; top: -283px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/11/7/5.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 326px; top: -283px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;"><img
+									src="https://map.daumcdn.net/map_k3f_prod/bakery/image_map_png/PNGSD01/v19_evsok/11/7/6.png"
+									alt="" role="presentation" draggable="false"
+									style="position: absolute; user-select: none; -webkit-user-drag: none; min-width: 0px; min-height: 0px; max-width: none; max-height: none; left: 582px; top: -283px; opacity: 1; transition-property: opacity; transition-duration: 0.2s; transition-timing-function: ease; width: 256px; height: 256px;">
+							</div>
+							<div style="position: absolute; z-index: 1;"></div>
+							<div
+								style="width: 568px; height: 790px; position: absolute; z-index: 1;"></div>
+							<div style="position: absolute; z-index: 1;">
+								<svg version="1.1"
+									style="stroke: none; stroke-dashoffset: 0.5; stroke-linejoin: round; fill: none; transform: translateZ(0px); position: absolute; left: -1136px; top: -1580px; width: 2840px; height: 3950px;"
+									viewBox="0 0 2840 3950">
+									<defs></defs></svg>
+							</div>
+							<div
+								style="position: absolute; z-index: 1; width: 100%; height: 0px; transform: translateZ(0px);"></div>
+						</div>
+					</div>
+					<div
+						style="position: absolute; cursor: default; z-index: 1; margin: 0px 6px; height: 19px; line-height: 14px; left: 0px; bottom: 0px; color: rgb(0, 0, 0);">
+						<div
+							style="color: rgb(0, 0, 0); text-align: center; font-size: 10px; float: left;">
+							<div
+								style="float: left; margin: 2px 3px 0px 4px; height: 6px; transition: width 0.1s ease 0s; border-top: none rgb(0, 0, 0); border-right: 2px solid rgb(0, 0, 0); border-bottom: 2px solid rgb(0, 0, 0); border-left: 2px solid rgb(0, 0, 0); border-image: initial; width: 58px;"></div>
+							<div
+								style="float: left; margin: 0px 4px 0px 0px; font-family: AppleSDGothicNeo-Regular, 돋움, dotum, sans-serif; font-weight: bold; color: rgb(0, 0, 0);">16km</div>
+						</div>
+						<div style="margin: 0px 4px; float: left;">
+							<a target="_blank" href="http://map.kakao.com/"
+								title="Kakao 지도로 보시려면 클릭하세요."
+								style="float: left; width: 32px; height: 10px;"><img
+								src="https://t1.daumcdn.net/mapjsapi/images/m_bi_b.png"
+								alt="Kakao 지도로 이동"
+								style="float: left; width: 32px; height: 10px; border: none;"></a>
+							<div
+								style="font: 11px/11px Arial, Tahoma, Dotum, sans-serif; float: left;"></div>
+						</div>
+					</div>
+					<div
+						style="cursor: auto; position: absolute; z-index: 2; left: 0px; top: 0px;"></div>
+				</div>
 			</div>
 
 			<div class="rightArea">
@@ -279,6 +463,7 @@
 			</div>
 		</div>
 	</div>
+<div th:replace="~{footer}"></div> 
 	<script>
   // JavaScript 코드
 
@@ -334,11 +519,25 @@
   }
 
 </script>
+
+<script type="text/javascript">
+	
+	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+	var options = { //지도를 생성할 때 필요한 기본 옵션
+		center: new kakao.maps.LatLng(33.450701, 126.570667), //지도의 중심좌표.
+		level: 5 //지도의 레벨(확대, 축소 정도)
+	};
+
+	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+	
+</script>
+
 <style>
   .swiper-slide.on {
     color: white; /* 탭 텍스트 색상 */
     background-color: 	#4169E1; /* 탭 배경 색상 */
   }
+  
 </style>
 </body>
 </html>

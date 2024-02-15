@@ -3,72 +3,181 @@
 <head>
     <meta charset="UTF-8">
     <title>Data 7</title>
+    <script th:src="@{https://code.jquery.com/jquery-3.7.1.min.js}"></script>
+    <link rel="stylesheet" th:href="@{/css/style2.css}">
 </head>
 <body>
-<div th:replace="~{layout/header}"></div>
-<a th:href="@{/}"><button type="button" id="btn1" class="btn btn-outline-secondary">처음으로</button></a>
-
-<form th:action="@{/search}" method="get">
-    <input type="text" name="query" placeholder="검색어를 입력하세요">
-    <button type="submit">검색</button>
-</form>
 
 <!-- 테이블 시작 -->
-<table id="result1" class="table" style="font-size:14px;">
-    <thead>
-        <!-- 테이블 헤더 정의 -->
-        <tr>
-            <!-- 각 열의 제목 지정 -->
-           		 <th scope="col">대구</th>
-				<th scope="col">충청남도</th>
-				<th scope="col">인천</th>
-				<th scope="col">대전</th>
-				<th scope="col">경상북도</th>
-				<th scope="col">세종</th>
-				<th scope="col">광주</th>
-				<th scope="col">전라북도</th>
-				<th scope="col">강원도</th>
-				<th scope="col">울산</th>
-				<th scope="col">전라남도</th>
-				<th scope="col">서울</th>
-				<th scope="col">부산</th>
-				<th scope="col">제주</th>
-				<th scope="col">충청북도</th>
-				<th scope="col">경상남도</th>
-				<th scope="col">데이터 시간</th>
-				<th scope="col">데이터 구분</th>
-				<th scope="col">경기도</th>
-				<th scope="col">데이터 항목 코드</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- 데이터 리스트를 반복하여 각 항목을 출력 -->
-        <tr th:each="item : ${dataList}">
-            <!-- 각 열에 해당하는 데이터 출력 -->
-            <td th:text="${item.daegu}"></td>
-            <td th:text="${item.chungnam}"></td>
-            <td th:text="${item.incheon}"></td>
-            <td th:text="${item.daejeon}"></td>
-            <td th:text="${item.gyeongbuk}"></td>
-            <td th:text="${item.sejong}"></td>
-            <td th:text="${item.gwangju}"></td>
-            <td th:text="${item.jeonbuk}"></td>
-            <td th:text="${item.gangwon}"></td>
-            <td th:text="${item.ulsan}"></td>
-            <td th:text="${item.jeonnam}"></td>
-            <td th:text="${item.seoul}"></td>
-            <td th:text="${item.busan}"></td>
-            <td th:text="${item.jeju}"></td>
-            <td th:text="${item.chungbuk}"></td>
-            <td th:text="${item.gyeongnam}"></td>
-            <td th:text="${item.dataTime}"></td>
-            <td th:text="${item.dataGubun}"></td>
-            <td th:text="${item.gyeonggi}"></td>
-            <td th:text="${item.itemCode}"></td>
-        </tr>
-    </tbody>
-</table>
-<!-- 테이블 종료 -->
-<div th:replace="~{footer}"></div>
+<div th:replace="~{header}"></div> 
+
+<div id="pi-title">
+	<h3>대기오염</h3>	
+</div>
+	<div class="main-main">
+	
+<div class="top-top-top-altpajswl">
+<div class="leftArea2">
+	<img alt="" src="/images/미세먼지.png">
+</div>
+<div class="rightArea2">
+                    <div class="status">
+                        <div class="titArea">
+                            <strong>미세먼지 경보 현황</strong>
+                            
+                        </div>
+                        <div class="alarmWrap">
+                            <div id="alarm">
+	                            <ul class="scr1">
+	                            	
+									
+	                                	<li class="none"><span>현재 발령된 미세먼지 경보가 없습니다.</span></li>
+									
+	                            </ul>
+	                        </div>
+                        </div>
+                    </div>
+                    <div class="forecast">
+                        <div class="titArea">
+                            <strong>대기환경 예보</strong>
+                        </div>
+                       
+                        <div class="predictionWrap">
+                            <div class="box1" th:each="item : ${dataList}">
+                                <h2>지역별 미세먼지현황</h2>
+                                <span class="dayText" th:text="${item['데이터 시간']}"></span>
+						<div class="today tabCont">
+							<ul class="tableLayout">
+								<li class="length9">
+									<table>
+										
+										<colgroup>
+											<col width="99px">
+											<col width="*">
+										</colgroup>
+										<tbody>
+											<tr th:each="item : ${dataList}">
+												<th>경기도</th>
+												<td><span class="level3" th:text="${item['경기도']}"> </span></td>
+											</tr>
+											<tr th:each="item : ${dataList}">
+												<th>경남</th>
+												<td><span class="level2" th:text="${item['경상남도']}"> </span></td>
+											</tr>
+											<tr th:each="item : ${dataList}">
+												<th>경북</th>
+												<td><span class="level2" th:text="${item['경상북도']}"> </span></td>
+											</tr>
+											<tr th:each="item : ${dataList}">
+												<th>광주</th>
+												<td><span class="level2" th:text="${item['광주']}"> </span></td>
+											</tr>
+											<tr th:each="item : ${dataList}">
+												<th>대구</th>
+												<td><span class="level2" th:text="${item['대구']}"> </span></td>
+											</tr>
+											<tr th:each="item : ${dataList}">
+												<th>대전</th>
+												<td><span class="level2" th:text="${item['대전']}"> </span></td>
+											</tr>
+											<tr th:each="item : ${dataList}">
+												<th>부산</th>
+												<td><span class="level2" th:text="${item['부산']}"> </span></td>
+											</tr>
+											<tr th:each="item : ${dataList}">
+												<th>서울</th>
+												<td><span class="level3" th:text="${item['서울']}"> </span></td>
+											</tr>
+										</tbody>
+									</table>
+								</li>
+								<li class="length10">
+									<table>
+										
+										<colgroup>
+											<col width="99px">
+											<col width="*">
+										</colgroup>
+										<tbody>
+											<tr th:each="item : ${dataList}">
+												<th>세종</th>
+												<td><span class="level3" th:text="${item['세종']}"></span></td>
+											</tr>
+											
+											<tr th:each="item : ${dataList}">
+												<th>울산</th>
+												<td><span class="level2" th:text="${item['울산']}"> </span></td>
+											</tr>
+											<tr th:each="item : ${dataList}">
+												<th>인천</th>
+												<td><span class="level3" th:text="${item['인천']}"> </span></td>
+											</tr>
+											<tr th:each="item : ${dataList}">
+												<th>전남</th>
+												<td><span class="level2" th:text="${item['전라남도']}"> </span></td>
+											</tr>
+											<tr th:each="item : ${dataList}">
+												<th>전북</th>
+												<td><span class="level2" th:text="${item['전라북도']}"> </span></td>
+											</tr>
+											<tr th:each="item : ${dataList}" >
+												<th>제주</th>
+												<td><span class="level2" th:text="${item['제주']}"> </span></td>
+											</tr>
+											<tr th:each="item : ${dataList}">
+												<th>충남</th>
+												<td><span class="level3" th:text="${item['충청남도']}"> </span></td>
+											</tr>
+											<tr th:each="item : ${dataList}">
+												<th>충북</th>
+												<td><span class="level2" th:text="${item['충청북도']}"> </span></td>
+											</tr>
+										</tbody>
+									</table>
+								</li>
+							</ul>
+						</div>
+
+
+						<div class="afterTomorrow tabCont" style="display:none;">
+                                    <div class="noticeArea scr1">
+                                        <p>
+                                            ○[미세먼지] 수도권·강원영서·충청권·호남권·부산·경남·제주권은
+                                            ‘나쁨’, 그 밖의 권역은 ‘보통’으로 예상됨. 다만, 그 밖의 권역에서도 ‘나쁨’
+                                            수준의 농도가 일시적으로 나타날 수 있음
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+               
+              <div class= "top-botom-altpajswl">
+                <div class="titArea">
+                    <h2>미세먼지 경보 발령 내역</h2>
+                </div>
+                <table class="tableType1">
+                 
+                    <colgroup>
+                        <col width=""><col width=""><col width=""><col width=""><col width=""><col width=""><col width="">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>번호</th>
+                            <th>지역</th>
+                            <th>권역</th>
+                            <th>항목</th>
+                            <th>경보단계</th>
+                            <th>발령시간</th>
+                            <th>해제시간</th>
+                        </tr>
+                    </thead>
+                    <tbody id="alarmTotList"><tr>    <td>2258</td>    <td>경기</td>    <td>남부권</td>    <td>PM<sub>2.5</sub></td>    <td>주의보</td>    <td>2024-02-11 22</td>    <td>2024-02-12 16</td></tr><tr>    <td>2257</td>    <td>서울</td>    <td>서울권역</td>    <td>PM<sub>2.5</sub></td>    <td>주의보</td>    <td>2024-02-11 20</td>    <td>2024-02-12 16</td></tr><tr>    <td>2256</td>    <td>인천</td>    <td>동남부권역</td>    <td>PM<sub>2.5</sub></td>    <td>주의보</td>    <td>2024-02-11 19</td>    <td>2024-02-12 15</td></tr><tr>    <td>2255</td>    <td>인천</td>    <td>서부권역</td>    <td>PM<sub>2.5</sub></td>    <td>주의보</td>    <td>2024-02-11 19</td>    <td>2024-02-12 15</td></tr><tr>    <td>2254</td>    <td>인천</td>    <td>강화권역</td>    <td>PM<sub>2.5</sub></td>    <td>주의보</td>    <td>2024-02-11 18</td>    <td>2024-02-12 15</td></tr><tr>    <td>2253</td>    <td>인천</td>    <td>영종·영흥권역</td>    <td>PM<sub>2.5</sub></td>    <td>주의보</td>    <td>2024-02-11 18</td>    <td>2024-02-13 14</td></tr><tr>    <td>2252</td>    <td>경남</td>    <td>거제권역</td>    <td>PM<sub>2.5</sub></td>    <td>주의보</td>    <td>2024-02-11 05</td>    <td>2024-02-11 21</td></tr><tr>    <td>2251</td>    <td>경남</td>    <td>통영권역</td>    <td>PM<sub>2.5</sub></td>    <td>주의보</td>    <td>2024-02-11 05</td>    <td>2024-02-11 21</td></tr><tr>    <td>2250</td>    <td>경남</td>    <td>산청권역</td>    <td>PM<sub>2.5</sub></td>    <td>주의보</td>    <td>2024-02-11 01</td>    <td>2024-02-11 06</td></tr><tr>    <td>2249</td>    <td>경남</td>    <td>함양권역</td>    <td>PM<sub>2.5</sub></td>    <td>주의보</td>    <td>2024-02-11 01</td>    <td>2024-02-11 08</td></tr></tbody>
+                </table>
+ 		</div>
+</div>
+<div th:replace="~{footer}"></div> 
 </body>
 </html>
