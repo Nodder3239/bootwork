@@ -63,6 +63,12 @@ a{
     color: rgba(255, 255, 255, 0.5);
 }
 /*산불페이지 */
+.Area{
+	margin-top: 20px;
+}
+.termsWrap{
+	margin-bottom: 40px;
+}
 .leftArea{
 	float: left;
 }
@@ -232,9 +238,82 @@ a{
 .terms317,.terms318,.terms320 {
 	margin-top: 30px;
 }
+.todayArea{
+	height: 200px;
+}
+@media (max-width: 768px) {
+  .Area {
+    margin-top: 10px;
+  }
+  
+  .termsWrap {
+    margin-bottom: 20px;
+  }
+  
+  .leftArea img {
+    width: 100%;
+    height: auto;
+    margin: 10px auto;
+    display: block;
+  }
+  
+  .rightArea {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+  }
+  
+  .rightArea h2 {
+    margin-top: 10px;
+  }
+  
+  .todayArea ul li {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+  
+  .tableArea {
+    width: 100%;
+    margin-top: 10px;
+    height: auto;
+  }
+  
+  .tableArea table {
+    font-size: 12px;
+  }
+  
+  .swiper-slide {
+    margin-right: 10px;
+  }
+  
+  .rightArea .todayArea ul li span {
+    font-size: 24px;
+  }
+  
+  .termsText {
+    margin-top: 20px;
+  }
+  
+  .terms317, .terms318, .terms320 {
+    margin-top: 20px;
+  }
+
+  #map {
+    width: 100%;
+    height: auto;
+  }
+}
 
  /* 산불끝 */
 /* 지진 */
+.top-top-top{
+	margin-top: 20px;
+}
+.midtable{
+	margin-bottom: 40px;
+}
 .top-top-top-left {
 	float: left;
 }
@@ -255,7 +334,7 @@ a{
 .table-table-wlwls {
     margin: 20px; /* 테이블 주변 여백 조정 */
     border-collapse: collapse; /* 테이블 셀 테두리를 합침 */
-    width: 500px; /* 테이블의 너비를 부모 요소에 맞춤 */
+    width: 550px; /* 테이블의 너비를 부모 요소에 맞춤 */
 }
 
 /* 테이블 헤더와 데이터 행의 공통 스타일링 */
@@ -266,8 +345,9 @@ a{
     text-align: center; /* 셀 안의 텍스트를 가운데 정렬 */
 }
 .midtable h2{
-	margin-top: 140px;
+	margin-top: 150px;
 	text-align: center;
+	margin-bottom: 20px;
 }
 /* 테이블 헤더 스타일링 */
 .table-table-wlwls th {
@@ -525,6 +605,7 @@ script {
 }
 /* 산사태 */
 .top-top-tkstkxo{
+	margin-top: 20px;
 	height: 700px;
 }
 .top-top-tkstkxo-left{
@@ -539,6 +620,46 @@ script {
 	display:inline-block;
 	margin-left: 50px;
 	margin-top: 20px;
+}
+.termsWrap h2{
+	padding: 10px;
+}
+.tableTypeC {
+    border: 1px solid #d2d2d2;
+    width: 100%;
+    height: 500px;
+    margin-top: 20px;
+}
+legend, caption {
+    width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    font-size: 0;
+    line-height: 0;
+}
+.tableTypeC thead th {
+    font-size: 15px;
+    font-weight: 500;
+    color: #282828;
+    background: #cce7f4;
+    border-right: 1px solid #a3b9c3;
+    border-bottom: 1px solid #a3b9c3;
+}
+.tableTypeC thead th {
+    padding: 14px 10px;
+}
+.tableTypeC tbody td {
+    color: #54585e;
+    font-size: 14px;
+    text-align: center;
+    border-right: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+}
+.top-top-tkstkxo-right {
+    width: 570px;
+    height: 532px;
+    margin-left: 40px;
 }
 
 /* 테이블 전체 스타일 */
@@ -600,10 +721,106 @@ script {
       display: none;
       margin-top: 20px;
     }
-    
+    /*중간 이미지  */
+    .tips {
+    position: relative;
+    overflow: hidden;
+    background: #f1f1f1;
+    padding: 90px;
+    margin-bottom: 40px;
+}
+.tips .tipsWrap {
+    width: 1180px;
+    margin: 0 auto;
+   
+}
+.tips .tipsWrap > div {
+    float: left;
+    width: 844px;
+    position: relative;
+    z-index: 1;
+}
+.tips .tipsWrap > div ol {
+    position: relative;
+    padding-top: 12px;
+}
+.tips .tipsWrap > div ol:before {
+    content: "";
+    position: absolute;
+    top: 164px;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: #b2b2b2;
+}
+.tips .tipsWrap > div ol li {
+    float: left;
+    width: 20%;
+    padding-top: 174px;
+    position: relative;
+    font-size: 15px;
+    font-weight: 500;
+}
+.tips .tipsWrap > div ol li:before {
+    position: absolute;
+    left: 0;
+    top: 110px;
+    font-size: 28px;
+    color: #282828;
+    line-height: 1em;
+}
+.tips .tipsWrap > div ol li:nth-child(1)::before {
+    content: "1";
+}
+.tips .tipsWrap > div ol li:nth-child(2)::before {
+    content: "2";
+}
+.tips .tipsWrap > div ol li:nth-child(3)::before {
+    content: "3";
+}
+.tips .tipsWrap > div ol li:nth-child(4)::before {
+    content: "4";
+}
+.tips .tipsWrap > div ol li:nth-child(5)::before {
+    content: "5";
+}
+.tips .tipsWrap > div ol li:after {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 150px;
+    height: 96px;
+    margin: 0 0 0 0;
+}
+ .landslideCont ol li:nth-child(1)::after {
+    background: url(/images/tipsCard1.png) no-repeat;
+}
+ .landslideCont ol li:nth-child(2)::after {
+    background: url(/images/tipsCard2.png) no-repeat;
+}
+.landslideCont ol li:nth-child(3)::after {
+    background: url(/images/tipsCard3.png) no-repeat;
+}
+.landslideCont ol li:nth-child(4)::after {
+    height: 109px;
+}
+.landslideCont ol li:nth-child(4)::after {
+    background: url(/images/tipsCard4.png) no-repeat;
+}
+.landslideCont ol li:nth-child(5)::after {
+    background: url(/images/tipsCard5.png) no-repeat;
+}
+.landslideCont ol li:after {
+    background-position: 50% 100% !important;
+}
+
+
  /* 미세먼지 */
 /* 미세먼지 */
-
+.titArea{
+	margin-top: 20px;
+}
 /* 테이블 스타일 */
         .simple-table {
             border-collapse: collapse;
@@ -639,6 +856,7 @@ script {
 
         /* 미세먼지 */
         .leftArea2 {
+        	margin-top:20px;
             float: left;
             width: 50%;
             padding: 10px;
@@ -716,6 +934,7 @@ script {
         }
 
         /* 기본 테이블 스타일 */
+        
         .rightArea2 .forecast .predictionWrap .tableLayout li:nth-of-type(odd) {
             float: left;
         }
@@ -756,6 +975,7 @@ script {
         	margin-bottom:20px;
             clear: both;
         }
+       
  .tableType1 thead th {
     font-weight: 500;
     background: #f6f6f6;
@@ -773,6 +993,7 @@ script {
 .tableType1 {
     width: 1024px; 
     margin: 0 auto;
+    margin-bottom: 40px;
 } 
 
 /* 붕괴*/

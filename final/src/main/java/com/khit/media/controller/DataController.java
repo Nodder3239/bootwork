@@ -106,7 +106,7 @@ public class DataController {
     public String data3(Model model) {
         try {
             // JSON 데이터를 가져올 URL
-            URL url = new URL("https://www.safetydata.go.kr//openApi/%EA%B8%B0%EC%83%81%EC%B2%AD_%EC%A7%80%EC%A7%84%ED%86%B5%EB%B3%B4?serviceKey=Q741B4CFT0AYOQ27&returnType=json&pageNum=1&numRowsPerPage=7");
+            URL url = new URL("https://www.safetydata.go.kr//openApi/%EA%B8%B0%EC%83%81%EC%B2%AD_%EC%A7%80%EC%A7%84%ED%86%B5%EB%B3%B4?serviceKey=Q741B4CFT0AYOQ27&returnType=json&pageNum=1&numRowsPerPage=10");
 
             // HTTP 연결 설정
             HttpURLConnection con = (HttpURLConnection) url.openConnection();

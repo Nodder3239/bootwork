@@ -10,10 +10,11 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 </head>
 <body>
 	<div th:replace="~{header}"></div> 
-	<div class="main-main">
-<div id="pi-title">
+	<div id="pi-title">
 	<h3>산사태</h3>	
 </div>	
+	<div class="main-main">
+
 	<div class="top-top-tkstkxo">
 		<div class="top-top-tkstkxo-left">
 			<img alt="" src="/images/산사태.png">
@@ -21,30 +22,46 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 		</div>
 		<div class="top-top-tkstkxo-right">
 		<h2>산사태 예보 발령상황</h2>
-		 <!-- 테이블 시작 -->
-    	<table id="result1" class="table6">
-        <thead>
-        <!-- 테이블 헤더 정의 -->
-        <tr>
-            <!-- 각 열의 제목 지정 -->
-            <th scope="col">발생예보발령기관명</th>
-            <th scope="col">예보발령일시</th>
-            <th scope="col">예보발령종류</th>
-        </tr>
-        </thead>
-        <tbody>
-        <!-- 데이터 리스트를 반복하여 각 항목을 출력 -->
-        <tr th:each="item : ${dataList}">
-            <!-- 각 열에 해당하는 데이터 출력 -->
-            <td th:text="${item.OCRN_FRCST_ISSU_INSTT_NM}"></td>
-            <td th:text="${item.FRST_FRCST_ISSU_DT}"></td>
-            <td th:text="${item.FRCST_ISSU_KIND_NM}" ></td>
-        </tr>
-        </tbody>
-    </table>
+		<table class="tableTypeC">
+                                <caption>홍수 발생 지점, 예보 일시,햬제일시,예보상태에 관한 태이블</caption>
+                                <colgroup>
+                                    <col width="*">
+                                    <col width="93px">
+                                    <col width="111px">
+                                    <col width="111px">
+                                    <col width="93px">
+                                </colgroup>
+                                <thead>
+                                <tr>
+                                    <th>관측지점</th>
+                                    <th>예보종류</th>
+                                    <th>발령일시</th>
+                                    <th>해제일시</th>
+                                    <th>예보상태</th>
+                                </tr>
+                                </thead>
+                                <tbody><tr>    <td data-issueid="11387">강원특별자치도 삼척시</td>    <td>주의보</td>    <td>2023.12.11 18:07</td>    <td>2023.12.12 08:00</td>    <td>해제</td></tr><tr>    <td data-issueid="11386">경상북도 울진군</td>    <td>주의보</td>    <td>2023.12.11 15:23</td>    <td>2023.12.12 01:10</td>    <td>해제</td></tr><tr>    <td data-issueid="11385">부산광역시 기장군</td>    <td>주의보</td>    <td>2023.09.21 01:53</td>    <td>2023.09.21 09:48</td>    <td>해제</td></tr><tr>    <td data-issueid="11384">경상북도 울진군</td>    <td>주의보</td>    <td>2023.09.21 01:38</td>    <td>2023.09.21 09:20</td>    <td>해제</td></tr><tr>    <td data-issueid="11383">경상북도 청송군</td>    <td>주의보</td>    <td>2023.09.20 23:39</td>    <td>2023.09.21 03:08</td>    <td>해제</td></tr><tr>    <td data-issueid="11382">경상북도 영양군</td>    <td>주의보</td>    <td>2023.09.20 22:20</td>    <td>2023.09.21 02:54</td>    <td>해제</td></tr><tr>    <td data-issueid="11381">전라남도 광양시</td>    <td>주의보</td>    <td>2023.09.20 22:08</td>    <td>2023.09.20 23:32</td>    <td>해제</td></tr></tbody>
+                            </table>
     <!-- 테이블 종료 -->
 		</div>
+		
+		
 	</div>
+	<div class="tips aniOn">
+            <div class="tipsWrap">
+                <div class="landslideCont">
+                    <h2>산사태 발생 시 이렇게 행동하세요!</h2>
+                    <ol>
+                        <li>기상 예보와 산사태<br>위험 정보 확인</li>
+                        <li>등산 및 캠핑 중단</li>
+                        <li>산사태 취약지역에서는<br>미리 대피</li>
+                        <li>2차 피해 예방 위해<br>가스와 전기 차단</li>
+                        <li>옆집에도 상황을 알려<br>함께 대피</li>
+                    </ol>
+                </div>
+                
+            </div>
+        </div>
 		<div class="terms">
 			<div class="termsWrap">
 				<h2>재난 용어 및 관련 정보 – 산사태</h2>

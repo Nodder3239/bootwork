@@ -1,10 +1,10 @@
 /**
- * 
+ *  메인페이지 - 긴급재난문자 api 사용
  */
 
 $(document).ready(function(){
 // 			alert("test...");
-			
+
 			$.ajax({
 				//요청방식(type), url, data,dataType, success, error
 				type: "GET",
@@ -24,9 +24,18 @@ $(document).ready(function(){
 	                            + "<td class='ds-item-msg'>" + item.msg + "&nbsp;&nbsp;" + "<strong>" +item.create_date + "</strong>" + "</td>"
 	                            + "</tr>";
 					};
-
 	                // 결과를 테이블에 삽입
 	                $("#result1 tbody").html(value);
+	                
+	                // 각 .ds-location-name 요소의 텍스트를 최대 글자 수로 제한하는 코드
+		            $(".ds-location-name").each(function() {
+		                var maxLength = 15; // 최대 글자 수
+		                var text = $(this).text();
+		                var trimmedText = text.length > maxLength ? text.slice(0, maxLength) + "..." : text;
+		                $(this).text(trimmedText);
+		                $(this).attr('title', text); // .ds-location-name 요소 위로 마우스 올렸을 때, 생략된 부분 포함 전체 텍스트 표시
+		            });
+		           
 				},
 				error: function(error){
 					alert("에러 발생: " + error);

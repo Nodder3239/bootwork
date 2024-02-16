@@ -1,5 +1,5 @@
 /**
- * 
+ *  메인페이지 상단 기상특보 text 슬라이드 구현
  */
         // 선택자
         const sliderWrap = document.querySelector(".slider_wrap");

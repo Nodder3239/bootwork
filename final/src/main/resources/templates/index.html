@@ -52,17 +52,24 @@
 					</div>
 				</div>
 				<!-- 미세먼지 -->
-				<div class="content-fineDust"> 
-					<dl class="particulateMatter">
-						<dt style="font-size:17px; padding-right:10px;">미세먼지</dt>
-						<dd style="font-weight:900; font-size:45px;">79</dd>
-						<dd style="font-weight:700; font-size:20px;">&nbsp;보통</dd>
-					</dl>
-					<dl class="fine-particulateMatter">
-						<dt style="font-size:17px; padding-right:10px;">초미세먼지</dt>
-						<dd style="font-weight:900; font-size:45px;">62</dd>					
-						<dd style="font-weight:700; font-size:20px;">&nbsp;나쁨</dd>					
-					</dl>
+				<div class="today-airpollution-wrap"> 
+					<h3 class="today-title">미세먼지</h3>
+					
+					<div class="particulateMatter" style="padding-bottom: 23px;">
+						<h3>미세먼지&nbsp;<small>(PM10)</small></h3>
+						<div class="pmValue">
+							<p id="pm10Value"></p>
+						    <p>µg/m³</p>
+						</div>
+					</div>
+					
+					<div class="particulateMatter">
+						<h3>초미세먼지&nbsp;<small>(PM2.5)</small></h3>
+						<div class="pmValue">
+							<p id="pm25Value"></p>
+							<p>µg/m³</p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</article>
@@ -74,7 +81,7 @@
 			</div>
 			<!-- <p class="report-text">body2_right box - 실시간 제보(member) 게시판 불러오기</p> -->
 			<div>
-				<table class="table" id="tbl_list">
+				<table>
 					<thead>
 						<tr>
 							<th scope="col">글분류</th>
@@ -94,11 +101,11 @@
 			                	<span th:if="${board.boardCategory eq 'info4'}"><a th:href="@{/infoboard/?cate=info4}">대전/충청</a></span>
 			                	<span th:if="${board.boardCategory eq 'info5'}"><a th:href="@{/infoboard/?cate=info5}">광주/전라</a></span>
 			                	<span th:if="${board.boardCategory eq 'info6'}"><a th:href="@{/infoboard/?cate=info6}">부산/경상</a></span>
+			                	<span th:if="${board.boardCategory eq 'info7'}"><a th:href="@{/infoboard/?cate=info7}">제주</a></span>
 			                </th>
-						    <td class="td_title" style="width:200px;">
+						    <td>
 							    <a th:href="@{|/board/${board.id}|(page=${boardList.number+1})}">
 							    	<span th:text="${board.boardTitle}"></span>
-							    	<span style="font-size:small;" th:if="${board.replyCount != 0}" th:text="'[ ' + ${board.replyCount} + ' ]'"></span>
 							    </a>
 							</td>
 		
@@ -157,7 +164,7 @@
 			<!-- title + 더보기 -->
 			<div class="earthQuake-behavior">
 				<p>지진 발생 시 이렇게 행동하세요 !</p>
-				<a th:href="@{/board/preparation}">
+				<a th:href="@{/safeBehaviorNum1}">
 				 	더보기&nbsp;<i class="fi fi-rr-arrow-circle-right" style="font-size:12px;"></i>
 				</a>
 			</div>
@@ -168,59 +175,10 @@
 		</div>
 	</section>
 <div th:replace="~{footer}"></div>
-<script>
-//오늘 날짜출력
-	$(document).ready(function () {
-	
-	    function convertTime() {
-	        var now = new Date();
-	
-	
-	        var month = now.getMonth() + 1;
-	        var date = now.getDate();
-	
-	        return '(' + month + '/' + date + ')';
-	    }
-	
-	    var currentTime = convertTime();
-	    $('.nowtime').append(currentTime);
-	});
-	
-	
-	//제이쿼리사용
-	$.getJSON('https://api.openweathermap.org/data/2.5/weather?q=seoul&appid=a8501159eb9e48f3bb16a140c20e9c6f&units=metric', function(WeatherResult) {
-		// 기온 출력을 위해 Math.round()를 사용하여 온도 값을 정수로 반올림
-		var nowTemp = Math.round(WeatherResult.main.temp);
-		var lowTemp = Math.round(WeatherResult.main.temp_min);
-		var highTemp = Math.round(WeatherResult.main.temp_max);
-	
-		$('.SeoulNowtemp').html(nowTemp + '&nbsp;' + '<small>°C</small>');
-		$('.SeoulLowtemp').html(lowTemp + '&nbsp;' + '°C');
-		$('.SeoulHightemp').html(highTemp + '&nbsp;' + '°C');
-		
-	// 날씨 아이콘 출력
-		var weathericonUrl =
-		'<img class="weather-icons" src= "http://openweathermap.org/img/wn/' + WeatherResult.weather[0].icon + '.png" alt="' 
-				+ WeatherResult.weather[0].description + '"/>'
-		
-		$('.SeoulIcon').html(weathericonUrl);
-	
-	// 기온에 따른 이미지 표시
-	var temperature = WeatherResult.main.temp;
-	if (temperature <= 10) {
-		// 추운 날씨 이미지
-		$('.weatherExpression').html('<img src="#" alt="Cold">');
-		} else if (temperature >= 20) {
-		// 따듯한 날씨 이미지
-		$('.weatherExpression').html('<img src="#" alt="Warm">');
-		} else {
-		// 온화한 날씨 이미지 또는 표시하지 않음
-		$('.weatherExpression').html('<img src="#" alt="Cold">');
-		}
-		});
-</script>
+<script src="/js/today-airpollution.js"></script>
+<script src="/js/today-weather.js"></script>
 <script src="/js/text-slide.js"></script>
 <script src="/js/emergency-text.js"></script>
-</body>
 
+</body>
 </html>
