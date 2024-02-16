@@ -70,7 +70,8 @@ public class MemberController {
 	@PostMapping("/member/join")
 	public String join(@Valid MemberDTO memberDTO,
 			BindingResult bindingResult,
-			MultipartFile memberFile) throws Exception{
+			MultipartFile memberFile
+			) throws Exception{
 		if(bindingResult.hasErrors()) {
 			log.info("has errors.....");
 			//에러가 있으면 회원 가입 페이지에 머무름

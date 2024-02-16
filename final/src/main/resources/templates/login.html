@@ -34,7 +34,7 @@
 									value="회원가입" id="joinf">
 		  		</li>
 
-				<div class="line">
+				<!--  <div class="line">
 						or
 					</div>
 					
@@ -45,11 +45,11 @@
 							<input type="button" value="카카오 로그인">
 			      </a>
 				</li>
-				<!-- <li onclick="kakaoLogout();">
+				<li onclick="kakaoLogout();">
 			      <a href="javascript:void(0)">
 			          <span>카카오 로그아웃</span>
 			      </a>
-				</li> -->
+				</li>
 				
 				
 				
@@ -58,7 +58,7 @@
 		  		</li>
 					<li>
 		  			<input type="button" value="구글로그인 ">
-		  		</li>
+		  		</li>  -->
 		  	</ul>
 		  </fieldset>
 		</form>
@@ -66,8 +66,9 @@
 	</div>
 </div>
 </body>
-<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+ <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
+<!--
 Kakao.init('6735725d1e0bcb0ccacb2a026e652d8a'); //발급받은 키 중 javascript키를 사용해준다.
 console.log(Kakao.isInitialized()); // sdk초기화여부판단
 //카카오로그인
@@ -103,6 +104,8 @@ function kakaoLogout() {
       })
       Kakao.Auth.setAccessToken(undefined)
     }
-  }  
-</script>
+  }  -->
+  
+ 
+</script> 
 </html>

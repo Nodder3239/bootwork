@@ -80,16 +80,8 @@
 				<a th:href="@{/board/}"class="icon-wrap"><i class="fi fi-rr-arrow-circle-right"></i></a>
 			</div>
 			<!-- <p class="report-text">body2_right box - 실시간 제보(member) 게시판 불러오기</p> -->
-			<div>
+			<div class="main-boardlist">
 				<table>
-					<thead>
-						<tr>
-							<th scope="col">글분류</th>
-							<th scope="col">글제목</th>
-							<th scope="col">글쓴이</th>
-							<th scope="col">작성일</th>
-						</tr>
-					</thead>
 					<tbody>
 						<tr th:each="board : ${boardList}">
 			                <th>
@@ -105,12 +97,12 @@
 			                </th>
 						    <td>
 							    <a th:href="@{|/board/${board.id}|(page=${boardList.number+1})}">
-							    	<span th:text="${board.boardTitle}"></span>
+							    	<span class="main-boardTitle" th:text="${board.boardTitle}"></span>
 							    </a>
 							</td>
 		
 			                <td th:text="${board.boardWriter}"></td>
-			                <td th:utext="${board.updatedDate != null ? #temporals.format(board.updatedDate, 'yyyy-MM-dd hh:mm') : #temporals.format(board.createdDate, 'yyyy-MM-dd hh:mm')}"></td>
+			                <td class="date-column" th:utext="${board.updatedDate != null ? #temporals.format(board.updatedDate, 'yyyy-MM-dd hh:mm') : #temporals.format(board.createdDate, 'yyyy-MM-dd hh:mm')}"></td>
 			            </tr>
 					</tbody>
 				</table>
@@ -164,7 +156,7 @@
 			<!-- title + 더보기 -->
 			<div class="earthQuake-behavior">
 				<p>지진 발생 시 이렇게 행동하세요 !</p>
-				<a th:href="@{/safeBehaviorNum1}">
+				<a th:href="@{/safeBehavior/Num1}">
 				 	더보기&nbsp;<i class="fi fi-rr-arrow-circle-right" style="font-size:12px;"></i>
 				</a>
 			</div>

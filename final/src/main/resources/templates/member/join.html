@@ -58,7 +58,7 @@
 		  			   th:errors="*{memberEmail}" class="error"></p>
 		  		</li>
 		  		<li>
-		  			<p id="check-result"></p>
+		  			<p id="check-result" class="error"></p>
 		  		</li>
 		  		<li>
 		  			<label for="memberAge">생년월일</label>
@@ -103,7 +103,7 @@
 		  		
 		  		
 		  		
-		  	<div class="line">or</div>
+		  	<!-- <div class="line">or</div>
 					
 					
 					
@@ -112,17 +112,17 @@
 						<input type="button" id="kakao" value="카카오로 시작하기">
 		      </a>
 			</li>
-			<!-- <li onclick="kakaoLogout();">
+			<li onclick="kakaoLogout();">
 			      <a href="javascript:void(0)">
 			          <span>카카오 로그아웃</span>
 			      </a>
-			</li> -->
+			</li>
 		  	<li>
 		  			<input type="button" id="naver" value="네이버로 시작하기">
 		  		</li>
 					<li>
 		  			<input type="button" id="google" value="구글로 시작하기">
-		  		</li>
+		  		</li> -->
 		  	</ul>
 		  </fieldset>
 		</form>
@@ -163,7 +163,7 @@ const checkEmail = () => {
 		}
 	});
 };
-/*
+
 function checkUser(){
     
     let form = document.forms["users"];
@@ -178,19 +178,24 @@ function checkUser(){
     
     if (id.length < 5) { // 아이디는 최소 5자리 이상
         alert("아이디는 5자 이상 입력해주세요.");
+        form.submit()
         return false;
     } else if (pw1.length < 8 || !regexPw1.test(pw1)) {
         alert("비밀번호는 영문자, 숫자, 특수문자를 모두 포함하여 8자 이상 입력해주세요.");
+        form.submit()
         return false;
     } else if (pw1 !== pw2) {
         alert("비밀번호가 일치하지 않습니다.");
+        form.submit()
         return false;
     } else if (name.length < 3) {
         alert("이름은 3글자이상 입력해주세요.");
+        form.submit()
         return false;
     } else {
         form.submit();  // 오류가 없으면 폼을 메인 컨트롤러로 전송
     }
-}*/
+}
+
 </script>
 </html>

@@ -1,5 +1,6 @@
 package com.khit.media.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.data.domain.Page;
@@ -110,6 +111,18 @@ public class QnaBoardController {
 		model.addAttribute("writer", memberDTO);
 		//댓글 목록
 		List<ReplyDTO> replyList = replyService.findByBoardId(id);
+		
+		List<String> thumbList = new ArrayList<>();
+        for (ReplyDTO replyDTO : replyList) {
+            String replyer = replyDTO.getReplyer();
+            MemberDTO replyerDTO = memberService.findByName(replyer);
+            if (replyerDTO != null) {
+                thumbList.add(replyerDTO.getFilename());
+            }
+        }
+	        
+	    model.addAttribute("thumbList", thumbList);
+		
 		model.addAttribute("board", boardDTO);
 		model.addAttribute("replyList", replyList);
 		model.addAttribute("page", pageable.getPageNumber());

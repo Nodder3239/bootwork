@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>safeBehaviorNum1</title>
+<title>safeBehaviorNum6</title>
 <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 <script src="https://kit.fontawesome.com/b70f42fdf2.js" crossorigin="anonymous"></script>
 <link rel="stylesheet" th:href="@{/css/styleKH.css}">
@@ -13,24 +13,29 @@
    	<div id="pi-title">
 		<h3>대설</h3>	
 	</div>
-	<div id="safeBehavior_container">
+	<div id="safeBehavior_bigContainer">
 		<section>
-			<div id="safeBehavior_container6">
-				<div id="safeBehavior_topVideo">
-					<!-- <video width="100%" height="100%" autoplay muted loop controls poster="@{/images/planB-logo.png}">
-         				<source th:src="@{/medias/safeBehaviorNum6.mp4}" type="video/mp4">
-     				</video> -->
-				</div>
+			<div id="safeBehavior_container">
 				<div id="safeBehavior_topContent">
-					<div id="safeBehavior_topTitle">
-						<h3>대설 발생 시 핵심행동요령은 무엇인가요?</h3>
-					</div>
-					<div id="safeBehavior_text">
-						<h4> 
-							 &nbsp;대설주의보가 발표되었을 때 외출할 경우에는 가급적 대중교통을 이용하며 가족에게 행선지와 예상귀가시간을 
-							미리 이야기 하도록 합니다.<br>
-							 &nbsp;자동차를 이용해야 할 때는 낮에 외출하도록 하고 지름길이나 이면도로는 피하고 간선도로를 이용하도록 합니다.<br>
-						</h4>
+					<div id="safeBehavior_topVideo">
+	                	<img th:src="@{/images/safeBehaviorNum6_480280.png}" width="100%" height="100%" alt="이미지를 추가해주세요.">
+	                </div>
+	                <!-- <div id="safeBehavior_topVideo">    
+						<video width="100%" height="100%" autoplay muted loop controls poster="@{/images/planB-logo.png}">
+	         				<source th:src="@{/medias/safeBehaviorNum6.mp4}" type="video/mp4">
+	     				</video>
+					</div> -->
+					<div id="safeBehavior_topMain">
+						<div id="safeBehavior_topTitle">
+							<h3>대설 발생 시 핵심행동요령은 무엇인가요?</h3>
+						</div>
+						<div id="safeBehavior_topText">
+							<h4> 
+								 &nbsp;대설주의보가 발표되었을 때 외출할 경우에는 가급적 대중교통을 이용하며 가족에게 행선지와 예상귀가시간을 
+								미리 이야기 하도록 합니다.<br>
+								 &nbsp;자동차를 이용해야 할 때는 낮에 외출하도록 하고 지름길이나 이면도로는 피하고 간선도로를 이용하도록 합니다.<br>
+							</h4>
+						</div>
 					</div>
 				</div>
 				<div id="safeBehavior_categoryTitle">
@@ -40,10 +45,10 @@
 					<table id="safeBehavior_category">
 						<tbody>
 							<tr>
-								<th id="safeBehavior_category1" data-content-id="safeBehavior_content1">평상 시 대비</th>
-	                            <th id="safeBehavior_category2" data-content-id="safeBehavior_content2">대설 예보 시 행동요령</th>
-	                            <th id="safeBehavior_category3" data-content-id="safeBehavior_content3">대설 특보 시 행동요령</th>
-	                            <th id="safeBehavior_category4" data-content-id="safeBehavior_content4">대설 발생 후 행동요령</th>
+								<th id="safeBehavior_category1" data-content-id="safeBehavior_content1">평상 시<br> 대비</th>
+	                            <th id="safeBehavior_category2" data-content-id="safeBehavior_content2">대설 예보 시<br> 행동요령</th>
+	                            <th id="safeBehavior_category3" data-content-id="safeBehavior_content3">대설 특보 시<br> 행동요령</th>
+	                            <th id="safeBehavior_category4" data-content-id="safeBehavior_content4">대설 발생 후<br> 행동요령</th>
 							</tr>
 						</tbody>
 					</table>
@@ -51,127 +56,127 @@
 				<div id="safeBehavior_contents">
 	                <div id="safeBehavior_content1" class="active">
 	                    <div id="safeBehavior_mainImage1">
-	                        <img th:src="@{/images/safeBehaviorNum6_600800.png}" width="100%" height="100%" alt="이미지를 추가해주세요.">
+	                        <img th:src="@{/images/safeBehaviorNum6_1_600800.png}" width="100%" height="100%" alt="이미지를 추가해주세요.">
 	                    </div>
 	                    <div id="safeBehavior_mainContent1">
 	                    	<div id="safeBehavior_mainTitle1">
-	                    		<h3>이렇게 대비해주세요!</h3>
+	                    		<h3>평상 시에 확인해주세요!</h3>
 	                    	</div>
 	                    	<div id="safeBehavior_mainText1">
 		                    	<p>
-		                    		<span class="font">1. <b>내 지역의 정보</b>는 가족이나 이웃과 함께 미리 확인하고 공유합니다.<br></span>
-		                    		&nbsp;◆ 내가 거주하거나 생활하는 지역의 눈사태, 붕괴위험시설물 등 <b>재해위험요소</b>는 과거 피해 자료를 통해서 사전에 
+		                    		1. <b>내 지역의 정보</b>는 가족이나 이웃과 함께 미리 확인하고 공유합니다.<br>
+		                    		&nbsp;- 내가 거주하거나 생활하는 지역의 눈사태, 붕괴위험시설물 등 <b>재해위험요소</b>는 과거 피해 자료를 통해서 사전에 
 		                    		가족이나 이웃과 함께 확인합니다.<br><br>
-		                    		<span class="font">2. 재난에 대한 <b>위험정보를 수신</b>할 수 있도록 가족이나 이웃과 함께 준비합니다.<br></span>
-		                    		&nbsp;◆ TV, 라디오, 인터넷 등으로 기상정보를 미리 파악하고, 스마트폰에 <안전디딤돌> 앱을 설치하여 대설, 풍랑 등 기상특보나 
+		                    		2. 재난에 대한 <b>위험정보를 수신</b>할 수 있도록 가족이나 이웃과 함께 준비합니다.<br>
+		                    		&nbsp;- TV, 라디오, 인터넷 등으로 기상정보를 미리 파악하고, 스마트폰에 <안전디딤돌> 앱을 설치하여 대설, 풍랑 등 기상특보나 
 		                    		눈사태, 시설물 붕괴 등 재난 예보＊경보를 수신할 수 있도록 가족이나 이웃과 함께 합니다.<br><br>
-		                    		<span class="font">3. 가족이나 이웃과 함께 사전에 <b>누가 무엇을 어떻게 할 것인지</b> 약속을 정합니다.<br></span>
-		                    		&nbsp;◆ 비상시를 대비하여 지역 대피장소(국민재난안전 포털 <a href="https://www.safekorea.go.kr/idsiSFK/neo/main/main.html" target="_blank" style="color: blue;">www.safekorea.go.kr</a> 이나 
+		                    		3. 가족이나 이웃과 함께 사전에 <b>누가 무엇을 어떻게 할 것인지</b> 약속을 정합니다.<br>
+		                    		&nbsp;- 비상시를 대비하여 지역 대피장소(국민재난안전 포털 <a href="https://www.safekorea.go.kr/idsiSFK/neo/main/main.html" target="_blank" style="color: #05347E;">www.safekorea.go.kr</a> 이나 
 		                    		<b>지자체 홈페이지의 임시대피소, 이재민임시주거시설 등 참고</b>)와 안전한 이동 방법에 대해 가족이나 이웃과 함께 숙지하고, 
 		                    		어린이 등 에게 알려 주어야 합니다.<br>
-		                    		&nbsp;◆ 가족이나 이웃이 각각 이동할 때를 대비하여 다시 만나는 장소를 사전에 정합니다.<br><br>
-		                    		<span class="font">4. 비상시에 가족이나 이웃과 함께 <b>안전한 이동방법, 대피요령 등</b>을 자세히 알아둡니다.<br></span>
-		                    		&nbsp;◆ 비상상황이 예견될 때에는 가족이나 이웃에게 즉시 연락해서 함께 안전한 곳으로 이동할 수 있도록 하고, 상황이 급박할 경우에는 즉시 그 자리를 피하고 
+		                    		&nbsp;- 가족이나 이웃이 각각 이동할 때를 대비하여 다시 만나는 장소를 사전에 정합니다.<br><br>
+		                    		4. 비상시에 가족이나 이웃과 함께 <b>안전한 이동방법, 대피요령 등</b>을 자세히 알아둡니다.<br>
+		                    		&nbsp;- 비상상황이 예견될 때에는 가족이나 이웃에게 즉시 연락해서 함께 안전한 곳으로 이동할 수 있도록 하고, 상황이 급박할 경우에는 즉시 그 자리를 피하고 
 		                    		가족과는 따로 연락해서 자신의 이동경로를 알려주도록 합니다.<br><br>
-		                    		<span class="font">5. 재난이 발생할 경우를 대비하여 <b>비상용품</b>을 사전에 가족이나 이웃과 함께 준비합니다.<br></span>
-		                    		&nbsp;◆ 응급약품, 식수, 비상식량, 라디오, 핸드폰 충전기, 휴대용 버너, 연료, 담요 등 비상용품을 사전에 한 곳에 구비해 둡니다.<br>
-		                    		&nbsp;◆ 차량이 있는 경우에는 연료를 미리 채워 둡니다. 차량이 있는 가까운 지인이나 이웃과 같이 이동할 수 있도록 사전에 약속해 둡니다.<br><br>
-		                    		<span class="font">6. 재난에 대비해 지속적인 관심을 갖고 정비를 합니다.<br><br></span>
+		                    		5. 재난이 발생할 경우를 대비하여 <b>비상용품</b>을 사전에 가족이나 이웃과 함께 준비합니다.<br>
+		                    		&nbsp;- 응급약품, 식수, 비상식량, 라디오, 핸드폰 충전기, 휴대용 버너, 연료, 담요 등 비상용품을 사전에 한 곳에 구비해 둡니다.<br>
+		                    		&nbsp;- 차량이 있는 경우에는 연료를 미리 채워 둡니다. 차량이 있는 가까운 지인이나 이웃과 같이 이동할 수 있도록 사전에 약속해 둡니다.<br><br>
+		                    		6. 재난에 대비해 지속적인 관심을 갖고 정비를 합니다.<br><br>
 		                    	<p>
 	                    	</div>
 	                    </div>
 	                </div>
 	                <div id="safeBehavior_content2">
 	                    <div id="safeBehavior_mainImage2">
-	                        <img th:src="@{/images/safeBehaviorNum6_600800.png}" width="100%" height="100%" alt="이미지를 추가해주세요.">
+	                        <img th:src="@{/images/safeBehaviorNum6_2_600800.png}" width="100%" height="100%" alt="이미지를 추가해주세요.">
 	                    </div>
 	                    <div id="safeBehavior_mainContent2">
 	                    	<div id="safeBehavior_mainTitle2">
-	                    		<h3>이렇게 행동합니다.</h3>
+	                    		<h3>대설 예보 시에 이렇게 행동합니다.</h3>
 	                    	</div>
 	                    	<div id="safeBehavior_mainText2">
 		                    	<p>
-		                    		<span class="font">1. 대설지역 및 지속시간 등을 파악해서 <b>언제, 어떻게, 누구와 대피할 지</b>를 생각합니다.<br></span>
-		                    		&nbsp;◆ <b>TV, 라디오, 인터넷, 스마트폰 등</b>으로 기상상황을 미리 파악하여 언제, 어떻게, 누구와 무엇을 할 지를 준비합니다.<br>
-		                    		&nbsp;◆ 스마트폰 앱 <안전디딤돌>을 통해 기상상황을 파악하여 정보를 필요로 하는 사람들과 공유합니다.<br><br>
-		                    		<span class="font">2. <b>산간 고립지역＊붕괴 위험시설물 등 위험지역</b>에서는 주변에 있는 사람들과 함께 안전한 곳으로 이동합니다.<br></span>
-		                    		&nbsp;◆ 눈사태 위험지역, 노후주택 등 붕괴 위험이 있는 건물의 주민은 주변에 있는 사람들에게 알려주고 위험지역에 있는 사람들과 함께 
+		                    		1. 대설지역 및 지속시간 등을 파악해서 <b>언제, 어떻게, 누구와 대피할 지</b>를 생각합니다.<br>
+		                    		&nbsp;- <b>TV, 라디오, 인터넷, 스마트폰 등</b>으로 기상상황을 미리 파악하여 언제, 어떻게, 누구와 무엇을 할 지를 준비합니다.<br>
+		                    		&nbsp;- 스마트폰 앱 <안전디딤돌>을 통해 기상상황을 파악하여 정보를 필요로 하는 사람들과 공유합니다.<br><br>
+		                    		2. <b>산간 고립지역＊붕괴 위험시설물 등 위험지역</b>에서는 주변에 있는 사람들과 함께 안전한 곳으로 이동합니다.<br>
+		                    		&nbsp;- 눈사태 위험지역, 노후주택 등 붕괴 위험이 있는 건물의 주민은 주변에 있는 사람들에게 알려주고 위험지역에 있는 사람들과 함께 
 		                    		안전한 곳으로 이동준비를 합니다.<br>
-		                    		&nbsp;◆ <b>자가용 이용을 자제</b>하고 대중교통수단(지하철, 버스 등)을 이용합니다.<br>
-		                    		&nbsp;◆ <b>안전장구(체인, 모래주머니, 삽 등)를 휴대</b>합니다.<br><br>
-		                    		<span class="font">3. 주택이나 차량 등의 보호를 위해 사전에 어떻게 할지를 가족이나 이웃과 함께 대비합니다.<br></span>
-		                    		&nbsp;◆ 선박이나 어망＊어구 등은 사전에 결박하여 피해를 줄입니다.<br>
-		                    		&nbsp;◆ 수산 증＊양식 시설은 어류 등이 동사하지 않도록 보온조치를 합니다.<br>
-		                    		&nbsp;◆ 공사장, 비탈면이 있는 지역은 안전 상태를 미리 확인합니다.<br><br>
-		                    		<span class="font">4. <b>비상용품 준비 등</b> 재난 발생에 가족이나 이웃과 함께 대비합니다.<br></span>
-		                    		&nbsp;◆ 비상시 신속히 응급용품을 가지고 이동 대피할 수 있도록 사전에 배낭 등에 모아둡니다.<br>
-		                    		&nbsp;◆ 상수도 공급이 중단될 수 있으므로, 욕조 등에 미리 물을 받아둡니다.<br>
-		                    		&nbsp;◆ 정전에 대비하여 비상용 랜턴, 양초, 배터리 등을 구비합니다.<br>
-		                    		&nbsp;◆ 긴급 정보 수신을 위해서 긴급 연락체계를 만듭니다.<br><br>
-		                    		<span class="font">5. 약속, 일정 등을 조정합니다.<br></span>
-		                    		&nbsp;◆ 대설이 예보된 날에는 <b>외출을 자제합니다.</b><br>
-		                    		&nbsp;◆ 부득이 외출 시에는 몸을 따뜻이 유지하기 위해 <b>옷을 여러 겹 겹쳐서 입습니다.</b><br>
-		                    		&nbsp;◆ 눈길 및 빙판길 운전을 피하고, 이동이 필요할 시에는 <b>비상구호품 및 장비</b>를 챙깁니다.<br><br>
+		                    		&nbsp;- <b>자가용 이용을 자제</b>하고 대중교통수단(지하철, 버스 등)을 이용합니다.<br>
+		                    		&nbsp;- <b>안전장구(체인, 모래주머니, 삽 등)를 휴대</b>합니다.<br><br>
+		                    		3. 주택이나 차량 등의 보호를 위해 사전에 어떻게 할지를 가족이나 이웃과 함께 대비합니다.<br>
+		                    		&nbsp;- 선박이나 어망＊어구 등은 사전에 결박하여 피해를 줄입니다.<br>
+		                    		&nbsp;- 수산 증＊양식 시설은 어류 등이 동사하지 않도록 보온조치를 합니다.<br>
+		                    		&nbsp;- 공사장, 비탈면이 있는 지역은 안전 상태를 미리 확인합니다.<br><br>
+		                    		4. <b>비상용품 준비 등</b> 재난 발생에 가족이나 이웃과 함께 대비합니다.<br>
+		                    		&nbsp;- 비상시 신속히 응급용품을 가지고 이동 대피할 수 있도록 사전에 배낭 등에 모아둡니다.<br>
+		                    		&nbsp;- 상수도 공급이 중단될 수 있으므로, 욕조 등에 미리 물을 받아둡니다.<br>
+		                    		&nbsp;- 정전에 대비하여 비상용 랜턴, 양초, 배터리 등을 구비합니다.<br>
+		                    		&nbsp;- 긴급 정보 수신을 위해서 긴급 연락체계를 만듭니다.<br><br>
+		                    		5. 약속, 일정 등을 조정합니다.<br>
+		                    		&nbsp;- 대설이 예보된 날에는 <b>외출을 자제합니다.</b><br>
+		                    		&nbsp;- 부득이 외출 시에는 몸을 따뜻이 유지하기 위해 <b>옷을 여러 겹 겹쳐서 입습니다.</b><br>
+		                    		&nbsp;- 눈길 및 빙판길 운전을 피하고, 이동이 필요할 시에는 <b>비상구호품 및 장비</b>를 챙깁니다.<br><br>
 		                    	<p>
 	                    	</div>
 	                    </div>
 	                </div>
 	                <div id="safeBehavior_content3">
 	                    <div id="safeBehavior_mainImage3">
-	                        <img th:src="@{/images/safeBehaviorNum6_600800.png}" width="100%" height="100%" alt="이미지를 추가해주세요.">
+	                        <img th:src="@{/images/safeBehaviorNum6_3_600800.png}" width="100%" height="100%" alt="이미지를 추가해주세요.">
 	                    </div>
 	                    <div id="safeBehavior_mainContent3">
 	                    	<div id="safeBehavior_mainTitle3">
-	                    		<h3>이렇게 행동합니다.</h3>
+	                    		<h3>대설 특보 시에 장소에 따라 이렇게 행동합니다.</h3>
 	                    	</div>
 	                    	<div id="safeBehavior_mainText3">
 		                    	<p>
-		                    		<span class="font">1. 일반 가정에서는...<br></span>
-		                    		&nbsp;◆ 눈이 많이 올 때에는 되도록 <b>외출을 자제하여</b> 피해를 사전에 방지합니다.<br>
-		                    		&nbsp;◆ 내 집 앞, 내 점포 앞 보행로와 지붕 및 옥상에서 내린 눈은 <b>가족이나 이웃과 함께 치워서</b> 사고를 
+		                    		1. 일반 가정에서는...<br>
+		                    		&nbsp;- 눈이 많이 올 때에는 되도록 <b>외출을 자제하여</b> 피해를 사전에 방지합니다.<br>
+		                    		&nbsp;- 내 집 앞, 내 점포 앞 보행로와 지붕 및 옥상에서 내린 눈은 <b>가족이나 이웃과 함께 치워서</b> 사고를 
 		                    		예방합니다.<br>
-		                    		&nbsp;◆ 노후가옥은 가족이나 이웃과 함께 쌓인눈의 무게로 무너지지 않게 안전점검과 보강을 하고, 고립이 우려되는 
+		                    		&nbsp;- 노후가옥은 가족이나 이웃과 함께 쌓인눈의 무게로 무너지지 않게 안전점검과 보강을 하고, 고립이 우려되는 
 		                    		지역은 <b>경찰서, 관공서와 비상연락체계</b>를 만듭니다.<br>
-		                    		&nbsp;◆ 외출 시에는 <b>바닥면이 넓은 운동화나 등산화를 착용하고,</b> 보온 장갑을 착용하여 <b>체온을 유지합니다.</b><br>
-		                    		&nbsp;◆ 출＊퇴근을 평소보다 조금 일찍 하고, <b>자가용 대신 지하철, 버스 등의 대중교통</b>을 이용합니다.<br><br>
-		                    		<span class="font">2. 자동차 운전 중에는...<br></span>
-		                    		&nbsp;◆ 되도록 외출을 자제하고, 부득이 차량을 이용할 경우에는 반드시 <b>차량용 안전장구(체인, 염화칼슘, 삽 등)</b>를 
+		                    		&nbsp;- 외출 시에는 <b>바닥면이 넓은 운동화나 등산화를 착용하고,</b> 보온 장갑을 착용하여 <b>체온을 유지합니다.</b><br>
+		                    		&nbsp;- 출＊퇴근을 평소보다 조금 일찍 하고, <b>자가용 대신 지하철, 버스 등의 대중교통</b>을 이용합니다.<br><br>
+		                    		2. 자동차 운전 중에는...<br>
+		                    		&nbsp;- 되도록 외출을 자제하고, 부득이 차량을 이용할 경우에는 반드시 <b>차량용 안전장구(체인, 염화칼슘, 삽 등)</b>를 
 		                    		휴대합니다.<br>
-		                    		&nbsp;◆ 차량으로 장거리 이동 시에는 월동장비, 연료, 식음료 등을 사전에 준비하고 <b>기상상황을 미리 확인합니다.</b><br>
-		                    		&nbsp;◆ 커브길, 고갯길, 고가도로, 교량, 결빙 구간 등에서 <b>서행하고 안전거리를 두고 운행합니다.</b><br>
-		                    		&nbsp;◆ 차량이 고립이 되었을 때는 구조 연락을 하고, <b>동승자와 돌아가면서 휴식을 합니다.</b><br>
-		                    		&nbsp;◆ <b>한 사람은 반드시 깨어 있어야 하며</b> 야간에는 실내등을 켜거나 색깔 있는 옷을 눈 위에 펼쳐서 구조대원이 쉽게 찾을 수 있게 합니다.<br>
-		                    		&nbsp;◆ 차량에서 벗어날 경우 연락처와 열쇠를 꽂아두고 대피합니다.<br><br>
-		                    		<span class="font">3. 농＊어촌, 공장 등에서는...<br></span>
-		                    		&nbsp;◆ 비닐하우스, 가설 건축물의 지붕에 눈이 쌓이기 전에 치우고 <b>받침대로 고정시킵니다.</b><br>
-		                    		&nbsp;◆ 농촌에서는 작물을 재배하지 않는 곳의 비닐을 걷어내고, 수산 증＊양식장은 어류 등이 동사하지 않게 보온을 합니다.<br><br>
+		                    		&nbsp;- 차량으로 장거리 이동 시에는 월동장비, 연료, 식음료 등을 사전에 준비하고 <b>기상상황을 미리 확인합니다.</b><br>
+		                    		&nbsp;- 커브길, 고갯길, 고가도로, 교량, 결빙 구간 등에서 <b>서행하고 안전거리를 두고 운행합니다.</b><br>
+		                    		&nbsp;- 차량이 고립이 되었을 때는 구조 연락을 하고, <b>동승자와 돌아가면서 휴식을 합니다.</b><br>
+		                    		&nbsp;- <b>한 사람은 반드시 깨어 있어야 하며</b> 야간에는 실내등을 켜거나 색깔 있는 옷을 눈 위에 펼쳐서 구조대원이 쉽게 찾을 수 있게 합니다.<br>
+		                    		&nbsp;- 차량에서 벗어날 경우 연락처와 열쇠를 꽂아두고 대피합니다.<br><br>
+		                    		3. 농＊어촌, 공장 등에서는...<br>
+		                    		&nbsp;- 비닐하우스, 가설 건축물의 지붕에 눈이 쌓이기 전에 치우고 <b>받침대로 고정시킵니다.</b><br>
+		                    		&nbsp;- 농촌에서는 작물을 재배하지 않는 곳의 비닐을 걷어내고, 수산 증＊양식장은 어류 등이 동사하지 않게 보온을 합니다.<br><br>
 		                    	<p>
 	                    	</div>
 	                    </div>
 	                </div>
 	                <div id="safeBehavior_content4">
 	                    <div id="safeBehavior_mainImage4">
-	                        <img th:src="@{/images/safeBehaviorNum6_600800.png}" width="100%" height="100%" alt="이미지를 추가해주세요.">
+	                        <img th:src="@{/images/safeBehaviorNum6_4_600800.png}" width="100%" height="100%" alt="이미지를 추가해주세요.">
 	                    </div>
 						<div id="safeBehavior_mainContent4">
 							<div id="safeBehavior_mainTitle4">
-	                    		<h3>이렇게 행동합니다.</h3>
+	                    		<h3>발생 후에는 이렇게 대처합니다.</h3>
 	                    	</div>
 	                    	<div id="safeBehavior_mainText4">
 		                    	<p>
-		                    		<span class="font">1. 가족 및 지인의 안전 여부를 확인합니다.<br></span>
-		                    		&nbsp;◆ 가족 및 지인과 연락하여 안전 여부를 확인하고, 연락이 되지 않는 경우 가까운 경찰서에 신고합니다.<br><br>
-		                    		<span class="font">2. 대설로 인한 피해 여부를 주변에 있는 사람들과 확인합니다.<br></span>
-		                    		&nbsp;◆ 대피 후 집으로 돌아온 경우에는 <b>출입하기 전에 반드시 안전여부를 확인</b>합니다.<br>
-		                    		&nbsp;◆ 파손된 시설물(주택, 상하수도, 축대, 도로 등)이 있는 경우 가까운 행정복지센터나 시＊군＊구청에 신고합니다.<br>
-		                    		&nbsp;◆ 파손된 시설을 복구할 때는 <b>반드시 사진을 찍어 둡니다.</b><br>
-		                    		&nbsp;◆ 고립된 지역에 있는 경우 무리하게 이동하지 말고 도움 요청을 합니다.<br><br>
-		                    		<span class="font">3. 2차 피해를 예방합니다.<br></span>
-		                    		&nbsp;◆ 대설 후, 한파가 이어지면 빙판이 생길 수 있으니 미끄럼에 주의하도록 합니다.<br>
-		                    		&nbsp;◆ 가스, 전기가 차단되었을 때, 한국가스안전공사(1544-4500)와 한국전기안전공사(1588-7500) 또는 전문가와 안전점검을 
+		                    		1. 가족 및 지인의 안전 여부를 확인합니다.<br>
+		                    		&nbsp;- 가족 및 지인과 연락하여 안전 여부를 확인하고, 연락이 되지 않는 경우 가까운 경찰서에 신고합니다.<br><br>
+		                    		2. 대설로 인한 피해 여부를 주변에 있는 사람들과 확인합니다.<br>
+		                    		&nbsp;- 대피 후 집으로 돌아온 경우에는 <b>출입하기 전에 반드시 안전여부를 확인</b>합니다.<br>
+		                    		&nbsp;- 파손된 시설물(주택, 상하수도, 축대, 도로 등)이 있는 경우 가까운 행정복지센터나 시＊군＊구청에 신고합니다.<br>
+		                    		&nbsp;- 파손된 시설을 복구할 때는 <b>반드시 사진을 찍어 둡니다.</b><br>
+		                    		&nbsp;- 고립된 지역에 있는 경우 무리하게 이동하지 말고 도움 요청을 합니다.<br><br>
+		                    		3. 2차 피해를 예방합니다.<br>
+		                    		&nbsp;- 대설 후, 한파가 이어지면 빙판이 생길 수 있으니 미끄럼에 주의하도록 합니다.<br>
+		                    		&nbsp;- 가스, 전기가 차단되었을 때, 한국가스안전공사(1544-4500)와 한국전기안전공사(1588-7500) 또는 전문가와 안전점검을 
 		                    		하고 사용을 합니다.<br>
-		                    		&nbsp;◆ 가스가 누출될 수 있으므로 <b>창문을 열어두고 성냥이나 라이터는 사용하지 않습니다.</b><br>
-		                    		&nbsp;◆ 붕괴 위험이 있는 시설물은 가장 먼저 점검을 합니다.<br><br>
+		                    		&nbsp;- 가스가 누출될 수 있으므로 <b>창문을 열어두고 성냥이나 라이터는 사용하지 않습니다.</b><br>
+		                    		&nbsp;- 붕괴 위험이 있는 시설물은 가장 먼저 점검을 합니다.<br><br>
 		                    	<p>
 	                    	</div>
 						</div>
@@ -201,21 +206,21 @@
 		    			</td>
 		    			<td>
 		    				<h4>
-		    				행정안전부 홈페이지 <a href="http://www.mois.go.kr" target="_blank" style="color: blue;">http://www.mois.go.kr</a><br>
-		    				행정안전부 국민재난안전포털 <a href="http://www.safekorea.go.kr" target="_blank" style="color: blue;">http://www.safekorea.go.kr</a><br>
+		    				행정안전부 홈페이지 <a href="http://www.mois.go.kr" target="_blank" style="color: #05347E;">http://www.mois.go.kr</a><br>
+		    				행정안전부 국민재난안전포털 <a href="http://www.safekorea.go.kr" target="_blank" style="color: #05347E;">http://www.safekorea.go.kr</a><br>
 		    				스마트폰 어플리케이션 <안전디딤돌><br>
 		    				</h4>
 		    			</td>
 		    			<td>
 		    				<h4>
-		    				교육부 044)203-6355, <a href="http://www.moe.go.kr" target="_blank" style="color: blue;">http://www.moe.go.kr</a><br>
-		    				농림축산식품부 044)201-1474, <a href="https://www.mafra.go.kr" target="_blank" style="color: blue;">https://www.mafra.go.kr</a><br>
-		    				국토교통부 044)201-3918, <a href="http://www.molit.go.kr" target="_blank" style="color: blue;">http://www.molit.go.kr</a><br>
-		    				해양수산부 044)200-5617, <a href="http://www.mof.go.kr" target="_blank" style="color: blue;">http://www.mof.go.kr</a><br>
-		    				경찰청 02)3150-2362, <a href="http://www.police.go.kr" target="_blank" style="color: blue;">http://www.police.go.kr</a><br>
-		    				소방청 044)205-1119, <a href="http://www.nfa.go.kr" target="_blank" style="color: blue;">http://www.nfa.go.kr</a><br>
-		    				기상청 02)2181-0503, <a href="http://www.kma.go.kr" target="_blank" style="color: blue;">http://www.kma.go.kr</a><br>
-		    				해양경찰청 032)835-2445, <a href="http://www.kcg.go.kr" target="_blank" style="color: blue;">http://www.kcg.go.kr</a><br>
+		    				교육부 044)203-6355, <a href="http://www.moe.go.kr" target="_blank" style="color: #05347E;">http://www.moe.go.kr</a><br>
+		    				농림축산식품부 044)201-1474, <a href="https://www.mafra.go.kr" target="_blank" style="color: #05347E;">https://www.mafra.go.kr</a><br>
+		    				국토교통부 044)201-3918, <a href="http://www.molit.go.kr" target="_blank" style="color: #05347E;">http://www.molit.go.kr</a><br>
+		    				해양수산부 044)200-5617, <a href="http://www.mof.go.kr" target="_blank" style="color: #05347E;">http://www.mof.go.kr</a><br>
+		    				경찰청 02)3150-2362, <a href="http://www.police.go.kr" target="_blank" style="color: #05347E;">http://www.police.go.kr</a><br>
+		    				소방청 044)205-1119, <a href="http://www.nfa.go.kr" target="_blank" style="color: #05347E;">http://www.nfa.go.kr</a><br>
+		    				기상청 02)2181-0503, <a href="http://www.kma.go.kr" target="_blank" style="color: #05347E;">http://www.kma.go.kr</a><br>
+		    				해양경찰청 032)835-2445, <a href="http://www.kcg.go.kr" target="_blank" style="color: #05347E;">http://www.kcg.go.kr</a><br>
 		    				</h4>
 		    			</td>
 		    		</tr>
@@ -231,7 +236,7 @@
 	$(document).ready(function(){
         //초기 설정
         $('#safeBehavior_category1').css({
-            'background': 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,74,173,1) 35%, rgba(0,212,255,1) 100%)',
+            'background': '#05347E',
             'color': '#f3eeea',
             'cursor': 'pointer'
         });
@@ -248,14 +253,16 @@
 
             // 클릭한 카테고리에 대한 스타일 변경
             $(this).css({
-                'background': 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(0,74,173,1) 35%, rgba(0,212,255,1) 100%)',
+                'background': '#05347E',
                 'color': '#f3eeea',
                 'cursor': 'pointer'
             });
 
+         	// 모든 카테고리에 대한 내용 숨기기
+            $('#safeBehavior_contents > div').hide();
+            
             // 선택된 카테고리에 해당하는 내용 표시
             var contentId = $(this).data('content-id');
-            $('#safeBehavior_contents > div').hide();
             $('#' + contentId).show();
 
         });

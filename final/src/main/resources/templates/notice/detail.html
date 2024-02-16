@@ -33,9 +33,9 @@
 					    </div>
 					</div>
 				    <div style="margin-left: 5px; font-size: 15px" th:if="${board.updatedDate ne null}">
-				        작성일시: <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm:ss')}"></span>&nbsp;
-				        수정일시: <span th:text="${#temporals.format(board.updatedDate, 'yyyy-MM-dd HH:mm:ss')}"></span>
-				    </div>
+					    <div>작성일시: <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm:ss')}"></span></div>
+					    <div>수정일시: <span th:text="${#temporals.format(board.updatedDate, 'yyyy-MM-dd HH:mm:ss')}"></span></div>
+					</div>
 				    <div style="margin-left: 5px; font-size: 15px" th:if="${board.updatedDate eq null}">
 				        작성일시: <span th:text="${#temporals.format(board.createdDate, 'yyyy-MM-dd HH:mm:ss')}"></span>    
 				    </div>
@@ -46,7 +46,11 @@
             <td style="border-bottom: 2px solid #000; height: 30px;">
                <div style="display: flex; justify-content: space-between; margin: 10px 0;">
                   <div style="margin-left: 5px; display: flex; align-items: center;" >
-						<img th:src="@{|/upload/${writer.filename}|}" width="25px" height="25px" style="float:left; border-radius: 50%; margin-right: 5px;">
+						<img th:if="${#strings.isEmpty(writer.filename)}" 
+					         th:src="@{https://image.utoimage.com/preview/cp780416/2017/01/201701124616_500.jpg}" 
+					         width="25px" height="25px" style="float:left; border-radius: 50%; margin-right: 5px;">
+					    <img th:unless="${#strings.isEmpty(writer.filename)}" 
+					         th:src="@{|/upload/${writer.filename}|}" width="25px" height="25px" style="float:left; border-radius: 50%; margin-right: 5px;">
 						<div class="font-weight-light" style="font-size: 18px;">
 							 <span th:text="${board.boardWriter}"></span>
 						</div>	
@@ -93,40 +97,52 @@
             </td>
          </tr>
       </table>
-      <!-- 댓글 -->
-      <div class="replyform">
-           <p class="rtitle">댓글</p>
-             <div class = "reply_reply" th:each="reply : ${replyList}">
-               <div class = "replyer">
-		            <p th:text=${reply.replyer}></p>
-	            </div>
-	            <div class = "rcontent">
-	            	<p th:text=${reply.rcontent}></p>
-	            </div>
-               <div class = "rdate">
-                  <span style="font-size: small;">
-                   작성일시: [[${#temporals.format(reply.createdDate, 'yyyy-MM-dd HH:mm:ss')}]]
-                   <span th:if="${reply.updatedDate != null}">
-                       수정일시: [[${#temporals.format(reply.updatedDate, 'yyyy-MM-dd HH:mm:ss')}]]
-                   </span>
-               </span>   
-               <p th:if="${#authentication.principal.member.name == reply.replyer}">
-               <a th:href="@{|/noticereply/update/${reply.id }|}" style="font-weight:bold">수정</a> | 
-                  <a th:href="@{|/noticereply/delete/${reply.id }|}" style="font-weight:bold">삭제</a>
-               </p>
-               </div>
-             </div>
-             <div class="replyWrite">
-            <form th:action="@{/noticereply/write}" method="post" id="replyform">
-               <input type="hidden" name="boardId" th:value="${board.id}">
-               <p>
-               <textarea name="rcontent" id="rcontent" class="write-control" rows="5"
-                  placeholder="댓글 작성란" style="resize: none;" required></textarea>
-               </p>
-               <button type="submit" class="board_btn" id="replyAddBtn">등록</button>
-            </form>   
-         </div>   
-        </div> 
+			<!-- 댓글 -->
+			<div class="replyform">
+				<p class="rtitle">댓글</p>
+				<div class="replyWrite">
+				<!-- th:if="${not empty sessionId}" -->
+					<form th:action="@{/noticereply/write}" method="post" id="replyform">
+						<input type="hidden" name="boardId" th:value="${board.id}">
+						<p>
+						<textarea name="rcontent" class="reply-control"
+							placeholder="댓글 작성란" required></textarea>
+						</p>
+						<button type="submit" class="reply_btn">등록</button>
+					</form>	
+				</div>
+				<div class="reply_reply" th:each="reply, idx : ${replyList}">
+					<div class="r-d">
+						<div class="replyer">
+							            <!-- 이미지가 있는 경우 -->
+							<img th:if="${not #strings.isEmpty(thumbList[__${idx.index}__])}" 
+							     th:src="@{|/upload/${thumbList[__${idx.index}__]}|}" 
+							     width="25px" height="25px" style="float:left; border-radius: 50%; margin-right: 5px;">
+							<!-- 이미지가 없는 경우 -->
+							<img th:if="${#strings.isEmpty(thumbList[__${idx.index}__])}" 
+							     th:src="@{https://image.utoimage.com/preview/cp780416/2017/01/201701124616_500.jpg}" 
+							     width="25px" height="25px" style="float:left; border-radius: 50%; margin-right: 5px;">
+							<!-- replyer 이름 -->
+							<p th:text="${reply.replyer}" style="display: inline; line-height: 2;"></p>
+						</div>
+						<div class="rdate">
+							<p style="font-size: small; font-weight:bold">
+							작성일시: [[${#temporals.format(reply.createdDate, 'yyyy-MM-dd HH:mm:ss')}]]
+							<span th:if="${reply.updatedDate != null}">
+							    수정일시: [[${#temporals.format(reply.updatedDate, 'yyyy-MM-dd HH:mm:ss')}]]
+							</span>
+							</p>
+						</div>
+					</div>
+					<div class = "rcontent">
+						<p th:text=${reply.rcontent}></p>
+						<p th:if="${#authentication.principal.member.name == reply.replyer}">
+						<a th:href="@{|/reply/update/${reply.id }|}">수정</a> | 
+							<a th:href="@{|/reply/delete/${reply.id }|}">삭제</a>
+						</p>
+					</div>
+				</div>
+			</div> 
         </div>     
    </div>
    <div th:replace="~{footer}"></div>

@@ -13,9 +13,12 @@
 <h2>Account</h2>
 	<div id="account">
       <div id="left">
-        <div id="mimage">
-			 <img th:src="@{|/upload/${member.filename}|}" alt="프로필사진">
-        </div>
+      	<div id="mimage"> 
+		    <img th:if="${#strings.isEmpty(member.filename)}" 
+		         th:src="@{https://image.utoimage.com/preview/cp780416/2017/01/201701124616_500.jpg}" >
+		    <img th:unless="${#strings.isEmpty(member.filename)}" 
+		         th:src="@{|/upload/${member.filename}|}">
+		</div>
         <h6 th:text="${name} + ' 님'"></h6>
         <div class="mbutton" id="update"><a th:href="@{/member/update}">설정</a></div>
         <div class="mbutton" id="logout"><a th:href="@{/member/out}" onclick="return confirm('정말로 탈퇴하시겠습니까?')" class="mbutton_a">회원탈퇴</a></div>
