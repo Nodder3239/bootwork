@@ -145,8 +145,7 @@ public class MainController {
 	}
 	
 	@GetMapping("/ex/return")
-	public String returnIndex(HttpSession session) {
-		session.invalidate();
+	public String returnIndex() {
 		return "redirect:/";
 	}
 	

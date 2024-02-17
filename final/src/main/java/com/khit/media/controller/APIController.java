@@ -14,7 +14,7 @@ public class APIController {
 	
 	@GetMapping("/public-data/main")
 	public String dataMain() {
-		return "/public-data/main";
+		return "public-data/main";
 	}
 	
 }

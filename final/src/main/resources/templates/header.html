@@ -131,13 +131,22 @@
 <script th:src="@{/js/favicon.js}"></script>
 
 <script th:inline="javascript">
-
-function chatOpen() {
-    let popupX = (window.screen.width - 820);
-    let popupY = (window.screen.height - 400);
-    
-    window.open("/chat/", "채팅방", "width=820, height=400, left=" + popupX + ", top=" + popupY);
-}
+    function chatOpen() {
+        // 창의 크기
+        let windowWidth = 820;
+        let windowHeight = 400;
+        
+        // 뷰포트 크기 (스크롤바 고려)
+        let viewportWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+        let viewportHeight = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0);
+        
+        // 창의 위치
+        let popupX = viewportWidth - windowWidth;
+        let popupY = viewportHeight - windowHeight;
+        
+        // 새 창 열기
+        window.open("/chat/", "채팅방", "width=" + windowWidth + ", height=" + windowHeight + ", left=" + popupX + ", top=" + popupY);
+    }
 </script>
 </body>
 </html>

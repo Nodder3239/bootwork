@@ -333,7 +333,7 @@ public class DataController {
          if (responseBody == null || responseBody.isNull("body") || responseBody.getJSONObject("body").isNull("items")) {
              // 데이터가 없을 때의 처리 (예: 모델에 빈 리스트 추가)
              model.addAttribute("dataList", new ArrayList<>());
-             return "/data/data7"; // 렌더링할 뷰의 이름 반환
+             return "data/data7"; // 렌더링할 뷰의 이름 반환
          }
 
          JSONArray items = responseBody.getJSONObject("body").getJSONArray("items");
