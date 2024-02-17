@@ -7,14 +7,14 @@
     <link rel="stylesheet" th:href="@{/css/style2.css}">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
    <!--  <script src="js/wlwls.js"></script> -->
-    <script type="text/javascript" src="/js/efusioni.js"></script>
+    <!-- <script type="text/javascript" src="/js/efusioni.js"></script>
  <script type="text/javascript" src="/js/imagesloaded.pkgd.js"></script>
  <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
  <script type="text/javascript" src="/js/jwplayer.js"></script>
  <script type="text/javascript" src="/js/proj4.js"></script>
  <script type="text/javascript" src="/js/slick.js"></script>
  <script type="text/javascript" src="/js/swiper.min.js"></script>
- <script type="text/javascript" src="/js/ui.js"></script>
+ <script type="text/javascript" src="/js/ui.js"></script> -->
 
 </head>
 <body>
@@ -27,7 +27,7 @@
 	
 	<div class="top-top-top">
 	<div class="top-top-top-left">
-	<img alt="" src="/images/지진.png">
+	<img alt="" src="/images/wlwls.png">
 	</div>
 	<div class="top-top-top-right">
 		<div class="top-top-top-right-container">
@@ -213,49 +213,62 @@
 </div>
 <div th:replace="~{footer}"></div> 
 <script type="text/javascript">
-//팝업을 띄우는 함수
-
-// 팝업을 띄우는 함수
+//팝업을 열 때
 function mapPopopen(imageId) {
     var popup = document.querySelector('.earthquakePop');
-    var imageWrap = document.querySelector('.imgWrap');
-    if (imageWrap) {
-        // 이미지 ID에 해당하는 이미지를 찾아서 표시
-        var targetImage = imageWrap.querySelector('img[src*="' + imageId + '"]');
-        if (targetImage) {
-            popup.style.display = 'block';
-            document.getElementById('blockArea').style.visibility = 'visible'; // blockArea 표시
-            // 모든 이미지를 숨김
-            var images = imageWrap.querySelectorAll('img');
-            images.forEach(function(image) {
-                image.style.display = 'none';
-            });
-            // 해당하는 이미지만 표시
-            targetImage.style.display = 'block';
+    if (popup) {
+        var imageWrap = popup.querySelector('.imgWrap'); // 팝업 내부의 .imgWrap 요소를 찾음
+        if (imageWrap) {
+            var targetImage = imageWrap.querySelector('img[src*="' + imageId + '"]');
+            if (targetImage) {
+                popup.style.display = 'block';
+                document.getElementById('blockArea').style.visibility = 'visible';
+                var images = imageWrap.querySelectorAll('img');
+                images.forEach(function(image) {
+                    image.style.display = 'none';
+                });
+                targetImage.style.display = 'block';
+            } else {
+                console.error('해당하는 이미지를 찾을 수 없습니다.');
+            }
         } else {
-            console.error('해당하는 이미지를 찾을 수 없습니다.');
+            console.error('.imgWrap 요소를 찾을 수 없습니다.');
         }
     } else {
-        console.error('.imgWrap 요소를 찾을 수 없습니다.');
+        console.error('.earthquakePop 요소를 찾을 수 없습니다.');
     }
 }
 
-// 팝업을 닫는 함수
+// 팝업을 닫을 때
 function closePopup() {
     var popup = document.querySelector('.earthquakePop');
-    popup.style.display = 'none';
-    document.getElementById('blockArea').style.visibility = 'hidden'; // blockArea 숨김
-    // 이미지를 다시 보이도록 초기화
-    var imageWrap = document.querySelector('.imgWrap');
-    if (imageWrap) {
-        var images = imageWrap.querySelectorAll('img');
-        images.forEach(function(image) {
-            image.style.display = 'block';
-        });
+    if (popup) {
+        popup.style.display = 'none';
+        document.getElementById('blockArea').style.visibility = 'hidden';
+        var imageWrap = popup.querySelector('.imgWrap');
+        if (imageWrap) {
+            var images = imageWrap.querySelectorAll('img');
+            images.forEach(function(image) {
+                image.style.display = 'block';
+            });
+        } else {
+            console.error('.imgWrap 요소를 찾을 수 없습니다.');
+        }
     } else {
-        console.error('.imgWrap 요소를 찾을 수 없습니다.');
+        console.error('.earthquakePop 요소를 찾을 수 없습니다.');
     }
 }
+
+// 문서가 로드되면 실행될 함수
+document.addEventListener("DOMContentLoaded", function() {
+    // 팝업 닫기 버튼에 이벤트 핸들러 연결
+    var closeButton = document.querySelector('.pop_close');
+    if (closeButton) {
+        closeButton.addEventListener('click', closePopup);
+    } else {
+        console.error('.pop_close 요소를 찾을 수 없습니다.');
+    }
+});
 </script>
 
 </body>

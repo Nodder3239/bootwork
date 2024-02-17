@@ -98,27 +98,36 @@
 			            					<li><a th:href="@{/infoboard/}">제보게시판</a></li>
 			            					<li><a th:href="@{/qnaboard/}">질문게시판</a></li>
 			            					<li sec:authorize="hasAnyAuthority('ADMIN')" >
-			            						<a th:href="@{/report/}">신고게시판</a>
+			            						<a th:href="@{/report/}" style="color:red;">신고게시판</a>
 			            					</li>
 			            				</ul>
 			            			</li>
+			            			<li>
+	                                   <a th:href="@{/ex/survey}" onclick="return alert('당신의 재난 지식을 점검하세요!')">체크리스트</a>
+	                                </li>
 			            			<li>
 		           						<a th:href="@{#}" onclick="chatOpen()">채팅방</a>
 		           					</li>	
 			            		</ul>
 			            	</li>
 		            	</ul>
-			            <div class="menu-bot-img">
-            				<a th:href="@{/chatbot}">
-               					<i class="fa-solid fa-robot" style="font-size:25px;"></i>
-               					<span>FAQ안내봇</span>
-				            </a>
-				        </div>
+			            <!-- FAQ 토글 버튼 -->
+					    <div class="menu-bot-img" id="faqToggleButton">
+					        <span>FAQ 안내봇</span>
+					        <i class="fa-solid fa-robot" style="font-size:25px;"></i>
+					    </div>
+					    <!-- FAQ 오버레이 배경 -->
+						<div id="faqOverlay"></div>
+					    <!-- FAQ 컨테이너 -->
+					    <div id="faqContainer" style="display:none;">
+					        <!-- JavaScript가 여기에 질문 버튼을 동적으로 추가합니다 -->
+					    </div>
 		            </div>
 	            </nav>
             </div> <!-- planB-menuWrap -->
         </section>
     </header>
+<script th:src="@{/js/faq-chatbot.js}"></script>
 <script th:src="@{/js/favicon.js}"></script>
 
 <script th:inline="javascript">

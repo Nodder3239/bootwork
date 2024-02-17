@@ -37,7 +37,7 @@ public class DataController {
             con.setRequestMethod("GET");
 
             // 응답 읽기
-            BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
             StringBuilder response = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {
@@ -113,7 +113,7 @@ public class DataController {
             con.setRequestMethod("GET");
 
             // 응답 읽기
-            BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
             StringBuilder response = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {
@@ -175,7 +175,7 @@ public class DataController {
     		con.setRequestMethod("GET");
     		
     		// 응답 읽기
-    		BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+    		BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
     		StringBuilder response = new StringBuilder();
     		String line;
     		while ((line = reader.readLine()) != null) {
@@ -237,7 +237,7 @@ public class DataController {
             con.setRequestMethod("GET");
             
             // 응답 읽기
-            BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
             StringBuilder response = new StringBuilder();
             String line;
             while ((line = reader.readLine()) != null) {
@@ -296,82 +296,13 @@ public class DataController {
     }
     @GetMapping("/data6")
     public String data6(Model model) {
-        try {
-            // JSON 데이터를 가져올 URL
-            URL url = new URL("https://www.safetydata.go.kr/openApi/%EC%82%B0%EB%A6%BC%EC%B2%AD_%EC%82%B0%EC%82%AC%ED%83%9C_%EC%98%88%EB%B3%B4%EC%A0%95%EB%B3%B4?serviceKey=45O0ISO0U010306L&returnType=json&pageNum=1&numRowsPerPage=10");
-
-            // HTTP 연결 설정
-            HttpURLConnection con = (HttpURLConnection) url.openConnection();
-            con.setRequestMethod("GET");
-
-            // 응답 읽기
-            BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
-            StringBuilder response = new StringBuilder();
-            String line;
-            while ((line = reader.readLine()) != null) {
-                response.append(line);
-            }
-            reader.close();
-
-            // JSON 파싱
-            JSONObject jsonObject = new JSONObject(response.toString());
-            int totalCount = 0;
-
-            if (jsonObject.has("responseData")) {
-                JSONObject responseData = jsonObject.getJSONObject("responseData");
-
-                if (responseData.has("totalCount")) {
-                    totalCount = responseData.getInt("totalCount");
-                }
-
-                JSONArray data = responseData.getJSONArray("data");
-
-                List<Map<String, String>> dataList = new ArrayList<>();
-
-                // 데이터 출력
-                for (int i = 0; i < data.length(); i++) {
-                    JSONObject item = data.getJSONObject(i);
-
-                    Map<String, String> dataMap = new HashMap<>();
-                    dataMap.put("OCRN_FRCST_ISSU_INSTT_NM", getStringOrNull(item, "OCRN_FRCST_ISSU_INSTT_NM"));
-                    dataMap.put("FRST_FRCST_ISSU_DT", getStringOrNull(item, "FRST_FRCST_ISSU_DT"));
-                    dataMap.put("FRCST_ISSU_KIND_CD", getStringOrNull(item, "FRCST_ISSU_KIND_CD"));
-                    dataMap.put("FRCST_ISSU_KIND_NM", getStringOrNull(item, "FRCST_ISSU_KIND_NM"));
-                    dataMap.put("FRCST_ISSU_STTS", getStringOrNull(item, "FRCST_ISSU_STTS"));
-                    dataMap.put("PRCTN_INFO_ANLSS_DT", getStringOrNull(item, "PRCTN_INFO_ANLSS_DT"));
-                    dataMap.put("LAST_FRCST_RMV_DT", getStringOrNull(item, "LAST_FRCST_RMV_DT"));
-                    dataMap.put("RNO", getStringOrNull(item, "RNO"));
-
-                    dataList.add(dataMap);
-                }
-
-
-                // 모델에 데이터 리스트 추가
-                model.addAttribute("dataList", dataList);
-            } else {
-                // responseData가 없는 경우에 대한 처리를 추가할 수 있습니다.
-                // 예를 들어, 에러 메시지를 모델에 추가하거나 다른 처리를 할 수 있습니다.
-                model.addAttribute("error", "No responseData found in the JSON.");
-            }
-
-            // totalCount 값을 모델에 추가
-            model.addAttribute("totalCount", totalCount);
-
-            // 연결 종료
-            con.disconnect();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+       
 
         // 렌더링할 뷰의 이름 반환
         return "data/data6";
     }
 
 
- // 널 또는 누락된 값 처리를 위한 도우미 메서드
- private String getStringOrNull(JSONObject jsonObject, String key) {
-     return jsonObject.has(key) ? jsonObject.getString(key) : null;
- }
 
  @GetMapping("/data7")
  public String data7(Model model) {
@@ -384,7 +315,7 @@ public class DataController {
          con.setRequestMethod("GET");
 
          // 응답 읽기
-         BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream()));
+         BufferedReader reader = new BufferedReader(new InputStreamReader(con.getInputStream(), "UTF-8"));
          StringBuilder response = new StringBuilder();
          String line;
          while ((line = reader.readLine()) != null) {

@@ -28,45 +28,401 @@ ul li{list-style: none;}
 
 /* KH */
 
-/* 비상연락처 */
+/* 비상연락망 */
 
-.emer_office{padding:16px;}
-#container_emer{text-align: center; background-color: #e9e9e9;}
-#container_emer h2{text-align:center; font-size: 3em; color:#e9e9e9; padding-top: 20px;
-   margin-bottom: 50px;}
-#emer_tbl {border-collapse: collapse; margin: 20px auto;}
-#emer_tbl td{width: 150px; height: 30px; border: 2px solid #ddd;
-	padding: 8px; text-align: center; color: #363636; background-color:#f9f9f9;}
-#emer_tbl h4{line-height: 30px;}
-.region {cursor: pointer;}
-#map {width: 800px; height: 800px;margin: 30px auto; background-color: rgba(255,255,255,1);
+/* PC 화면(1440px) */
+
+#emerContact_container .emer_office{
+	padding:8px;
+}
+#emerContact_container{
+	max-width:1024px;
+	margin-left: auto;
+	margin-right: auto;
+	overflow: hidden;	/* 오버플로우 방지 */
+	margin:40px auto;
+	background-color: #e9e9e9;
+}
+#emerContact_container h2{
+	font-size:16px;
+}
+#emerContact_container h4{
+	font-size:10px;
+}
+#emerContact_container #emerContact_contactTBL {
+	border-collapse: collapse; 
+	margin: 0 auto 40px auto; 
+	text-align: center;
+}
+#emerContact_container #emerContact_contactTBL td{
+	width: 150px; 
+	height: 30px; 
+	border: 1px solid #ddd;
+	padding: 8px; 
+	text-align: center; 
+	color: #363636; 
+	background-color:#f9f9f9;
+}
+#emerContact_container #emerContact_contactTBL td:hover{ 
+	border: 1px solid #353535;
+}
+#emerContact_container #emerContact_contactTBL h2{
+	line-height: 30px;
+}
+#emerContact_container .contact_region {
+	cursor: pointer;
+}
+#emerContact_container #mapArea{
+	margin: 40px auto;
+	width: 800px;
+	height: 800px;
+	background-color: rgba(255,255,255,1);
+}
+#emerContact_container .map_wrap, .map_wrap * {
+	font-size:12px;
+}
+#emerContact_container .map_wrap a, .map_wrap a:hover, .map_wrap a:active{
+	color:#000;
+	text-decoration: none;
+}
+#emerContact_container .map_wrap {
+	position:relative;
+	width:100%;
+	height:800px;
+}
+#emerContact_container #menu_wrap {
+	position:absolute;
+	top:0;
+	left:0;
+	bottom:0;
+	width:200px; 
+	margin:500px 0 40px 10px;
+	margin-left: 11%; 
+	padding:5px;
+	overflow-y:auto;
+	background:rgba(255, 255, 255, 0.7);
+	z-index: 100;
+	font-size:12px;
+	border-radius: 10px;
+}
+#emerContact_container .bg_white {
+	background:#fff;
+}
+#emerContact_container #menu_wrap hr {
+	display: block; 
+	height: 1px;
+	border: 0; 
+	border-top: 2px solid #5F5F5F;
+	margin:3px 0;
+}
+#emerContact_container #menu_wrap .option{
+	text-align: center;
+}
+#emerContact_container #menu_wrap .option p {
+	margin:10px 0;
+}  
+#emerContact_container #menu_wrap .option button {
+	margin-left:5px;
+}
+#emerContact_container #placesList li {
+	list-style: none;
+}
+#emerContact_container #placesList .item {
+	position:relative;
+	border-bottom:1px solid #888;
+	overflow: hidden;
+	cursor: pointer;
+	min-height: 65px;
+}
+#emerContact_container #placesList .item span {
+	display: block;
+	margin-top:4px;
+}
+#emerContact_container #placesList .item h5, #placesList .item .info {
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+}
+#emerContact_container #placesList .item .info{
+	padding:10px 0 10px 55px;
+}
+#emerContact_container #placesList .info .gray {
+	color:#8a8a8a;
 	}
+#emerContact_container #placesList .info .jibun {
+	padding-left:26px;
+	background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;
+}
+#emerContact_container #placesList .info .tel {
+	color:#009900;
+}
+#emerContact_container #placesList .item .markerbg {
+	float:left;
+	position:absolute;
+	width:36px; 
+	height:37px;
+	margin:10px 0 0 10px;
+	background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;
+}
+#emerContact_container #placesList .item .marker_1 {
+	background-position: 0 -10px;
+}
+#emerContact_container #placesList .item .marker_2 {
+	background-position: 0 -56px;
+}
+#emerContact_container #placesList .item .marker_3 {
+	background-position: 0 -102px
+}
+#emerContact_container #placesList .item .marker_4 {
+	background-position: 0 -148px;
+}
+#emerContact_container #placesList .item .marker_5 {
+	background-position: 0 -194px;
+}
+#emerContact_container #placesList .item .marker_6 {
+	background-position: 0 -240px;
+}
+#emerContact_container #placesList .item .marker_7 {
+	background-position: 0 -286px;
+}
+#emerContact_container #placesList .item .marker_8 {
+	background-position: 0 -332px;
+}
+#emerContact_container #placesList .item .marker_9 {
+	background-position: 0 -378px;
+}
+#emerContact_container #placesList .item .marker_10 {
+	background-position: 0 -423px;
+}
+#emerContact_container #placesList .item .marker_11 {
+	background-position: 0 -470px;
+}
+#emerContact_container #placesList .item .marker_12 {
+	background-position: 0 -516px;
+}
+#emerContact_container #placesList .item .marker_13 {
+	background-position: 0 -562px;
+}
+#emerContact_container #placesList .item .marker_14 {
+	background-position: 0 -608px;
+}
+#emerContact_container #placesList .item .marker_15 {
+	background-position: 0 -654px;
+}
+#emerContact_container #pagination {
+	margin:10px auto;
+	text-align: center;
+}
+#emerContact_container #pagination a {
+	display:inline-block;
+	margin-right:10px;
+}
+#emerContact_container #pagination .on {
+	font-weight: bold; 
+	cursor: default;
+	color:#777;
+}
 
-/* 비상연락처 팝업부분 */
-#container_emer #safeBehavior_contactPopup{width:600px; height:60px; margin: 0 auto; border:1px solid #353535; 
-color:#f3eeea; border-radius:10px; text-align:center; margin-top: 15px; margin-bottom:20px; line-height: 60px; cursor:pointer;
-box-shadow: 7px 7px 5px rgba(0,0,0,0.2); background:#05347E;}
-
-#container_emer .popup {
-            display: none;
-            position: fixed;
-            padding: 15px;
-            border-radius:15px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width:900px;
-            height:500px;
-            background-color: #fff;
-            box-shadow: 7px 7px 5px rgba(0,0,0,0.2);
-            z-index: 1000;
-        }
-#container_emer .popup h3{text-align:center;}
-#container_emer .popup h4{margin-left:8px;}
-#container_emer #safeBehaviorPopup_tbl{border-collapse:collapse;margin-top:30px; border-radius:15px;}
-#container_emer #safeBehaviorPopup_tbl th, td{width:300px; border: 1px solid #353535;}
-#container_emer #safeBehaviorPopup_tbl #safeBehaviorPopup_tr1{height:60px;}
-
+@media all and (max-width:1024px){
+	
+	#emerContact_container .emer_office{
+		padding:8px;
+	}
+	#emerContact_container{
+		max-width:1024px;
+		margin-left: auto;
+		margin-right: auto;
+		overflow: hidden;	/* 오버플로우 방지 */
+		margin:40px auto;
+		background-color: #e9e9e9;
+	}
+	#emerContact_container h2{
+		font-size:16px;
+	}
+	#emerContact_container h4{
+		font-size:10px;
+	}
+	#emerContact_container #emerContact_contactTBL img {
+        display: block; /* 이미지 표시 */
+    }
+    #emerContact_container #emerContact_contactTBL h2 {
+        display: none; /* 텍스트 숨김 */
+    }
+	#emerContact_container #emerContact_contactTBL {
+		border-collapse: collapse; 
+		margin: 0 auto 40px auto; 
+		text-align: center;
+	}
+	#emerContact_container #emerContact_contactTBL td{
+		width: 150px;
+		height: 30px; 
+		border: 1px solid #ddd;
+		padding: 8px; 
+		text-align: center; 
+		color: #363636; 
+		background-color:#f9f9f9;
+	}
+	#emerContact_container #emerContact_contactTBL td:hover{ 
+		border: 1px solid #353535;
+	}
+	#emerContact_container #emerContact_contactTBL h2{
+		line-height: 30px;
+	}
+	#emerContact_container .contact_region {
+		cursor: pointer;
+	}
+	#emerContact_container #mapArea{
+		margin: 40px auto;
+		width: 800px;
+		height: 800px;
+		background-color: rgba(255,255,255,1);
+	}
+	#emerContact_container .map_wrap, .map_wrap * {
+		font-size:12px;
+	}
+	#emerContact_container .map_wrap a, .map_wrap a:hover, .map_wrap a:active{
+		color:#000;
+		text-decoration: none;
+	}
+	#emerContact_container .map_wrap {
+		position:relative;
+		width:100%;
+		height:800px;
+	}
+	#emerContact_container #menu_wrap {
+		position:absolute;
+		top:0;
+		left:0;
+		bottom:0;
+		width:200px; 
+		margin:500px 0 40px 10px;
+		margin-left: 11%; 
+		padding:5px;
+		overflow-y:auto;
+		background:rgba(255, 255, 255, 0.7);
+		z-index: 100;
+		font-size:12px;
+		border-radius: 10px;
+	}
+	#emerContact_container .bg_white {
+		background:#fff;
+	}
+	#emerContact_container #menu_wrap hr {
+		display: block; 
+		height: 1px;
+		border: 0; 
+		border-top: 2px solid #5F5F5F;
+		margin:3px 0;
+	}
+	#emerContact_container #menu_wrap .option{
+		text-align: center;
+	}
+	#emerContact_container #menu_wrap .option p {
+		margin:10px 0;
+	}  
+	#emerContact_container #menu_wrap .option button {
+		margin-left:5px;
+	}
+	#emerContact_container #placesList li {
+		list-style: none;
+	}
+	#emerContact_container #placesList .item {
+		position:relative;
+		border-bottom:1px solid #888;
+		overflow: hidden;
+		cursor: pointer;
+		min-height: 65px;
+	}
+	#emerContact_container #placesList .item span {
+		display: block;
+		margin-top:4px;
+	}
+	#emerContact_container #placesList .item h5, #placesList .item .info {
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+	}
+	#emerContact_container #placesList .item .info{
+		padding:10px 0 10px 55px;
+	}
+	#emerContact_container #placesList .info .gray {
+		color:#8a8a8a;
+		}
+	#emerContact_container #placesList .info .jibun {
+		padding-left:26px;
+		background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/places_jibun.png) no-repeat;
+	}
+	#emerContact_container #placesList .info .tel {
+		color:#009900;
+	}
+	#emerContact_container #placesList .item .markerbg {
+		float:left;
+		position:absolute;
+		width:36px; 
+		height:37px;
+		margin:10px 0 0 10px;
+		background:url(https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_number_blue.png) no-repeat;
+	}
+	#emerContact_container #placesList .item .marker_1 {
+		background-position: 0 -10px;
+	}
+	#emerContact_container #placesList .item .marker_2 {
+		background-position: 0 -56px;
+	}
+	#emerContact_container #placesList .item .marker_3 {
+		background-position: 0 -102px
+	}
+	#emerContact_container #placesList .item .marker_4 {
+		background-position: 0 -148px;
+	}
+	#emerContact_container #placesList .item .marker_5 {
+		background-position: 0 -194px;
+	}
+	#emerContact_container #placesList .item .marker_6 {
+		background-position: 0 -240px;
+	}
+	#emerContact_container #placesList .item .marker_7 {
+		background-position: 0 -286px;
+	}
+	#emerContact_container #placesList .item .marker_8 {
+		background-position: 0 -332px;
+	}
+	#emerContact_container #placesList .item .marker_9 {
+		background-position: 0 -378px;
+	}
+	#emerContact_container #placesList .item .marker_10 {
+		background-position: 0 -423px;
+	}
+	#emerContact_container #placesList .item .marker_11 {
+		background-position: 0 -470px;
+	}
+	#emerContact_container #placesList .item .marker_12 {
+		background-position: 0 -516px;
+	}
+	#emerContact_container #placesList .item .marker_13 {
+		background-position: 0 -562px;
+	}
+	#emerContact_container #placesList .item .marker_14 {
+		background-position: 0 -608px;
+	}
+	#emerContact_container #placesList .item .marker_15 {
+		background-position: 0 -654px;
+	}
+	#emerContact_container #pagination {
+		margin:10px auto;
+		text-align: center;
+	}
+	#emerContact_container #pagination a {
+		display:inline-block;
+		margin-right:10px;
+	}
+	#emerContact_container #pagination .on {
+		font-weight: bold; 
+		cursor: default;
+		color:#777;
+	}
+	
+}
 
 
 /* 재해 재난 요령 전체 페이지 */
@@ -86,103 +442,376 @@ box-shadow: 7px 7px 5px rgba(0,0,0,0.2); background:#05347E;}
 
 /* 위기상황, 긴급상황 시 전화 및 유관기관 연락처 팝업부분 */
 
-#safeBehavior_bigContainer #safeBehavior_contactPopup{width:600px; height:60px; margin: 40px auto; border:1px solid #353535; 
-color:#f3eeea; text-align:center; line-height: 60px; cursor:pointer; background:#05347E;}
-#safeBehavior_bigContainer .popup {display: none;position: fixed;padding: 15px;border-radius:15px;top: 50%;left: 50%;transform: translate(-50%, -50%);
-width:900px;height:500px;background-color: #fff;box-shadow: 7px 7px 5px rgba(0,0,0,0.2);z-index: 1000;}
-#safeBehavior_bigContainer .popup h3{text-align:center; margin-bottom:20px;}
-#safeBehavior_bigContainer .popup h4{margin-left:8px;}
-#safeBehavior_bigContainer #safeBehaviorPopup_tbl{border-collapse:collapse;margin-top:30px; margin:0 auto; border-radius:15px;}
-#safeBehavior_bigContainer #safeBehaviorPopup_tbl th, td{width:300px; padding: 8px; border: 1px solid #353535;}
-#safeBehavior_bigContainer #safeBehaviorPopup_tbl #safeBehaviorPopup_tr1{height:60px;}
-#safeBehaviorPopup .closePopupBtn {width:60px;height:30px;margin: 15px 45%;cursor: pointer;}
+/* PC 화면(1440px) */
 
-/* 768px ~ 1023px 태블릿 반응형 (위기상황, 긴급상황 시 전화 및 유관기관 연락처 팝업부분) */
-
-@media all and (min-width:768px) and (max-width:1023px){
-	
-/* 위기상황, 긴급상황 시 전화 및 유관기관 연락처 팝업부분 */
-#safeBehavior_bigContainer #safeBehavior_contactPopup{width:600px; height:60px; margin: 40px auto; border:1px solid #353535; 
-color:#f3eeea; text-align:center; line-height: 60px; cursor:pointer; background:#05347E;}
-#safeBehavior_bigContainer .popup {display: none;position: fixed;padding: 15px;border-radius:15px;top: 50%;left: 50%;transform: translate(-50%, -50%);
-width:900px;height:500px;background-color: #fff;box-shadow: 7px 7px 5px rgba(0,0,0,0.2);z-index: 1000;}
-#safeBehavior_bigContainer .popup h3{text-align:center; margin-bottom:10px;}
-#safeBehavior_bigContainer .popup h4{margin-left:8px;}
-#safeBehavior_bigContainer #safeBehaviorPopup_tbl{border-collapse:collapse;margin-top:30px; margin:0 auto; border-radius:15px;}
-#safeBehavior_bigContainer #safeBehaviorPopup_tbl th, td{width:250px; padding: 4px; border: 1px solid #353535;}
-#safeBehavior_bigContainer #safeBehaviorPopup_tbl #safeBehaviorPopup_tr1{height:60px;}
-#safeBehaviorPopup .closePopupBtn {width:60px;height:30px;margin: 15px 45%;cursor: pointer;}
+#safeBehavior_bigContainer #safeBehavior_contactPopup{
+	width:600px; 
+	height:60px; 
+	margin: 40px auto; 
+	border:1px solid #353535;
+	color:#f3eeea; 
+	text-align:center; 
+	line-height: 60px; 
+	cursor:pointer; 
+	background:#05347E;
+}
+#safeBehavior_bigContainer .popup {
+	display: none;
+	position: fixed;
+	padding: 15px;
+	border-radius:15px;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width:900px;
+	height:500px;
+	background-color: #fff;
+	box-shadow: 7px 7px 5px rgba(0,0,0,0.2);
+	z-index: 1000;
+}
+#safeBehavior_bigContainer .popup h3{
+	text-align:center; 
+	margin-bottom:20px;
+}
+#safeBehavior_bigContainer .popup h4{
+	margin-left:8px;
+}
+#safeBehavior_bigContainer #safeBehaviorPopup_tbl{
+	border-collapse:collapse;
+	margin-top:30px; 
+	margin:0 auto; 
+	border-radius:15px;
+}
+#safeBehavior_bigContainer #safeBehaviorPopup_tbl th, td{
+	width:300px; 
+	padding: 8px; 
+	border: 1px solid #353535;
+}
+#safeBehavior_bigContainer #safeBehaviorPopup_tbl #safeBehaviorPopup_tr1{
+	height:60px;
+}
+#safeBehaviorPopup .closePopupBtn {
+	width:60px;
+	height:30px;
+	margin: 15px 45%;
+	cursor: pointer;
 }
 
 /* 재해재난 행동요령 페이지 */
 
-#safeBehavior_container {max-width: 1024px;margin-left: auto;margin-right: auto;overflow: hidden;/* 오버플로우 방지 */}
+#safeBehavior_container {
+	max-width: 1024px;
+	margin-left: auto;
+	margin-right: auto;
+	overflow: hidden;	/* 오버플로우 방지 */
+}
+#safeBehavior_topContent {
+	width: 100%; 
+	margin-top: 40px;
+}
+#safeBehavior_topVideo {
+	float: left; 
+	width: 470px; 
+	height: 270px; 
+	margin-right: 3.12%;
+	border: 5px solid #d9d9d9;
+}
 
-#safeBehavior_topContent {width: 100%; margin-top: 40px;}
-#safeBehavior_topVideo {float: left; max-width: 480px; height: 280px; margin-right: 3.12%;}
-#safeBehavior_topMain {float: left; max-width: 480px; margin-left: 3.12%;}
-#safeBehavior_container #safeBehavior_topTitle{height:60px; margin:0 auto; text-align:center;}
-#safeBehavior_container #safeBehavior_topTitle h3{font-size: 1.5em;}
-#safeBehavior_container #safeBehavior_topText{width:480px; line-height: 1.5; float:left;}
-#safeBehavior_container #safeBehavior_topText h4{font-size: 1em; margin-top: 8px;}
-#safeBehavior_container #safeBehavior_categoryTitle{width:100%;height:60px; float:left; margin-top: 40px; text-align:center; line-height:60px; color:#05347E;}
-#safeBehavior_container #safeBehavior_categoryTitle h3{font-size: 1.5em;}
-#safeBehavior_container #safeBehavior_contents>div {display: none;}
-#safeBehavior_container #safeBehavior_contents>div.active {display: block;}
-#safeBehavior_container #safeBehavior_category{border-collapse:collapse; float:left; margin: 40px 0 20px 0;}
-#safeBehavior_container #safeBehavior_category th{width: 240px; height: 30px; cursor:pointer; margin: 10px;
-padding: 8px; text-align: center; color: #363636; background-color:#f9f9f9;}
-#safeBehavior_container #safeBehavior_contents{margin-bottom:20px;}
-#safeBehavior_container #safeBehavior_content1, #safeBehavior_container #safeBehavior_content2, #safeBehavior_container #safeBehavior_content3, #safeBehavior_container #safeBehavior_content4
-{width:1024px;}
-#safeBehavior_container #safeBehavior_mainTitle1{margin-bottom:20px;}
-#safeBehavior_container #safeBehavior_mainImage1, #safeBehavior_container #safeBehavior_mainImage2, #safeBehavior_container #safeBehavior_mainImage3, #safeBehavior_container #safeBehavior_mainImage4
-{float:left; margin-top:20px; width:480px; height:640px;}
-#safeBehavior_container #safeBehavior_mainContent1, #safeBehavior_container #safeBehavior_mainContent2, #safeBehavior_container #safeBehavior_mainContent3, #safeBehavior_container #safeBehavior_mainContent4
-{float:left; margin-top:20px; margin-left:6.2%; width:480px;}
-#safeBehavior_container #safeBehavior_mainContent1 h3, #safeBehavior_container #safeBehavior_mainContent2 h3, #safeBehavior_container #safeBehavior_mainContent3 h3, #safeBehavior_container #safeBehavior_mainContent4 h3
-{font-size:1.5em; margin-bottom:10px;}
-#safeBehavior_container #safeBehavior_mainText1 p, #safeBehavior_container #safeBehavior_mainText2 p, #safeBehavior_container #safeBehavior_mainText3 p, #safeBehavior_container #safeBehavior_mainText4 p
-{font-size:1em; line-height: 1.7;}
-#safeBehavior_container #safeBehavior_mainText1 .font, #safeBehavior_container #safeBehavior_mainText2 .font, #safeBehavior_container #safeBehavior_mainText3 .font, #safeBehavior_container #safeBehavior_mainText4 .font
-{font-size:1.2em; color:#004aad;}
+#safeBehavior_topMain {
+	float: left; 
+	max-width: 480px;
+	height: 280px;
+	background: #f9f9f9; 
+	margin-left: 3.12%;
+}
+#safeBehavior_container #safeBehavior_topTitle{
+	height:60px; 
+	margin:0 auto; 
+	text-align:center;
+	padding: 10px;
+}
+#safeBehavior_container #safeBehavior_topTitle h3{
+	font-size: 1.5em;
+	padding: 10px;
+}
+#safeBehavior_container #safeBehavior_topText{
+	width:480px; 
+	line-height: 1.5; 
+	float:left;
+}
+#safeBehavior_container #safeBehavior_topText h4{
+	font-size: 13px; 
+	margin-top: 8px;
+	padding: 10px;
+}
+#safeBehavior_container #safeBehavior_categoryTitle{
+	width:100%;
+	height:60px; 
+	float:left; 
+	margin-top: 40px; 
+	text-align:center; 
+	line-height:60px; 
+	color:#05347E;
+}
+#safeBehavior_container #safeBehavior_categoryTitle h3{
+	font-size: 1.5em;
+}
+#safeBehavior_container #safeBehavior_contents>div {
+	display: none;
+}
+#safeBehavior_container #safeBehavior_contents>div.active {
+	display: block;
+}
+#safeBehavior_container #safeBehavior_category{
+	border-collapse:collapse; 
+	float:left; 
+	margin: 40px 0 20px 0;
+}
+#safeBehavior_container #safeBehavior_category th{
+	width: 240px; 
+	height: 30px; 
+	cursor:pointer; 
+	margin: 10px;
+	padding: 8px; 
+	text-align: center; 
+	color: #363636; 
+	background-color:#f9f9f9;
+	border: 1px solid #d9d9d9;
+}
+#safeBehavior_container #safeBehavior_contents{
+	margin-bottom:20px;
+}
+#safeBehavior_container #safeBehavior_content1, #safeBehavior_container #safeBehavior_content2, 
+#safeBehavior_container #safeBehavior_content3, #safeBehavior_container #safeBehavior_content4
+{
+	width:1024px;
+}
+#safeBehavior_container #safeBehavior_mainTitle1{
+	margin-bottom:20px;
+}
+#safeBehavior_container #safeBehavior_mainImage1, #safeBehavior_container #safeBehavior_mainImage2, 
+#safeBehavior_container #safeBehavior_mainImage3, #safeBehavior_container #safeBehavior_mainImage4
+{
+	float:left; 
+	margin-top:20px; 
+	width:470px; 
+	height:630px;
+	border: 5px solid #d9d9d9;
+}
+#safeBehavior_container #safeBehavior_mainContent1, #safeBehavior_container #safeBehavior_mainContent2, 
+#safeBehavior_container #safeBehavior_mainContent3, #safeBehavior_container #safeBehavior_mainContent4
+{
+	float:left; 
+	margin-top:20px; 
+	margin-left:6.2%; 
+	background: #f9f9f9;
+	width:480px;
+}
+#safeBehavior_container #safeBehavior_mainContent1 h3, #safeBehavior_container #safeBehavior_mainContent2 h3, 
+#safeBehavior_container #safeBehavior_mainContent3 h3, #safeBehavior_container #safeBehavior_mainContent4 h3
+{
+	font-size:1.5em; 
+	margin-bottom:10px;
+	padding: 10px;
+}
+#safeBehavior_container #safeBehavior_mainText1 p, #safeBehavior_container #safeBehavior_mainText2 p, 
+#safeBehavior_container #safeBehavior_mainText3 p, #safeBehavior_container #safeBehavior_mainText4 p
+{
+	font-size:13px; 
+	line-height: 1.7;
+	padding: 10px;
+}
+#safeBehavior_container #safeBehavior_mainText1 .font, #safeBehavior_container #safeBehavior_mainText2 .font, 
+#safeBehavior_container #safeBehavior_mainText3 .font, #safeBehavior_container #safeBehavior_mainText4 .font
+{
+	font-size:1.2em; 
+	color:#004aad;
+}
 
 
-/* 768px ~ 1023px 태블릿 반응형 (재해재난 행동요령 페이지) */
-@media all and (min-width:768px) and (max-width:1023px) {
+/* 태블릿 반응형 (위기상황, 긴급상황 시 전화 및 유관기관 연락처 팝업부분) */
+
+@media all and (max-width:1024px){
 	
-/* 재해재난 행동요령 페이지 */
+	/* 위기상황, 긴급상황 시 전화 및 유관기관 연락처 팝업부분 */
+	#safeBehavior_bigContainer #safeBehavior_contactPopup{
+		width:600px; 
+		height:60px; 
+		margin: 40px auto; 
+		border:1px solid #353535; 
+		color:#f3eeea; 
+		text-align:center; 
+		line-height: 60px; 
+		cursor:pointer; 
+		background:#05347E;
+	}
+	#safeBehavior_bigContainer .popup {
+		display: none;
+		position: fixed;
+		padding: 15px;
+		border-radius:15px;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width:900px;
+		height:500px;
+		background-color: #fff;
+		box-shadow: 7px 7px 5px rgba(0,0,0,0.2);
+		z-index: 1000;
+	}
+	#safeBehavior_bigContainer .popup h3{
+		text-align:center; 
+		margin-bottom:10px;
+	}
+	#safeBehavior_bigContainer .popup h4{
+		margin-left:8px;
+	}
+	#safeBehavior_bigContainer #safeBehaviorPopup_tbl{
+		border-collapse:collapse;
+		margin-top:30px; 
+		margin:0 auto; 
+		border-radius:15px;
+	}
+	#safeBehavior_bigContainer #safeBehaviorPopup_tbl th, td{
+		width:250px; 
+		padding: 4px; 
+		border: 1px solid #353535;
+	}
+	#safeBehavior_bigContainer #safeBehaviorPopup_tbl #safeBehaviorPopup_tr1{
+		height:60px;
+	}
+	#safeBehaviorPopup .closePopupBtn {
+		width:60px;
+		height:30px;
+		margin: 15px 45%;
+		cursor: pointer;
+	}
 
-#safeBehavior_container {max-width: 546.13px;margin-left: auto; margin-right: auto; overflow: hidden;/* 오버플로우 방지 */}
-#safeBehavior_topContent {width: 100%; margin: 0 auto;}
-#safeBehavior_topVideo {max-width: 480px; height: 280px; margin-top: 40px;}
-#safeBehavior_topVideo img{margin-left: 6.24%;}
-#safeBehavior_topMain {max-width: 480px; margin-left: 6.24%;}
-#safeBehavior_topMain h3{margin:0 auto; text-align:center;}
-#safeBehavior_container #safeBehavior_topTitle{height:40px; text-align:center; margin-top: 20px;}
-#safeBehavior_container #safeBehavior_topTitle h3{font-size: 1.5em;}
-#safeBehavior_container #safeBehavior_topText{width:480px; line-height: 1.5; float:left;}
-#safeBehavior_container #safeBehavior_topText h4{font-size: 1em; margin-top: 8px;}
-#safeBehavior_container #safeBehavior_categoryTitle{width:100%;height:60px; float:left; margin-top: 20px; text-align:center; line-height:60px; color:#05347E;}
-#safeBehavior_container #safeBehavior_categoryTitle h3{font-size: 1.5em;}
-#safeBehavior_container #safeBehavior_contents>div {display: none;}
-#safeBehavior_container #safeBehavior_contents>div.active {display: block;}
-#safeBehavior_container #safeBehavior_category{border-collapse:collapse; float:left; margin: 20px 0 10px 0;}
-#safeBehavior_container #safeBehavior_category th{width: 240px; height: 30px; cursor:pointer; margin: 10px;
-padding: 8px; text-align: center; color: #363636; background-color:#f9f9f9;}
-#safeBehavior_container #safeBehavior_contents{margin-bottom:20px;}
-#safeBehavior_container #safeBehavior_content1, #safeBehavior_container #safeBehavior_content2, #safeBehavior_container #safeBehavior_content3, #safeBehavior_container #safeBehavior_content4
-{width:768px;}
-#safeBehavior_container #safeBehavior_mainTitle1{margin-bottom:10px;}
-#safeBehavior_container #safeBehavior_mainImage1, #safeBehavior_container #safeBehavior_mainImage2, #safeBehavior_container #safeBehavior_mainImage3, #safeBehavior_container #safeBehavior_mainImage4
-{margin-top:20px; margin-left: 4%; width:480px; height:640px;}
-#safeBehavior_container #safeBehavior_mainContent1, #safeBehavior_container #safeBehavior_mainContent2, #safeBehavior_container #safeBehavior_mainContent3, #safeBehavior_container #safeBehavior_mainContent4
-{float:left; margin-top:20px; margin-left:6.2%; width:480px;}
-#safeBehavior_container #safeBehavior_mainContent1 h3, #safeBehavior_container #safeBehavior_mainContent2 h3, #safeBehavior_container #safeBehavior_mainContent3 h3, #safeBehavior_container #safeBehavior_mainContent4 h3
-{font-size:1.5em; margin-bottom:10px;}
-#safeBehavior_container #safeBehavior_mainText1 p, #safeBehavior_container #safeBehavior_mainText2 p, #safeBehavior_container #safeBehavior_mainText3 p, #safeBehavior_container #safeBehavior_mainText4 p
-{font-size:1em; line-height: 1.7;}
-#safeBehavior_container #safeBehavior_mainText1 .font, #safeBehavior_container #safeBehavior_mainText2 .font, #safeBehavior_container #safeBehavior_mainText3 .font, #safeBehavior_container #safeBehavior_mainText4 .font
-{font-size:1.2em; color:#004aad;}
+	
+	/* 재해재난 행동요령 페이지 */
+	
+	#safeBehavior_container {
+		max-width: 546.13px;
+		margin-left: auto; 
+		margin-right: auto; 
+		overflow: hidden;	/* 오버플로우 방지 */
+	}
+	#safeBehavior_topContent {
+		width: 100%; 
+		margin: 0 auto;
+	}
+	#safeBehavior_topVideo {
+		max-width: 470px; 
+		height: 270px; 
+		margin-left: 6.24%;
+		margin-top: 40px;
+		border: 5px solid #d9d9d9;
+	}
+	#safeBehavior_topMain {
+		max-width: 480px; 
+		height: 280px; 
+		margin-left: 6.24%;
+	}
+	#safeBehavior_topMain h3{
+		margin:0 auto; 
+		text-align:center;
+	}
+	#safeBehavior_container #safeBehavior_topTitle{
+		height:40px; 
+		text-align:center; 
+		margin-top: 20px;
+	}
+	#safeBehavior_container #safeBehavior_topTitle h3{
+		font-size: 1.5em;
+	}
+	#safeBehavior_container #safeBehavior_topText{
+		width:480px; 
+		line-height: 1.5; 
+		float:left;
+	}
+	#safeBehavior_container #safeBehavior_topText h4{
+		font-size: 13px; 
+		margin-top: 8px;
+	}
+	#safeBehavior_container #safeBehavior_categoryTitle{
+		width:100%;
+		height:60px; 
+		float:left; 
+		margin-top: 20px; 
+		text-align:center; 
+		line-height:60px; 
+		color:#05347E;
+	}
+	#safeBehavior_container #safeBehavior_categoryTitle h3{
+		font-size: 1.5em;
+	}
+	#safeBehavior_container #safeBehavior_contents>div {
+		display: none;
+	}
+	#safeBehavior_container #safeBehavior_contents>div.active {
+		display: block;
+	}
+	#safeBehavior_container #safeBehavior_category{
+		border-collapse:collapse; 
+		float:left; 
+		margin: 20px 0 10px 0;
+	}
+	#safeBehavior_container #safeBehavior_category th{
+		width: 240px; 
+		height: 30px; 
+		cursor:pointer; 
+		margin: 10px;
+		padding: 8px; 
+		text-align: center; 
+		color: #363636; 
+		background-color:#f9f9f9;
+		border: 1px solid #d9d9d9;
+	}
+	#safeBehavior_container #safeBehavior_contents{
+		margin-bottom:20px;
+	}
+	#safeBehavior_container #safeBehavior_content1, #safeBehavior_container #safeBehavior_content2, 
+	#safeBehavior_container #safeBehavior_content3, #safeBehavior_container #safeBehavior_content4
+	{
+		width:768px;
+	}
+	#safeBehavior_container #safeBehavior_mainTitle1{
+		margin-bottom:10px;
+	}
+	#safeBehavior_container #safeBehavior_mainImage1, #safeBehavior_container #safeBehavior_mainImage2, 
+	#safeBehavior_container #safeBehavior_mainImage3, #safeBehavior_container #safeBehavior_mainImage4
+	{
+		margin-top:20px; 
+		margin-left: 6.24%; 
+		width:470px; 
+		height:630px;
+		border: 5px solid #d9d9d9;
+	}
+	#safeBehavior_container #safeBehavior_mainContent1, #safeBehavior_container #safeBehavior_mainContent2, 
+	#safeBehavior_container #safeBehavior_mainContent3, #safeBehavior_container #safeBehavior_mainContent4
+	{
+		float:left; 
+		margin-top:20px; 
+		margin-left:6.2%; 
+		width:480px;
+	}
+	#safeBehavior_container #safeBehavior_mainContent1 h3, #safeBehavior_container #safeBehavior_mainContent2 h3, 
+	#safeBehavior_container #safeBehavior_mainContent3 h3, #safeBehavior_container #safeBehavior_mainContent4 h3
+	{
+		font-size:1.5em; 
+		margin-bottom:10px;
+	}
+	#safeBehavior_container #safeBehavior_mainText1 p, #safeBehavior_container #safeBehavior_mainText2 p, 
+	#safeBehavior_container #safeBehavior_mainText3 p, #safeBehavior_container #safeBehavior_mainText4 p
+	{
+		font-size:13px; 
+		line-height: 1.7;
+	}
+	#safeBehavior_container #safeBehavior_mainText1 .font, #safeBehavior_container #safeBehavior_mainText2 .font, 
+	#safeBehavior_container #safeBehavior_mainText3 .font, #safeBehavior_container #safeBehavior_mainText4 .font
+	{
+		font-size:1.2em; 
+		color:#004aad;
+		}
 
 }

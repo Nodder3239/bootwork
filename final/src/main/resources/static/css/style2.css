@@ -62,32 +62,41 @@ a{
     font-weight: 200;
     color: rgba(255, 255, 255, 0.5);
 }
-/*산불페이지 */
-.Area{
-	margin-top: 20px;
-}
-.termsWrap{
-	margin-bottom: 40px;
-}
-.leftArea{
-	float: left;
-}
-.leftArea img{
-	width: 400px;
-	height: 600px;
-	margin: 10px 0 0 10px;
-}
-.rightArea{
-	display:inline-block;
-	margin-left: 20px;
-}
-.rightArea h2{
-	margin-top: 20px;
+/* 산불페이지 */
+.Area {
+    margin-top: 20px;
 }
 
-.todayArea ul li{
-	list-style: none;
-	float: left;
+.termsWrap {
+    margin-bottom: 40px;
+}
+
+.leftArea {
+    float: left;
+}
+
+.leftArea img {
+    width: 400px;
+    height: 600px;
+    margin: 10px 0 0 10px;
+}
+
+.rightArea {
+    display: inline-block;
+    margin-left: 20px;
+}
+
+.rightArea h2 {
+    margin-top: 20px;
+}
+
+.todayArea {
+    clear: both; /* todayArea를 감싸는 요소 끝에 추가하여 정렬합니다. */
+}
+
+.todayArea ul li {
+    list-style: none;
+    float: left;
     width: 183px;
     height: 110px;
     padding: 24px 0 0;
@@ -99,89 +108,87 @@ a{
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
 /* 표 전체 스타일 */
 .tableArea {
     width: 590px;
     height: 400px;
-    margin-top:20px;
+    margin-top: 20px;
     overflow: auto; /* 내용이 넘칠 경우 스크롤 표시 */
 }
+
 /* 표 제목 스타일 */
 .tableArea table {
     width: 100%;
     border-collapse: collapse;
     font-size: 14px;
 }
+
 /* 각 셀 스타일 */
-.tableArea th, .tableArea td {
+.tableArea th,
+.tableArea td {
     border: 1px solid #ddd;
     padding: 8px;
     text-align: center;
 }
+
 /* 각 열 스타일 */
 .tableArea th {
     background-color: #f0f0f0;
 }
+
 /* 각 행 스타일 */
 .tableArea tr:hover {
     background-color: #f5f5f5;
 }
- .terms317 img {
-    width: 900px; /* 너비를 원하는 크기로 지정 */
+
+.terms317 img,
+.terms318 img,
+.terms319 img,
+.terms320 img,
+.terms321 img {
+    max-width: 100%; /* 최대 너비를 부모 요소에 맞추어 조정합니다. */
     height: auto; /* 높이는 자동으로 조절됩니다. */
-  }
-.terms317 p{
-	margin-left: 55px;
-	}	
-  .terms318 img {
-    width: 300px; /* 너비를 원하는 크기로 지정 */
-    height: auto; /* 높이는 자동으로 조절됩니다. */
-  }
-  .terms319 img {
-    width: 250px; /* 너비를 원하는 크기로 지정 */
-    height: auto; /* 높이는 자동으로 조절됩니다. */
-  }
-  .terms320 img {
-    width: 550px; /* 너비를 원하는 크기로 지정 */
-    height: auto; /* 높이는 자동으로 조절됩니다. */
-  }
-  .terms321 img {
-    width: 550px; /* 너비를 원하는 크기로 지정 */
-    height: auto; /* 높이는 자동으로 조절됩니다. */
-  }
-  .tabSlideWrap {
+}
+
+.tabSlideWrap {
     padding: 10px;
-  }
-  .swiper-container-horizontal {
- margin-top: 20px;
+}
+
+.swiper-container-horizontal {
+    margin-top: 20px;
     position: relative;
     display: flex;
-   	 justify-content: flex-start;
-  }
-  
-  .swiper-slide ul{
-  	border: 1px solid #eee;
-  }
-  
-  .swiper-wrapper {
+    justify-content: flex-start;
+}
+
+.swiper-slide ul {
+    border: 1px solid #eee;
+}
+
+.swiper-wrapper {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
-  }
-  .swiper-slide {
+}
+
+.swiper-slide {
     margin-right: 20px;
-  }
-  .swiper-slide a {
+}
+
+.swiper-slide a {
     text-decoration: none;
     color: black;
     padding: 10px;
     display: block;
-  }
-  .swiper-slide a:hover {
+}
+
+.swiper-slide a:hover {
     background-color: #f0f0f0;
-  }
-  .rightArea .todayArea ul li span {
+}
+
+.rightArea .todayArea ul li span {
     display: block;
     font-size: 32px;
     font-weight: 500;
@@ -189,6 +196,7 @@ a{
     text-align: center;
     line-height: 1em;
 }
+
 .rightArea .todayArea ul li:nth-of-type(1) strong:after {
     content: "";
     position: absolute;
@@ -199,6 +207,7 @@ a{
     transform: translateY(-50%);
     background: url(/images/ico_common.png) no-repeat -125px -425px;
 }
+
 .rightArea .todayArea ul li:nth-of-type(2) strong:after {
     content: "";
     position: absolute;
@@ -209,6 +218,7 @@ a{
     transform: translateY(-50%);
     background: url(/images/ico_common.png) no-repeat -125px -450px;
 }
+
 .rightArea .todayArea ul li:nth-of-type(3) strong:after {
     content: "";
     position: absolute;
@@ -219,6 +229,7 @@ a{
     transform: translateY(-50%);
     background: url(/images/ico_common.png) no-repeat -125px -475px;
 }
+
 .rightArea .todayArea ul li strong {
     display: inline-block;
     position: relative;
@@ -230,83 +241,96 @@ a{
     vertical-align: top;
     line-height: 1em;
 }
+
 .termsText {
     margin-top: 30px;
     border-top: 1px solid #b2b2b2;
-
 }
-.terms317,.terms318,.terms320 {
+
+.terms317,
+.terms318,
+.terms320 {
+    margin-top: 30px;
+}
+.terms87,
+.terms88,
+.terms89{
 	margin-top: 30px;
 }
-.todayArea{
-	height: 200px;
+
+.todayArea {
+    height: 200px;
 }
+
 @media (max-width: 768px) {
-  .Area {
-    margin-top: 10px;
-  }
-  
-  .termsWrap {
-    margin-bottom: 20px;
-  }
-  
-  .leftArea img {
-    width: 100%;
-    height: auto;
-    margin: 10px auto;
-    display: block;
-  }
-  
-  .rightArea {
-    display: block;
-    margin: 0 auto;
-    text-align: center;
-  }
-  
-  .rightArea h2 {
-    margin-top: 10px;
-  }
-  
-  .todayArea ul li {
-    width: 100%;
-    margin: 0 auto;
-    margin-top: 10px;
-    margin-bottom: 10px;
-  }
-  
-  .tableArea {
-    width: 100%;
-    margin-top: 10px;
-    height: auto;
-  }
-  
-  .tableArea table {
-    font-size: 12px;
-  }
-  
-  .swiper-slide {
-    margin-right: 10px;
-  }
-  
-  .rightArea .todayArea ul li span {
-    font-size: 24px;
-  }
-  
-  .termsText {
-    margin-top: 20px;
-  }
-  
-  .terms317, .terms318, .terms320 {
-    margin-top: 20px;
-  }
+    .Area {
+        margin-top: 10px;
+    }
 
-  #map {
-    width: 100%;
-    height: auto;
-  }
+    .termsWrap {
+        margin-bottom: 20px;
+    }
+
+    .leftArea img {
+        width: 100%;
+        height: auto;
+        margin: 10px auto;
+        display: block;
+    }
+
+    .rightArea {
+        display: block;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    .rightArea h2 {
+        margin-top: 10px;
+    }
+
+    .todayArea ul li {
+        width: 100%;
+        margin: 0 auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+
+    .tableArea {
+        width: 100%;
+        margin-top: 10px;
+        height: auto;
+    }
+
+    .tableArea table {
+        font-size: 12px;
+    }
+
+    .swiper-slide {
+        margin-right: 10px;
+    }
+
+    .rightArea .todayArea ul li span {
+        font-size: 24px;
+    }
+
+    .termsText {
+        margin-top: 20px;
+    }
+
+    .terms317,
+    .terms318,
+    .terms320 {
+        margin-top: 20px;
+    }
+	
+    #map {
+      width:100%;
+        height: auto;
+        margin: 0 auto;
+    }
 }
 
- /* 산불끝 */
+/* 산불끝 */
 /* 지진 */
 .top-top-top{
 	margin-top: 20px;
@@ -492,6 +516,7 @@ img {
     height: 25px;
     transform: translate(-50%, -50%);
     background: url(/images/ico_common.png) no-repeat -75px -375px;
+   
 }
 element.style {
     visibility: visible;
@@ -512,6 +537,7 @@ script {
     display: none;
 }
 @media (max-width: 768px) {
+	
     .top-top-top-left img {
         width: 300px;
         height: 450px;
@@ -539,13 +565,7 @@ script {
         margin: 0 auto;
     }
 
-    #layerArea.earthquakePop {
-        width: auto;
-        height: auto;
-        max-width: 90%;
-        max-height: 90%;
-    }
-
+ 
     #layerArea {
         width: 90%;
         height: 90%;
@@ -579,10 +599,54 @@ script {
         height: 100%;
     }
 
+   
+    #blockArea {
+        background: rgba(0,0,0,0.8);
+    }
+     #layerArea.earthquakePop {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        width: 90%;
+        max-width: 90%;
+        max-height: 90%;
+        background: #fff;
+        z-index: 10;
+       
+    }
+ .imgWrap img{
+ 	
+ 	height: auto;
+ }
+    #layerArea.earthquakePop .pop_close {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+
+    #layerArea.earthquakePop .earthquakePopWrap {
+        padding: 20px;
+    }
+
+    #layerArea.earthquakePop .earthquakePopWrap strong {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+
+    #layerArea.earthquakePop .earthquakePopWrap .imgArea {
+        width: 90%;
+        height: 90%;
+        margin: 0 auto;
+    }
+
+    #layerArea.earthquakePop .earthquakePopWrap .imgArea .imgWrap {
+        height: 100%;
+    }
+
     .btnMap:after {
         width: 20px;
         height: 20px;
-        background-size: contain;
+        
     }
 
     #blockArea {
@@ -618,8 +682,12 @@ script {
 }
 .top-top-tkstkxo-right{
 	display:inline-block;
-	margin-left: 50px;
+	margin-left: 40px;
 	margin-top: 20px;
+    width: 570px;
+    height: 532px;
+   
+	
 }
 .termsWrap h2{
 	padding: 10px;
@@ -655,11 +723,6 @@ legend, caption {
     text-align: center;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
-}
-.top-top-tkstkxo-right {
-    width: 570px;
-    height: 532px;
-    margin-left: 40px;
 }
 
 /* 테이블 전체 스타일 */
@@ -814,188 +877,341 @@ legend, caption {
 .landslideCont ol li:after {
     background-position: 50% 100% !important;
 }
+/* 반응형 CSS */
+@media (max-width: 768px) {
+    .top-top-tkstkxo {
+        flex-direction: column;
+    }
+	.top-top-tkstkxo{
+	margin-top: 20px;
+	height: 700px;
+	}
+    .top-top-tkstkxo-left img {
+        width: 100%;
+        height: auto;
+        margin: 10px auto;
+        display: block;
+    }
 
+    .top-top-tkstkxo-right {
+       
+        margin: 20px auto;
+        
+    }
+
+    .termsWrap {
+        width: calc(100% - 40px);
+        margin: 20px auto;
+        display: block; /* 블록 요소로 설정하여 위에서 아래로 나열되도록 합니다. */
+    }
+
+    .tableTypeC {
+        height: auto;
+    }
+
+    .tableTypeC thead th,
+    .tableTypeC tbody td {
+        font-size: 12px;
+    }
+
+    .table6 th,
+    .table6 td {
+        padding: 6px;
+    }
+
+    .term-sidebar,
+    .term-content {
+        flex: 1;
+    }
+
+    .term-link {
+        padding: 8px;
+    }
+
+    .tips {
+        display: none;
+    }
+    .termsWrap {
+        width: calc(100% - 40px); /* 원래 사이즈보다 조금 작게 설정 */
+        margin: 30px 0 40px 0; /* 위아래 여백 조정 */
+        font-size: 13px; /* 폰트 크기 조정 */
+    }
+}
+
+
+  
 
  /* 미세먼지 */
 /* 미세먼지 */
-.titArea{
-	margin-top: 20px;
-}
+/* 미세먼지 */
+
 /* 테이블 스타일 */
-        .simple-table {
-            border-collapse: collapse;
-            width: 100%;
-        }
+.simple-table {
+    border-collapse: collapse;
+    width: 100%;
+}
 
-        .simple-table th,
-        .simple-table td {
-            padding: 12px;
-            text-align: center;
-            border: 1px solid #ddd; /* 보더 추가 */
-        }
+.simple-table th,
+.simple-table td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd; /* 보더 추가 */
+}
 
-        .simple-table th {
-            background-color: #f2f2f2;
-            font-weight: bold;
-        }
+.simple-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
 
-        /* 셀 주위에 박스 생성 */
-        .simple-table th,
-        .simple-table td {
-            box-sizing: border-box;
-        }
+/* 셀 주위에 박스 생성 */
+.simple-table th,
+.simple-table td {
+    box-sizing: border-box;
+}
 
-        /* 좌우 정렬 */
-        .length9 {
-            float: left;
-        }
+/* 좌우 정렬 */
+.length9 {
+    float: left;
+}
 
-        .length10 {
-            float: right;
-        }
+.length10 {
+    float: right;
+}
 
-        /* 미세먼지 */
-        .leftArea2 {
-        	margin-top:20px;
-            float: left;
-            width: 50%;
-            padding: 10px;
-            box-sizing: border-box;
-        }
+/* 미세먼지 */
+.leftArea2 {
+    float: left;
+}
 
-        .leftArea2 img {
-            width: 100%;
-            height: auto;
-        }
+/* 이미지의 너비와 높이를 400px와 600px로 설정합니다. */
+.leftArea2 img {
+    width: 400px;
+    height: 600px;
+    margin: 10px 0 0 10px; ; /* 이미지 주위 여백을 조절합니다. */
+}
 
-        .rightArea2 {
-            float: right;
-            width: 50%;
-            padding: 10px;
-            box-sizing: border-box;
-        }
+.rightArea2 {
+   display: inline-block;
+    width: 57%;
+    padding: 10px;
+    box-sizing: border-box;
+    margin-left: 30px;
+}
 
-        .rightArea2 .titArea {
-            border-top: 3px solid #000;
-            border-bottom: 1px solid #000;
-            margin-bottom: 20px;
-            padding: 10px 0;
-        }
+.rightArea2 .titArea {
+    border-top: 3px solid #000;
+    border-bottom: 1px solid #000;
+    margin-bottom: 20px;
+    padding: 10px 0;
+}
 
-        .rightArea2 .status #alarm ul {
-            padding: 10px;
-            height: 100px;
-            overflow-y: auto;
-            background-color: #f1f1f1;
-        }
+.rightArea2 .status #alarm ul {
+    padding: 10px;
+    height: 100px;
+    overflow-y: auto;
+    background-color: #f1f1f1;
+}
 
-        .rightArea2 .status #alarm ul li {
-            margin-bottom: 20px;
-            position: relative;
-        }
+.rightArea2 .status #alarm ul li {
+    margin-bottom: 20px;
+    position: relative;
+}
 
-        .rightArea2 .status #alarm ul li.none span {
-            display: block;
-            color: #000;
-            font-size: 18px;
-            line-height: 1.5;
-            margin-top: 30px;
-        }
+.rightArea2 .status #alarm ul li.none span {
+    display: block;
+    color: #000;
+    font-size: 18px;
+    line-height: 1.5;
+    margin-top: 30px;
+}
 
-        .rightArea2 .status #alarm ul li.none span:before {
-            content: "✘";
-            display: inline-block;
-            margin-right: 5px;
-            color: red;
-        }
+.rightArea2 .status #alarm ul li.none span:before {
+    content: "✘";
+    display: inline-block;
+    margin-right: 5px;
+    color: red;
+}
 
-        .rightArea2 .status #alarm ul li.none {
-            height: auto;
-            line-height: normal;
-            text-align: center;
-        }
+.rightArea2 .status #alarm ul li.none {
+    height: auto;
+    line-height: normal;
+    text-align: center;
+}
 
-        .rightArea2 .forecast {
-            margin-top: 20px;
-        }
+.rightArea2 .forecast {
+    margin-top: 20px;
+}
 
-        .rightArea2 .forecast .dayTab li {
-            display: inline-block;
-            margin-right: 10px;
-        }
+.rightArea2 .forecast .dayTab li {
+    display: inline-block;
+    margin-right: 10px;
+}
 
-        .rightArea2 .forecast .dayTab li.on a {
-            font-weight: bold;
-        }
+.rightArea2 .forecast .dayTab li.on a {
+    font-weight: bold;
+}
 
-        .rightArea2 .forecast .dayText {
-            display: block;
-            margin-bottom: 20px;
-        }
+.rightArea2 .forecast .dayText {
+    display: block;
+    margin-bottom: 20px;
+}
 
-        /* 기본 테이블 스타일 */
-        
-        .rightArea2 .forecast .predictionWrap .tableLayout li:nth-of-type(odd) {
-            float: left;
-        }
+/* 기본 테이블 스타일 */
+.rightArea2 .forecast .predictionWrap .tableLayout li:nth-of-type(odd) {
+    float: left;
+}
 
-        .rightArea2 .forecast .predictionWrap .tableLayout li:nth-of-type(even) {
-            float: right;
-        }
+.rightArea2 .forecast .predictionWrap .tableLayout li:nth-of-type(even) {
+    float: right;
+}
 
-        .rightArea2 .forecast .predictionWrap {
-            height: 415px;
-            padding: 24px 30px 0;
-            border: 1px solid #d2d2d2;
-            margin-top: -1px;
-            box-sizing: border-box;
-        }
+.rightArea2 .forecast .predictionWrap {
+    height: 415px;
+    padding: 24px 30px 0;
+    border: 1px solid #d2d2d2;
+    margin-top: -1px;
+    box-sizing: border-box;
+}
 
-        .tableLayout li table th {
-            height: 35px;
-            text-align: center;
-            background: #cce7f4;
-            border-bottom: 1px solid #aec5d1;
-            box-sizing: border-box;
-            font-size: 15px;
-            font-weight: 500;
-        }
+.tableLayout li table th {
+    height: 35px;
+    text-align: center;
+    background: #cce7f4;
+    border-bottom: 1px solid #aec5d1;
+    box-sizing: border-box;
+    font-size: 15px;
+    font-weight: 500;
+}
 
-        .rightArea2 .forecast .predictionWrap .tableLayout li table td {
-            height: 35px;
-            text-align: center;
-            border-bottom: 1px solid #ddd;
-            box-sizing: border-box;
-            font-size: 15px;
-            width: 105px;
-        }
+.rightArea2 .forecast .predictionWrap .tableLayout li table td {
+    height: 35px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    box-sizing: border-box;
+    font-size: 15px;
+    width: 105px;
+}
 
-        /* h2 바로 위에 위치하도록 수정 */
-        .top-botom-altpajswl h2 {
-        	margin-bottom:20px;
-            clear: both;
-        }
-       
- .tableType1 thead th {
+/* h2 바로 위에 위치하도록 수정 */
+.top-botom-altpajswl h2 {
+    margin-bottom: 20px;
+    clear: both;
+}
+
+.tableType1 thead th {
     font-weight: 500;
     background: #f6f6f6;
 }
-.tableType1 td, .tableTypeF th {
+
+.tableType1 td,
+.tableTypeF th {
     padding: 14px 5px;
     text-align: center;
     font-size: 16px;
     border-right: 1px solid #ddd;
     border-bottom: 1px solid #ddd;
 }
+
 .tableType1 tbody td {
     color: #54585e;
 }
+
 .tableType1 {
-    width: 1024px; 
+    width: 1024px;
     margin: 0 auto;
     margin-bottom: 40px;
-} 
+}
+.top-top-top-altpajswl{
+	height: 700px;
+	margin-top: 20px;
+}
+@media (max-width: 768px) {
+	.top-top-top-altpajswl {
+    height: auto;
+    margin-top: 20px;
+}
+    /* 기본 테이블 스타일 */
+    .simple-table th,
+    .simple-table td {
+        padding: 8px; /* 셀 안의 여백 조정 */
+        font-size: 14px; /* 폰트 크기 조정 */
+    }
+    
+    /* 기본 테이블 스타일 */
+    .tableLayout {
+        width: 100%; /* 테이블 레이아웃의 너비를 100%로 설정 */
+        display: flex;
+        justify-content: space-evenly;
+    }
 
+    .length9,
+    .length10 {
+        width: 100%;
+    }
+
+    .length10 {
+        margin-right: 0; /* .length10의 오른쪽 여백 제거 */
+    }
+
+    /* 미세먼지 이미지 클래스 */
+    .leftArea2 img {
+        width: 100%; /* 이미지 너비 조정 */
+        height: auto; /* 이미지 높이 자동 조정 */
+        margin: 10px auto; /* 이미지 중앙 정렬 */
+    }
+
+    /* 오른쪽 영역 클래스 */
+    .rightArea2 {
+        width: 100%; /* 전체 너비로 설정 */
+        padding: 10px; /* 안쪽 여백 조정 */
+        margin: 0; /* 외부 여백 제거 */
+        height: auto;
+    }
+
+    /* 오른쪽 영역 제목 클래스 */
+    .rightArea2 .titArea {
+        margin: 10px 0; /* 위아래 여백 조정 */
+    }
+
+    /* 오른쪽 영역 상태 클래스 */
+    .rightArea2 .status #alarm ul {
+        padding: 10px; /* 안쪽 여백 조정 */
+        height: auto; /* 높이 자동 설정 */
+        overflow-y: auto; /* 세로 스크롤 설정 */
+        background-color: #f1f1f1; /* 배경색 설정 */
+    }
+
+    /* 오른쪽 영역 상태 알림 클래스 */
+    .rightArea2 .status #alarm ul li.none span {
+        font-size: 14px; /* 폰트 크기 조정 */
+        margin-top: 10px; /* 위 여백 조정 */
+    }
+
+    /* 오른쪽 영역 예보 클래스 */
+    .rightArea2 .forecast .dayTab li {
+        margin-right: 5px; /* 오른쪽 여백 조정 */
+    }
+
+    /* 오른쪽 영역 예보 테이블 클래스 */
+    .rightArea2 .forecast .predictionWrap {
+        height: auto; /* 높이 자동 설정 */
+        padding: 10px; /* 안쪽 여백 조정 */
+        margin-top: 10px; /* 위 여백 조정 */
+        border: none; /* 테두리 제거 */
+    }
+
+    /* 테이블 헤더 스타일 */
+    .rightArea2 .forecast .predictionWrap .tableLayout th {
+        padding: 2%; /* 셀 안의 여백 조정 */
+        font-size: 15px; /* 폰트 크기 조정 */
+    }
+
+    /* 테이블 셀 스타일 */
+    .rightArea2 .forecast .predictionWrap .tableLayout td {
+        padding: 2%; /* 셀 안의 여백 조정 */
+        font-size: 15px; /* 폰트 크기 조정 */
+    }
+}
 /* 붕괴*/
 .top-talbe{
 	margin-top: 20px;
@@ -1071,10 +1287,103 @@ legend, caption {
 }
 .botom-img{
 	margin-top: 20px;
+	margin-bottom: 40px;
 }
 .botom-img h2{
 	margin-bottom: 20px;
 }
+.terms318 img {
+    max-width: 400px; /* 이미지의 최대 너비를 설정 */
+    height: auto; /* 높이는 자동으로 조절됩니다. */
+}
+.top-talbe{
+	margin-top: 20px;
+}
+ .table-talbe2 {
+            width: 100%; /* 테이블 가로 크기를 부모 요소에 맞추기 */
+            border-collapse: collapse; /* 테이블 셀 보더 겹치지 않게 함 */
+            font-size: 14px;
+            margin-top: 20px;
+        }
+
+        .table-talbe2 th,
+        .table-talbe2 td {
+            padding: 12px; /* 셀 안의 내용과 보더 사이의 여백 설정 */
+            border: 1px solid #dddddd; /* 셀 보더 설정 */
+            text-align: center; /* 가운데 정렬 */
+        }
+
+        .table-talbe2 thead th {
+            background-color: #f2f2f2; /* 헤더 배경색 설정 */
+            font-weight: bold; /* 헤더 글꼴 굵게 설정 */
+        }
+  .top-talbe h2{
+  	margin-top: 20px;
+  }    
+ .exDataViewBoxImg {
+    text-align: center;
+    margin-bottom: 18px;
+    
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+.exDataViewBoxImg img{
+	width: 400px;
+}
+.exDataViewBoxCon {
+    background-color: rgba( 255, 255, 255, 0.6 );
+    border: 1px solid #E0E0E0;
+    max-width: 1420px;
+    width: 100%;
+}
+.exDataViewBoxCon p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.6;
+    letter-spacing: -0.04em;
+    color: #4F4F4F;
+    opacity: 1;
+}
+.exDataViewBox {
+    background: #F9F9F9;
+    border: 1px solid #E0E0E0;
+    border-radius: 2px;
+    padding: 40px 20px 20px 20px;
+}
+.exDataViewBoxCon {
+    background-color: rgba( 255, 255, 255, 0.6 );
+    border: 1px solid #E0E0E0;
+    padding: 20px 40px;
+    width: 900px;
+}
+.exDataViewBoxImg > img {
+    object-fit: contain;
+}
+.mid-img{
+	margin-top: 20px;
+}
+.mid-img h2{
+	margin-bottom: 20px;
+}
+.botom-img{
+	margin-top: 20px;
+	margin-bottom: 40px;
+}
+.botom-img h2{
+	margin-bottom: 20px;
+}
+.terms318 img {
+    max-width: 400px; /* 이미지의 최대 너비를 설정 */
+    height: auto; /* 높이는 자동으로 조절됩니다. */
+}
+
+
+
+
+/*먼지  */
 @media screen and (max-width: 768px) {
     /* 전체 너비가 768px 이하일 때 적용되는 스타일 */
 
@@ -1119,7 +1428,7 @@ legend, caption {
     }
 
     .exDataViewBoxCon {
-        width: 100%; /* 전체 너비를 차지하도록 설정 */
+        width: 95%; /* 전체 너비를 차지하도록 설정 */
         padding: 20px; /* 내부 여백 조정 */
     }
 
@@ -1132,7 +1441,10 @@ legend, caption {
         max-width: 100%; /* 이미지 최대 너비 설정 */
         height: auto; /* 높이는 자동으로 조절 */
     }
-
+	.leftArea{
+		float:none;
+		margin: 0 auto;
+	}
     .midtable h2,
     .top-botom-altpajswl h2,
     .top-talbe h2,

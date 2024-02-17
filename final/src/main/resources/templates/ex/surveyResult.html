@@ -10,15 +10,16 @@
 <div id="pi-title">
 	<h3>안전실천 체크리스트</h3>	
 </div>
-	<div style="width: 1024px; margin: 40px auto;">
+	<div style="width: 1024px; margin: 50px auto;">
 		<div style="text-align: center; line-height: 2;">
-			<span th:if="${session.result >= 90}" th:utext="${session.result + ' 점입니다.<br>당신은 재난 왕족!'}"></span>
-			<span th:if="${session.result < 90 and session.result >= 70}" th:utext="${session.result + ' 점입니다.<br>당신은 재난 귀족!'}"></span>
-			<span th:if="${session.result < 70 and session.result >= 50}" th:utext="${session.result + ' 점입니다.<br>당신은 재난 양민!'}"></span>
-			<span th:if="${session.result < 50 and session.result >= 30}" th:utext="${session.result + ' 점입니다.<br>당신은 재난 천민!'}"></span>
-			<span th:if="${session.result < 30}" th:utext="${session.result + ' 점입니다.<br>당신은 재난 기만자!'}"></span>
+			<span th:utext="${'<strong>' + name + '</strong> 님, 당신은 '}"></span>
+			<span th:if="${session.result >= 90}" th:utext="${'<strong>' + session.result + ' 점</strong>입니다.<br>당신은 <strong>재난 왕족!</strong>'}"></span>
+			<span th:if="${session.result < 90 and session.result >= 70}" th:utext="${'<strong>' + session.result + ' 점</strong>입니다.<br>당신은 <strong>재난 귀족!</strong>'}"></span>
+			<span th:if="${session.result < 70 and session.result >= 50}" th:utext="${'<strong>' + session.result + ' 점</strong>입니다.<br>당신은 <strong>재난 양민!</strong>'}"></span>
+			<span th:if="${session.result < 50 and session.result >= 30}" th:utext="${'<strong>' + session.result + ' 점</strong>입니다.<br>당신은 <strong>재난 천민!</strong>'}"></span>
+			<span th:if="${session.result < 30}" th:utext="${'<strong>' + session.result + ' 점</strong>입니다.<br>당신은 <strong>재난 기만자!</strong>'}"></span>
 			<br>
-			<span><a th:href="@{/ex/return}"><button type="button" class="board_btn">확인</button></a></span>
+			<span><a th:href="@{/ex/return}"><button type="button" class="board_btn" style="margin-top: 30px;">확인</button></a></span>
 		</div>
 	</div>
 <div th:replace="~{footer}"></div>

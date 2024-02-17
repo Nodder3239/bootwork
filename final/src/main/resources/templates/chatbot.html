@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Chatbot..</title>
+<link rel="stylesheet" href="/css/Mainstyle.css">
+<script src="https://kit.fontawesome.com/6673aed616.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<div th:replace="~{header}"></div>
+    <!-- FAQ 토글 버튼 -->
+    <div class="menu-bot-img" id="faqToggleButton">
+        <span>FAQ 안내봇</span>
+        <i class="fa-solid fa-robot" style="font-size:25px;"></i>
+    </div>
+    
+    <!-- FAQ 컨테이너 -->
+    <div id="faqContainer" style="display:none;">
+        <!-- JavaScript가 여기에 질문 버튼을 동적으로 추가합니다 -->
+    </div>    
+<div th:replace="~{footer}"></div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const faqs = [
+        { faqId: "1", question: "질문 1은 무엇인가요?", answer: "질문 1에 대한 답변입니다." },
+        { faqId: "2", question: "질문 2를 해주세요.", answer: "질문 2의 답변은 이렇습니다." }
+    ];
+
+    // FAQ 컨테이너
+    const faqContainer = document.getElementById('faqContainer');
+    
+    // FAQ 토글 버튼 클릭 이벤트 리스너
+    document.getElementById('faqToggleButton').addEventListener('click', function() {
+        // faqContainer의 표시 상태 토글
+        const isDisplayed = faqContainer.style.display !== 'none';
+        faqContainer.style.display = isDisplayed ? 'none' : 'block';
+        
+        // 아이콘 스타일 변경
+        const icon = this.querySelector('i');
+        if (isDisplayed) {
+            icon.classList.replace('fa-times', 'fa-robot');
+        } else {
+            icon.classList.replace('fa-robot', 'fa-times');
+            showQuestions(); // 컨테이너가 표시될 때 질문 로드
+        }
+    });
+
+    function showQuestions() {
+        // 질문 목록 초기화
+        faqContainer.innerHTML = ''; // "다른 질문하기" 버튼 클릭 시 이전 내용을 유지하려면 이 줄을 조정하세요.
+
+        // 질문 버튼 생성
+        faqs.forEach(faq => {
+            const questionBtn = document.createElement('button');
+            questionBtn.textContent = faq.question;
+            questionBtn.classList.add('faq-question');
+            questionBtn.onclick = () => showAnswer(faq);
+            faqContainer.appendChild(questionBtn);
+        });
+    }
+
+    function showAnswer(faq) {
+        // 모든 질문 버튼을 숨깁니다.
+        document.querySelectorAll('.faq-question').forEach(btn => btn.style.display = 'none');
+        
+        const answerDiv = document.createElement('div');
+        answerDiv.innerHTML = `<p>${faq.answer}</p>`;
+        faqContainer.appendChild(answerDiv);
+
+        // "다른 질문하기" 버튼 생성
+        const otherQuestionsBtn = document.createElement('button');
+        otherQuestionsBtn.textContent = '다른 질문하기';
+        otherQuestionsBtn.onclick = () => {
+            // 다른 질문하기 버튼을 클릭하면 질문 목록을 다시 표시하고, 현재 답변과 다른 질문하기 버튼을 제거합니다.
+            document.querySelectorAll('.faq-question').forEach(btn => btn.style.display = 'block'); // 모든 질문 버튼을 다시 표시합니다.
+            answerDiv.remove(); // 현재 답변을 제거합니다.
+            otherQuestionsBtn.remove(); // "다른 질문하기" 버튼을 제거합니다.
+            showQuestions(); // 질문 목록을 다시 로드합니다.
+        };
+        faqContainer.appendChild(otherQuestionsBtn);
+    }
+});
+</script>
+
+</body>
+</html>

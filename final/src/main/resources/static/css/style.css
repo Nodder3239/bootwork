@@ -716,6 +716,7 @@ ul li{list-style: none;}
     transition: none;
   }
 }
+
 .form-select {
   height: 30px;
   margin: 10px 0;
@@ -723,6 +724,7 @@ ul li{list-style: none;}
   border: 1px solid #dee2e6;
   border-radius: 0.375rem;
   transition: none;
+  padding: 0 5px;
 }
 
 
@@ -768,4 +770,7 @@ ul li{list-style: none;}
 }
 
 
-
+/* 체크리스트 */
+.Y-N{
+   color: rgba(0, 0, 0, 0.5);
+}

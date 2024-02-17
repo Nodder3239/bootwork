@@ -106,16 +106,7 @@ nav ul ul ul {
     transition: .2s ease-in-out, background-color 0s;
     transform: translateY(-20px);
     border-bottom: 3px solid #004aad; 
-/*     border-bottom-left-radius:30px; */
-/*     border-bottom-right-radius:30px; */
 }
-
-/* 메인 메뉴 항목 호버 시 */
-/* .nav03 ul li:hover { */
-/*     border-top-left-radius:30px;  */
-/*     border-top-right-radius:30px;  */
-/*     background-color: rgba(255, 255, 255, 0.5); 투명도 조정 */
-/* } */
 
 .nav03 ul li:hover > ul {
 	visibility: visible;
@@ -127,21 +118,85 @@ nav ul ul ul {
 .nav03 ul ul li:hover > ul {
     background-color: #fff; /* 흰색 배경 유지 */
 }
-.menu-bot-img a {
-    display: inline-block;
-    color: #353535; /* FAQ안내봇 텍스트 색상 */
-    text-decoration: none;
-    font-size: 18px;
-}
+
 .menu-container {
     display: flex;
     justify-content: space-between; /* 메뉴 항목들과 FAQ 안내봇 사이의 공간을 균등하게 분배 */
     align-items: center; /* 세로 축 중앙 정렬 */
     width: 100%; /* 컨테이너 너비를 최대로 설정 */
 }
-.menu-bot-img i{padding-left: 40px;}
-.menu-bot-img a:hover{color:#004aad;}
-.menu-bot-img span{font-size:15px;}
+.menu-bot-img{
+	padding-left: 43px;
+	cursor:pointer;
+	}
+.menu-bot-img:hover{
+	color: #004aad;
+}	
+.menu-bot-img span{
+	font-size:15px;
+	font-weight:900;
+	}
+
+
+#faqContainer {
+    position: fixed; /* 오버레이를 화면에 고정 */
+    top: 110px;
+    right: calc((100% - 1024px) / 2);
+    width: 80%; /* 너비 */
+    max-width: 244px; /* 최대 너비 */
+    padding: 20px 20px 15px 20px;
+    background-color: white; /* 배경색 */
+    border-radius:30px;
+    border: 1px solid #b0b0b0; /* 테두리 */
+    box-shadow: 0 4px 6px rgba(0,0,0,0.2); /* 그림자 */
+    z-index: 1000; /* z-index를 높여 다른 요소 위에 표시 */
+    display: none; /* 기본적으로 숨김 */
+}
+
+@media screen and (max-width: 1024px) {
+    #faqContainer {
+        right: 0; /* 뷰포트가 1024px 이하일 때 오른쪽 끝에 붙임 */
+    }
+}
+
+#faqOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 999; /* faqContainer 바로 아래 */
+    display: none;
+}
+.faqbot-image{
+	width:30px;
+	height:30px;
+	float:left;
+	margin-right: 10px;
+    margin-left: 40px;
+}
+.faqbot-title{
+	font-weight:900;
+	font-size:14px;
+	padding-top: 9px;
+    margin-bottom: 20px;
+}
+.centered-question {
+    display: block; /* 블록 레벨 요소로 만들어 줄바꿈 효과를 줍니다 */
+    width: auto; /* 버튼의 너비를 내용에 맞게 조정합니다 */
+    margin: 10px auto; /* 상하 마진은 10px, 좌우 마진은 자동으로 설정하여 가운데 정렬합니다 */
+    padding: 10px; /* 버튼 내부의 여백을 추가합니다 */
+    border-radius:20px;
+    background: #ffffff;
+    box-shadow: 0px 3px 2px 0px rgba(0, 0, 0, 0.25);
+    border: 1px solid #b0b0b0; 
+    
+}
+.answer-question{
+	display: block;
+	margin: 10px auto;
+	
+}
 
 /*===============================================
  					footer 
