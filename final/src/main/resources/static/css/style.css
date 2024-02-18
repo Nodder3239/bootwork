@@ -387,14 +387,19 @@ ul li{list-style: none;}
 	height: 100%;	
 	border-radius: 30px;
 	max-width: 1024px;
-	margin: 40px auto;
-	margin-bottom: 104px;
+	margin: 20px auto;
+	margin-bottom: 70px;
 	padding: 35px 0px;
 }
-
+.semi_title{
+	margin: 0 auto;
+	width: 1024px;
+}
 .semi_title h2{
-	text-align: center;
-	margin-top: 40px;
+	font-size: 28px;
+	text-align: left;
+	margin-top: 60px;
+	margin-left: 20px;
 }
 
 .vote_hit{
@@ -729,6 +734,9 @@ ul li{list-style: none;}
 
 
 @media (max-width: 1024px) {
+  .semi_title{
+	width: 100vw;
+  }
   #content {
     width:100vw;
   }
@@ -771,6 +779,7 @@ ul li{list-style: none;}
 
 
 /* 체크리스트 */
+
 .Y-N{
    color: rgba(0, 0, 0, 0.5);
 }
