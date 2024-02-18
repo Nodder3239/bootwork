@@ -402,8 +402,9 @@ public class BoardService {
 				board.getUpdatedDate()));
 		return boardDTOList;
    	}
-
+	
 	public Page<BoardDTO> findVoteListAll2(String voter, Pageable pageable) {
+		
 		int page1 = pageable.getPageNumber() - 1;
 		int pageSize = 3;
 		pageable = PageRequest.of(page1, pageSize, Sort.Direction.DESC, "id");
@@ -417,8 +418,24 @@ public class BoardService {
 				board.getReportCount(),	board.getFilename(), 
 				board.getFilepath(), board.getCreatedDate(), 
 				board.getUpdatedDate()));
+				
 		return boardDTOList;
 	}
+	/*
+	public List<BoardDTO> findVoteListAll2(String voter) {
+		List<Board> boardList = boardRepository.findTop3ByVotesVoter(voter);
+		
+		List<BoardDTO> boardDTOList = new ArrayList<>();
+		
+		for(Board board : boardList) {
+			BoardDTO boardDTO = BoardDTO.toSaveBoardDTO(board);
+			boardDTOList.add(boardDTO);
+		}
+		
+		return boardDTOList;
+	}
+	*/
+	
 
 	public Page<BoardDTO> findByWriter2(String name, Pageable pageable) {
 	    int page2 = pageable.getPageNumber() - 1;
@@ -453,5 +470,7 @@ public class BoardService {
 				board.getUpdatedDate()));
 		return boardDTOList;
 	}
+
+
 	
 }

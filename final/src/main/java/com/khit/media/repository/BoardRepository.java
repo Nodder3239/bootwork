@@ -57,4 +57,5 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
 	Page<Board> findByBoardWriter(String name, Pageable pageable);
 
 
+
 }

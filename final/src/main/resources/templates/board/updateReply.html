@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>댓글 수정</title>
+<link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
 	<div th:replace="~{header}"></div>
@@ -20,7 +21,7 @@
 				<input type="hidden" name="id" th:value="${reply.id}">
 				<input type="hidden" name="replyer" th:value="${session.sessionId}">
 				<input type="hidden" name="boardId" th:value="${reply.boardId }">
-				<table>
+				<table style="width: 100%;">
 					<tbody>
 						<tr>
 							<td><textarea name="rcontent" class="write-control" th:text="${reply.rcontent}"
@@ -28,9 +29,9 @@
 						</tr>
 						<tr>
 							<td class="writeBot">
-								<button type="submit" class="btn btn-outline-secondary">저장</button>
-								<button type="reset" class="btn btn-outline-secondary">리셋</button>
-								<a th:href="@{|/board/${reply.boardId}|}"><button type="button" class="btn btn-outline-secondary">취소</button></a>
+								<button type="submit" class="board_btn" style="margin: 5px;">저장</button>
+								<button type="reset" class="board_btn" style="margin: 5px;">리셋</button>
+								<a th:href="@{|/board/${reply.boardId}|}"><button type="button" class="board_btn" style="margin: 5px;">취소</button></a>
 							</td>
 						</tr>
 					</tbody>
