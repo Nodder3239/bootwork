@@ -402,7 +402,7 @@ public class BoardService {
 				board.getUpdatedDate()));
 		return boardDTOList;
    	}
-	
+
 	public Page<BoardDTO> findVoteListAll2(String voter, Pageable pageable) {
 		
 		int page1 = pageable.getPageNumber() - 1;
@@ -421,20 +421,6 @@ public class BoardService {
 				
 		return boardDTOList;
 	}
-	/*
-	public List<BoardDTO> findVoteListAll2(String voter) {
-		List<Board> boardList = boardRepository.findTop3ByVotesVoter(voter);
-		
-		List<BoardDTO> boardDTOList = new ArrayList<>();
-		
-		for(Board board : boardList) {
-			BoardDTO boardDTO = BoardDTO.toSaveBoardDTO(board);
-			boardDTOList.add(boardDTO);
-		}
-		
-		return boardDTOList;
-	}
-	*/
 	
 
 	public Page<BoardDTO> findByWriter2(String name, Pageable pageable) {

@@ -256,10 +256,6 @@ ul li{list-style: none;}
     width: 90%;
     border-bottom: 1px dashed white;
     text-align: center;
-    text-overflow: ellipsis; 
-	white-space:nowrap;
-	overflow: hidden;
-	max-width: 30vw;
   }
   #right .mcontent p:last-child {
   border-bottom: none;
@@ -300,11 +296,6 @@ ul li{list-style: none;}
   margin: 5px;
   text-indent: 8px;
   }
-  #update input[name="memberFile"]{
-  width: 220px;
-  height: 25px;
-  margin: 0px 10px;
-  }
   #update #memberArea{
   	margin-bottom: 30px;
   }
@@ -317,9 +308,26 @@ ul li{list-style: none;}
     color: white;
     font-weight: bold;
   }
-
-  
-    
+  #list{
+    margin: 40px auto;
+    max-width: 1000px;
+  }
+  #list #top{
+    margin: 10px;
+  }
+  #list h4{
+    font-size: 1.5vw;
+    margin: 30px auto;
+    text-align: center;
+  }
+  #list #tt{
+    background-color: #f5f5f5;
+    border-radius: 30px;
+  }
+  #list .tbl_list tbody tr:last-child {
+    border-bottom: none;
+}
+        
     
 
 }
@@ -782,4 +790,19 @@ ul li{list-style: none;}
 
 .Y-N{
    color: rgba(0, 0, 0, 0.5);
+}
+.survey_cert{
+	width: 915px;
+	height: 647px;
+	margin: 20px auto;
+	background-image: url('/images/certification.jpg');
+	background-size: cover;	
+}
+.survey_result{
+	width: 100%;
+	height: 100%;
+	display: flex;
+    justify-content: center; /* 수평 가운데 정렬 */
+    align-items: center;
+    margin: 0 auto;
 }

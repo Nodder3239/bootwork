@@ -12,17 +12,20 @@
 </div>
 <div class="content">
 	<div class="board_content" style="margin-bottom: 40px;">
-		<div style="width: 1024px; margin: 30px auto;">
-			<div style="text-align: center; line-height: 2; margin-top:20px;">
-				<span th:utext="${'<strong>' + name + '</strong> 님, 당신은 '}"></span>
-				<span th:if="${session.result >= 90}" th:utext="${'<strong>' + session.result + ' 점</strong>입니다.<br>당신은 <strong>재난 왕족!</strong>'}"></span>
-				<span th:if="${session.result < 90 and session.result >= 70}" th:utext="${'<strong>' + session.result + ' 점</strong>입니다.<br>당신은 <strong>재난 귀족!</strong>'}"></span>
-				<span th:if="${session.result < 70 and session.result >= 50}" th:utext="${'<strong>' + session.result + ' 점</strong>입니다.<br>당신은 <strong>재난 양민!</strong>'}"></span>
-				<span th:if="${session.result < 50 and session.result >= 30}" th:utext="${'<strong>' + session.result + ' 점</strong>입니다.<br>당신은 <strong>재난 천민!</strong>'}"></span>
-				<span th:if="${session.result < 30}" th:utext="${'<strong>' + session.result + ' 점</strong>입니다.<br>당신은 <strong>재난 기만자!</strong>'}"></span>
-				<br>
-				<span><a th:href="@{/ex/return}"><button type="button" class="board_btn" style="margin-top: 45px; ">확인</button></a></span>
+		<div class="survey_cert">
+			<div class="survey_result">
+				<div style="text-align: center; line-height: 2; margin-top:20px; font-size:30px;">
+					<span th:utext="${'<strong>' + name + '</strong> 님은 '}"></span>
+					<span th:if="${session.result >= 90}" th:utext="${'<strong>' + session.result + ' 점</strong>입니다.<br>당신은 <strong>재난 왕족!</strong>'}"></span>
+					<span th:if="${session.result < 90 and session.result >= 70}" th:utext="${'<strong>' + session.result + ' 점</strong>입니다.<br>당신은 <strong>재난 귀족!</strong>'}"></span>
+					<span th:if="${session.result < 70 and session.result >= 50}" th:utext="${'<strong>' + session.result + ' 점</strong>입니다.<br>당신은 <strong>재난 양민!</strong>'}"></span>
+					<span th:if="${session.result < 50 and session.result >= 30}" th:utext="${'<strong>' + session.result + ' 점</strong>입니다.<br>당신은 <strong>재난 천민!</strong>'}"></span>
+					<span th:if="${session.result < 30}" th:utext="${'<strong>' + session.result + ' 점</strong>입니다.<br>당신은 <strong>재난 기만자!</strong>'}"></span>			
+				</div>
 			</div>
+		</div>
+		<div style="display: flex; justify-content: center; margin-top: 35px;">
+			<span><a th:href="@{/ex/return}"><button type="button" class="board_btn">확인</button></a></span>
 		</div>
 	</div>
 </div>

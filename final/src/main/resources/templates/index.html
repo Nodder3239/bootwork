@@ -95,7 +95,7 @@
 			                	<span th:if="${board.boardCategory eq 'info6'}"><a th:href="@{/infoboard/?cate=info6}">부산/경상</a></span>
 			                	<span th:if="${board.boardCategory eq 'info7'}"><a th:href="@{/infoboard/?cate=info7}">제주</a></span>
 			                </th>
-						    <td>
+						    <td class="main-td">
 							    <a th:href="@{|/board/${board.id}|(page=${boardList.number+1})}">
 							    	<span class="main-boardTitle" th:text="${board.boardTitle}"></span>
 							    </a>

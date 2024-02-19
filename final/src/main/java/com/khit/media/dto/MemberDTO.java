@@ -20,8 +20,8 @@ public class MemberDTO {
 	
 	private Integer id;
 	
-	//아이디는 4자~20자로 입력
-	@Size(min=4, max=20)
+	//아이디는 5자~20자로 입력
+	@Size(min=5, max=20)
 	@NotEmpty(message = "사용자 ID는 필수 항목입니다.")
 	private String memberId;
 	

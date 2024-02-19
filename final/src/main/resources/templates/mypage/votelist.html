@@ -42,7 +42,7 @@
 	                	<span th:if="${board.boardCategory eq 'info7'}"><a th:href="@{/infoboard/?cate=info7}">제주</a></span>
 	                </th>
 				    <td class="td_title" style="width:40%;">
-					    <a th:href="@{|/board/votelist/${board.id}|(page=${boardList.number+1})}">
+					    <a th:href="@{|/board/${board.id}|(page=${boardList.number+1})}">
 					    	<span th:text="${board.boardTitle}"></span>
 					    	<span class="reply_count" th:if="${board.replyCount != 0}" th:text="'[ ' + ${board.replyCount} + ' ]'"></span>
 					    </a>

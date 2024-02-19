@@ -17,7 +17,7 @@
 	<div id="container">
 	  <section id="login">
 		<h2>로그인</h2>
-		<form th:action="@{/login}" method="post" class="loginform">
+		<form th:action="@{/login}" method="post" class="loginform" id="loginform">
 		  <fieldset>
 		  	<ul>
 		  		<li>
@@ -25,6 +25,11 @@
 		  		</li>
 		  		<li>
 		  			<input type="password" name="password" id="password" placeholder="비밀번호를 입력해주세요.">
+		  		</li>
+		  		<li>
+		  			<div th:if="${param.error}">
+					    <p style="color: red;">아이디 또는 비밀번호가 잘못되었습니다.</p>
+					</div>
 		  		</li>
 		  	  	<li>
 		  			<input type="submit" value="로그인" id="loginbutton">
@@ -60,6 +65,7 @@
 		  			<input type="button" value="구글로그인 ">
 		  		</li>  -->
 		  	</ul>
+		  	
 		  </fieldset>
 		</form>
 	   </section>
@@ -105,7 +111,29 @@ function kakaoLogout() {
       Kakao.Auth.setAccessToken(undefined)
     }
   }  -->
-  
- 
+  $(document).ready(function () {
+	    $('#loginbutton').click(function (event) {
+	        event.preventDefault(); // 기본 동작 방지
+
+	        var formData = {
+	            username: $('#username').val(),
+	            password: $('#password').val()
+	        };
+
+	        $.ajax({
+	            type: 'POST',
+	            url: '/login',
+	            data: formData,
+	            success: function () {
+	                // 로그인 성공 시 처리
+	                window.location.href = '/main';
+	            },
+	            error: function () {
+	                // 로그인 실패 시 처리
+	                $('#error-message').text('아이디 또는 비밀번호가 잘못되었습니다.');
+	            }
+	        });
+	    });
+	});
 </script> 
 </html>

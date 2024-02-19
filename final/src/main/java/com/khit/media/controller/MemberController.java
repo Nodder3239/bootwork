@@ -138,7 +138,6 @@ public class MemberController {
 		MemberDTO memberDTO = memberService.findById(principal.getMember().getId());
 		String name = memberDTO.getName();
 		Page<BoardDTO> voteList = boardService.findVoteListAll2(name, pageable);
-		/* List<BoardDTO> voteList = boardService.findVoteListAll2(name); */
 	    Page<BoardDTO> myBoardList = boardService.findByWriter2(name, pageable);
 	    Page<ReplyDTO> myReplyList = replyService.findByReplyer2(name, pageable);
 	    
