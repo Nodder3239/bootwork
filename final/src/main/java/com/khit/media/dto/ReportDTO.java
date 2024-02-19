@@ -24,12 +24,16 @@ public class ReportDTO {
 	private Long boardId;
 	
 	@Column
+	private Integer rid;
+	
+	@Column
 	private String reporter;
 	
 	public static ReportDTO toSaveReportDTO(Report report) {
 		ReportDTO reportDTO = ReportDTO.builder()
 				.id(report.getId())
 				.boardId(report.getBoardId())
+				.rid(report.getRid())
 				.reporter(report.getReporter())
 				.build();
 		return reportDTO;

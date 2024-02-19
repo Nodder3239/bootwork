@@ -523,6 +523,7 @@ document.querySelector('[data-js-file="/js/contact_jeju.js"]').addEventListener(
 
 // 마커를 담을 배열입니다
 var markers = [];
+var infowindows = [];
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = {
@@ -1019,397 +1020,659 @@ function removeAllChildNods(el) {
 	var jeju_seogwipo1_city_office = new kakao.maps.LatLng(33.25394, 126.5596);
 	var jeju_seogwipo2_city_office = new kakao.maps.LatLng(33.25563, 126.5106);	//230
 	
+	/*
+	var infowindowArray = [infowindow1, infowindow2, infowindow3, infowindow4, infowindow5, infowindow6, infowindow7, infowindow8, infowindow9, infowindow10,
+		infowindow11, infowindow12, infowindow13, infowindow14, infowindow15, infowindow16, infowindow17, infowindow18, infowindow19, infowindow20,
+		infowindow21, infowindow22, infowindow23, infowindow24, infowindow25, infowindow26, infowindow27, infowindow28, infowindow29, infowindow30,
+		infowindow31, infowindow32, infowindow33, infowindow34, infowindow35, infowindow36, infowindow37, infowindow38, infowindow39, infowindow40,
+		infowindow41, infowindow42, infowindow43, infowindow44, infowindow45, infowindow46, infowindow47, infowindow48, infowindow49, infowindow50,
+		infowindow51, infowindow52, infowindow53, infowindow54, infowindow55, infowindow56, infowindow57, infowindow58, infowindow59, infowindow60,
+		infowindow61, infowindow62, infowindow63, infowindow64, infowindow65, infowindow66, infowindow67, infowindow68, infowindow69, infowindow70,
+		infowindow71, infowindow72, infowindow73, infowindow74, infowindow75, infowindow76, infowindow77, infowindow78, infowindow79, infowindow80,
+		infowindow81, infowindow82, infowindow83, infowindow84, infowindow85, infowindow86, infowindow108, infowindow109, infowindow110, infowindow111,
+		infowindow112,infowindow137, infowindow138, infowindow139, infowindow140, infowindow141, infowindow152, infowindow153, infowindow154, infowindow155,
+		infowindow156, infowindow166, infowindow167, infowindow168, infowindow169, infowindow170, infowindow188, infowindow189, infowindow190, infowindow191,
+		infowindow192, infowindow210, infowindow211, infowindow212, infowindow213, infowindow214, infowindow228, infowindow229, infowindow230];
+	*/
+	
+	// 클릭한 대상의 인포윈도우를 제외한 나머지 인포윈도우 닫기
+	/*
+	function closeInfoWindow(){
+		for(var idx=0; idx<infowindowArray.length; idx++){
+			infowindowArray[idx].close();
+		}
+	}
+	*/
+	
 	// 마커를 생성합니다
 	var marker1 = new kakao.maps.Marker({
 		position : seoul_jongno_gu_office
 	});
+	markers.push(marker1);
+	
 	var marker2 = new kakao.maps.Marker({
 		position : seoul_jung_gu_office
 	});
+	markers.push(marker2);
+	
 	var marker3 = new kakao.maps.Marker({
 		position : seoul_yongsan_gu_office
 	});
+	markers.push(marker3);
+	
 	var marker4 = new kakao.maps.Marker({
 		position : seoul_seongdong_gu_office
 	});
+	markers.push(marker4);
+	
 	var marker5 = new kakao.maps.Marker({
 		position : seoul_gwangjin_gu_office
 	});
+	markers.push(marker5);
+	
 	var marker6 = new kakao.maps.Marker({
 		position : seoul_dongdaemun_gu_office
 	});
+	markers.push(marker6);
+	
 	var marker7 = new kakao.maps.Marker({
 		position : seoul_jungnang_gu_office
 	});
+	markers.push(marker7);
+	
 	var marker8 = new kakao.maps.Marker({
 		position : seoul_seongbuk_gu_office
 	});
+	markers.push(marker8);
+	
 	var marker9 = new kakao.maps.Marker({
 		position : seoul_gangbuk_gu_office
 	});
+	markers.push(marker9);
+	
 	var marker10 = new kakao.maps.Marker({
 		position : seoul_dobong_gu_office
 	});
+	markers.push(marker10);
+	
 	var marker11 = new kakao.maps.Marker({
 		position : seoul_nowon_gu_office
 	});
+	markers.push(marker11);
+	
 	var marker12 = new kakao.maps.Marker({
 		position : seoul_eunpyeong_gu_office
 	});
+	markers.push(marker12);
+	
 	var marker13 = new kakao.maps.Marker({
 		position : seoul_seodaemun_gu_office
 	});
+	markers.push(marker13);
+	
 	var marker14 = new kakao.maps.Marker({
 		position : seoul_mapo_gu_office
 	});
+	markers.push(marker14);
+	
 	var marker15 = new kakao.maps.Marker({
 		position : seoul_yangcheon_gu_office
 	});
+	markers.push(marker15);
+	
 	var marker16 = new kakao.maps.Marker({
 		position : seoul_gangseo_gu_office
 	});
+	markers.push(marker16);
+	
 	var marker17 = new kakao.maps.Marker({
 		position : seoul_guro_gu_office
 	});
+	markers.push(marker17);
+	
 	var marker18 = new kakao.maps.Marker({
 		position : seoul_geumcheon_gu_office
 	});
+	markers.push(marker18);
+	
 	var marker19 = new kakao.maps.Marker({
 		position : seoul_yeongdeungpo_gu_office
 	});
+	markers.push(marker19);
+	
 	var marker20 = new kakao.maps.Marker({
 		position : seoul_dongjak_gu_office
 	});
+	markers.push(marker20);
+	
 	var marker21 = new kakao.maps.Marker({
 		position : seoul_gwanak_gu_office
 	});
+	markers.push(marker21);
+	
 	var marker22 = new kakao.maps.Marker({
 		position : seoul_seocho_gu_office
 	});
+	markers.push(marker22);
+	
 	var marker23 = new kakao.maps.Marker({
 		position : seoul_gangnam_gu_office
 	});
+	markers.push(marker23);
+	
 	var marker24 = new kakao.maps.Marker({
 		position : seoul_songpa_gu_office
 	});
+	markers.push(marker24);
+	
 	var marker25 = new kakao.maps.Marker({
 		position : seoul_gangdong_gu_office
 	});
+	markers.push(marker25);
+	
 	var marker26 = new kakao.maps.Marker({
 		position : busan_jung_gu_office
 	});
+	markers.push(marker26);
+	
 	var marker27 = new kakao.maps.Marker({
 		position : busan_seo_gu_office
 	});
+	markers.push(marker27);
+	
 	var marker28 = new kakao.maps.Marker({
 		position : busan_dong_gu_office
 	});
+	markers.push(marker28);
+	
 	var marker29 = new kakao.maps.Marker({
 		position : busan_yeongdo_gu_office
 	});
+	markers.push(marker29);
+	
 	var marker30 = new kakao.maps.Marker({
 		position : busan_jin_gu_office
 	});
+	markers.push(marker30);
+	
 	var marker31 = new kakao.maps.Marker({
 		position : busan_dongnae_gu_office
 	});
+	markers.push(marker31);
+	
 	var marker32 = new kakao.maps.Marker({
 		position : busan_nam_gu_office
 	});
+	markers.push(marker32);
+	
 	var marker33 = new kakao.maps.Marker({
 		position : busan_buk_gu_office
 	});
+	markers.push(marker33);
+	
 	var marker34 = new kakao.maps.Marker({
 		position : busan_haeundae_gu_office
 	});
+	markers.push(marker34);
+	
 	var marker35 = new kakao.maps.Marker({
 		position : busan_saha_gu_office
 	});
+	markers.push(marker35);
+	
 	var marker36 = new kakao.maps.Marker({
 		position : busan_geumjeong_gu_office
 	});
+	markers.push(marker36);
+	
 	var marker37 = new kakao.maps.Marker({
 		position : busan_gangseo_gu_office
 	});
+	markers.push(marker37);
+	
 	var marker38 = new kakao.maps.Marker({
 		position : busan_yeonje_gu_office
 	});
+	markers.push(marker38);
+	
 	var marker39 = new kakao.maps.Marker({
 		position : busan_suyeong_gu_office
 	});
+	markers.push(marker39);
+	
 	var marker40 = new kakao.maps.Marker({
 		position : busan_sasang_gu_office
 	});
+	markers.push(marker40);
+	
 	var marker41 = new kakao.maps.Marker({
 		position : busan_gijang_county_office
 	});
+	markers.push(marker41);
+	
 	var marker42 = new kakao.maps.Marker({
 		position : daegu_jung_gu_office
 	});
+	markers.push(marker42);
+	
 	var marker43 = new kakao.maps.Marker({
 		position : daegu_dong_gu_office
 	});
+	markers.push(marker43);
+	
 	var marker44 = new kakao.maps.Marker({
 		position : daegu_seo_gu_office
 	});
+	markers.push(marker44);
+	
 	var marker45 = new kakao.maps.Marker({
 		position : daegu_nam_gu_office
 	});
+	markers.push(marker45);
+	
 	var marker46 = new kakao.maps.Marker({
 		position : daegu_buk_gu_office
 	});
+	markers.push(marker46);
+	
 	var marker47 = new kakao.maps.Marker({
 		position : daegu_suseong_gu_office
 	});
+	markers.push(marker47);
+	
 	var marker48 = new kakao.maps.Marker({
 		position : daegu_dalseo_gu_office
 	});
+	markers.push(marker48);
+	
 	var marker49 = new kakao.maps.Marker({
 		position : daegu_dalseong_county_office
 	});
+	markers.push(marker49);
+	
 	var marker50 = new kakao.maps.Marker({
 		position : daegu_gunwi_county_office
 	});
+	markers.push(marker50);
+	
 	var marker51 = new kakao.maps.Marker({
 		position : incheon_jung_gu_office
 	});
+	markers.push(marker51);
+	
 	var marker52 = new kakao.maps.Marker({
 		position : incheon_dong_gu_office
 	});
+	markers.push(marker52);
+	
 	var marker53 = new kakao.maps.Marker({
 		position : incheon_michuhol_gu_office
 	});
+	markers.push(marker53);
+	
 	var marker54 = new kakao.maps.Marker({
 		position : incheon_yeonsu_gu_office
 	});
+	markers.push(marker54);
+	
 	var marker55 = new kakao.maps.Marker({
 		position : incheon_namdong_gu_office
 	});
+	markers.push(marker55);
+	
 	var marker56 = new kakao.maps.Marker({
 		position : incheon_bupyeong_gu_office
 	});
+	markers.push(marker56);
+	
 	var marker57 = new kakao.maps.Marker({
 		position : incheon_gyeyang_gu_office
 	});
+	markers.push(marker57);
+	
 	var marker58 = new kakao.maps.Marker({
 		position : incheon_seo_gu_office
 	});
+	markers.push(marker58);
+	
 	var marker59 = new kakao.maps.Marker({
 		position : incheon_ganghwa_county_office
 	});
+	markers.push(marker59);
+	
 	var marker60 = new kakao.maps.Marker({
 		position : incheon_ongjin_county_office
 	});
+	markers.push(marker60);
+	
 	var marker61 = new kakao.maps.Marker({
 		position : gwangju_dong_gu_office
 	});
+	markers.push(marker61);
+	
 	var marker62 = new kakao.maps.Marker({
 		position : gwangju_seo_gu_office
 	});
+	markers.push(marker62);
+	
 	var marker63 = new kakao.maps.Marker({
 		position : gwangju_nam_gu_office
 	});
+	markers.push(marker63);
+	
 	var marker64 = new kakao.maps.Marker({
 		position : gwangju_buk_gu_office
 	});
+	markers.push(marker64);
+	
 	var marker65 = new kakao.maps.Marker({
 		position : gwangju_gwangsan_gu_office
 	});
+	markers.push(marker65);
+	
 	var marker66 = new kakao.maps.Marker({
 		position : daejeon_dong_gu_office
 	});
+	markers.push(marker66);
+	
 	var marker67 = new kakao.maps.Marker({
 		position : daejeon_jung_gu_office
 	});
+	markers.push(marker67);
+	
 	var marker68 = new kakao.maps.Marker({
 		position : daejeon_seo_gu_office
 	});
+	markers.push(marker68);
+	
 	var marker69 = new kakao.maps.Marker({
 		position : daejeon_yuseong_gu_office
 	});
+	markers.push(marker69);
+	
 	var marker70 = new kakao.maps.Marker({
 		position : daejeon_daedeok_gu_office
 	});
+	markers.push(marker70);
+	
 	var marker71 = new kakao.maps.Marker({
 		position : ulsan_jung_gu_office
 	});
+	markers.push(marker71);
+	
 	var marker72 = new kakao.maps.Marker({
 		position : ulsan_nam_gu_office
 	});
+	markers.push(marker72);
+	
 	var marker73 = new kakao.maps.Marker({
 		position : ulsan_dong_gu_office
 	});
+	markers.push(marker73);
+	
 	var marker74 = new kakao.maps.Marker({
 		position : ulsan_buk_gu_office
 	});
+	markers.push(marker74);
+	
 	var marker75 = new kakao.maps.Marker({
 		position : ulsan_ulju_county_office
 	});
+	markers.push(marker75);
+	
 	var marker76 = new kakao.maps.Marker({
 		position : sejong_city_office
 	});
+	markers.push(marker76);
+	
 	var marker77 = new kakao.maps.Marker({
 		position : gyeonggi_suwon_city_office
 	});
+	markers.push(marker77);
+	
 	var marker78 = new kakao.maps.Marker({
 		position : gyeonggi_seongnam_city_office
 	});
+	markers.push(marker78);
+	
 	var marker79 = new kakao.maps.Marker({
 		position : gyeonggi_uijeongbu_city_office
 	});
+	markers.push(marker79);
+	
 	var marker80 = new kakao.maps.Marker({
 		position : gyeonggi_anyang_city_office
 	});
+	markers.push(marker80);
+	
 	var marker81 = new kakao.maps.Marker({
 		position : gyeonggi_bucheon_city_office
 	});
+	markers.push(marker81);
+	
 	var marker82 = new kakao.maps.Marker({
 		position : gyeonggi_gwangmyeong_city_office
 	});
+	markers.push(marker82);
+	
 	var marker83 = new kakao.maps.Marker({
 		position : gyeonggi_pyeongtaek_city_office
 	});
+	markers.push(marker83);
+	
 	var marker84 = new kakao.maps.Marker({
 		position : gyeonggi_dongducheon_city_office
 	});
+	markers.push(marker84);
+	
 	var marker85 = new kakao.maps.Marker({
 		position : gyeonggi_ansan_city_office
 	});
+	markers.push(marker85);
+	
 	var marker86 = new kakao.maps.Marker({
 		position : gyeonggi_goyang_city_office
 	});
+	markers.push(marker86);
 	
 	
 	var marker108 = new kakao.maps.Marker({
 		position : gangwon_chuncheon_city_office
 	});
+	markers.push(marker108);
+	
 	var marker109 = new kakao.maps.Marker({
 		position : gangwon_wonju_city_office
 	});
+	markers.push(marker109);
+	
 	var marker110 = new kakao.maps.Marker({
 		position : gangwon_gangneung_city_office
 	});
+	markers.push(marker110);
+	
 	var marker111 = new kakao.maps.Marker({
 		position : gangwon_donghae_city_office
 	});
+	markers.push(marker111);
+	
 	var marker112 = new kakao.maps.Marker({
 		position : gangwon_taebaek_city_office
 	});
+	markers.push(marker112);
+	
 	
 	
 	var marker126 = new kakao.maps.Marker({
 		position : chungbuk_cheongju_city_office
 	});
+	markers.push(marker126);
+	
 	var marker127 = new kakao.maps.Marker({
 		position : chungbuk_chungju_city_office
 	});
+	markers.push(marker127);
+	
 	var marker128 = new kakao.maps.Marker({
 		position : chungbuk_jecheon_city_office
 	});
+	markers.push(marker128);
+	
 	var marker129 = new kakao.maps.Marker({
 		position : chungbuk_boeun_county_office
 	});
+	markers.push(marker129);
+	
 	var marker130 = new kakao.maps.Marker({
 		position : chungbuk_okcheon_county_office
 	});
+	markers.push(marker130);
 	
 	
 	var marker137 = new kakao.maps.Marker({
 		position : chungnam_cheonan_city_office
 	});
+	markers.push(marker137);
+	
 	var marker138 = new kakao.maps.Marker({
 		position : chungnam_gongju_city_office
 	});
+	markers.push(marker138);
+	
 	var marker139 = new kakao.maps.Marker({
 		position : chungnam_dangjin_city_office
 	});
+	markers.push(marker139);
+	
 	var marker140 = new kakao.maps.Marker({
 		position : chungnam_boryeong_city_office
 	});
+	markers.push(marker140);
+	
 	var marker141 = new kakao.maps.Marker({
 		position : chungnam_asan_city_office
 	});
+	markers.push(marker141);
 	
 	
 	var marker152 = new kakao.maps.Marker({
 		position : jeonbuk_jeonju_city_office
 	});
+	markers.push(marker152);
+	
 	var marker153 = new kakao.maps.Marker({
 		position : jeonbuk_gunsan_city_office
 	});
+	markers.push(marker153);
+	
 	var marker154 = new kakao.maps.Marker({
 		position : jeonbuk_iksan_city_office
 	});
+	markers.push(marker154);
+	
 	var marker155 = new kakao.maps.Marker({
 		position : jeonbuk_jeongeup_city_office
 	});
+	markers.push(marker155);
+	
 	var marker156 = new kakao.maps.Marker({
 		position : jeonbuk_namwon_city_office
 	});
+	markers.push(marker156);
 	
 	
 	var marker166 = new kakao.maps.Marker({
 		position : jeonnam_mokpo_city_office
 	});
+	markers.push(marker166);
+	
 	var marker167 = new kakao.maps.Marker({
 		position : jeonnam_yeosu_city_office
 	});
+	markers.push(marker167);
+	
 	var marker168 = new kakao.maps.Marker({
 		position : jeonnam_suncheon_city_office
 	});
+	markers.push(marker168);
+	
 	var marker169 = new kakao.maps.Marker({
 		position : jeonnam_naju_city_office
 	});
+	markers.push(marker169);
+	
 	var marker170 = new kakao.maps.Marker({
 		position : jeonnam_gwangyang_city_office
 	});
-	
+	markers.push(marker170);
 	
 	
 	var marker188 = new kakao.maps.Marker({
 		position : gyeongbuk_pohang_city_office
 	});
+	markers.push(marker188);
+	
 	var marker189 = new kakao.maps.Marker({
 		position : gyeongbuk_gyeongju_city_office
 	});
+	markers.push(marker189);
+	
 	var marker190 = new kakao.maps.Marker({
 		position : gyeongbuk_gimcheon_city_office
 	});
+	markers.push(marker190);
+	
 	var marker191 = new kakao.maps.Marker({
 		position : gyeongbuk_andong_city_office
 	});
+	markers.push(marker191);
+	
 	var marker192 = new kakao.maps.Marker({
 		position : gyeongbuk_gumi_city_office
 	});
+	markers.push(marker192);
 	
 	
 	var marker210 = new kakao.maps.Marker({
 		position : gyeongnam_changwon_city_office
 	});
+	markers.push(marker210);
+	
 	var marker211 = new kakao.maps.Marker({
 		position : gyeongnam_jinju_city_office
 	});
+	markers.push(marker211);
+	
 	var marker212 = new kakao.maps.Marker({
 		position : gyeongnam_tongyeong_city_office
 	});
+	markers.push(marker212);
+	
 	var marker213 = new kakao.maps.Marker({
 		position : gyeongnam_sacheon_city_office
 	});
+	markers.push(marker213);
+	
 	var marker214 = new kakao.maps.Marker({
 		position : gyeongnam_gimhae_city_office
 	});
+	markers.push(marker214);
 	
 	
 	var marker228 = new kakao.maps.Marker({
 		position : jeju_jeju_city_office
 	});
+	markers.push(marker228);
+	
 	var marker229 = new kakao.maps.Marker({
 		position : jeju_seogwipo1_city_office
 	});
+	markers.push(marker229);
+	
 	var marker230 = new kakao.maps.Marker({
 		position : jeju_seogwipo2_city_office
 	});
-	
+	markers.push(marker230);
 	
 	
 	// 마커가 지도 위에 표시되도록 설정합니다
@@ -3172,524 +3435,789 @@ function removeAllChildNods(el) {
 		position : seoul_jongno_gu_office,
 		content : iwContent1
 	});
+	infowindows.push(infowindow1);
+	
 	var infowindow2 = new kakao.maps.InfoWindow({
 		position : seoul_jung_gu_office,
 		content : iwContent2
 	});
+	infowindows.push(infowindow2);
+	
 	var infowindow3 = new kakao.maps.InfoWindow({
 		position : seoul_yongsan_gu_office,
 		content : iwContent3
 	});
+	infowindows.push(infowindow3);
+	
 	var infowindow4 = new kakao.maps.InfoWindow({
 		position : seoul_seongdong_gu_office,
 		content : iwContent4
 	});
+	infowindows.push(infowindow4);
+	
 	var infowindow5 = new kakao.maps.InfoWindow({
 		position : seoul_gwangjin_gu_office,
 		content : iwContent5
 	});
+	infowindows.push(infowindow5);
+	
 	var infowindow6 = new kakao.maps.InfoWindow({
 		position : seoul_dongdaemun_gu_office,
 		content : iwContent6
 	});
+	infowindows.push(infowindow6);
+	
 	var infowindow7 = new kakao.maps.InfoWindow({
 		position : seoul_jungnang_gu_office,
 		content : iwContent7
 	});
+	infowindows.push(infowindow7);
+	
 	var infowindow8 = new kakao.maps.InfoWindow({
 		position : seoul_seongbuk_gu_office,
 		content : iwContent8
 	});
+	infowindows.push(infowindow8);
+	
 	var infowindow9 = new kakao.maps.InfoWindow({
 		position : seoul_gangbuk_gu_office,
 		content : iwContent9
 	});
+	infowindows.push(infowindow9);
+	
 	var infowindow10 = new kakao.maps.InfoWindow({
 		position : seoul_dobong_gu_office,
 		content : iwContent10
 	});
+	infowindows.push(infowindow10);
+	
 	var infowindow11 = new kakao.maps.InfoWindow({
 		position : seoul_nowon_gu_office,
 		content : iwContent11
 	});
+	infowindows.push(infowindow11);
+	
 	var infowindow12 = new kakao.maps.InfoWindow({
 		position : seoul_eunpyeong_gu_office,
 		content : iwContent12
 	});
+	infowindows.push(infowindow12);
+	
 	var infowindow13 = new kakao.maps.InfoWindow({
 		position : seoul_seodaemun_gu_office,
 		content : iwContent13
 	});
+	infowindows.push(infowindow13);
+	
 	var infowindow14 = new kakao.maps.InfoWindow({
 		position : seoul_mapo_gu_office,
 		content : iwContent14
 	});
+	infowindows.push(infowindow14);
+	
 	var infowindow15 = new kakao.maps.InfoWindow({
 		position : seoul_yangcheon_gu_office,
 		content : iwContent15
 	});
+	infowindows.push(infowindow15);
+	
 	var infowindow16 = new kakao.maps.InfoWindow({
 		position : seoul_gangseo_gu_office,
 		content : iwContent16
 	});
+	infowindows.push(infowindow16);
+	
 	var infowindow17 = new kakao.maps.InfoWindow({
 		position : seoul_guro_gu_office,
 		content : iwContent17
 	});
+	infowindows.push(infowindow17);
+	
 	var infowindow18 = new kakao.maps.InfoWindow({
 		position : seoul_geumcheon_gu_office,
 		content : iwContent18
 	});
+	infowindows.push(infowindow18);
+	
 	var infowindow19 = new kakao.maps.InfoWindow({
 		position : seoul_yeongdeungpo_gu_office,
 		content : iwContent19
 	});
+	infowindows.push(infowindow19);
+	
 	var infowindow20 = new kakao.maps.InfoWindow({
 		position : seoul_dongjak_gu_office,
 		content : iwContent20
 	});
+	infowindows.push(infowindow20);
+	
 	var infowindow21 = new kakao.maps.InfoWindow({
 		position : seoul_gwanak_gu_office,
 		content : iwContent21
 	});
+	infowindows.push(infowindow21);
+	
 	var infowindow22 = new kakao.maps.InfoWindow({
 		position : seoul_seocho_gu_office,
 		content : iwContent22
 	});
+	infowindows.push(infowindow22);
+	
 	var infowindow23 = new kakao.maps.InfoWindow({
 		position : seoul_gangnam_gu_office,
 		content : iwContent23
 	});
+	infowindows.push(infowindow23);
+	
 	var infowindow24 = new kakao.maps.InfoWindow({
 		position : seoul_songpa_gu_office,
 		content : iwContent24
 	});
+	infowindows.push(infowindow24);
+	
 	var infowindow25 = new kakao.maps.InfoWindow({
 		position : seoul_gangdong_gu_office,
 		content : iwContent25
 	});
+	infowindows.push(infowindow25);
+	
 	var infowindow26 = new kakao.maps.InfoWindow({
 		position : busan_jung_gu_office,
 		content : iwContent26
 	});
+	infowindows.push(infowindow26);
+	
 	var infowindow27 = new kakao.maps.InfoWindow({
 		position : busan_seo_gu_office,
 		content : iwContent27
 	});
+	infowindows.push(infowindow27);
+	
 	var infowindow28 = new kakao.maps.InfoWindow({
 		position : busan_dong_gu_office,
 		content : iwContent28
 	});
+	infowindows.push(infowindow28);
+	
 	var infowindow29 = new kakao.maps.InfoWindow({
 		position : busan_yeongdo_gu_office,
 		content : iwContent29
 	});
+	infowindows.push(infowindow29);
+	
 	var infowindow30 = new kakao.maps.InfoWindow({
 		position : busan_jin_gu_office,
 		content : iwContent30
 	});
+	infowindows.push(infowindow30);
+	
 	var infowindow31 = new kakao.maps.InfoWindow({
 		position : busan_dongnae_gu_office,
 		content : iwContent31
 	});
+	infowindows.push(infowindow31);
+	
 	var infowindow32 = new kakao.maps.InfoWindow({
 		position : busan_nam_gu_office,
 		content : iwContent32
 	});
+	infowindows.push(infowindow32);
+	
 	var infowindow33 = new kakao.maps.InfoWindow({
 		position : busan_buk_gu_office,
 		content : iwContent33
 	});
+	infowindows.push(infowindow33);
+	
 	var infowindow34 = new kakao.maps.InfoWindow({
 		position : busan_haeundae_gu_office,
 		content : iwContent34
 	});
+	infowindows.push(infowindow34);
+	
 	var infowindow35 = new kakao.maps.InfoWindow({
 		position : busan_saha_gu_office,
 		content : iwContent35
 	});
+	infowindows.push(infowindow35);
+	
 	var infowindow36 = new kakao.maps.InfoWindow({
 		position : busan_geumjeong_gu_office,
 		content : iwContent36
 	});
+	infowindows.push(infowindow36);
+	
 	var infowindow37 = new kakao.maps.InfoWindow({
 		position : busan_gangseo_gu_office,
 		content : iwContent37
 	});
+	infowindows.push(infowindow37);
+	
 	var infowindow38 = new kakao.maps.InfoWindow({
 		position : busan_yeonje_gu_office,
 		content : iwContent38
 	});
+	infowindows.push(infowindow38);
+	
 	var infowindow39 = new kakao.maps.InfoWindow({
 		position : busan_suyeong_gu_office,
 		content : iwContent39
 	});
+	infowindows.push(infowindow39);
+	
 	var infowindow40 = new kakao.maps.InfoWindow({
 		position : busan_sasang_gu_office,
 		content : iwContent40
 	});
+	infowindows.push(infowindow40);
+	
 	var infowindow41 = new kakao.maps.InfoWindow({
 		position : busan_gijang_county_office,
 		content : iwContent41
 	});
+	infowindows.push(infowindow41);
+	
 	var infowindow42 = new kakao.maps.InfoWindow({
 		position : daegu_jung_gu_office,
 		content : iwContent42
 	});
+	infowindows.push(infowindow42);
+	
 	var infowindow43 = new kakao.maps.InfoWindow({
 		position : daegu_dong_gu_office,
 		content : iwContent43
 	});
+	infowindows.push(infowindow43);
+	
 	var infowindow44 = new kakao.maps.InfoWindow({
 		position : daegu_seo_gu_office,
 		content : iwContent44
 	});
+	infowindows.push(infowindow44);
+	
 	var infowindow45 = new kakao.maps.InfoWindow({
 		position : daegu_nam_gu_office,
 		content : iwContent45
 	});
+	infowindows.push(infowindow45);
+	
 	var infowindow46 = new kakao.maps.InfoWindow({
 		position : daegu_buk_gu_office,
 		content : iwContent46
 	});
+	infowindows.push(infowindow46);
+	
 	var infowindow47 = new kakao.maps.InfoWindow({
 		position : daegu_suseong_gu_office,
 		content : iwContent47
 	});
+	infowindows.push(infowindow47);
+	
 	var infowindow48 = new kakao.maps.InfoWindow({
 		position : daegu_dalseo_gu_office,
 		content : iwContent48
 	});
+	infowindows.push(infowindow48);
+	
 	var infowindow49 = new kakao.maps.InfoWindow({
 		position : daegu_dalseong_county_office,
 		content : iwContent49
 	});
+	infowindows.push(infowindow49);
+	
 	var infowindow50 = new kakao.maps.InfoWindow({
 		position : daegu_gunwi_county_office,
 		content : iwContent50
 	});
+	infowindows.push(infowindow50);
+	
 	var infowindow51 = new kakao.maps.InfoWindow({
 		position : incheon_jung_gu_office,
 		content : iwContent51
 	});
+	infowindows.push(infowindow51);
+	
 	var infowindow52 = new kakao.maps.InfoWindow({
 		position : incheon_dong_gu_office,
 		content : iwContent52
 	});
+	infowindows.push(infowindow52);
+	
 	var infowindow53 = new kakao.maps.InfoWindow({
 		position : incheon_michuhol_gu_office,
 		content : iwContent53
 	});
+	infowindows.push(infowindow53);
+	
 	var infowindow54 = new kakao.maps.InfoWindow({
 		position : incheon_yeonsu_gu_office,
 		content : iwContent54
 	});
+	infowindows.push(infowindow54);
+	
 	var infowindow55 = new kakao.maps.InfoWindow({
 		position : incheon_namdong_gu_office,
 		content : iwContent55
 	});
+	infowindows.push(infowindow55);
+	
 	var infowindow56 = new kakao.maps.InfoWindow({
 		position : incheon_bupyeong_gu_office,
 		content : iwContent56
 	});
+	infowindows.push(infowindow56);
+	
 	var infowindow57 = new kakao.maps.InfoWindow({
 		position : incheon_gyeyang_gu_office,
 		content : iwContent57
 	});
+	infowindows.push(infowindow57);
+	
 	var infowindow58 = new kakao.maps.InfoWindow({
 		position : incheon_seo_gu_office,
 		content : iwContent58
 	});
+	infowindows.push(infowindow58);
+	
 	var infowindow59 = new kakao.maps.InfoWindow({
 		position : incheon_ganghwa_county_office,
 		content : iwContent59
 	});
+	infowindows.push(infowindow59);
+	
 	var infowindow60 = new kakao.maps.InfoWindow({
 		position : incheon_ongjin_county_office,
 		content : iwContent60
 	});
+	infowindows.push(infowindow60);
+	
 	var infowindow61 = new kakao.maps.InfoWindow({
 		position : gwangju_dong_gu_office,
 		content : iwContent61
 	});
+	infowindows.push(infowindow61);
+	
 	var infowindow62 = new kakao.maps.InfoWindow({
 		position : gwangju_seo_gu_office,
 		content : iwContent62
 	});
+	infowindows.push(infowindow62);
+	
 	var infowindow63 = new kakao.maps.InfoWindow({
 		position : gwangju_nam_gu_office,
 		content : iwContent63
 	});
+	infowindows.push(infowindow63);
+	
 	var infowindow64 = new kakao.maps.InfoWindow({
 		position : gwangju_buk_gu_office,
 		content : iwContent64
 	});
+	infowindows.push(infowindow64);
+	
 	var infowindow65 = new kakao.maps.InfoWindow({
 		position : gwangju_gwangsan_gu_office,
 		content : iwContent65
 	});
+	infowindows.push(infowindow65);
+	
 	var infowindow66 = new kakao.maps.InfoWindow({
 		position : daejeon_dong_gu_office,
 		content : iwContent66
 	});
+	infowindows.push(infowindow66);
+	
 	var infowindow67 = new kakao.maps.InfoWindow({
 		position : daejeon_jung_gu_office,
 		content : iwContent67
 	});
+	infowindows.push(infowindow67);
+	
 	var infowindow68 = new kakao.maps.InfoWindow({
 		position : daejeon_seo_gu_office,
 		content : iwContent68
 	});
+	infowindows.push(infowindow68);
+	
 	var infowindow69 = new kakao.maps.InfoWindow({
 		position : daejeon_yuseong_gu_office,
 		content : iwContent69
 	});
+	infowindows.push(infowindow69);
+	
 	var infowindow70 = new kakao.maps.InfoWindow({
 		position : daejeon_daedeok_gu_office,
 		content : iwContent70
 	});
+	infowindows.push(infowindow70);
+	
 	var infowindow71 = new kakao.maps.InfoWindow({
 		position : ulsan_jung_gu_office,
 		content : iwContent71
 	});
+	infowindows.push(infowindow71);
+	
 	var infowindow72 = new kakao.maps.InfoWindow({
 		position : ulsan_nam_gu_office,
 		content : iwContent72
 	});
+	infowindows.push(infowindow72);
+	
 	var infowindow73 = new kakao.maps.InfoWindow({
 		position : ulsan_dong_gu_office,
 		content : iwContent73
 	});
+	infowindows.push(infowindow73);
+	
 	var infowindow74 = new kakao.maps.InfoWindow({
 		position : ulsan_buk_gu_office,
 		content : iwContent74
 	});
+	infowindows.push(infowindow74);
+	
 	var infowindow75 = new kakao.maps.InfoWindow({
 		position : ulsan_ulju_county_office,
 		content : iwContent75
 	});
+	infowindows.push(infowindow75);
+	
 	var infowindow76 = new kakao.maps.InfoWindow({
 		position : sejong_city_office,
 		content : iwContent76
 	});
+	infowindows.push(infowindow76);
+	
 	var infowindow77 = new kakao.maps.InfoWindow({
 		position : gyeonggi_suwon_city_office,
 		content : iwContent77
 	});
+	infowindows.push(infowindow77);
+	
 	var infowindow78 = new kakao.maps.InfoWindow({
 		position : gyeonggi_seongnam_city_office,
 		content : iwContent78
 	});
+	infowindows.push(infowindow78);
+	
 	var infowindow79 = new kakao.maps.InfoWindow({
 		position : gyeonggi_uijeongbu_city_office,
 		content : iwContent79
 	});
+	infowindows.push(infowindow79);
+	
 	var infowindow80 = new kakao.maps.InfoWindow({
 		position : gyeonggi_anyang_city_office,
 		content : iwContent80
 	});
+	infowindows.push(infowindow80);
+	
 	var infowindow81 = new kakao.maps.InfoWindow({
 		position : gyeonggi_bucheon_city_office,
 		content : iwContent81
 	});
+	infowindows.push(infowindow81);
+	
 	var infowindow82 = new kakao.maps.InfoWindow({
 		position : gyeonggi_gwangmyeong_city_office,
 		content : iwContent82
 	});
+	infowindows.push(infowindow82);
+	
 	var infowindow83 = new kakao.maps.InfoWindow({
 		position : gyeonggi_pyeongtaek_city_office,
 		content : iwContent83
 	});
+	infowindows.push(infowindow83);
+	
 	var infowindow84 = new kakao.maps.InfoWindow({
 		position : gyeonggi_dongducheon_city_office,
 		content : iwContent84
 	});
+	infowindows.push(infowindow84);
+	
 	var infowindow85 = new kakao.maps.InfoWindow({
 		position : gyeonggi_ansan_city_office,
 		content : iwContent85
 	});
+	infowindows.push(infowindow85);
+	
 	var infowindow86 = new kakao.maps.InfoWindow({
 		position : gyeonggi_goyang_city_office,
 		content : iwContent86
 	});
+	infowindows.push(infowindow86);
 	
 	
 	var infowindow108 = new kakao.maps.InfoWindow({
 		position : gangwon_chuncheon_city_office,
 		content : iwContent108
 	});
+	infowindows.push(infowindow108);
+	
 	var infowindow109 = new kakao.maps.InfoWindow({
 		position : gangwon_wonju_city_office,
 		content : iwContent109
 	});
+	infowindows.push(infowindow109);
+	
 	var infowindow110 = new kakao.maps.InfoWindow({
 		position : gangwon_gangneung_city_office,
 		content : iwContent110
 	});
+	infowindows.push(infowindow110);
+	
 	var infowindow111 = new kakao.maps.InfoWindow({
 		position : gangwon_donghae_city_office,
 		content : iwContent111
 	});
+	infowindows.push(infowindow111);
+	
 	var infowindow112 = new kakao.maps.InfoWindow({
 		position : gangwon_taebaek_city_office,
 		content : iwContent112
 	});
+	infowindows.push(infowindow112);
 	
 	
 	var infowindow126 = new kakao.maps.InfoWindow({
 		position : chungbuk_cheongju_city_office,
 		content : iwContent126
 	});
+	infowindows.push(infowindow126);
+	
 	var infowindow127 = new kakao.maps.InfoWindow({
 		position : chungbuk_chungju_city_office,
 		content : iwContent127
 	});
+	infowindows.push(infowindow127);
+	
 	var infowindow128 = new kakao.maps.InfoWindow({
 		position : chungbuk_jecheon_city_office,
 		content : iwContent128
 	});
+	infowindows.push(infowindow128);
+	
 	var infowindow129 = new kakao.maps.InfoWindow({
 		position : chungbuk_boeun_county_office,
 		content : iwContent129
 	});
+	infowindows.push(infowindow129);
+	
 	var infowindow130 = new kakao.maps.InfoWindow({
 		position : chungbuk_okcheon_county_office,
 		content : iwContent130
 	});
+	infowindows.push(infowindow130);
 	
 	
 	var infowindow137 = new kakao.maps.InfoWindow({
 		position : chungnam_cheonan_city_office,
 		content : iwContent137
 	});
+	infowindows.push(infowindow137);
+	
 	var infowindow138 = new kakao.maps.InfoWindow({
 		position : chungnam_gongju_city_office,
 		content : iwContent138
 	});
+	infowindows.push(infowindow138);
+	
 	var infowindow139 = new kakao.maps.InfoWindow({
 		position : chungnam_dangjin_city_office,
 		content : iwContent139
 	});
+	infowindows.push(infowindow139);
+	
 	var infowindow140 = new kakao.maps.InfoWindow({
 		position : chungnam_boryeong_city_office,
 		content : iwContent140
 	});
+	infowindows.push(infowindow140);
+	
 	var infowindow141 = new kakao.maps.InfoWindow({
 		position : chungnam_asan_city_office,
 		content : iwContent141
 	});
+	infowindows.push(infowindow141);
 	
 	
 	var infowindow152 = new kakao.maps.InfoWindow({
 		position : jeonbuk_jeonju_city_office,
 		content : iwContent152
 	});
+	infowindows.push(infowindow152);
+	
 	var infowindow153 = new kakao.maps.InfoWindow({
 		position : jeonbuk_gunsan_city_office,
 		content : iwContent153
 	});
+	infowindows.push(infowindow153);
+	
 	var infowindow154 = new kakao.maps.InfoWindow({
 		position : jeonbuk_iksan_city_office,
 		content : iwContent154
 	});
+	infowindows.push(infowindow154);
+	
 	var infowindow155 = new kakao.maps.InfoWindow({
 		position : jeonbuk_jeongeup_city_office,
 		content : iwContent155
 	});
+	infowindows.push(infowindow155);
+	
 	var infowindow156 = new kakao.maps.InfoWindow({
 		position : jeonbuk_namwon_city_office,
 		content : iwContent156
 	});
+	infowindows.push(infowindow156);
 	
 	
 	var infowindow166 = new kakao.maps.InfoWindow({
 		position : jeonnam_mokpo_city_office,
 		content : iwContent166
 	});
+	infowindows.push(infowindow166);
+	
 	var infowindow167 = new kakao.maps.InfoWindow({
 		position : jeonnam_yeosu_city_office,
 		content : iwContent167
 	});
+	infowindows.push(infowindow167);
+	
 	var infowindow168 = new kakao.maps.InfoWindow({
 		position : jeonnam_suncheon_city_office,
 		content : iwContent168
 	});
+	infowindows.push(infowindow168);
+	
 	var infowindow169 = new kakao.maps.InfoWindow({
 		position : jeonnam_naju_city_office,
 		content : iwContent169
 	});
+	infowindows.push(infowindow169);
+	
 	var infowindow170 = new kakao.maps.InfoWindow({
 		position : jeonnam_gwangyang_city_office,
 		content : iwContent170
 	});
+	infowindows.push(infowindow170);
 	
 	
 	var infowindow188 = new kakao.maps.InfoWindow({
 		position : gyeongbuk_pohang_city_office,
 		content : iwContent188
 	});
+	infowindows.push(infowindow188);
+	
 	var infowindow189 = new kakao.maps.InfoWindow({
 		position : gyeongbuk_gyeongju_city_office,
 		content : iwContent189
 	});
+	infowindows.push(infowindow189);
+	
 	var infowindow190 = new kakao.maps.InfoWindow({
 		position : gyeongbuk_gimcheon_city_office,
 		content : iwContent190
 	});
+	infowindows.push(infowindow190);
+	
 	var infowindow191 = new kakao.maps.InfoWindow({
 		position : gyeongbuk_andong_city_office,
 		content : iwContent191
 	});
+	infowindows.push(infowindow191);
+	
 	var infowindow192 = new kakao.maps.InfoWindow({
 		position : gyeongbuk_gumi_city_office,
 		content : iwContent192
 	});
+	infowindows.push(infowindow192);
 	
 	
 	var infowindow210 = new kakao.maps.InfoWindow({
 		position : gyeongnam_changwon_city_office,
 		content : iwContent210
 	});
+	infowindows.push(infowindow210);
+	
 	var infowindow211 = new kakao.maps.InfoWindow({
 		position : gyeongnam_jinju_city_office,
 		content : iwContent211
 	});
+	infowindows.push(infowindow211);
+	
 	var infowindow212 = new kakao.maps.InfoWindow({
 		position : gyeongnam_tongyeong_city_office,
 		content : iwContent212
 	});
+	infowindows.push(infowindow212);
+	
 	var infowindow213 = new kakao.maps.InfoWindow({
 		position : gyeongnam_sacheon_city_office,
 		content : iwContent213
 	});
+	infowindows.push(infowindow213);
+	
 	var infowindow214 = new kakao.maps.InfoWindow({
 		position : gyeongnam_gimhae_city_office,
 		content : iwContent214
 	});
+	infowindows.push(infowindow214);
 	
 	
 	var infowindow228 = new kakao.maps.InfoWindow({
 		position : jeju_jeju_city_office,
 		content : iwContent228
 	});
+	infowindows.push(infowindow228);
+	
 	var infowindow229 = new kakao.maps.InfoWindow({
 		position : jeju_seogwipo1_city_office,
 		content : iwContent229
 	});
+	infowindows.push(infowindow229);
+	
 	var infowindow230 = new kakao.maps.InfoWindow({
 		position : jeju_seogwipo2_city_office,
 		content : iwContent230
 	});
+	infowindows.push(infowindow230);
 	
+	// 마커를 클릭할 때 다른 지역의 인포윈도우를 끄고 해당 지역의 인포 윈도우만 표시
+	// 클릭 이벤트 리스너를 추가하는 함수
+	function addClickListener(marker, infowindow) {
+	    kakao.maps.event.addListener(marker, 'click', function() {
+	        closeOtherInfoWindows(); // 다른 마커들의 인포윈도우 닫기
+	        infowindow.open(map, marker); // 현재 마커에 대한 인포윈도우 열기
+	    });
+	}
 
-	// 마커 클릭 이벤트 리스너
+	// 각 마커에 클릭 이벤트 리스너 추가
+	for (var i = 0; i < markers.length; i++) {
+	    addClickListener(markers[i], infowindows[i]);
+	}
+
+	// 다른 마커들의 인포윈도우를 닫는 함수
+	function closeOtherInfoWindows() {
+	    for (var i = 0; i < infowindows.length; i++) {
+	        infowindows[i].close();
+	    }
+	}
+	// 마커를 클릭할 때 다른 지역의 인포윈도우를 끄고 해당 지역의 인포 윈도우만 표시
+	
+	
+	// 토글 방식으로 사용하고 싶을 때 마커 클릭 이벤트 리스너
+	/*
 	kakao.maps.event.addListener(marker1, 'click', function() {
+		
+		closeInfoWindow.close();
+		infowindow1.open(map,marker1);
 		// 인포윈도우 토글
-		if (infowindow1.getMap()) {
-		        infowindow1.close();
-		    } else {
-		        infowindow1.open(map, marker1);
-		    }
+		//if (infowindow1.getMap()) {
+		//        infowindow1.close();
+		//    } else {
+		//        infowindow1.open(map, marker1);
+		//    }
 	});
 
 	kakao.maps.event.addListener(marker2, 'click', function() {
@@ -4810,6 +5338,9 @@ function removeAllChildNods(el) {
 		        infowindow230.open(map, marker230);
 		    }
 	});
+	// 토글 방식으로 사용하고 싶을 때 마커 클릭 이벤트 리스너
+	
+	*/
 	
 	
 </script>

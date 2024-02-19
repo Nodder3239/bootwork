@@ -9,6 +9,10 @@ ul li{list-style: none;}
 a {text-decoration: none; color: #353535; font-weight:900;}
 a:hover{text-decoration: none; color: #004aad; font-weight:900;}
 
+/*    
+	min-width : 1024px; >>  최소 1024px까지, 1024px 이상부터 코드 적용 (스마트폰 등 가장 작은 사이즈에서 레이아웃 기본 -> 점차 확장되는 형태)
+	max-width : 1024px; >> 최대 1024px, 1024px 이하부터 코드 적용 (데스크 탑용의 가장 큰 화면 사이즈에서 레이아웃 기본 -> 점차 축소하는 형태)
+*/
 
 /* =============================================
                      header 
@@ -197,18 +201,65 @@ nav ul ul ul {
 	margin: 10px auto;
 	
 }
+@media screen and (max-width: 768px) {
+	.planB-menuWrap {
+	display:flex;
+	flex-direction: column;
+    align-items: center;
+    margin:0 auto;
+	}
+	.main-img-logo{
+	margin: 0 auto;
+	width: 250px;
+	padding-left:20px;
+	}
+    .menu-container {
+        justify-content: center; /* 중앙 정렬을 유지하되, 필요에 따라 조정 가능 */
+        flex-wrap: wrap; /* 요소들이 충분한 공간이 없을 경우 다음 줄로 넘어갈 수 있도록 설정 */
+    }
+    .menu-container ul,
+    .menu-container .main-menu-item,
+    .menu-container .menu-bot-img {
+        padding: 0 10px; /* 좌우 패딩 감소 */
+        font-size: 14px; /* 폰트 크기 감소 */
+    }
+    .menu-container .menu-bot-img {
+        padding-left: 10px; /* FAQ 안내봇 아이콘의 패딩 감소 */
+    }
+    nav ul li a {
+        padding: 1em 1.5em; /* 메뉴 항목의 패딩 조정 */
+    }
+     #faqContainer{
+     top: 170px;
+     right: 0 !important; 
+     }
+     .menu-bot-img span{
+     	display:none;
+     }
+}
 
 /*===============================================
  					footer 
  			bg : #353535 / font : #f3eeea
 =================================================*/
+@media screen and (max-width: 768px) {
+	#planB-footer{
+	width: 85% !important;
+	max-width: 768px;
+	}
+	.footer-loca-copy{
+	display:flex;
+	flex-direction: column;
+	align-items:center;
+	line-height:1.7;
+	}
+}
+
 #planB-footer{
 	width:100%; 
 	max-width:1024px; 
 	margin:0 auto; 
 	background: #353535;
-	/* 콘텐츠 1024px 틀 - 마지막에 지울예정 */
-/* 	border:1px solid black; */
 }
 #planB-footer a{color:#f3eeea;}
 #planB-footer a:hover{color:#fc80ac;}
@@ -247,8 +298,13 @@ footer{background: #353535;}
     margin: 0 auto;
 	height:46px;
 	overflow: hidden; 
-	
 }
+@media screen and (max-width: 768px) {
+	.slider_wrap{
+	padding: 0 15px;
+	}
+}
+
 /* 텍스트가 보이는 영역 */
 .slider_text { 
     width: 100%;
@@ -295,6 +351,22 @@ footer{background: #353535;}
 	display:flex;
 	justify-content: space-between;
 }
+@media screen and (max-width: 768px) {
+	#weather-realTimeReport{
+	display:flex;
+	flex-direction: column;
+	align-items:center;
+	}
+	.weatherInfo-airPollution, .realTimeReport-wrap{
+	width:85% !important;
+	max-width: 768px !important;
+	margin-bottom: 20px;
+	}
+	.realTimeReport-wrap{
+	margin-bottom:0px !important;
+	}
+}
+	
 /* 실시간 제보 게시판 */
 .realTimeReport-wrap{
 	width:49%;
@@ -353,7 +425,7 @@ footer{background: #353535;}
   vertical-align: bottom; /* 기준선에 따라 세로 정렬 */
 }
 .main-boardTitle{
-	 display: block; /* 블록 레벨 요소로 만들어 전체 너비를 사용하게 합니다 */
+	display: block; /* 블록 레벨 요소로 만들어 전체 너비를 사용하게 합니다 */
   white-space: nowrap; /* 텍스트를 줄 바꿈 없이 한 줄로 표시 */
   overflow: hidden; /* 내용이 요소의 너비를 초과할 경우 숨깁니다 */
   text-overflow: ellipsis; /* 내용이 넘칠 때 "..."으로 표시 */
@@ -367,7 +439,7 @@ footer{background: #353535;}
 }
 
 /* 날씨 정보 */
-.weaterInfo-airPollution{
+.weatherInfo-airPollution{
 	width:49%;
 	height: 270px;
 	background: #ffffff;
@@ -480,10 +552,39 @@ footer{background: #353535;}
 	font-size:35px;
 }
 
-
 /*
 	main - Body3 : 긴급재난문자 , btn3(비상연락망, 재난유관기관, 기상특보)
 */
+@media screen and (max-width: 768px) {
+	#emergency-circleBtn3-bg{
+	height:450px !important;
+	display:flex;
+	align-items:center;
+	}
+	.emergency-circleBtn3-wrap{
+	padding: 30px 0;
+	display:flex;
+	align-items:center;
+	flex-direction: column;
+	}
+	.emergency-pinkBox{
+	margin-bottom:20px;
+	}
+	.emergency-pinkBox , .useful-three-btn{
+	width:85% !important;
+	max-width: 768px !important;
+	}
+	
+	.useful-three-btn .useful-btn{
+	margin:0 auto;
+	width: 160px;
+	height: 160px;
+	}
+	.useful-btn p{
+	font-size: 14px !important;
+	}
+}
+
 /* 긴급재난문자 */
 #emergency-circleBtn3-bg{ /* body3 컨테이너 틀  */
 	width:100%; 
@@ -565,6 +666,17 @@ footer{background: #353535;}
 /*
 	main - Body 4 : 지진 발생 시 행동요령 (재난발생 시 행동요령)
 */
+@media screen and (max-width: 768px) {
+	#actionTips-disaster{
+	height:220px !important;
+	}
+	
+	.actionTips-earthQuake{
+	width: 85% !important ;
+	max-width:768px;
+	}
+}
+
 #actionTips-disaster{
 	width:100%; 
 	height: 270px;
@@ -615,6 +727,32 @@ footer{background: #353535;}
 /*====================================================================
 			재난 유관 기관 - public-institution.html
 =====================================================================*/
+@media screen and (max-width: 768px) {
+	#pi-container{
+		width:85% !important;
+		max-width:768px;
+		margin: 0 auto;
+	}
+	 .pi-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* 가운데 정렬을 위해 */
+    }
+
+    .pi-img-btn {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; /* 내부 li 요소들을 가운데 정렬하기 위해 */
+        padding: 0; /* 필요한 경우 패딩 조정 */
+    }
+	 
+    .pi-img-btn li {
+        float: none; /* float 제거 */
+        margin: 5px; /* 주변 마진을 추가하여 간격 조정 */
+    }
+	
+}
+
 #pi-title{
 	width:100%;
 	height:91px;
@@ -647,9 +785,6 @@ footer{background: #353535;}
 }
 .pi-img-btn{
 	padding: 0 2px;
-/* 	display:flex; */
-/* 	flex-wrap: wrap; */
-/* 	justify-content: center; */
 }
 .pi-img-btn li{
 	float: left;
@@ -690,6 +825,19 @@ footer{background: #353535;}
 /*=====================================================================
 				자주묻는질문 faq / 개인정보 처리방침
 ====================================================================*/
+@media screen and (max-width: 768px) {
+	#question_container{
+	width: 100% !important;
+	max-width: 768px; 
+	}
+	#question_container .pp-wrap{
+		height: auto !important;
+	}
+/* 	#question_container p{ */
+/* 		font-size: 2vw; */
+/* 	} */
+	
+}
   #question_container{
   	max-width:1024px;
 	width:100%;
@@ -704,7 +852,8 @@ footer{background: #353535;}
   }
   .pp-wrap {
   	width: 70%;
-    height: 105px;
+/*     height: 105px; */
+    height: auto;
     background: #ffffff;
     border: 1px solid #b0b0b0;
     margin-top: 40px;

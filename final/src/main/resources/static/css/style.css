@@ -499,7 +499,8 @@ ul li{list-style: none;}
     justify-content: center;
     width: 30px;
     height: 30px;
-    background-image: radial-gradient(ellipse, #0088FF, #004AAD);
+    background-color: #004AAD;
+    border: 0.5px solid #353535;
     border-radius: 50%;
     color: #fff;
     text-align: center;

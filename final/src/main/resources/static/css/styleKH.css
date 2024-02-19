@@ -74,18 +74,14 @@ ul li{list-style: none;}
 	border: 1px solid #353535;
 }
 #emerContact_container #emerContact_contactTBL img{
-	margin-left: 15px;
-	margin-top: 15px;
+	margin-left: 17px; 
 }
 #emerContact_container #emerContact_contactTBL h2{
-	line-height: 60px;
+	line-height: 30px;
 	margin: 2px;
 }
 #emerContact_container .contact_region {
 	cursor: pointer;
-}
-.contact_region{
-	margin: 0 auto;
 }
 #emerContact_container #mapArea{
 	margin-left: auto;
@@ -467,7 +463,6 @@ ul li{list-style: none;}
 	width:900px;
 	height:500px;
 	background-color: #fff;
-	box-shadow: 7px 7px 5px rgba(0,0,0,0.2);
 	z-index: 1000;
 }
 #safeBehavior_bigContainer .popup h3{
@@ -521,7 +516,7 @@ ul li{list-style: none;}
 	float: left; 
 	max-width: 500px;
 	height: 291.66px;
-	background: #f9f9f9;
+	background: #f9f9f9; 
 	margin-left: 0.78%;
 }
 #safeBehavior_container #safeBehavior_topTitle{
@@ -592,10 +587,9 @@ ul li{list-style: none;}
 #safeBehavior_container #safeBehavior_mainImage3, #safeBehavior_container #safeBehavior_mainImage4
 {
 	float:left; 
-	margin-top:20px;
-	margin-right:0.78%; 
+	margin-top:20px; 
 	width:490px; 
-	height:653.33px;
+	height:653px;
 	border: 5px solid #d9d9d9;
 }
 #safeBehavior_container #safeBehavior_mainContent1, #safeBehavior_container #safeBehavior_mainContent2, 
@@ -603,7 +597,7 @@ ul li{list-style: none;}
 {
 	float:left; 
 	margin-top:20px; 
-	margin-left:0.78%; 
+	margin-left:1.56%; 
 	background: #f9f9f9;
 	width:500px;
 }
@@ -653,10 +647,9 @@ ul li{list-style: none;}
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		width:900px;
+		width:700px;
 		height:500px;
 		background-color: #fff;
-		box-shadow: 7px 7px 5px rgba(0,0,0,0.2);
 		z-index: 1000;
 	}
 	#safeBehavior_bigContainer .popup h3{
@@ -701,15 +694,15 @@ ul li{list-style: none;}
 		margin: 0 auto;
 	}
 	#safeBehavior_topVideo {
-		max-width: 470px; 
-		height: 280px; 
+		max-width: 490px; 
+		height: 285.83px; 
 		margin-left: 6.24%;
 		margin-top: 40px;
 		border: 5px solid #d9d9d9;
 	}
 	#safeBehavior_topMain {
-		max-width: 480px; 
-		height: 280px; 
+		max-width: 500px; 
+		height: 291.66px; 
 		margin-left: 6.24%;
 	}
 	#safeBehavior_topMain h3{
@@ -725,7 +718,7 @@ ul li{list-style: none;}
 		font-size: 1.5em;
 	}
 	#safeBehavior_container #safeBehavior_topText{
-		width:480px; 
+		width:500px; 
 		line-height: 1.5; 
 		float:left;
 	}

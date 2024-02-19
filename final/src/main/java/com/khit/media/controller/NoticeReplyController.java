@@ -26,6 +26,7 @@ public class NoticeReplyController {
 	@PostMapping("/write")
 	public String insertReply(ReplyDTO replyDTO,
 		@AuthenticationPrincipal SecurityUser principal) {
+		replyDTO.setRid(principal.getMember().getId());
 		replyDTO.setReplyer(principal.getMember().getName());
 		replyService.insert(replyDTO);
 		return "redirect:/noticeboard/" + replyDTO.getBoardId();
@@ -39,7 +40,10 @@ public class NoticeReplyController {
 	}
 	
 	@PostMapping("/update")
-	public String updateReply(@ModelAttribute ReplyDTO replyDTO) {
+	public String updateReply(@ModelAttribute ReplyDTO replyDTO
+			, @AuthenticationPrincipal SecurityUser principal) {
+		replyDTO.setRid(principal.getMember().getId());
+		replyDTO.setReplyer(principal.getMember().getName());
 		replyService.update(replyDTO);
 		return "redirect:/noticeboard/" + replyDTO.getBoardId();
 	}

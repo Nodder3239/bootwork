@@ -47,7 +47,7 @@ public class ReportController {
 			boardList = boardService.findReportByContent(kw, pageable);
 		} else if ("w".equals(field)){
 			boardList = boardService.findReportByWriter(kw, pageable);
-		}else {
+		} else {
 			boardList = boardService.findReportListAll(pageable);
 		}   
 		//하단의 페이지 블럭 만들기
@@ -75,6 +75,7 @@ public class ReportController {
 			ReportDTO report = new ReportDTO();
 			report.setBoardId(boardId);
 			report.setReporter(principal.getMember().getName());
+			report.setRid(principal.getMember().getId());
 			reportService.save(report);
 		}else {
 			reportService.deleteByBoardIdAndReporter(boardId, principal.getMember().getName());
@@ -92,16 +93,17 @@ public class ReportController {
 		//글 상세보기
 		BoardDTO boardDTO = boardService.findById(id);
 		
-		MemberDTO memberDTO = memberService.findByName(boardDTO.getBoardWriter());
+		MemberDTO memberDTO = memberService.findById(boardDTO.getBid());
 		model.addAttribute("writer", memberDTO);
 		//댓글 목록
 		List<ReplyDTO> replyList = replyService.findByBoardId(id);
 		
 		List<String> thumbList = new ArrayList<>();
         for (ReplyDTO replyDTO : replyList) {
-            String replyer = replyDTO.getReplyer();
-            MemberDTO replyerDTO = memberService.findByName(replyer);
+            Integer rid = replyDTO.getRid();
+            MemberDTO replyerDTO = memberService.findById(rid);
             if (replyerDTO != null) {
+            	thumbList.add(replyerDTO.getMemberId());
                 thumbList.add(replyerDTO.getFilename());
             }
         }
@@ -123,6 +125,7 @@ public class ReportController {
 			ReportDTO report = new ReportDTO();
 			report.setBoardId(boardId);
 			report.setReporter(principal.getMember().getName());
+			report.setRid(principal.getMember().getId());
 			reportService.save(report);
 		}else {
 			reportService.deleteByBoardIdAndReporter(boardId, principal.getMember().getName());
@@ -140,6 +143,7 @@ public class ReportController {
 			ReportDTO report = new ReportDTO();
 			report.setBoardId(boardId);
 			report.setReporter(principal.getMember().getName());
+			report.setRid(principal.getMember().getId());
 			reportService.save(report);
 		}else {
 			reportService.deleteByBoardIdAndReporter(boardId, principal.getMember().getName());
@@ -157,6 +161,7 @@ public class ReportController {
 			ReportDTO report = new ReportDTO();
 			report.setBoardId(boardId);
 			report.setReporter(principal.getMember().getName());
+			report.setRid(principal.getMember().getId());
 			reportService.save(report);
 		}else {
 			reportService.deleteByBoardIdAndReporter(boardId, principal.getMember().getName());
@@ -174,6 +179,7 @@ public class ReportController {
 			ReportDTO report = new ReportDTO();
 			report.setBoardId(boardId);
 			report.setReporter(principal.getMember().getName());
+			report.setRid(principal.getMember().getId());
 			reportService.save(report);
 		}else {
 			reportService.deleteByBoardIdAndReporter(boardId, principal.getMember().getName());

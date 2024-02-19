@@ -25,6 +25,9 @@ public class BoardDTO{
 	@Column(nullable=false)
 	private String boardTitle;
 	
+	@Column(unique = true)
+	private Integer bid;
+	
 	@Column(nullable=false)
 	private String boardWriter;
 	
@@ -62,6 +65,7 @@ public class BoardDTO{
 		BoardDTO boardDTO = BoardDTO.builder()
 				.id(board.getId())
 				.boardTitle(board.getBoardTitle())
+				.bid(board.getBid())
 				.boardWriter(board.getBoardWriter())
 				.boardContent(board.getBoardContent())
 				.boardCategory(board.getBoardCategory())

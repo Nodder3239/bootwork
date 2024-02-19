@@ -51,6 +51,8 @@ public class BoardController {
 	@PostMapping("/write")
 	public String write(BoardDTO boardDTO, MultipartFile boardFile) throws Exception {
 		//글쓰기 처리
+		boardDTO.setBid(principal.getMember().getId());
+		boardDTO.setBoardWriter(principal.getMember().getName());
 		boardDTO.setBoardHits(0);
 		boardDTO.setReplyCount(0);
 		boardDTO.setLikeCount(0);
@@ -81,9 +83,11 @@ public class BoardController {
 			boardList = boardService.findByContent(kw, pageable);
 		} else if ("w".equals(field)){
 			boardList = boardService.findByWriter(kw, pageable);
-		}else {
+		} else if ("i".equals(field)){
+			boardList = boardService.findByBid(kw, pageable);
+		} else {
 			boardList = boardService.findListAll(pageable);
-		}   
+		}
 		//하단의 페이지 블럭 만들기
 		int blockLimit = 10;	//하단에 보여줄 페이지 개수
 		int startPage = ((int)(Math.ceil((double)pageable.getPageNumber() / blockLimit))-1) *blockLimit+1;
@@ -112,21 +116,53 @@ public class BoardController {
 		//글 상세보기
 		BoardDTO boardDTO = boardService.findById(id);
 		
-		MemberDTO memberDTO = memberService.findByName(boardDTO.getBoardWriter());
+		MemberDTO memberDTO = memberService.findById(boardDTO.getBid());
+		if (memberDTO != null) { // memberDTO가 null이 아닌 경우에만 실행
+		    String name = memberDTO.getMemberId();
+		    if (name != null && name.length() > 3) { // memberId가 null이 아니고 길이가 3보다 큰 경우에만 실행
+		        int startIndex = (name.length() - 3) / 2;
+		        int endIndex = startIndex + 3;
+		        
+		        StringBuilder maskedId = new StringBuilder(name);
+		        for (int i = startIndex; i < endIndex; i++) {
+		            maskedId.setCharAt(i, '*');
+		        }
+		        String mask = maskedId.toString();
+		        memberDTO.setMemberId(mask);
+		    }
+		}
 		model.addAttribute("writer", memberDTO);
+		
 		//댓글 목록
 		List<ReplyDTO> replyList = replyService.findByBoardId(id);
-		
+
 		List<String> thumbList = new ArrayList<>();
-        for (ReplyDTO replyDTO : replyList) {
-            String replyer = replyDTO.getReplyer();
-            MemberDTO replyerDTO = memberService.findByName(replyer);
-            if (replyerDTO != null) {
-                thumbList.add(replyerDTO.getFilename());
-            }
-        }
-	        
-	    model.addAttribute("thumbList", thumbList);
+		for (ReplyDTO replyDTO : replyList) {
+		    Integer rid = replyDTO.getRid();
+		    MemberDTO replyerDTO = memberService.findById(rid);
+		    
+		    if (replyerDTO != null) {
+		        String memberId = replyerDTO.getMemberId();
+		        
+		        if (memberId != null && memberId.length() > 3) {
+		            int startIndex = (memberId.length() - 3) / 2;
+		            int endIndex = startIndex + 3;
+		            
+		            StringBuilder maskedId = new StringBuilder(memberId);
+		            for (int i = startIndex; i < endIndex; i++) {
+		                maskedId.setCharAt(i, '*');
+		            }
+		            
+		            thumbList.add(maskedId.toString());
+		        } else {
+		            thumbList.add(memberId);
+		        }
+		        
+		        thumbList.add(replyerDTO.getFilename());
+		    }
+		}
+
+		model.addAttribute("thumbList", thumbList);
 		
 		model.addAttribute("board", boardDTO);
 		model.addAttribute("replyList", replyList);
@@ -151,7 +187,11 @@ public class BoardController {
 	}
 	
 	@PostMapping("/update")
-	public String update(@ModelAttribute BoardDTO boardDTO, MultipartFile boardFile) throws Exception {
+	public String update(@ModelAttribute BoardDTO boardDTO
+			, MultipartFile boardFile
+			, @AuthenticationPrincipal SecurityUser principal) throws Exception {
+		boardDTO.setBid(principal.getMember().getId());
+		boardDTO.setBoardWriter(principal.getMember().getName());
 		boardService.updateHits2(boardDTO.getId());
 		boardService.update(boardDTO, boardFile);
 		return "redirect:/board/" + boardDTO.getId();

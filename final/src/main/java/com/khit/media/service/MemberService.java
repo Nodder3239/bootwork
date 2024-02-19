@@ -142,7 +142,7 @@ public class MemberService {
 		//암호화, 권한 설정
 		String encPW = pwEncoder.encode(memberDTO.getPassword());
 		memberDTO.setPassword(encPW);
-		memberDTO.setRole(Role.ADMIN);
+		memberDTO.setRole(Role.MEMBER);
 		
 		//변환시 엔티티 메서드를 toSaveUpdate()로 바꿔줌
 		member = Member.toSaveUpdate(memberDTO);
@@ -159,11 +159,4 @@ public class MemberService {
 			return "NO";
 		}
 	}
-
-	public MemberDTO findByName(String boardWriter) {
-		Member member = memberRepository.findByName(boardWriter);
-		MemberDTO memberDTO = MemberDTO.toSaveDTO(member);
-		return memberDTO;
-	}
-
 }

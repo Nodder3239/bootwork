@@ -10,15 +10,16 @@ import com.khit.media.entity.Vote;
 
 public interface VoteRepository extends JpaRepository<Vote, Long>{
 
-	List<Vote> findByBoardIdAndVoter(Long boardId, String voter);
+	List<Vote> findByBoardIdAndVid(Long boardId, Integer vid);
 	
 	@Modifying
-	void deleteByBoardIdAndVoter(Long boardId, String voter);
+	void deleteByBoardIdAndVid(Long boardId, Integer vid);
 	
 	@Modifying
 	void deleteByBoardId(Long id);
 	
 	@Modifying
-	void deleteByVoter(String name);
+	void deleteByVid(Integer vid);
+	
 
 }

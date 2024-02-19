@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.khit.media.dto.BoardDTO;
 import com.khit.media.entity.Board;
 import com.khit.media.repository.BoardRepository;
+import com.khit.media.repository.VoteRepository;
 
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -99,7 +100,7 @@ public class BoardService {
 		
 		Page<Board> boardList = boardRepository.findByBoardTitleContaining(kw, pageable);
 		Page<BoardDTO> boardDTOList = boardList.map(board ->
-		new BoardDTO(board.getId(), board.getBoardTitle(), 
+		new BoardDTO(board.getId(), board.getBoardTitle(), board.getBid(),
 				board.getBoardWriter(), board.getBoardContent(), 
 				board.getBoardCategory(), board.getBoardHits(),
 				board.getReplyCount(), board.getLikeCount(),
@@ -117,7 +118,7 @@ public class BoardService {
 		
 		Page<Board> boardList = boardRepository.findByBoardContentContaining(kw, pageable);
 		Page<BoardDTO> boardDTOList = boardList.map(board ->
-		new BoardDTO(board.getId(), board.getBoardTitle(), 
+		new BoardDTO(board.getId(), board.getBoardTitle(), board.getBid(),
 				board.getBoardWriter(), board.getBoardContent(), 
 				board.getBoardCategory(), board.getBoardHits(),
 				board.getReplyCount(), board.getLikeCount(),
@@ -134,7 +135,7 @@ public class BoardService {
 		
 		Page<Board> boardList = boardRepository.findByBoardWriterContaining(kw, pageable);
 		Page<BoardDTO> boardDTOList = boardList.map(board ->
-		new BoardDTO(board.getId(), board.getBoardTitle(), 
+		new BoardDTO(board.getId(), board.getBoardTitle(), board.getBid(),
 				board.getBoardWriter(), board.getBoardContent(), 
 				board.getBoardCategory(), board.getBoardHits(),
 				board.getReplyCount(), board.getLikeCount(),
@@ -186,7 +187,7 @@ public class BoardService {
 		
 		Page<Board> boardList = boardRepository.findAll(pageable);
 		Page<BoardDTO> boardDTOList = boardList.map(board ->
-		new BoardDTO(board.getId(), board.getBoardTitle(), 
+		new BoardDTO(board.getId(), board.getBoardTitle(), board.getBid(),
 				board.getBoardWriter(), board.getBoardContent(), 
 				board.getBoardCategory(), board.getBoardHits(),
 				board.getReplyCount(), board.getLikeCount(),
@@ -203,7 +204,7 @@ public class BoardService {
 		
 		Page<Board> boardList = boardRepository.findAll(pageable);
 		Page<BoardDTO> boardDTOList = boardList.map(board ->
-		new BoardDTO(board.getId(), board.getBoardTitle(), 
+		new BoardDTO(board.getId(), board.getBoardTitle(), board.getBid(),
 				board.getBoardWriter(), board.getBoardContent(), 
 				board.getBoardCategory(), board.getBoardHits(),
 				board.getReplyCount(), board.getLikeCount(),
@@ -221,7 +222,7 @@ public class BoardService {
 		
 		Page<Board> boardList = boardRepository.findByBoardCategoryContaining(c, pageable);
 		Page<BoardDTO> boardDTOList = boardList.map(board ->
-		new BoardDTO(board.getId(), board.getBoardTitle(), 
+		new BoardDTO(board.getId(), board.getBoardTitle(), board.getBid(),
 				board.getBoardWriter(), board.getBoardContent(), 
 				board.getBoardCategory(), board.getBoardHits(),
 				board.getReplyCount(), board.getLikeCount(),
@@ -238,7 +239,7 @@ public class BoardService {
 		
 		Page<Board> boardList = boardRepository.findByBoardCategoryContainingAndBoardTitleContaining(cate, kw, pageable);
 		Page<BoardDTO> boardDTOList = boardList.map(board ->
-		new BoardDTO(board.getId(), board.getBoardTitle(), 
+		new BoardDTO(board.getId(), board.getBoardTitle(), board.getBid(),
 				board.getBoardWriter(), board.getBoardContent(), 
 				board.getBoardCategory(), board.getBoardHits(),
 				board.getReplyCount(), board.getLikeCount(),
@@ -255,7 +256,7 @@ public class BoardService {
 		
 		Page<Board> boardList = boardRepository.findByBoardCategoryContainingAndBoardContentContaining(cate, kw, pageable);
 		Page<BoardDTO> boardDTOList = boardList.map(board ->
-		new BoardDTO(board.getId(), board.getBoardTitle(), 
+		new BoardDTO(board.getId(), board.getBoardTitle(), board.getBid(),
 				board.getBoardWriter(), board.getBoardContent(), 
 				board.getBoardCategory(), board.getBoardHits(),
 				board.getReplyCount(), board.getLikeCount(),
@@ -272,7 +273,7 @@ public class BoardService {
 		
 		Page<Board> boardList = boardRepository.findByBoardCategoryContainingAndBoardWriterContaining(cate, kw, pageable);
 		Page<BoardDTO> boardDTOList = boardList.map(board ->
-		new BoardDTO(board.getId(), board.getBoardTitle(), 
+		new BoardDTO(board.getId(), board.getBoardTitle(), board.getBid(),
 				board.getBoardWriter(), board.getBoardContent(), 
 				board.getBoardCategory(), board.getBoardHits(),
 				board.getReplyCount(), board.getLikeCount(),
@@ -304,7 +305,7 @@ public class BoardService {
 		
 		Page<Board> boardList = boardRepository.findAll(pageable);
 		Page<BoardDTO> boardDTOList = boardList.map(board ->
-		new BoardDTO(board.getId(), board.getBoardTitle(), 
+		new BoardDTO(board.getId(), board.getBoardTitle(), board.getBid(),
 				board.getBoardWriter(), board.getBoardContent(), 
 				board.getBoardCategory(), board.getBoardHits(),
 				board.getReplyCount(), board.getLikeCount(),
@@ -327,13 +328,6 @@ public class BoardService {
 	    }
 	}
 	
-	@Transactional
-	public void deleteByBoardWriter(String memberName) {
-		boardRepository.deleteByBoardWriter(memberName);
-		
-	}
-	
-
 	//신고게시판용
 	public Page<BoardDTO> findReportListAll(Pageable pageable) {
 		int page = pageable.getPageNumber() - 1;	//db가 1 작음
@@ -342,7 +336,7 @@ public class BoardService {
 		
 		Page<Board> boardList = boardRepository.findAll(pageable);
 		Page<BoardDTO> boardDTOList = boardList.map(board ->
-		new BoardDTO(board.getId(), board.getBoardTitle(), 
+		new BoardDTO(board.getId(), board.getBoardTitle(), board.getBid(),
 				board.getBoardWriter(), board.getBoardContent(), 
 				board.getBoardCategory(), board.getBoardHits(),
 				board.getReplyCount(), board.getLikeCount(),
@@ -359,7 +353,7 @@ public class BoardService {
 		
 		Page<Board> boardList = boardRepository.findByBoardTitleContaining(kw, pageable);
 		Page<BoardDTO> boardDTOList = boardList.map(board ->
-		new BoardDTO(board.getId(), board.getBoardTitle(), 
+		new BoardDTO(board.getId(), board.getBoardTitle(), board.getBid(),
 				board.getBoardWriter(), board.getBoardContent(), 
 				board.getBoardCategory(), board.getBoardHits(),
 				board.getReplyCount(), board.getLikeCount(),
@@ -376,7 +370,7 @@ public class BoardService {
 		
 		Page<Board> boardList = boardRepository.findByBoardContentContaining(kw, pageable);
 		Page<BoardDTO> boardDTOList = boardList.map(board ->
-		new BoardDTO(board.getId(), board.getBoardTitle(), 
+		new BoardDTO(board.getId(), board.getBoardTitle(), board.getBid(),
 				board.getBoardWriter(), board.getBoardContent(), 
 				board.getBoardCategory(), board.getBoardHits(),
 				board.getReplyCount(), board.getLikeCount(),
@@ -393,7 +387,7 @@ public class BoardService {
 		
 		Page<Board> boardList = boardRepository.findByBoardWriterContaining(kw, pageable);
 		Page<BoardDTO> boardDTOList = boardList.map(board ->
-		new BoardDTO(board.getId(), board.getBoardTitle(), 
+		new BoardDTO(board.getId(), board.getBoardTitle(), board.getBid(),
 				board.getBoardWriter(), board.getBoardContent(), 
 				board.getBoardCategory(), board.getBoardHits(),
 				board.getReplyCount(), board.getLikeCount(),
@@ -411,7 +405,7 @@ public class BoardService {
 		
 		Page<Board> boardList = boardRepository.findVoteListAll(voter, pageable);
 		Page<BoardDTO> boardDTOList = boardList.map(board ->
-		new BoardDTO(board.getId(), board.getBoardTitle(), 
+		new BoardDTO(board.getId(), board.getBoardTitle(), board.getBid(),
 				board.getBoardWriter(), board.getBoardContent(), 
 				board.getBoardCategory(), board.getBoardHits(),
 				board.getReplyCount(), board.getLikeCount(),
@@ -430,7 +424,7 @@ public class BoardService {
 
 	    Page<Board> boardList = boardRepository.findByBoardWriter(name, pageable); // 수정된 부분
 	    Page<BoardDTO> boardDTOList = boardList.map(board ->
-	        new BoardDTO(board.getId(), board.getBoardTitle(),
+	        new BoardDTO(board.getId(), board.getBoardTitle(), board.getBid(), 
 	                board.getBoardWriter(), board.getBoardContent(),
 	                board.getBoardCategory(), board.getBoardHits(),
 	                board.getReplyCount(), board.getLikeCount(),
@@ -447,7 +441,30 @@ public class BoardService {
 		
 		Page<Board> boardList = boardRepository.findVoteListAll(voter, pageable);
 		Page<BoardDTO> boardDTOList = boardList.map(board ->
-		new BoardDTO(board.getId(), board.getBoardTitle(), 
+		new BoardDTO(board.getId(), board.getBoardTitle(), board.getBid(),
+				board.getBoardWriter(), board.getBoardContent(), 
+				board.getBoardCategory(), board.getBoardHits(),
+				board.getReplyCount(), board.getLikeCount(),
+				board.getReportCount(),	board.getFilename(), 
+				board.getFilepath(), board.getCreatedDate(), 
+				board.getUpdatedDate()));
+		return boardDTOList;
+	}
+	
+	@Transactional
+	public void deleteByBid(Integer bid) {
+		boardRepository.deleteByBid(bid);
+		
+	}
+
+	public Page<BoardDTO> findByBid(String kw, Pageable pageable) {
+		int page1 = pageable.getPageNumber() - 1;
+		int pageSize = 10;
+		pageable = PageRequest.of(page1, pageSize, Sort.Direction.DESC, "id");
+		
+		Page<Board> boardList = boardRepository.findByBid(kw, pageable);
+		Page<BoardDTO> boardDTOList = boardList.map(board ->
+		new BoardDTO(board.getId(), board.getBoardTitle(), board.getBid(),
 				board.getBoardWriter(), board.getBoardContent(), 
 				board.getBoardCategory(), board.getBoardHits(),
 				board.getReplyCount(), board.getLikeCount(),
@@ -458,5 +475,4 @@ public class BoardService {
 	}
 
 
-	
 }

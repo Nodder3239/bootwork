@@ -25,14 +25,14 @@ public class InfoVoteController {
 	@GetMapping("/{boardId}")
 	public String vote(@PathVariable Long boardId,
 			@AuthenticationPrincipal SecurityUser principal) {
-		List<VoteDTO> findVote = voteService.findByBoardIdAndVoter(boardId, principal.getMember().getName());
+		List<VoteDTO> findVote = voteService.findByBoardIdAndVid(boardId, principal.getMember().getId());
 		if(findVote.isEmpty()) {
 			VoteDTO vote = new VoteDTO();
 			vote.setBoardId(boardId);
 			vote.setVoter(principal.getMember().getName());
 			voteService.save(vote);
 		}else {
-			voteService.deleteByBoardIdAndVoter(boardId, principal.getMember().getName());
+			voteService.deleteByBoardIdAndVid(boardId, principal.getMember().getId());
 		}
 		boardService.updateHits2(boardId);
 		boardService.updateLikeCount(boardId);

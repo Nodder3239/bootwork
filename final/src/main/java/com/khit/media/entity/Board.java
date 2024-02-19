@@ -31,6 +31,9 @@ public class Board extends BaseEntity{
 	@Column(length=400, nullable=false)
 	private String boardTitle;
 	
+	@Column
+	private Integer bid;
+	
 	@Column(length=30, nullable=false)
 	private String boardWriter;
 	
@@ -63,6 +66,7 @@ public class Board extends BaseEntity{
 	public static Board toSaveBoardEntity(BoardDTO boardDTO) {
 		Board board = Board.builder()
 				.boardTitle(boardDTO.getBoardTitle())
+				.bid(boardDTO.getBid())
 				.boardWriter(boardDTO.getBoardWriter())
 				.boardContent(boardDTO.getBoardContent())
 				.boardCategory(boardDTO.getBoardCategory())
@@ -80,6 +84,7 @@ public class Board extends BaseEntity{
 		Board board = Board.builder()
 				.id(boardDTO.getId())
 				.boardTitle(boardDTO.getBoardTitle())
+				.bid(boardDTO.getBid())
 				.boardWriter(boardDTO.getBoardWriter())
 				.boardContent(boardDTO.getBoardContent())
 				.boardCategory(boardDTO.getBoardCategory())
@@ -93,20 +98,5 @@ public class Board extends BaseEntity{
 		return board;
 	}
 	
-	/*
-	public static Board toUpdateNoFileBoardEntity(BoardDTO boardDTO) {
-		Board board = Board.builder()
-				.id(boardDTO.getId())
-				.boardTitle(boardDTO.getBoardTitle())
-				.boardWriter(boardDTO.getBoardWriter())
-				.boardContent(boardDTO.getBoardContent())
-				.boardCategory(boardDTO.getBoardCategory())
-				.boardHits(boardDTO.getBoardHits())
-				.replyCount(boardDTO.getReplyCount())
-				.likeCount(boardDTO.getLikeCount())
-				.reportCount(boardDTO.getReportCount())
-				.build();
-		return board;
-	}
-	*/
+
 }

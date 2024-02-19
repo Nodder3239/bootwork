@@ -46,10 +46,12 @@ public class ReportService {
 	}
 	
 	@Transactional
-	public void deleteByReporter(String reporter) {
-		reportRepository.deleteByReporter(reporter);
+	public void deleteByRid(Integer rid) {
+		reportRepository.deleteByRid(rid);
 		
 	}
+	
+
 	
 	
 }

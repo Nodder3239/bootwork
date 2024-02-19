@@ -26,6 +26,7 @@ public class QnaReplyController {
 	@PostMapping("/write")
 	public String insertReply(ReplyDTO replyDTO,
 			@AuthenticationPrincipal SecurityUser principal) {
+		replyDTO.setRid(principal.getMember().getId());
 		replyDTO.setReplyer(principal.getMember().getName());
 		replyService.insert(replyDTO);
 		return "redirect:/qnaboard/" + replyDTO.getBoardId();
@@ -39,7 +40,10 @@ public class QnaReplyController {
 	}
 	
 	@PostMapping("/update")
-	public String updateReply(@ModelAttribute ReplyDTO replyDTO) {
+	public String updateReply(@ModelAttribute ReplyDTO replyDTO
+			, @AuthenticationPrincipal SecurityUser principal) {
+		replyDTO.setRid(principal.getMember().getId());
+		replyDTO.setReplyer(principal.getMember().getName());
 		replyService.update(replyDTO);
 		return "redirect:/qnaboard/" + replyDTO.getBoardId();
 	}

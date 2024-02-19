@@ -72,12 +72,6 @@ public class ReplyService {
 		
 	}
 
-	@Transactional
-	public void deleteByReplyer(String name) {
-		replyRepository.deleteByReplyer(name);		
-	}
-
-
 	public Page<ReplyDTO> findByReplyer2(String name, Pageable pageable) {
 		int page3 = pageable.getPageNumber() - 1;
 		int pageSize = 3;
@@ -85,7 +79,7 @@ public class ReplyService {
 		
 		Page<Reply> replyList = replyRepository.findByReplyer(name, pageable);
 		Page<ReplyDTO> replyDTOList = replyList.map(reply ->
-		new ReplyDTO(reply.getId(), reply.getBoardId(), 
+		new ReplyDTO(reply.getId(), reply.getBoardId(), reply.getRid(),
 				reply.getReplyer(), reply.getRcontent(), 
 				reply.getCreatedDate(), reply.getUpdatedDate()));
 		return replyDTOList;
@@ -99,10 +93,16 @@ public class ReplyService {
 		
 		Page<Reply> replyList = replyRepository.findByReplyer(name, pageable);
 		Page<ReplyDTO> replyDTOList = replyList.map(reply ->
-		new ReplyDTO(reply.getId(), reply.getBoardId(), 
+		new ReplyDTO(reply.getId(), reply.getBoardId(), reply.getRid(),
 				reply.getReplyer(), reply.getRcontent(), 
 				reply.getCreatedDate(), reply.getUpdatedDate()));
 		return replyDTOList;
+	}
+
+	@Transactional
+	public void deleteByRid(Integer rid) {
+		replyRepository.deleteByRid(rid);
+		
 	}
 
 }

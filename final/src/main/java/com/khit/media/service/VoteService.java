@@ -18,8 +18,8 @@ public class VoteService {
 	
 	private final VoteRepository voteRepository;
 
-	public List<VoteDTO> findByBoardIdAndVoter(Long boardId, String voter) {
-		List<Vote> voteList = voteRepository.findByBoardIdAndVoter(boardId, voter);
+	public List<VoteDTO> findByBoardIdAndVid(Long boardId, Integer vid) {
+		List<Vote> voteList = voteRepository.findByBoardIdAndVid(boardId, vid);
 		List<VoteDTO> voteDTOList = new ArrayList<>();
 		for(Vote vote : voteList) {
 			VoteDTO voteDTO = VoteDTO.toSaveVoteDTO(vote);
@@ -35,8 +35,8 @@ public class VoteService {
 	}
 	
 	@Transactional
-	public void deleteByBoardIdAndVoter(Long boardId, String voter) {
-		voteRepository.deleteByBoardIdAndVoter(boardId, voter);
+	public void deleteByBoardIdAndVid(Long boardId, Integer vid) {
+		voteRepository.deleteByBoardIdAndVid(boardId, vid);
 	}
 	
 	@Transactional
@@ -46,9 +46,10 @@ public class VoteService {
 	}
 	
 	@Transactional
-	public void deleteByVoter(String name) {
-		voteRepository.deleteByVoter(name);
+	public void deleteByVid(Integer vid) {
+		voteRepository.deleteByVid(vid);
 		
 	}
+	
 
 }

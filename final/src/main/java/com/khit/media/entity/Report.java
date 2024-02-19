@@ -32,6 +32,9 @@ public class Report {
 	@Column
 	private Long boardId;
 	
+	@Column
+	private Integer rid;
+	
 	@Column(length=30, nullable=false)
 	private String reporter;
 	
@@ -39,6 +42,7 @@ public class Report {
 		Report report = Report.builder()
 				.id(reportDTO.getId())
 				.boardId(reportDTO.getBoardId())
+				.rid(reportDTO.getRid())
 				.reporter(reportDTO.getReporter())
 				.build();
 		return report;

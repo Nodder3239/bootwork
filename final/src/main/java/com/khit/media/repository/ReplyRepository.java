@@ -16,10 +16,10 @@ public interface ReplyRepository extends JpaRepository<Reply, Long>{
 	@Modifying
 	void deleteByBoardId(Long id);
 	
-	@Modifying
-	void deleteByReplyer(String name);
-
 	Page<Reply> findByReplyer(String name, Pageable pageable);
+	
+	@Modifying
+	void deleteByRid(Integer rid);
 
 
 }

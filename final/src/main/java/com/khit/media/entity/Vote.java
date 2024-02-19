@@ -32,12 +32,16 @@ public class Vote {
 	@Column
 	private Long boardId;
 	
+	@Column
+	private Integer vid;
+	
 	@Column(length=30, nullable=false)
 	private String voter;
 	
 	public static Vote toSaveVoteEntity(VoteDTO voteDTO) {
 		Vote vote = Vote.builder()
 				.boardId(voteDTO.getBoardId())
+				.vid(voteDTO.getVid())
 				.voter(voteDTO.getVoter())
 				.build();
 		return vote;

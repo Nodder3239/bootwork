@@ -24,12 +24,16 @@ public class VoteDTO {
 	private Long boardId;
 	
 	@Column
+	private Integer vid;
+	
+	@Column
 	private String voter;
 	
 	public static VoteDTO toSaveVoteDTO(Vote vote) {
 		VoteDTO voteDTO = VoteDTO.builder()
 				.id(vote.getId())
 				.boardId(vote.getBoardId())
+				.vid(vote.getVid())
 				.voter(vote.getVoter())
 				.build();
 		return voteDTO;

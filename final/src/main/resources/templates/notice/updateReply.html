@@ -19,7 +19,6 @@
 		    <form th:action="@{/noticereply/update}" method="post" id="replyform">
 				<!-- 'hidden'은 ui를 만들지 않고 데이터 숨겨서 보낼때 사용 -->
 				<input type="hidden" name="id" th:value="${reply.id}">
-				<input type="hidden" name="replyer" th:value="${session.sessionId}">
 				<input type="hidden" name="boardId" th:value="${reply.boardId }">
 				<table style="width: 100%;">
 					<tbody>

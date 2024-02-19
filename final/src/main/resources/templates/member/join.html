@@ -36,7 +36,7 @@
 		  		<li>
 				    <label for="password">비밀번호</label>
 				    <input type="password" th:field="*{password}" id="password"
-							placeholder="영문, 숫자, 특수문자 포함 5자리이상 입력">
+							placeholder="영문, 숫자, 특수문자 포함 8자리이상 입력">
 				    <p th:if="${#fields.hasErrors('password')}" 
 				    th:errors="*{password}" class="error"></p>
 				</li>
@@ -178,24 +178,19 @@ function checkUser(){
     
     if (id.length < 5) { // 아이디는 최소 5자리 이상
         alert("아이디는 5자 이상 입력해주세요.");
-        form.submit()
         return false;
     } else if (pw1.length < 8 || !regexPw1.test(pw1)) {
         alert("비밀번호는 영문자, 숫자, 특수문자를 모두 포함하여 8자 이상 입력해주세요.");
-        form.submit()
         return false;
     } else if (pw1 !== pw2) {
         alert("비밀번호가 일치하지 않습니다.");
-        form.submit()
         return false;
     } else if (name.length < 3) {
         alert("이름은 3글자이상 입력해주세요.");
-        form.submit()
         return false;
     } else {
         form.submit();  // 오류가 없으면 폼을 메인 컨트롤러로 전송
     }
 }
-
 </script>
 </html>

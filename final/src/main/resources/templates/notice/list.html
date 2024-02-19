@@ -73,10 +73,10 @@
 		<div th:class="${#authorization.expression('hasAnyAuthority(''ADMIN'')') ? 'search_btn' : 'search_btn2'}">
 			<form th:action="@{/noticeboard/}" method="get">
               <div style="display: flex; justify-content: center;">
-               <select name="field" class="toggle_btn">
-                  <option value="t" th:selected="${field == 't'}" th:text="제목"></option>
-                       <option value="c" th:selected="${field == 'c'}" th:text="내용"></option>
-                       <option value="w" th:selected="${field == 'w'}" th:text="작성자"></option>
+              		<select name="field" class="toggle_btn">
+						<option value="t" th:selected="${field == 't'}" th:text="제목"></option>
+						<option value="c" th:selected="${field == 'c'}" th:text="내용"></option>
+						<option value="w" th:selected="${field == 'w'}" th:text="작성자"></option>
                    </select>
                <input type="text" class="search_box" name="kw" th:value="${kw}" id="inputGroupFile04" 
                      placeholder="검색" aria-describedby="inputGroupFileAddon04" aria-label="Upload" style="width:50%">

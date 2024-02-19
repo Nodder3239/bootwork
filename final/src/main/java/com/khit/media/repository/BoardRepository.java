@@ -45,9 +45,6 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
 	List<Board> findByBoardCategoryContaining(String cate);
 	
 	@Modifying
-	void deleteByBoardWriter(String memberName);
-	
-	@Modifying
     @Query(value="UPDATE Board b SET b.reportCount = (SELECT count(t.id) FROM Report t WHERE t.boardId = :id) WHERE b.id = :id")
 	public void updateReportCount(Long id);
 	
@@ -55,8 +52,10 @@ public interface BoardRepository extends JpaRepository<Board, Long>{
 	Page<Board> findVoteListAll(String voter, Pageable pageable);
 
 	Page<Board> findByBoardWriter(String name, Pageable pageable);
+	
+	@Modifying
+	void deleteByBid(Integer bid);
 
-
-
+	Page<Board> findByBid(String kw, Pageable pageable);
 
 }

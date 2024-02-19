@@ -25,7 +25,8 @@ public class InfoReplyController {
 	
 	@PostMapping("/write")
 	public String insertReply(ReplyDTO replyDTO, 
-			@AuthenticationPrincipal SecurityUser principal) {
+			@AuthenticationPrincipal SecurityUser principal) {		
+		replyDTO.setRid(principal.getMember().getId());
 		replyDTO.setReplyer(principal.getMember().getName());
 		replyService.insert(replyDTO);
 		return "redirect:/infoboard/" + replyDTO.getBoardId();
@@ -39,7 +40,10 @@ public class InfoReplyController {
 	}
 	
 	@PostMapping("/update")
-	public String updateReply(@ModelAttribute ReplyDTO replyDTO) {
+	public String updateReply(@ModelAttribute ReplyDTO replyDTO
+			, @AuthenticationPrincipal SecurityUser principal) {
+		replyDTO.setRid(principal.getMember().getId());
+		replyDTO.setReplyer(principal.getMember().getName());
 		replyService.update(replyDTO);
 		return "redirect:/infoboard/" + replyDTO.getBoardId();
 	}

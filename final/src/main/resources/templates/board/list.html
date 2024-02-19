@@ -48,7 +48,8 @@
 					    </a>
 					</td>
 
-	                <td th:text="${board.boardWriter}"></td>
+	                <td><span th:text="${board.boardWriter}"></span></td>
+
 	                <td th:utext="${board.updatedDate != null ? #temporals.format(board.updatedDate, 'yyyy-MM-dd hh:mm') : #temporals.format(board.createdDate, 'yyyy-MM-dd hh:mm')}"></td>
 	                <td th:text="${board.boardHits}"></td>
 	                <td th:text="${board.likeCount}"><th:block th:if="${board.likeCount == null}" th:text="0"></th:block></td>

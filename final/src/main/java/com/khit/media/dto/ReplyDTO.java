@@ -28,6 +28,9 @@ public class ReplyDTO {
 	private Long boardId;
 	
 	@Column
+	private Integer rid;
+	
+	@Column
 	private String replyer;
 	
 	@Column
@@ -42,6 +45,7 @@ public class ReplyDTO {
 		ReplyDTO replyDTO = ReplyDTO.builder()
 				.id(reply.getId())
 				.boardId(reply.getBoardId())
+				.rid(reply.getRid())
 				.replyer(reply.getReplyer())
 				.rcontent(reply.getRcontent())
 				.createdDate(reply.getCreatedDate())
