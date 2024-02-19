@@ -218,7 +218,7 @@
 						<h2>최근 산불 내역</h2>
 					</div>
 					<div class="tableArea">
-						<table id="result1" class="table" style="font-size: 14px;">
+						<table id="result1" class="table1" style="font-size: 14px;">
 							<thead>
 								<tr>
 									<th scope="col">산불신고일시</th>
@@ -251,27 +251,26 @@
 					<ul class="swiper-wrapper">
 
 
-						<li class="swiper-slide swiper-slide-active on"
-							style="margin-right: 10px;"><a href="javascript:;"
+						<li class="swiper-slide1 swiper-slide-active on"
+							><a href="javascript:;"
 							onclick="terms('terms317',this);">산불의 종류</a></li>
 
 
-						<li class="swiper-slide swiper-slide-next"
-							style="margin-right: 10px;"><a href="javascript:;"
+						<li class="swiper-slide1 swiper-slide-next"
+							><a href="javascript:;"
 							onclick="terms('terms318',this);">산불단계 발령조건</a></li>
 
 
-						<li class="swiper-slide" style="margin-right: 10px;"><a
+						<li class="swiper-slide1" ><a
 							href="javascript:;" onclick="terms('terms319',this);">산불 확산
 								배경</a></li>
 
 
-						<li class="swiper-slide" style="margin-right: 10px;"><a
+						<li class="swiper-slide1" ><a
 							href="javascript:;" onclick="terms('terms320',this);">역대 대형산불</a></li>
 
 
-						<li class="swiper-slide" style="margin-right: 10px;"><a
-							href="javascript:;" onclick="terms('terms321',this);">산불발생 원인</a></li>
+						
 
 
 					</ul>
@@ -471,57 +470,93 @@
   // JavaScript 코드
 
   // 산불 탭을 클릭할 때의 동작
-  document.querySelector('.swiper-slide-active').addEventListener('click', function () {
+ document.querySelector('.swiper-slide-active').addEventListener('click', function () {
     showTabContent('terms317');
     setActiveTab(this);
-  });
+});
 
-  document.querySelector('.swiper-slide-next').addEventListener('click', function () {
+document.querySelector('.swiper-slide-next').addEventListener('click', function () {
     showTabContent('terms318');
     setActiveTab(this);
-  });
+});
 
-  document.querySelector('.swiper-wrapper li:nth-child(3)').addEventListener('click', function () {
+document.querySelector('.swiper-wrapper li:nth-child(3)').addEventListener('click', function () {
     showTabContent('terms319');
     setActiveTab(this);
-  });
+});
 
-  document.querySelector('.swiper-wrapper li:nth-child(4)').addEventListener('click', function () {
+document.querySelector('.swiper-wrapper li:nth-child(4)').addEventListener('click', function () {
     showTabContent('terms320');
     setActiveTab(this);
-  });
+});
 
-  document.querySelector('.swiper-wrapper li:nth-child(5)').addEventListener('click', function () {
+document.querySelector('.swiper-wrapper li:nth-child(5)').addEventListener('click', function () {
     showTabContent('terms321');
     setActiveTab(this);
+});
+
+document.querySelectorAll('.swiper-slide1').forEach(function(tab) {
+    tab.addEventListener('click', function() {
+      var tabId = this.getAttribute('data-tab-id');
+      showTabContent(tabId);
+      setActiveTab(this);
+    });
   });
 
-  // 각 탭에 대한 내용을 보여주는 함수
-  function showTabContent(tabId) {
+document.querySelectorAll('.swiper-slide1').forEach(function(tab) {
+    tab.addEventListener('click', function() {
+        var tabId = this.getAttribute('data-tab-id');
+        showTabContent(tabId);
+        setActiveTab(this);
+    });
+});
+
+document.querySelectorAll('.swiper-slide1').forEach(function(tab) {
+    tab.addEventListener('click', function() {
+        var tabId = this.getAttribute('data-tab-id');
+        showTabContent(tabId);
+        setActiveTab(this);
+    });
+});
+
+document.querySelectorAll('.swiper-slide1').forEach(function(tab) {
+    tab.addEventListener('click', function() {
+        var tabId = this.getAttribute('data-tab-id');
+        showTabContent(tabId);
+        setActiveTab(this);
+    });
+});
+
+// 각 탭에 대한 내용을 보여주는 함수
+function showTabContent(tabId) {
     // 모든 탭의 내용을 숨김
-    document.querySelectorAll('.termsText > div').forEach(function (tabContent) {
-      tabContent.style.display = 'none';
+    document.querySelectorAll('.termsText > div').forEach(function(tabContent) {
+        tabContent.style.display = 'none';
     });
 
     // 클릭한 탭의 내용을 보여줌
     document.querySelector('.' + tabId).style.display = 'block';
-  }
+}
 
-  // 활성화된 탭에 'on' 클래스를 추가/제거하는 함수
-  function setActiveTab(tab) {
-    // 모든 탭에서 'on' 클래스 제거
-    document.querySelectorAll('.swiper-slide').forEach(function (slide) {
-      slide.classList.remove('on');
+function setActiveTab(tab) {
+    // 모든 탭에서 'on' 클래스 제거 및 스타일 초기화
+    document.querySelectorAll('.swiper-slide1').forEach(function(slide) {
+        slide.classList.remove('on');
+        slide.style.backgroundColor = '';
+        slide.querySelector('a').style.color = ''; // <a> 태그의 텍스트 색상 초기화
     });
 
-    // 클릭한 탭에 'on' 클래스 추가
+    // 현재 클릭한 탭에 'on' 클래스 추가
     tab.classList.add('on');
-  }
+
+    // 클릭한 탭의 배경색과 텍스트 색상 변경
+    tab.style.backgroundColor = '#05347E';
+    tab.querySelector('a').style.color = '#ffffff'; // <a> 태그의 텍스트 색상 변경
+}
 
 </script>
 
-<script type="text/javascript">
-	
+	<script type="text/javascript">
 	var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
 	var options = { //지도를 생성할 때 필요한 기본 옵션
 	center: new kakao.maps.LatLng(37.5665, 126.9780), //지도의 중심좌표.
@@ -529,8 +564,8 @@
 	};
 
 	var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
-	
-</script>
+	</script>
+
 
 
 </body>

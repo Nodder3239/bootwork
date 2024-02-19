@@ -6,16 +6,17 @@
     <title>Data 3</title>
     <link rel="stylesheet" th:href="@{/css/style2.css}">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=e90c88e0109b424493e107d4a511deb0"></script> 
+   
    <!--  <script src="js/wlwls.js"></script> -->
-    <!-- <script type="text/javascript" src="/js/efusioni.js"></script>
+    <!--  <script type="text/javascript" src="/js/efusioni.js"></script>
  <script type="text/javascript" src="/js/imagesloaded.pkgd.js"></script>
  <script type="text/javascript" src="/js/jquery-ui.min.js"></script>
  <script type="text/javascript" src="/js/jwplayer.js"></script>
  <script type="text/javascript" src="/js/proj4.js"></script>
  <script type="text/javascript" src="/js/slick.js"></script>
  <script type="text/javascript" src="/js/swiper.min.js"></script>
- <script type="text/javascript" src="/js/ui.js"></script> -->
-
+ <script type="text/javascript" src="/js/ui.js"></script>   -->
 </head>
 <body>
 <div th:replace="~{header}"></div> 
@@ -27,7 +28,9 @@
 	
 	<div class="top-top-top">
 	<div class="top-top-top-left">
-	<img alt="" src="/images/wlwls.png">
+	
+	 <img alt="" src="/images/wlwls.png"> 
+	
 	</div>
 	<div class="top-top-top-right">
 		<div class="top-top-top-right-container">
@@ -271,5 +274,1149 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
+<script type="text/javascript">
+                                    var defaultLatLng = new kakao.maps.LatLng(38.5366101, 126.974951);
+                                    var defaultLevel = 14;
+
+                                    
+                                    defaultLatLng = new kakao.maps.LatLng(41.28, 129.15);
+                                    defaultLevel = 10;
+                                    
+
+                                    var jeboAltDocNo = 202400000175
+
+                                    var container = document.getElementById('map'); //지도를 담을 영역의 DOM 레퍼런스
+                                    var options = { //지도를 생성할 때 필요한 기본 옵션
+                                        center: defaultLatLng, //지도의 중심좌표.
+                                        level: defaultLevel //지도의 레벨(확대, 축소 정도)
+                                    };
+
+                                    var map = new kakao.maps.Map(container, options); //지도 생성 및 객체 리턴
+
+                                    var clusterer = new kakao.maps.MarkerClusterer({
+                                        map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체
+                                        averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
+                                        minLevel: 11, // 클러스터 할 최소 지도 레벨
+                                        disableClickZoom: true // 클러스터 마커를 클릭했을 때 지도가 확대되지 않도록 설정한다
+                                    });
+
+                                    var earthquakeMarkers = [];
+                                    var infowindows = [];
+                                    var circles = [];
+                                    var previousEarthquakeMarkers = [];
+                                    var drawingOverlays = [];
+                                    var cctvMakers = [];
+                                    var customOverlay = null;
+                                    var reportMarkers = [];
+                                    var jeboCustomOverlays = [];
+                                    var locationValue = true;
+                                    var locationMarkers = [];
+                                    var locationLatLng;
+
+                                    locationLatLng = new kakao.maps.LatLng(38.5366101, 126.974951);
+
+
+
+                                    // 지도에 클릭 이벤트를 등록합니다
+                                    // 지도를 클릭하면 마지막 파라미터로 넘어온 함수를 호출합니다
+                                    kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+                                        for (var i = 0; i < infowindows.length; i++) {
+                                            infowindows[i].close();
+                                        }
+                                    });
+
+                                    var constrainBounds = function() {
+                                        var center = map.getCenter();
+                                        var level = map.getLevel();
+
+                                        var clipLat, clipLng, sw, ne;
+
+                                        //LEVEL14 남서:36.302,124.193 북동:40.010,130.996
+                                        var swLat = 36.302;
+                                        var swLon = 124.193;
+                                        var neLat = 40.010;
+                                        var neLon = 130.996;
+                                        //LEVEL13 남서:33.734,120.473 북동:41.958,135.238
+                                        if(level == 13){
+                                            swLat = 33.734;
+                                            swLon = 120.473;
+                                            neLat = 41.958;
+                                            neLon = 135.238;
+                                        }
+                                        //LEVEL12 남서:32.450,118.771 북동:43.046,137.562
+                                        if(level == 12){
+                                            swLat = 32.450;
+                                            swLon = 118.771;
+                                            neLat = 43.046;
+                                            neLon = 137.562;
+                                        }
+                                        //LEVEL11 남서:31.766,117.900 북동:43.569,138.477
+                                        if(level == 11){
+                                            swLat = 31.766;
+                                            swLon = 117.900;
+                                            neLat = 43.569;
+                                            neLon = 138.477;
+                                        }
+                                        //LEVEL10 남서:31.416,117.471 북동:43.526,139.010
+                                        if(level == 10){
+                                            swLat = 31.416;
+                                            swLon = 117.471;
+                                            neLat = 43.526;
+                                            neLon = 139.010;
+                                        }
+                                        //LEVEL9 남서:31.251,117.256 북동:43.643,139.304
+                                        if(level == 9){
+                                            swLat = 31.251;
+                                            swLon = 117.256;
+                                            neLat = 43.643;
+                                            neLon = 139.304;
+                                        }
+                                        //LEVEL8 남서:30.346,116.908 북동:43.714,139.356
+                                        if(level == 8){
+                                            swLat = 30.346;
+                                            swLon = 116.908;
+                                            neLat = 43.714;
+                                            neLon = 139.356;
+                                        }
+                                        //LEVEL7 남서:30.340,116.852 북동:43.744,139.430
+                                        if(level == 7){
+                                            swLat = 30.340;
+                                            swLon = 116.852;
+                                            neLat = 43.744;
+                                            neLon = 139.430;
+                                        }
+                                        //LEVEL6 남서:30.319,116.826 북동:43.741,139.463
+                                        if(level == 6){
+                                            swLat = 30.319;
+                                            swLon = 116.826;
+                                            neLat = 43.741;
+                                            neLon = 139.463;
+                                        }
+                                        //LEVEL5 남서:30.309,116.824 북동:43.741,139.467
+                                        if(level == 5){
+                                            swLat = 30.309;
+                                            swLon = 116.824;
+                                            neLat = 43.741;
+                                            neLon = 139.467;
+                                        }
+                                        //LEVEL4 남서:30.302,116.819 북동:43.745,139.480
+                                        if(level == 4){
+                                            swLat = 30.302;
+                                            swLon = 116.819;
+                                            neLat = 43.745;
+                                            neLon = 139.480;
+                                        }
+                                        //LEVEL3 남서:30.302,116.819 북동:43.745,139.480
+                                        if(level == 3){
+                                            swLat = 30.302;
+                                            swLon = 116.819;
+                                            neLat = 43.745;
+                                            neLon = 139.480;
+                                        }
+                                        //LEVEL2 남서:30.302,116.819 북동:43.745,139.480
+                                        if(level == 2){
+                                            swLat = 30.302;
+                                            swLon = 116.819;
+                                            neLat = 43.745;
+                                            neLon = 139.480;
+                                        }
+                                        //LEVEL1 남서:30.302,116.819 북동:39.956,139.480
+                                        if(level == 1){
+                                            swLat = 30.302;
+                                            swLon = 116.819;
+                                            neLat = 43.745;
+                                            neLon = 139.480;
+                                        }
+
+                                        clipLat = Math.min(Math.max(swLat, center.getLat()), neLat);
+                                        clipLng = Math.min(Math.max(swLon, center.getLng()), neLon);
+
+                                        map.setCenter(new kakao.maps.LatLng(clipLat, clipLng));
+                                    };
+
+                                    kakao.maps.event.addListener( map, 'drag', constrainBounds);
+                                    kakao.maps.event.addListener( map, 'zoom_changed', constrainBounds);
+
+                                    // 지도가 이동, 확대, 축소로 인해 중심좌표가 변경되면 마지막 파라미터로 넘어온 함수를 호출하도록 이벤트를 등록합니다
+                                    kakao.maps.event.addListener(map, 'center_changed', function() {
+
+                                        // 지도의  레벨을 얻어옵니다
+                                        var level = map.getLevel();
+
+                                        // 지도의 중심좌표를 얻어옵니다
+                                        var latlng = map.getCenter();
+
+                                        var message = '레벨:' + level + ', 중심좌표 위도:' + latlng.getLat() + ',경도:' + latlng.getLng();
+
+
+                                    });
+
+                                    //Map 초기화
+                                    function initMap(){
+                                        for (var i = 0; i < infowindows.length; i++) {
+                                            infowindows[i].close();
+                                        }
+                                        infowindows = [];
+                                        for (var i = 0; i < earthquakeMarkers.length; i++) {
+                                            earthquakeMarkers[i].setMap(null);
+                                        }
+                                        earthquakeMarkers = [];
+                                        for(var i=0; i<circles.length; i++){
+                                            circles[i].setMap(null);
+                                        }
+                                        circles = [];
+                                        for(var i=0; i<previousEarthquakeMarkers.length; i++){
+                                            previousEarthquakeMarkers[i].setMap(null);
+                                        }
+                                        previousEarthquakeMarkers = [];
+                                        for(var i=0; i<drawingOverlays.length; i++){
+                                            drawingOverlays[i].setMap(null);
+                                        }
+                                        drawingOverlays = [];
+                                        if( cctvMakers ){
+                                            for (var i = 0; i < cctvMakers.length; i++) {
+                                                cctvMakers[i].setMap(null);
+                                            }
+                                        }
+                                        cctvMakers = [];
+
+                                        clusterer.clear();
+                                        if(customOverlay)customOverlay.setMap(null);
+
+                                        for (var i = 0; i < reportMarkers.length; i++) {
+                                            reportMarkers[i].setMap(null);
+                                        }
+                                        reportMarkers = [];
+                                        for (var i = 0; i < jeboCustomOverlays.length; i++) {
+                                            jeboCustomOverlays[i].setMap(null);
+                                        }
+                                        jeboCustomOverlays = [];
+
+//                                         map.setCenter(defaultLatLng);
+                                        map.setCenter(new kakao.maps.LatLng(38.5366101, 126.974951));
+//                                         map.setLevel(defaultLevel);
+                                        map.setLevel(14);
+                                    }
+
+                                    //지진
+                                    function getEarthquake(){
+                                        $('.utilMap>ul>li').removeClass('on');
+//                                         $('.utilMap>ul>li').eq(0).addClass('on');
+                                        $('#m1').addClass('on');
+                                        $('.mapController').removeClass('bot');
+//                                         $('.daySearch').hide();
+                                        initMap();
+                                        makeEarthquake();
+                                    }
+
+                                    function getPastEarthquake(){
+                                        $('.utilMap>ul>li').removeClass('on');
+//                                         $('.utilMap>ul>li').eq(2).addClass('on');
+                                        $('#m3').addClass('on');
+                                        $('.mapController').addClass('bot');
+//                                         $('.daySearch').hide();
+			
+                                        initMap();
+
+                                        
+
+                                        // 마커이미지
+                                        var imageSrc = 'https://d.kbs.co.kr/static/images/common/ico_earthquake_past.png', // 마커이미지의 주소입니다
+                                            imageSize = new kakao.maps.Size(99, 54), // 마커이미지의 크기입니다
+                                            imageOption = {offset: new kakao.maps.Point(47, 38)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+                                        // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+                                        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+
+                                        var position = new kakao.maps.LatLng(41.28, 129.15);
+
+                                        // 마커를 생성합니다
+                                        var marker = new kakao.maps.Marker({
+                                            position: position,
+                                            image : markerImage,
+                                            clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
+                                        });
+
+                                        // 마커가 지도 위에 표시되도록 설정합니다
+                                        marker.setMap(map);
+
+
+                                        // 생성된 마커를 배열에 추가합니다
+                                        earthquakeMarkers.push(marker);
+
+                                        defaultLevel = 9;
+
+                                        locationLatLng = position;
+
+                                        map.setCenter(position);
+                                        map.setLevel(defaultLevel);
+
+                                        // 지도에 표시할 원을 생성합니다
+                                        var circle = new kakao.maps.Circle({
+                                            center : position,  // 원의 중심좌표 입니다
+                                            radius: 10000, // 미터 단위의 원의 반지름입니다
+                                            strokeWeight: 2, // 선의 두께입니다
+                                            strokeColor: '#F100FF', // 선의 색깔입니다
+                                            strokeOpacity: 0.5, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+                                            strokeStyle: 'solid', // 선의 스타일 입니다
+                                            fillColor: '#F100FF', // 채우기 색깔입니다
+                                            fillOpacity: 0.2  // 채우기 불투명도 입니다
+                                        });
+                                        circle.setMap(map);
+
+                                        circles.push(circle);
+
+                                        var drawingOverlay = new kakao.maps.CustomOverlay({
+                                            xAnchor: 0,
+                                            yAnchor: 0,
+                                            zIndex: 1
+                                        });
+
+                                        // 반경 정보를 표시할 커스텀 오버레이의 좌표를 마우스커서 위치로 설정합니다
+                                        drawingOverlay.setPosition(position);
+
+                                        // 반경 정보를 표시할 커스텀 오버레이의 표시할 내용을 설정합니다
+                                        drawingOverlay.setContent("<div style='position:relative;top:5px;left:5px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;font-size:12px;padding:5px;background:#fff;list-style:none;margin:0;'><strong>반경10km</strong></div>");
+                                        drawingOverlay.setMap(map);
+
+                                        drawingOverlays.push(drawingOverlay);
+
+                                        var params = {
+                                            eventTime : '20240214233300'
+                                        }
+                                        $.ajax({
+                                            type : "GET",
+                                            url : "/ajax/previousEarthquake",
+                                            data : params,
+                                            dataType : "json",
+                                            success : function(result) {
+                                                if(result.pastList.length > 0){
+                                                    for(var i=0; i<result.pastList.length; i++){
+                                                        var  previousLatLon = new kakao.maps.LatLng(result.pastList[i].lat, result.pastList[i].lon);
+                                                        getPreviousEarthquake(position, previousLatLon, result.pastList[i].mag, result.pastList[i].location, result.pastList[i].eventDate);
+                                                    }
+                                                }
+                                            },
+                                            fail : function() {
+                                                alert("서버오류가 발생했습니다.");
+                                            }
+                                        });
+                                        
+                                    }
+
+                                    function getPreviousEarthquake(earthquakeLatLon, previousLatLon, mag, location, eventDate){
+                                        var previousEarthquakePolyline = new kakao.maps.Polyline({
+                                            path: [earthquakeLatLon, previousLatLon], // 선을 구성하는 좌표배열 입니다
+                                            strokeWeight: 1, // 선의 두께 입니다
+                                            strokeColor: '#1d1d1d', // 선의 색깔입니다
+                                            strokeOpacity: 0.5, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+                                            strokeStyle: 'dashed' // 선의 스타일입니다
+                                        });
+
+                                        var previousEarthquakeLength = previousEarthquakePolyline.getLength();
+                                        if(previousEarthquakeLength < 10000){
+                                            var previousEarthquakeImage = "https://d.kbs.co.kr/static/images/now/ico_level1.png";
+                                            if(mag >= 2.0 && mag < 3.0){
+                                                previousEarthquakeImage = "https://d.kbs.co.kr/static/images/now/ico_level1.png";
+                                            }else if(mag >= 3.0 && mag < 4.0){
+                                                previousEarthquakeImage = "https://d.kbs.co.kr/static/images/now/ico_level2.png";
+                                            }else if(mag >= 4.0 && mag < 5.0){
+                                                previousEarthquakeImage = "https://d.kbs.co.kr/static/images/now/ico_level3.png";
+                                            }else if(mag >= 5.0){
+                                                previousEarthquakeImage = "https://d.kbs.co.kr/static/images/now/ico_level4.png";
+                                            }
+
+                                            // 마커이미지
+                                            var imageSrc = previousEarthquakeImage, // 마커이미지의 주소입니다
+                                                imageSize = new kakao.maps.Size(20, 24), // 마커이미지의 크기입니다
+                                                imageOption = {offset: new kakao.maps.Point(10, 24)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+                                            // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+                                            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+
+                                            // 마커를 생성합니다
+                                            var previousEarthquakeMarker = new kakao.maps.Marker({
+                                                position: previousLatLon,
+                                                image : markerImage,
+                                                clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
+                                            });
+
+                                            // 마커가 지도 위에 표시되도록 설정합니다
+                                            previousEarthquakeMarker.setMap(map);
+
+                                            previousEarthquakeMarkers.push(previousEarthquakeMarker);
+
+                                            // 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
+                                            var iwContent = '<div class="earthquakeBox"><div class="titArea"><em>지진규모</em><strong>' + mag + '</strong></div><p>' + location + '</p><div class="dayArea"><em>발생시각</em><span>' + eventDate + '</span></div></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+                                                iwRemoveable = false; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+
+                                            // 인포윈도우를 생성합니다
+                                            var infowindow = new kakao.maps.InfoWindow({
+                                                content : iwContent,
+                                                zIndex : 5,
+                                                removable : iwRemoveable
+                                            });
+
+                                            // 마커에 마우스오버 이벤트를 등록합니다
+                                            kakao.maps.event.addListener(previousEarthquakeMarker, 'mouseover', function() {
+                                                // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+                                                infowindow.open(map, previousEarthquakeMarker);
+                                            });
+
+                                            // 마커에 마우스아웃 이벤트를 등록합니다
+                                            kakao.maps.event.addListener(previousEarthquakeMarker, 'mouseout', function() {
+                                                // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
+                                                infowindow.close();
+                                            });
+                                        }
+                                    }
+
+                                    //CCTV
+                                    function getCctv(){
+                                        $('.utilMap>ul>li').removeClass('on');
+//                                         $('.utilMap>ul>li').eq(3).addClass('on');
+                                        $('#m5').addClass('on');
+                                        $('.mapController').removeClass('bot');
+//                                         $('.daySearch').hide();
+                                        
+                                        initMap();
+
+                                        
+
+                                        // 마커이미지
+                                        var imageSrc = 'https://d.kbs.co.kr/static/images/common/ico_earthquake_past.png', // 마커이미지의 주소입니다
+                                            imageSize = new kakao.maps.Size(99, 54), // 마커이미지의 크기입니다
+                                            imageOption = {offset: new kakao.maps.Point(47, 38)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+                                        // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+                                        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+
+                                        var position = new kakao.maps.LatLng(41.28, 129.15);
+
+                                        // 마커를 생성합니다
+                                        var marker = new kakao.maps.Marker({
+                                            position: position,
+                                            image : markerImage,
+                                            clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
+                                        });
+
+                                        // 마커가 지도 위에 표시되도록 설정합니다
+                                        marker.setMap(map);
+
+                                        // 생성된 마커를 배열에 추가합니다
+                                        earthquakeMarkers.push(marker);
+
+                                        defaultLevel = 11;
+                                        locationLatLng = position;
+                                        map.setCenter(position);
+                                        map.setLevel(defaultLevel);
+
+                                        // 지도에 표시할 원을 생성합니다
+                                        var circle = new kakao.maps.Circle({
+                                            center : position,  // 원의 중심좌표 입니다
+                                            radius: 30000, // 미터 단위의 원의 반지름입니다
+                                            strokeWeight: 2, // 선의 두께입니다
+                                            strokeColor: '#F100FF', // 선의 색깔입니다
+                                            strokeOpacity: 0.5, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+                                            strokeStyle: 'solid', // 선의 스타일 입니다
+                                            fillColor: '#F100FF', // 채우기 색깔입니다
+                                            fillOpacity: 0.2  // 채우기 불투명도 입니다
+                                        });
+                                        circle.setMap(map);
+
+                                        circles.push(circle);
+
+                                        var drawingOverlay = new kakao.maps.CustomOverlay({
+                                            xAnchor: 0,
+                                            yAnchor: 0,
+                                            zIndex: 1
+                                        });
+
+                                        // 반경 정보를 표시할 커스텀 오버레이의 좌표를 마우스커서 위치로 설정합니다
+                                        drawingOverlay.setPosition(position);
+
+                                        // 반경 정보를 표시할 커스텀 오버레이의 표시할 내용을 설정합니다
+                                        drawingOverlay.setContent("<div style='position:relative;top:5px;left:5px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;font-size:12px;padding:5px;background:#fff;list-style:none;margin:0;'><strong>반경30km</strong></div>");
+                                        drawingOverlay.setMap(map);
+
+                                        drawingOverlays.push(drawingOverlay);
+
+                                        var params = {
+                                            discategory : '1',
+                                            eventId : '2024000954',
+                                            eventTime : '20240214233300'
+                                        };
+                                        $.ajax ({
+                                            url : '/special/auto-cctv/list'
+                                            ,dataType : 'JSON'
+                                            ,method : 'POST'
+                                            ,data : params
+                                        }).done(function(data){
+                                            if(data.cctvList.length > 0){
+                                                for(var i=0; i<data.cctvList.length; i++){
+                                                    var  cctvLatLon = new kakao.maps.LatLng(data.cctvList[i].lat, data.cctvList[i].lng);
+
+                                                    getCctvMarker(position, cctvLatLon, data.cctvList[i].cctvId, data.cctvList[i].org, data.cctvList[i].name);
+                                                }
+                                            }
+                                        }).fail(function(err){
+                                            console.log(err);
+                                        });
+                                        
+                                    }
+
+                                    function getCctvMarker(earthquakeLatLon, cctvLatLon, cctvId, org, name){
+                                        var earthquakeCctvPolyline = new kakao.maps.Polyline({
+                                            path: [earthquakeLatLon, cctvLatLon], // 선을 구성하는 좌표배열 입니다
+                                            strokeWeight: 1, // 선의 두께 입니다
+                                            strokeColor: '#1d1d1d', // 선의 색깔입니다
+                                            strokeOpacity: 0.5, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+                                            strokeStyle: 'dashed' // 선의 스타일입니다
+                                        });
+
+                                        var earthquakeCctvLength = earthquakeCctvPolyline.getLength();
+                                        if(earthquakeCctvLength < 200000){
+                                            var imageSrc = 'https://d.kbs.co.kr/static/images/special/ico_' + org + '.png', // 마커이미지의 주소입니다
+                                                imageSize = new kakao.maps.Size(38, 47), // 마커이미지의 크기입니다 38 * 47
+                                                imageOption = {offset: new kakao.maps.Point(16, 47)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+                                            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+                                            var cctvMarker = new kakao.maps.Marker({
+                                                map : map
+                                                ,position : cctvLatLon
+                                                ,title : name
+                                                ,image : markerImage
+                                            });
+                                            cctvMarker.cctvId = cctvId;
+
+                                            //마커에 클릭 이벤트 등록
+                                            kakao.maps.event.addListener(cctvMarker, 'click', function() {
+                                                //마커 클릭했을 경우 동영상 스트리머 팝업 오픈
+                                                cctvPopOpen( cctvId, cctvLatLon );
+                                            });
+                                            cctvMakers.push(cctvMarker);
+                                        }
+                                    }
+
+                                    function cctvPopOpen(cctvId, cctvLatLon){
+                                        $.ajax ({
+                                            type : "GET",
+                                            url : '/special/cctv/cctvPopup', //해당 ajax연결
+                                            dataType : 'html',
+                                            data : {
+                                                type : 'LIVE',
+                                                cctvId : cctvId
+                                            },
+                                            beforeSend: function() {
+                                                //완료전
+                                                $('#cctvPop').add('#cctvPopBg').remove();
+                                            },
+                                            complete: function() {
+                                                //완료후
+                                            },
+                                            success : function(data) {
+                                                if( map.getLevel() >= 12 ){
+                                                    cctvLatLon = map.getCenter();
+                                                }
+                                                //지도위에 올려야 하므로 커스텀 오버레이 사용
+                                                customOverlay = new kakao.maps.CustomOverlay({
+                                                    position: cctvLatLon,
+                                                    content: data,
+                                                    xAnchor: 0.3,
+                                                    yAnchor: 0.91,
+                                                    zIndex : 2
+                                                });
+                                                //var bounds = new kakao.maps.LatLngBounds();
+                                                //bounds.extend(position);
+                                                //마커를 기반으로 위치 변경
+                                                //map.setBounds(bounds);
+                                                map.setCenter(cctvLatLon);
+                                                map.setZoomable(false);
+                                                constrainBounds();
+                                                customOverlay.setMap(map);
+
+                                                jwplayer.key = "wL1VG89d0RJwTeAjmXfOGEztrKfZYekhwBp9bd6UEvskWYWk";
+
+                                                var $wrap = $('#cctvPop');
+                                                var playerList = jwplayer("video");
+                                                var url = $wrap.find('#url').val();
+                                                $.get( url, function(jqXHR) {
+                                                    playerList.setup({
+                                                        playlist: [{
+                                                            "file": jqXHR,
+                                                        }],
+                                                        flashplayer: "/static/swf/jwplayer.flash.swf",
+                                                        autostart: true,
+                                                        skin:'',
+                                                        height: "100%",
+                                                        logo:false,
+                                                        width: "100%",
+                                                        primary: 'html5',
+                                                        mute: false,
+                                                        hlshtml: true,
+                                                        controls:true,
+                                                    });
+                                                });
+
+                                                $('.cctvPopClose').click(function(){
+                                                    map.setZoomable(true);
+                                                    customOverlay.setMap(null);
+                                                });
+                                            }
+                                        });
+                                    }
+
+                                    function getCctvVod(){
+                                        $('.utilMap>ul>li').removeClass('on');
+//                                         $('.utilMap>ul>li').eq(4).addClass('on');
+                                        $('#m6').addClass('on');
+                                        $('.mapController').removeClass('bot');
+//                                         $('.daySearch').hide();
+                                        initMap();
+
+                                        
+
+                                        // 마커이미지
+                                        var imageSrc = 'https://d.kbs.co.kr/static/images/common/ico_earthquake_past.png', // 마커이미지의 주소입니다
+                                            imageSize = new kakao.maps.Size(99, 54), // 마커이미지의 크기입니다
+                                            imageOption = {offset: new kakao.maps.Point(47, 38)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+                                        // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+                                        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+
+                                        var position = new kakao.maps.LatLng(41.28, 129.15);
+
+                                        // 마커를 생성합니다
+                                        var marker = new kakao.maps.Marker({
+                                            position: position,
+                                            image : markerImage,
+                                            clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
+                                        });
+
+                                        // 마커가 지도 위에 표시되도록 설정합니다
+                                        marker.setMap(map);
+
+                                        // 생성된 마커를 배열에 추가합니다
+                                        earthquakeMarkers.push(marker);
+
+                                        defaultLevel = 11;
+                                        locationLatLng = position;
+                                        map.setCenter(position);
+                                        map.setLevel(defaultLevel);
+
+                                        // 지도에 표시할 원을 생성합니다
+                                        var circle = new kakao.maps.Circle({
+                                            center : position,  // 원의 중심좌표 입니다
+                                            radius: 50000, // 미터 단위의 원의 반지름입니다
+                                            strokeWeight: 2, // 선의 두께입니다
+                                            strokeColor: '#F100FF', // 선의 색깔입니다
+                                            strokeOpacity: 0.5, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+                                            strokeStyle: 'solid', // 선의 스타일 입니다
+                                            fillColor: '#F100FF', // 채우기 색깔입니다
+                                            fillOpacity: 0.2  // 채우기 불투명도 입니다
+                                        });
+                                        circle.setMap(map);
+
+                                        circles.push(circle);
+
+                                        var drawingOverlay = new kakao.maps.CustomOverlay({
+                                            xAnchor: 0,
+                                            yAnchor: 0,
+                                            zIndex: 1
+                                        });
+
+                                        // 반경 정보를 표시할 커스텀 오버레이의 좌표를 마우스커서 위치로 설정합니다
+                                        drawingOverlay.setPosition(position);
+
+                                        // 반경 정보를 표시할 커스텀 오버레이의 표시할 내용을 설정합니다
+                                        drawingOverlay.setContent("<div style='position:relative;top:5px;left:5px;border-radius:6px;border: 1px solid #ccc;border-bottom:2px solid #ddd;font-size:12px;padding:5px;background:#fff;list-style:none;margin:0;'><strong>반경50km</strong></div>");
+                                        drawingOverlay.setMap(map);
+
+                                        drawingOverlays.push(drawingOverlay);
+
+                                            
+                                        
+                                    }
+
+                                    function getCctvVodMarker(earthquakeLatLon, cctvVodLatLon, altdocNo, vodSeq, org){
+                                        var earthquakeCctvPolyline = new kakao.maps.Polyline({
+                                            path: [earthquakeLatLon, cctvVodLatLon], // 선을 구성하는 좌표배열 입니다
+                                            strokeWeight: 1, // 선의 두께 입니다
+                                            strokeColor: '#1d1d1d', // 선의 색깔입니다
+                                            strokeOpacity: 0.5, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+                                            strokeStyle: 'dashed' // 선의 스타일입니다
+                                        });
+
+                                        var earthquakeCctvLength = earthquakeCctvPolyline.getLength();
+                                        if(earthquakeCctvLength < 200000){
+                                            var imageSrc = 'https://d.kbs.co.kr/static/images/special/ico_' + org + '.png', // 마커이미지의 주소입니다
+                                                imageSize = new kakao.maps.Size(38, 47), // 마커이미지의 크기입니다 38 * 47
+                                                imageOption = {offset: new kakao.maps.Point(16, 47)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+                                            var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+                                            var cctvMarker = new kakao.maps.Marker({
+                                                map : map
+                                                ,position : cctvVodLatLon
+                                                ,image : markerImage
+                                            });
+
+                                            //마커에 클릭 이벤트 등록
+                                            kakao.maps.event.addListener(cctvMarker, 'click', function() {
+                                                //마커 클릭했을 경우 동영상 스트리머 팝업 오픈
+                                                cctvVodPopOpen( altdocNo, vodSeq, cctvVodLatLon );
+                                            });
+                                            cctvMakers.push(cctvMarker);
+                                        }
+                                    }
+
+                                    function cctvVodPopOpen(altdocNo, vodSeq, cctvVodLatLon){
+                                        $.ajax ({
+                                            type: "GET",
+                                            url: '/ajax/jijinVod', //해당 ajax연결
+                                            dataType: 'html',
+                                            data: {
+                                                altdocNo : altdocNo,
+                                                vodSeq : vodSeq
+                                            },
+                                            beforeSend: function () {
+                                                //완료전
+                                                $('#jijinVodPop').add('#jijinVodBg').remove();
+                                            },
+                                            complete: function () {
+                                                //완료후
+                                            },
+                                            success: function (data) {
+                                                if( map.getLevel() >= 12 ){
+                                                    cctvVodLatLon = map.getCenter();
+                                                }
+                                                //지도위에 올려야 하므로 커스텀 오버레이 사용
+                                                customOverlay = new kakao.maps.CustomOverlay({
+                                                    position: cctvVodLatLon,
+                                                    content: data,
+                                                    xAnchor: 0.3,
+                                                    yAnchor: 0.91,
+                                                    zIndex : 2
+                                                });
+                                                //var bounds = new kakao.maps.LatLngBounds();
+                                                //bounds.extend(position);
+                                                //마커를 기반으로 위치 변경
+                                                //map.setBounds(bounds);
+                                                map.setCenter(cctvVodLatLon);
+                                                //마우스 휠로 지도 확대,축소 가능여부를 설정
+                                                map.setZoomable(false);
+                                                customOverlay.setMap(map);
+
+                                                jwplayer.key = "wL1VG89d0RJwTeAjmXfOGEztrKfZYekhwBp9bd6UEvskWYWk";
+
+                                                var $wrap = $('#jijinVodPop');
+                                                var playerList = jwplayer("jijinVodPlayer");
+                                                var fileUrl = 'https://uploadd.kbs.co.kr/' + $wrap.find('#filePath').val() + $wrap.find('#fileName').val();
+                                                var imageUrl = 'https://uploadd.kbs.co.kr/' + $wrap.find('#filePath').val() + $wrap.find('#fileName').val().replace(".mp4", ".jpg");
+                                                playerList.setup({
+                                                    playlist: [{
+                                                        "file": fileUrl,
+                                                        "image" : imageUrl
+                                                    }],
+                                                    flashplayer: "/static/swf/jwplayer.flash.swf",
+                                                    autostart: true,
+                                                    skin:'',
+                                                    height: "100%",
+                                                    logo:false,
+                                                    width: "100%",
+                                                    primary: 'html5',
+                                                    mute: true,
+                                                    hlshtml: true,
+                                                    controls:true,
+                                                });
+
+                                                $('.jijinVodPopClose').click(function(){
+                                                    map.setZoomable(true);
+                                                    customOverlay.setMap(null);
+                                                });
+                                            }
+                                        });
+                                    }
+
+                                    function makeEarthquake(){
+                                        
+                                        // 마커이미지
+                                        var imageSrc = 'https://d.kbs.co.kr/static/images/common/ico_earthquake.png', // 마커이미지의 주소입니다
+                                            imageSize = new kakao.maps.Size(32, 32), // 마커이미지의 크기입니다
+                                            imageOption = {offset: new kakao.maps.Point(16, 16)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+                                        // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+                                        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+
+                                        var position = new kakao.maps.LatLng(41.28, 129.15);
+                                        //발생 지진의 위도
+                                        var occurrenceLat = '41.28';
+
+                                        // 마커를 생성합니다
+                                        var marker = new kakao.maps.Marker({
+                                            position: position,
+                                            image : markerImage,
+                                            clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
+                                        });
+
+                                        // 마커가 지도 위에 표시되도록 설정합니다
+                                        marker.setMap(map);
+
+                                        // 생성된 마커를 배열에 추가합니다
+                                        earthquakeMarkers.push(marker);
+
+                                        defaultLevel = 14;
+
+                                        if(occurrenceLat < 34){
+                                            // 34는 거문도의 위도
+                                            var position = new kakao.maps.LatLng(36.29345146342825, 127.20483471318686);
+                                        } else if(occurrenceLat > 42 ){
+                                            // 42은 라선 지역의 위도
+                                            var position = new kakao.maps.LatLng(39.79902224681379 , 129.20849267581946);
+                                        } else {
+                                            //제주도와 북한 끝선을 디폴트
+                                            //제주도와 북한 끝선이 나오게끔 할때 중심좌표
+                                            var position = new kakao.maps.LatLng(38.18964306218874, 127.12967176405694);
+                                        }
+
+                                        locationLatLng = position;
+                                        map.setCenter(position);
+                                        map.setLevel(defaultLevel);
+
+                                        /*
+                                        // 마커를 클릭했을 때 마커 위에 표시할 인포윈도우를 생성합니다
+                                        var iwContent = '<div class="earthquakeBox"><div class="titArea"><em>지진규모</em><strong>2.2</strong></div><p>북한 함경북도 길주 북북서쪽 39km 지역</p><div class="dayArea"><em>발생시각</em><span>2024.02.14 23:33:00</span></div></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
+                                                iwRemoveable = false; // removeable 속성을 ture 로 설정하면 인포윈도우를 닫을 수 있는 x버튼이 표시됩니다
+
+                                            // 인포윈도우를 생성합니다
+                                            var infowindow = new kakao.maps.InfoWindow({
+                                                content : iwContent,
+                                                zIndex : 5,
+                                                removable : iwRemoveable
+                                            });
+
+                                            // 마커에 마우스오버 이벤트를 등록합니다
+                                            kakao.maps.event.addListener(marker, 'mouseover', function() {
+                                                // 마커에 마우스오버 이벤트가 발생하면 인포윈도우를 마커위에 표시합니다
+                                                infowindow.open(map, marker);
+                                            });
+
+                                            // 마커에 마우스아웃 이벤트를 등록합니다
+                                            kakao.maps.event.addListener(marker, 'mouseout', function() {
+                                                // 마커에 마우스아웃 이벤트가 발생하면 인포윈도우를 제거합니다
+                                                infowindow.close();
+                                            });
+                                            */
+                                        
+                                    }
+                                    makeEarthquake();
+
+                                    function fullScreen(){
+                                        var elem = document.getElementById("mapContent");
+                                        if (elem.requestFullscreen) {
+                                            elem.requestFullscreen();
+                                        } else if (elem.mozRequestFullScreen) { /* Firefox */
+                                            elem.mozRequestFullScreen();
+                                        } else if (elem.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+                                            elem.webkitRequestFullscreen();
+                                        } else if (elem.msRequestFullscreen) { /* IE/Edge */
+                                            elem.msRequestFullscreen();
+                                        }
+
+                                        container.style.width = screen.width + 'px';
+                                        container.style.height = screen.height + 'px';
+                                        setTimeout(setMap, 1000);
+                                    }
+
+                                    function setMap(){
+                                        map.setCenter(defaultLatLng);
+                                        map.setLevel(defaultLevel);
+                                    }
+
+                                    document.addEventListener('fullscreenchange', exitHandler);
+                                    document.addEventListener('webkitfullscreenchange', exitHandler);
+                                    document.addEventListener('mozfullscreenchange', exitHandler);
+                                    document.addEventListener('MSFullscreenChange', exitHandler);
+
+                                    function exitHandler() {
+                                        if (!document.fullscreenElement && !document.webkitIsFullScreen && !document.mozFullScreen && !document.msFullscreenElement) {
+                                            // 현재 맵
+                                            container.style.width = '680px'; // 원래 사이즈로 복귀
+                                            container.style.height = '532px';
+
+                                            // 지도 레벨 설정( 1~14 낮을 수록 확대)
+                                            map.setLevel(defaultLevel);
+                                            map.relayout(); // 지도의 레이아웃을 재 정렬합니다.
+                                            //map.setCenter(defaultLatLng); // 지도 중심을 이동 시킵니다
+                                        }
+                                    }
+
+                                    // 지도 확대, 축소 컨트롤에서 확대 버튼을 누르면 호출되어 지도를 확대하는 함수입니다
+                                    function zoomIn() {
+                                        map.setLevel(map.getLevel() - 1);
+                                    }
+
+                                    // 지도 확대, 축소 컨트롤에서 축소 버튼을 누르면 호출되어 지도를 확대하는 함수입니다
+                                    function zoomOut() {
+                                        map.setLevel(map.getLevel() + 1);
+                                    }
+
+                                    function nowLocation(){
+
+                                        // HTML5의 geolocation으로 사용할 수 있는지 확인합니다
+                                        if (navigator.geolocation && locationValue == true) {
+                                            locationValue = false;
+                                            // GeoLocation을 이용해서 접속 위치를 얻어옵니다
+                                            navigator.geolocation.getCurrentPosition(function(position) {
+                                                var lat = position.coords.latitude, // 위도
+                                                    lon = position.coords.longitude; // 경도
+
+                                                // 마커이미지
+                                                var imageSrc = 'https://d.kbs.co.kr/static/images/common/ico_current_location.gif', // 마커이미지의 주소입니다
+                                                    imageSize = new kakao.maps.Size(27, 46), // 마커이미지의 크기입니다
+                                                    imageOption = {offset: new kakao.maps.Point(15, 46)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+
+                                                // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+                                                var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+
+
+                                                // 마커를 생성합니다
+                                                var marker = new kakao.maps.Marker({
+                                                    position: new kakao.maps.LatLng(lat, lon),
+                                                    image : markerImage,
+                                                    zIndex : 10,
+                                                    clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
+                                                });
+                                                locationMarkers.push(marker);
+                                                // 마커가 지도 위에 표시되도록 설정합니다
+                                                marker.setMap(map);
+                                                map.setCenter(new kakao.maps.LatLng(lat, lon));
+                                            });
+                                        } else if(navigator.geolocation && locationValue == false){
+                                            locationValue = true;
+                                            for (var i = 0; i < locationMarkers.length; i++) {
+                                                locationMarkers[i].setMap(null);
+                                            }
+                                            locationMarkers = [];
+
+                                            map.setCenter(locationLatLng);
+
+                                        }
+                                    }
+                                    //제보영상
+                                    function getReport(){
+                                        $('.utilMap>ul>li').removeClass('on');
+//                                         $('.utilMap>ul>li').eq(3).addClass('on');
+                						$('#m4').addClass('on');
+//                                         $('.daySearch').show();
+                                        initMap();
+                                        locationLatLng = new kakao.maps.LatLng(38.385218547576336,127.43767271702401);
+
+                                        var position = new kakao.maps.LatLng(38.385218547576336,127.43767271702401);
+                                        map.setCenter(position);
+                                        map.setLevel(14);
+                                        getReportList();
+                                        $('.utilMap').addClass('utilPos_top');
+                                        $('.mapController').removeClass('bot');
+                                    }
+
+                                    function getReportList(){
+//                                         var startDate = $("#startDate").val();
+//                                         var endDate = $("#endDate").val();
+
+
+                                        var params = {
+//                                             startDate : startDate,
+//                                             endDate : endDate,
+                                            jeboType : '6',
+                                            jeboEarthquake : jeboAltDocNo
+                                        }
+                                        $.ajax ({
+                                            type : "GET",
+                                            url : '/ajax/reportList', //해당 ajax연결
+                                            data : params,
+                                            dataType : 'json',
+                                            beforeSend: function() {
+                                                //완료전
+                                            },
+                                            complete: function() {
+                                                //완료후
+                                            },
+                                            success : function(data) {
+                                                jeboData = [];
+
+                                                if(data.mapList.length > 0){
+                                                    for(var i=0; i<data.mapList.length; i++){
+                                                        jeboData.push(data.mapList[i]);
+                                                    }
+                                                }
+                                                setData();
+                                            }
+                                        });
+                                    }
+
+                                    function setData(){
+                                        for (var i = 0; i < reportMarkers.length; i++) {
+                                            reportMarkers[i].setMap(null);
+                                        }
+                                        reportMarkers = [];
+                                        for (var i = 0; i < jeboCustomOverlays.length; i++) {
+                                            jeboCustomOverlays[i].setMap(null);
+                                        }
+                                        jeboCustomOverlays = [];
+
+                                        for(var i=0; i<jeboData.length; i++){
+                                            var jeboList = JSON.parse(jeboData[i].jeboList);
+                                            var position = new kakao.maps.LatLng(jeboData[i].lat, jeboData[i].lon);
+                                            addReportMarker(position, jeboData[i].jeboCount, jeboList);
+                                        }
+                                    }
+
+                                    function addReportMarker(position, jeboCount, jeboList){
+                                        var imageSrc = "https://d.kbs.co.kr/static/images/common/ico_report_b.png";
+                                        var imageSize = new kakao.maps.Size(40, 40);
+                                        var imageOption = {offset: new kakao.maps.Point(20, 20)};
+                                        if(jeboList.length > 1){
+                                            imageSrc = "https://d.kbs.co.kr/static/images/common/ico_reports_b.png";
+                                            imageSize = new kakao.maps.Size(41, 40);
+                                            imageOption = {offset: new kakao.maps.Point(20, 20)};
+                                        }
+
+                                        // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+                                        var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+
+                                        // 마커를 생성합니다
+                                        var marker = new kakao.maps.Marker({
+                                            position: position,
+                                            image : markerImage,
+                                            clickable: true // 마커를 클릭했을 때 지도의 클릭 이벤트가 발생하지 않도록 설정합니다
+                                        });
+
+                                        // 마커가 지도 위에 표시되도록 설정합니다
+                                        marker.setMap(map);
+
+                                        if(jeboList.length > 0){
+                                            var html = "";
+                                            for (var i = 0; i < jeboList.length; i++) {
+//                                                 html = html + "<li><a href=\"javascript:;\" onclick=\"reportPopup('" + jeboList[i].seq + "');\"><strong class=\"cut\" title=\"" + jeboList[i].reporterName + "\">" + jeboList[i].reporterName + "</strong><span class=\"cut\" title=\"" + jeboList[i].contents + "\">" + jeboList[i].contents + "</span></a></li>";
+                                                html = html + "<li>" +
+                                                    "<a href=\"javascript:;\" onclick=\"reportPopup('" + jeboList[i].seq + "');\">" +
+                                                    "<div class='imgWrap'><img src='https://uploadd.kbs.co.kr/" + jeboList[i].thumbnail + "' class='rotate'></div>" +
+                                                    "<p class='cut'>" + jeboList[i].reporterName + ", <span>";
+                                                if(jeboList[i].displayYn == 'Y'){
+                                                    html = html + jeboList[i].contents + "</span></p></a></li>";
+                                                } else {
+                                                    html = html + jeboList[i].location + " 제보</span></p></a></li>";
+                                                }
+                                            }
+
+                                            var customOverlay = new kakao.maps.CustomOverlay({
+                                                xAnchor: 0,
+                                                yAnchor: 0,
+                                                zIndex: 1,
+                                                clickable: true
+                                            });
+
+                                            // 반경 정보를 표시할 커스텀 오버레이의 좌표를 마우스커서 위치로 설정합니다
+                                            customOverlay.setPosition(position);
+
+                                            // 반경 정보를 표시할 커스텀 오버레이의 표시할 내용을 설정합니다
+                                            customOverlay.setContent("<div id=\"reportListBox\" class=\"reportTvBoxOther scr1\"><ul>" + html + "</ul></div>");
+                                            customOverlay.setMap(map);
+
+                                            $("#reportListBox").on("mouseover", function(){
+                                                map.setZoomable(false);
+                                            });
+                                            $("#reportListBox").on("mouseout", function(){
+                                                map.setZoomable(true);
+                                            });
+
+                                            customOverlay.setVisible(false);
+
+                                            jeboCustomOverlays.push(customOverlay);
+                                        }
+
+                                        var drawingOverlay = new kakao.maps.CustomOverlay({
+                                            xAnchor: 0,
+                                            yAnchor: 0,
+                                            zIndex: 1
+                                        });
+
+                                        var defaultContentsCnt = 1;
+                                        var contents = "";
+                                        for(var z=0; z<jeboList.length; z++) {
+                                            if(z < defaultContentsCnt) {
+//                                                 contents = contents + "<p class=\"cut\"> - " + jeboList[z].reporterName + ", " + jeboList[z].contents + "</p>";
+                                                contents = contents + "<div class=\"cut\">"
+                                                    + "<div class='imgWrap'><img src='https://uploadd.kbs.co.kr/" + jeboList[z].thumbnail + "' class='rotate'></div>"
+                                                    + "<div class='cutInner'>"
+                                                    + "<span>" + jeboList[z].reporterName + ", </span>";
+                                                if(jeboList[z].displayYn == 'Y'){
+                                                    contents = contents + "<span class='cut'>" + jeboList[z].contents + "</span></p></div><div>";
+                                                } else {
+                                                    contents = contents + "<span class='cut'>" + jeboList[z].location + " 제보</span></p></div><div>";
+                                                }
+                                            }
+                                        }
+                                        if(jeboList.length > defaultContentsCnt){
+//                                             contents = contents + "<div class=\"otherText\"><span>외 " + (jeboList.length - defaultContentsCnt) + "건</span></div>";
+                    						contents = contents + "<div class=\"otherText\">+" + (jeboList.length - defaultContentsCnt) + "</div>";
+                                        }
+
+                                        // 마커에 마우스오버 이벤트를 등록합니다
+                                        kakao.maps.event.addListener(marker, 'mouseover', function() {
+                                            // 반경 정보를 표시할 커스텀 오버레이의 좌표를 마우스커서 위치로 설정합니다
+                                            drawingOverlay.setPosition(position);
+
+                                            // 반경 정보를 표시할 커스텀 오버레이의 표시할 내용을 설정합니다
+                                            drawingOverlay.setContent("<div class=\"reportTvBox\">" + contents + "</div>");
+                                            drawingOverlay.setMap(map);
+                                        });
+
+                                        // 마커에 마우스아웃 이벤트를 등록합니다
+                                        kakao.maps.event.addListener(marker, 'mouseout', function() {
+                                            drawingOverlay.setMap(null);
+                                        });
+
+                                        // 마커에 마우스아웃 이벤트를 등록합니다
+                                        kakao.maps.event.addListener(marker, 'click', function() {
+                                            for (var i = 0; i < jeboCustomOverlays.length; i++) {
+                                                jeboCustomOverlays[i].setVisible(false);
+                                            }
+
+                                            if(jeboCount == 1){
+                                                reportPopup(jeboList[0].seq);
+                                            }else{
+                                                customOverlay.setVisible(true);
+                                            }
+
+                                            map.setLevel(10);
+                                            map.setCenter(position);
+                                        });
+
+                                        reportMarkers.push(marker);
+                                    }
+
+                                    function locationKakaoMap(lat, lon){
+                                        if(lat != "" && lon != ""){
+                                            var position = new kakao.maps.LatLng(lat, lon);
+                                            map.setLevel(3);
+                                            map.setCenter(position);
+                                        }
+                                        video_player_close();
+                                    }
+
+                                    function reportSearch(){
+                                        var startDate = $("#startDate").val();
+                                        var endDate = $("#endDate").val();
+                                        if(startDate == "" || endDate == ""){
+                                            alert("기간을 선택해주세요.");
+                                            return;
+                                        }
+                                        if(Number(startDate.replace(".", "")) > Number(endDate.replace(".", ""))){
+                                            alert("시작날짜는 종료일자보다 클 수 없습니다.");
+                                            return;
+                                        }
+                                        getReportList();
+                                    }
+
+                                </script>
 </body>
 </html>

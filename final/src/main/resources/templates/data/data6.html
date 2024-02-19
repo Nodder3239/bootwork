@@ -23,7 +23,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 		<div class="top-top-tkstkxo-right">
 		<h2>산사태 예보 발령상황</h2>
 		<table class="tableTypeC">
-                                <caption>홍수 발생 지점, 예보 일시,햬제일시,예보상태에 관한 테이블</caption>
+                                <caption>홍수 발생 지점, 예보 일시,햬제일시,예보상태에 관한 태이블</caption>
                                 <colgroup>
                                     <col width="*">
                                     <col width="93px">
@@ -72,17 +72,17 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 
 
 							<li class="swiper-slide on swiper-slide-active"
-								style="margin-right: 10px;"><a href="javascript:;"
-								onclick="terms('terms87',this);">산사태의 정의와 특성</a></li>
+								><a href="javascript:;"
+								onclick="terms('terms87',this);" class="tab-text">산사태의 정의와 특성</a></li>
 
 
 							<li class="swiper-slide swiper-slide-next"
-								style="margin-right: 10px;"><a href="javascript:;"
-								onclick="terms('terms88',this);">산사태주의보·경보</a></li>
+								><a href="javascript:;"
+								onclick="terms('terms88',this);" class="tab-text">산사태주의보·경보</a></li>
 
 
-							<li class="swiper-slide" style="margin-right: 10px;"><a
-								href="javascript:;" onclick="terms('terms89',this);">연도별 산사태
+							<li class="swiper-slide" ><a
+								href="javascript:;" onclick="terms('terms89',this);" class="tab-text">연도별 산사태
 									피해</a></li>
 
 
@@ -149,7 +149,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 					<div class="terms89" style="display: none;">
 						<div class="terms22" style="">
 							<table border="0" cellpadding="0" cellspacing="0"
-								style="border: 1px solid #cccccc; border-left: 0; border-bottom: 0;"
+								
 								class="__se_tbl">
 								<tbody>
 									<tr>
@@ -397,28 +397,34 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
 	</div>
 <div th:replace="~{footer}"></div> 
 	<script>
-    function terms(id, element) {
-        // 모든 용어에 대한 활성화 클래스 제거
-        var terms = document.querySelectorAll('.termsText > div');
-        for (var i = 0; i < terms.length; i++) {
-            terms[i].style.display = 'none';
-        }
+	var previousTab = null;
 
-        // 클릭한 용어의 정보를 표시
-        var selectedTerm = document.querySelector('.' + id);
-        if (selectedTerm) {
-            selectedTerm.style.display = '';
-        }
+	function terms(id, element) {
+	    // 모든 용어에 대한 활성화 클래스 제거
+	    var terms = document.querySelectorAll('.termsText > div');
+	    for (var i = 0; i < terms.length; i++) {
+	        terms[i].style.display = 'none';
+	    }
 
-        // 모든 탭에 대한 활성화 클래스 제거
-        var tabs = document.querySelectorAll('.swiper-slide');
-        for (var j = 0; j < tabs.length; j++) {
-            tabs[j].classList.remove('swiper-slide-active');
-        }
+	    // 클릭한 용어의 정보를 표시
+	    var selectedTerm = document.querySelector('.' + id);
+	    if (selectedTerm) {
+	        selectedTerm.style.display = '';
+	    }
 
-        // 클릭한 탭에 활성화 클래스 추가
-        element.parentNode.classList.add('swiper-slide-active');
-    }
+	    // 이전에 선택된 탭의 배경색과 텍스트 색상을 원래대로 되돌리기
+	    if (previousTab !== null) {
+	        previousTab.style.backgroundColor = ''; // 이전에 선택된 탭의 배경색을 원래대로 초기화
+	        previousTab.querySelector('.tab-text').style.color = ''; // 이전에 선택된 탭의 텍스트 색상을 원래대로 초기화
+	    }
+
+	    // 클릭한 탭의 배경색 변경
+	    element.parentNode.style.backgroundColor = '#05347E';
+	    element.style.color = '#ffffff'; // 클릭한 탭의 텍스트 색상 변경
+
+	    // 현재 선택한 탭을 이전에 선택한 탭으로 설정
+	    previousTab = element.parentNode;
+	}
 </script>
 </body>
 </html>
