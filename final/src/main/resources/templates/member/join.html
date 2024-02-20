@@ -185,8 +185,8 @@ function checkUser(){
     } else if (pw1 !== pw2) {
         alert("비밀번호가 일치하지 않습니다.");
         return false;
-    } else if (name.length < 3) {
-        alert("이름은 3글자이상 입력해주세요.");
+    } else if (name.length < 2) {
+        alert("이름은 2글자이상 입력해주세요.");
         return false;
     } else {
         form.submit();  // 오류가 없으면 폼을 메인 컨트롤러로 전송
