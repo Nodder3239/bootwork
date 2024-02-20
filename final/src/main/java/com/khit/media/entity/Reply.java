@@ -50,5 +50,14 @@ public class Reply extends BaseEntity{
 		return reply;
 	}
 	
-	
+	public static Reply toUpdateReplyEntity(ReplyDTO replyDTO) {
+		Reply reply = Reply.builder()
+				.id(replyDTO.getId())
+				.boardId(replyDTO.getBoardId())
+				.rid(replyDTO.getRid())
+				.replyer(replyDTO.getReplyer())
+				.rcontent(replyDTO.getRcontent())
+				.build();
+		return reply;
+	}
 }

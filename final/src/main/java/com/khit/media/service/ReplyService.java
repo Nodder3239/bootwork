@@ -56,7 +56,7 @@ public class ReplyService {
 
 
 	public void update(ReplyDTO replyDTO) {
-		Reply reply = Reply.toSaveReplyEntity(replyDTO);
+		Reply reply = Reply.toUpdateReplyEntity(replyDTO);
 		replyRepository.save(reply);		
 	}
 

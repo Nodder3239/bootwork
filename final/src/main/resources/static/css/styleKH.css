@@ -70,9 +70,10 @@ ul li{list-style: none;}
 	color: #363636; 
 	background-color:#f9f9f9;
 }
-#emerContact_container #emerContact_contactTBL .contact_region:hover{ 
-	border: 1px solid #353535;
-}
+/* #emerContact_container #emerContact_contactTBL .contact_region:hover{ 
+	border: 1px solid #05347E;
+} */
+
 #emerContact_container #emerContact_contactTBL img{
 	margin-left: 17px; 
 }
