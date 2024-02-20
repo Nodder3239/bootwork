@@ -521,7 +521,7 @@ document.querySelector('[data-js-file="/js/contact_jeju.js"]').addEventListener(
 });
 
 
-// 마커를 담을 배열입니다
+// 마커와 인포윈도우를 담을 배열입니다
 var markers = [];
 var infowindows = [];
 
@@ -1020,29 +1020,6 @@ function removeAllChildNods(el) {
 	var jeju_seogwipo1_city_office = new kakao.maps.LatLng(33.25394, 126.5596);
 	var jeju_seogwipo2_city_office = new kakao.maps.LatLng(33.25563, 126.5106);	//230
 	
-	/*
-	var infowindowArray = [infowindow1, infowindow2, infowindow3, infowindow4, infowindow5, infowindow6, infowindow7, infowindow8, infowindow9, infowindow10,
-		infowindow11, infowindow12, infowindow13, infowindow14, infowindow15, infowindow16, infowindow17, infowindow18, infowindow19, infowindow20,
-		infowindow21, infowindow22, infowindow23, infowindow24, infowindow25, infowindow26, infowindow27, infowindow28, infowindow29, infowindow30,
-		infowindow31, infowindow32, infowindow33, infowindow34, infowindow35, infowindow36, infowindow37, infowindow38, infowindow39, infowindow40,
-		infowindow41, infowindow42, infowindow43, infowindow44, infowindow45, infowindow46, infowindow47, infowindow48, infowindow49, infowindow50,
-		infowindow51, infowindow52, infowindow53, infowindow54, infowindow55, infowindow56, infowindow57, infowindow58, infowindow59, infowindow60,
-		infowindow61, infowindow62, infowindow63, infowindow64, infowindow65, infowindow66, infowindow67, infowindow68, infowindow69, infowindow70,
-		infowindow71, infowindow72, infowindow73, infowindow74, infowindow75, infowindow76, infowindow77, infowindow78, infowindow79, infowindow80,
-		infowindow81, infowindow82, infowindow83, infowindow84, infowindow85, infowindow86, infowindow108, infowindow109, infowindow110, infowindow111,
-		infowindow112,infowindow137, infowindow138, infowindow139, infowindow140, infowindow141, infowindow152, infowindow153, infowindow154, infowindow155,
-		infowindow156, infowindow166, infowindow167, infowindow168, infowindow169, infowindow170, infowindow188, infowindow189, infowindow190, infowindow191,
-		infowindow192, infowindow210, infowindow211, infowindow212, infowindow213, infowindow214, infowindow228, infowindow229, infowindow230];
-	*/
-	
-	// 클릭한 대상의 인포윈도우를 제외한 나머지 인포윈도우 닫기
-	/*
-	function closeInfoWindow(){
-		for(var idx=0; idx<infowindowArray.length; idx++){
-			infowindowArray[idx].close();
-		}
-	}
-	*/
 	
 	// 마커를 생성합니다
 	var marker1 = new kakao.maps.Marker({
@@ -4183,12 +4160,16 @@ function removeAllChildNods(el) {
 	});
 	infowindows.push(infowindow230);
 	
-	// 마커를 클릭할 때 다른 지역의 인포윈도우를 끄고 해당 지역의 인포 윈도우만 표시
+	
+	// 먼저 토글을 체크해서 마커윈도우가 열려있으면 닫고
+	// 마커를 클릭할 때 다른 지역의 인포윈도우를 끄고 해당 지역의 인포 윈도우만 표시합니다
+	// 마커와 인포윈도우를 담을 배열입니다 << 여기서 []배열로 선언하고 
+	// 마커와 인포윈도우 생성 후 push로 저장합니다
+	
 	// 클릭 이벤트 리스너를 추가하는 함수
 	function addClickListener(marker, infowindow) {
 	    kakao.maps.event.addListener(marker, 'click', function() {
-	        closeOtherInfoWindows(); // 다른 마커들의 인포윈도우 닫기
-	        infowindow.open(map, marker); // 현재 마커에 대한 인포윈도우 열기
+	        toggleInfoWindow(infowindow, marker);
 	    });
 	}
 
@@ -4197,27 +4178,38 @@ function removeAllChildNods(el) {
 	    addClickListener(markers[i], infowindows[i]);
 	}
 
+	// 인포윈도우를 토글하면서 다른 마커들의 인포윈도우를 닫는 함수
+	function toggleInfoWindow(infowindow, marker) {
+	    if (infowindow.getMap()) {	//토글 기능 체크
+	        infowindow.close(); // 인포윈도우가 이미 열려있으면 닫기
+	    } else {
+	        closeOtherInfoWindows(); // 다른 마커들의 인포윈도우 닫기
+	        infowindow.open(map, marker); // 열려있지 않으면 열기
+	    }
+	}
+
 	// 다른 마커들의 인포윈도우를 닫는 함수
 	function closeOtherInfoWindows() {
 	    for (var i = 0; i < infowindows.length; i++) {
 	        infowindows[i].close();
 	    }
 	}
-	// 마커를 클릭할 때 다른 지역의 인포윈도우를 끄고 해당 지역의 인포 윈도우만 표시
+	// 토글+ 마커를 클릭할 때 다른 지역의 인포윈도우를 끄고 해당 지역의 인포 윈도우만 표시
+
 	
-	
-	// 토글 방식으로 사용하고 싶을 때 마커 클릭 이벤트 리스너
 	/*
+	// 토글 방법 2
+	// 토글 방식으로 사용하고 싶을 때 마커 클릭 이벤트 리스너
 	kakao.maps.event.addListener(marker1, 'click', function() {
 		
 		closeInfoWindow.close();
 		infowindow1.open(map,marker1);
 		// 인포윈도우 토글
-		//if (infowindow1.getMap()) {
-		//        infowindow1.close();
-		//    } else {
-		//        infowindow1.open(map, marker1);
-		//    }
+		if (infowindow1.getMap()) {
+		        infowindow1.close();
+		    } else {
+		        infowindow1.open(map, marker1);
+		    }
 	});
 
 	kakao.maps.event.addListener(marker2, 'click', function() {
